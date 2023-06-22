@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Playball&display=swap" rel="stylesheet">
+}
+<!-- Start Main -->
+<main>
+    <section id="wrapper-contact" class="contact-background"
+             style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+        <div class="container page_text">
+            <h1>Contact us</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Contact us</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="map">
+        <div class="container">
+            <div class="map-cart">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24313.215380891517!2d49.86191205!3d40.3833254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2saz!4v1678084299482!5m2!1sen!2saz"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+    </section>
+    <section id="contact">
+        <div class="container">
+            <div class="row contact-area">
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                    <div class="elementor-column-wrap">
+                        <h2>Our store</h2>
+                        <p>
+                            Box 565, Charlestown, Nevis, West
+                            Indies,Caribbean
+                        </p>
+                        <h2>Our Business Hours</h2>
+                        <p>
+                            Monday – Friday:<br><span style="color: #000000;">8am – 4pm</span><br>Saturday,
+                            Sunday:<br><span style="color: #000000;">9am – 5pm</span>
+                        </p>
+                        <h2>Our Contact Information</h2>
+                        <p>
+                            <span>(844) 1800-3355</span><br><span>info@example.com</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="elementor-column">
+                        <div class="elementor-widget-container">
+                            <form class="elementor-form">
+                                <div class="input-area">
+                                    <input placeholder="Your Name *">
+                                    <input placeholder="Phone Number *">
+                                </div>
+                                <div class="input-area">
+                                    <input placeholder="Your Email *">
+                                    <input placeholder="Wedding Date">
+                                </div>
+                                <textarea placeholder="Your Message"></textarea>
+                                <button type="submit">
+                                    send your message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer-top-contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-1.png">
+                        <span class="title">Free Shipping </span>
+                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-2.png">
+                        <span class="title">Free Shipping </span>
+                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-3.png">
+                        <span class="title">Custom Sizing</span>
+                        <p>Order your dress with free custom sizing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-4.png">
+                        <span class="title">Superb Quality</span>
+                        <p>We make commitments that the quality of our products will and always will be superb.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="~/assets/js/contact.js"></script>
+}
+
+

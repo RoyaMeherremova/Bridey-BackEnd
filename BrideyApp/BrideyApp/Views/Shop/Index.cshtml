@@ -1,0 +1,434 @@
+﻿@{
+    ViewData["Title"] = "Shop";
+}
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+}
+<!-- Start Main -->
+<main>
+    <section id="wrapper-shop" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+        <div class="container page_text">
+            <h1>Shop</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Shop
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Shop</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="shop-responsive-header">
+        <div class="container">
+            <div class="bridey-sorting d-lg-none d-block">
+                <div class="d-flex" style="justify-content:space-between;align-items:center;">
+                    <div class="filter-toggle">
+                        <i class="fa-solid fa-sliders"></i><span>Filter</span>
+                    </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected="">Sort By Latest</option>
+                        <option value="1">Sort By Popularity</option>
+                        <option value="2">Sort By Avarage Rating</option>
+                        <option value="3">Sort By Price:Low To High</option>
+                        <option value="4">Sort By Price:High to Low</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section id="sort-area">
+        <div class="container">
+            <div class="sort d-lg-block d-none">
+                <div class="d-flex" style="justify-content:space-between;align-items:center;">
+                    <div class="sort-result">
+                        <p>Showing <span>1–12</span> of <span>17</span>results</p>
+                    </div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Sort By Latest</option>
+                        <option value="1">Sort By Popularity</option>
+                        <option value="2">Sort By Avarage Rating</option>
+                        <option value="3">Sort By Price:Low To High</option>
+                        <option value="4">Sort By Price:High to Low</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <section id="wpb_wrapper">
+        <div class="container container-shop">
+            <div class="row">
+                <div class="col-lg-3 d-lg-block d-none">
+                    <div class="products-variants">
+                        <div class="dresses-variants">
+                            <h5>Categories</h5>
+                            <ul>
+                                <li>
+                                    <a>
+                                        <div class="siluet">
+                                            <img style="margin-left: 6px;"
+                                                 src="~/assets/images/kruzhevnie.svg">
+                                        </div>
+                                        <span>All</span>
+                                    </a>
+                                </li>
+                                <li>
+                                <li>
+                                    <a>
+                                        <div class="siluet siluet-sm"><img src="~/assets/images/pishnoe.svg"></div>
+                                        <span>Fluffy</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet"><img src="~/assets/images/a-siluet.svg"></div>
+                                        <span>Classic</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet"><img src="~/assets/images/pryamoe.svg"></div>
+                                        <span>Minimalism</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet"><img src="~/assets/images/korotkoe.svg"></div>
+                                        <span>Short</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet"><img src="~/assets/images/s-rukavom.svg"></div>
+                                        <span>Sleeves</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet suit-dress">
+                                            <img src="~/assets/images/venchanie.svg">
+                                        </div>
+                                        <span>Suits</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <div class="siluet"><img src="~/assets/images/cvetnoe.svg"></div>
+                                        <span>No white</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+                        </div>
+                        <div class="product-area">
+                            <div class="price-title">
+                                <h3>FILTER BY PRICE</h3>
+                            </div>
+                            <div class="price-filter">
+                                <div class="card">
+
+                                    <div class="range-slider">
+                                        <input type="range" class="min-price" value="100" min="10" max="500"
+                                               step="10" style="accent-color: #d8d8d8;">
+                                        <input type="range" class="max-price" value="250" min="10" max="500"
+                                               step="10" style="accent-color: #d8d8d8;">
+                                    </div>
+                                    <div class="price-content">
+
+                                        <div style="color: gray;">
+                                            <p>Price:</p>
+                                        </div>
+                                        <div>
+                                            <p id="min-value">50</p>
+                                        </div>
+
+                                        <div>
+                                            <p id="max-value">500</p>
+                                        </div>
+                                        <div class="filter-button">
+                                            <button>FILTER</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-title-holder">
+                            <h5>Colors</h5>
+                            <ul>
+                                <li>
+                                    <a>White</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Cream</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Blue</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Red</a><span>(25)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="widget-title-holder">
+                            <h5>Sizes</h5>
+                            <ul>
+                                <li>
+                                    <a>Small (S)</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Medium (M)</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Large (L)</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Extra Large (XL)</a><span>(25)</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="compositions">
+                            <h5>Composition</h5>
+                            <div class="widget-title-holder">
+                                <ul>
+                                    <li>
+                                        <a>All</a><span>(25)</span>
+                                    </li>
+                                    <li>
+                                        <a>Ceramic</a><span>(25)</span>
+                                    </li>
+                                    <li>
+                                        <a>Cotton</a><span>(25)</span>
+                                    </li>
+                                    <li>
+                                        <a>Matt paper</a><span>(25)</span>
+                                    </li>
+                                    <li>
+                                        <a>Polyester</a><span>(25)</span>
+                                    </li>
+                                    <li>
+                                        <a>Recycled cardboard</a><span>(25)</span>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="widget-title-holder">
+                            <h5>Brands</h5>
+                            <ul>
+                                <li>
+                                    <a>Greenery</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Design Studio</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Studi No-1</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Design & Branding</a><span>(25)</span>
+                                </li>
+                                <li>
+                                    <a>Natural</a><span>(25)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="banner">
+                            <img src="~/assets/images/banner.webp">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-9 col-sm-12">
+                    <div class="row">
+
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <div class="cart">
+                                <div class="new">New</div>
+                                <div class="product-img">
+                                    <a asp-controller="ProductDetail" asp-action="Index">
+
+                                        <img src="~/assets/images/bride 0ne.webp" class="primary-img"
+                                             alt="Card image cap">
+                                        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                                               poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                                               src="https://cdn-1.jjshouse.com/upimg/s1140/aa/41/0563cee4ef0d46ca3d9b77dc0b0daa41.mp4"
+                                               type="video/mp4"></video>
+                                    </a>
+
+                                </div>
+                                <div class="product-name">
+                                    <span>Modern classic</span>
+                                    <span>Illusion Cap Sleeve Lace...</span>
+                                </div>
+                                <div class="product-price">
+                                    <p class="price">$<span class="price">23.90</span></p>
+                                </div>
+                                <div class="functional-button">
+                                    <ul>
+                                        <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                        <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                        <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <div class="cart">
+                                <div class="new">New</div>
+                                <div class="product-img">
+                                    <a asp-controller="ProductDetail" asp-action="Index">
+                                        <img src="~/assets/images/bridetwo.webp" class="primary-img"
+                                             alt="Card image cap">
+                                        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                                               poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                                               src="https://cdn-1.jjshouse.com/upimg/s1140/4a/d1/315c225a1f5402f5603c8c18e3314ad1.mp4"
+                                               type="video/mp4"></video>
+                                    </a>
+                                </div>
+                                <div class="product-name">
+                                    <span>Wedding dresses</span>
+                                    <span>Floral Beaded Wedding Dress...</span>
+                                </div>
+                                <div class="product-price">
+                                    <p class="price">$<span class="price">35.90</span></p>
+                                </div>
+                                <div class="functional-button">
+                                    <ul>
+                                        <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                        <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                        <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <div class="cart">
+                                <div class="new">New</div>
+                                <div class="product-img">
+                                    <a asp-controller="ProductDetail" asp-action="Index">
+                                        <img src="~/assets/images/bridefor.webp" class="primary-img"
+                                             alt="Card image cap">
+                                        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                                               poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                                               src="https://cdn-1.jjshouse.com/upimg/s1140/0a/82/bddb2102029c2ed9d2ef82e80b400a82.mp4"
+                                               type="video/mp4"></video>
+                                    </a>
+                                </div>
+                                <div class="product-name">
+                                    <span>With corset lacing</span>
+                                    <span>Beaded Bodice with Tiered...</span>
+                                </div>
+                                <div class="product-price">
+                                    <p class="price">$<span class="price">29.90</span></p>
+                                </div>
+                                <div class="functional-button">
+                                    <ul>
+                                        <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                        <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                        <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-6">
+                            <div class="cart">
+                                <div class="new">New</div>
+                                <div class="product-img">
+                                    <a asp-controller="ProductDetail" asp-action="Index">
+                                        <img src="~/assets/images/bridethree.webp" class="primary-img"
+                                             alt="Card image cap">
+                                        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                                               poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                                               src="https://cdn-3.jjshouse.com/upimg/s1140/3f/0d/cd2b157e5340a71a466fb450848c3f0d.mp4"
+                                               type="video/mp4"></video>
+                                    </a>
+                                </div>
+                                <div class="product-name">
+                                    <span>Wedding Dresses</span>
+                                    <span>Floral Tall Plus Wedding...</span>
+                                </div>
+                                <div class="product-price">
+                                    <p class="price">$<span class="price">23.90</span></p>
+                                </div>
+                                <div class="functional-button">
+                                    <ul>
+                                        <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                        <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                        <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="load-more">
+                        <a class="btn-more">
+                            Load More
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="footer-top-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-1.png">
+                        <span class="title">Free Shipping </span>
+                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-2.png">
+                        <span class="title">Free Shipping </span>
+                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-3.png">
+                        <span class="title">Custom Sizing</span>
+                        <p>Order your dress with free custom sizing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-4.png">
+                        <span class="title">Superb Quality</span>
+                        <p>We make commitments that the quality of our products will and always will be superb.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="~/assets/js/shop.js"></script>
+}
+
+

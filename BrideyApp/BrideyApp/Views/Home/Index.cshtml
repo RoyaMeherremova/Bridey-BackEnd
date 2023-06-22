@@ -1,0 +1,800 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kaushan+Script&family=Marck+Script&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/slicky/slick-1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/slicky/slick-1.8.1/slick/slick-theme.css" />
+
+}
+<!-- Start Main -->
+<main>
+    <section id="slider">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="~/assets/images/slide.jpg" alt="">
+                    <div class="slide slide-1">
+                        <span class="saleName">Final sale</span>
+                        <h1 class="sale">75 % off</h1>
+                        <span class="caption-contain">
+                            and free ship order <br>over $100
+                        </span>
+                        <a class=" shop btn-hover" asp-controller="Shop" asp-action="Index">
+                            SHOP NOW
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="~/assets/images/slide1.jpg" alt="">
+                    <div class="slide slide-2">
+                        <span class="saleName">Final sale</span>
+                        <h1 class="sale">75 % off</h1>
+                        <span class="caption-contain">
+                            and free ship order <br>over $100
+                        </span>
+                        <a class="shop btn-hover" asp-controller="Shop" asp-action="Index">
+                            SHOP NOW
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+                <div class="swiper-slide">
+                    <img src="~/assets/images/slide2.jpg" alt="">
+                    <div class="slide slide-1">
+                        <span class="saleName">Final sale</span>
+                        <h1 class="sale">75 % off</h1>
+                        <span class="caption-contain">
+                            and free ship order <br>over $100
+                        </span>
+                        <a class="shop btn-hover" asp-controller="Shop" asp-action="Index">
+                            SHOP NOW
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="back-top d-none">
+            <a><i class="fa-solid fa-angles-up"></i></a>
+        </div>
+    </section>
+    <section id="introducing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <div class="introducing-text">
+                        <div class="intro-text">
+                            <h4>Introducing</h4>
+                            <span>A Global Bridal Brand</span>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img src="~/assets/images/image-1.jpg" alt="">
+                    </div>
+                    <div class="apImage">
+                        <img class="rot" src="~/assets/images/wedding.png" alt="">
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <div class="introducing-right">
+                        <div class="introducing-image">
+                            <img src="~/assets/images/image-2.jpg" alt="">
+                        </div>
+                        <div class="info-text">
+                            <h3>We believe in a bridal revolution</h3>
+                            <p>
+                                We don't think bridal should be uncomfortable or kept in a box. We don't think you
+                                should
+                                be pressured into not feeling like yourself. Our dresses are unusual, figure
+                                flattering
+                                and above all comfortable.
+                            </p>
+                            <p>
+                                They are made to stand out in the bridal world and to make your guests salute you for
+                                being you. Our styles are designed and made in Wales, UK. We're part of a community,
+                                just like you. We believe in being yourself.
+                            </p>
+                            <a class="btn-about" asp-controller="About" asp-action="Index">
+                                MORE ABOUT US
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="line">
+    <section id="featured-products">
+        <div class="container">
+            <div class="header-background">
+                <div class="header-background-content">
+                    <h4>Featured products</h4>
+                    <span>New Looks To Love</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress1.jpg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss1.jpg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>Modern classic</span>
+                            <span>Illusion Cap Sleeve Lace...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress2.jpg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss2.jpg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>Wedding dresses</span>
+                            <span>Floral Beaded Wedding Dress...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">35.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress3.jpg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss3.jpg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>With corset lacing</span>
+                            <span>Beaded Bodice with Tiered...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">29.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress4.jfif" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss4.jfif" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>Wedding Dresses</span>
+                            <span>Floral Tall Plus Wedding...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dresss5.jpg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dress5.jpg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>Minimalism</span>
+                            <span>Short Sleeve Low Back...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress7.jpeg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss7.jpeg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>Minimalism</span>
+                            <span>Illusion Sleeve Plunging...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress6.jfif" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss6.jfif" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>With long sleeve</span>
+                            <span>Strapless Sweetheart Tulle...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="cart">
+                        <div class="new">New</div>
+                        <div class="product-img">
+                            <a asp-controller="ProductDetail" asp-action="Index">
+                                <img src="~/assets/images/dress8.jpg" class="primary-img" alt="Card image cap">
+                                <img src="~/assets/images/dresss8.jpg" class="secondary-img" alt="Card image cap">
+                            </a>
+                        </div>
+                        <div class="product-name">
+                            <span>With puffed sleeves</span>
+                            <span>Floral Applique Sheer...</span>
+                        </div>
+                        <div class="product-price">
+                            <p class="price">$<span class="price">23.90</span></p>
+                        </div>
+                        <div class="functional-buttons">
+                            <ul>
+                                <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="btn-show-more">
+                <a>
+                    Show more
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <section id="about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="about-us-text">
+                        <div class="intro-text">
+                            <h4>Wedding salon in Baku</h4>
+                            <p>
+                                Bridey bridal salon was created for brides who prefer laconic and modern wedding
+                                dresses. They are ideal for registering at the registry office, a small celebration
+                                or a minimalist wedding. We also pay great attention to jewelry and we know for sure
+                                that accents in a wedding look are very important.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <img src="~/assets/images/photo1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-us-right d-lg-block d-none">
+                        <div class="about-us-img">
+                            <img src="~/assets/images/photo2.jpg" alt="">
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="btnn">
+                <a class="btn-about" asp-controller="Shop" asp-action="Index">
+                    Show Catalog
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+    <section id="brides-header">
+        <div class="container">
+            <div class="header-background">
+                <div class="header-background-content">
+                    <h4>Salon of wedding dresses Bridey</h4>
+                    <span>we are chosen by the most beautiful and happiest brides!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="brides">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="bride-img col-lg-block">
+                        <img src="~/assets/images/bride1.jfif">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="bride-img">
+                        <img src="~/assets/images/bride2.jfif">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="bride-img">
+                        <img src="~/assets/images/bride3.jpeg">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="bride-img">
+                        <img src="~/assets/images/bride4.jfif">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section id="block-carousel"
+             style="background-image: url('/assets/images/bg-home1.jpg');background-repeat: no-repeat;background-position: center;">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="slider-content">
+                                <div class="block-image">
+                                    <img src="~/assets/images/qoutes.png">
+                                </div>
+                                <div class="descript">
+                                    "I can’t thank you all enough. I loved everything about my experience. Thank you
+                                    for helping
+                                    me
+                                    find the dress of my dreams!"
+                                </div>
+                                <div class="title">
+                                    Kelli Hansen
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="slider-content">
+                                <div class="block-image">
+                                    <img src="~/assets/images/qoutes.png">
+                                </div>
+                                <div class="descript">
+                                    "I can’t thank you all enough. I loved everything about my experience. Thank you
+                                    for helping
+                                    me
+                                    find the dress of my dreams!"
+                                </div>
+                                <div class="title">
+                                    Kelli Hansen
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="owl-item">
+                                <div class="slider-content">
+                                    <div class="block-image">
+                                        <img src="~/assets/images/qoutes.png">
+                                    </div>
+                                    <div class="descript">
+                                        "I can’t thank you all enough. I loved everything about my experience. Thank
+                                        you
+                                        for helping
+                                        me
+                                        find the dress of my dreams!"
+                                    </div>
+                                    <div class="title">
+                                        Kelli Hansen
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next d-lg-block d-none"></div>
+            <div class="swiper-button-prev d-lg-block d-none"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </section>
+    <section id="latest-news">
+        <div class="container">
+            <div class="header-background">
+                <div class="header-background-content">
+                    <h4>Latest news</h4>
+                    <span>From The Blog</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="blogs">
+        <div class="container">
+            <div class="row">
+                <div class="blog-slider">
+                    <div class="col-4">
+                        <a asp-controller="BlogDetail" asp-action="Index">
+                            <div class="blog">
+                                <div class="blog-content">
+                                    <div class="blog-author">
+                                        <span class="blogg">Blog:<span></span></span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <span class="created">
+                                            23 May 2020
+                                        </span>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <div class="blog-title">
+                                            <h4>Bride 2023 - new season trends</h4>
+                                        </div>
+                                    </div>
+                                    <div class="read-more">
+                                        <a class="">
+                                            Read More
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <div class="blog-img">
+                                    <img src="~/assets/images/blog-1.jpg">
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a asp-controller="BlogDetail" asp-action="Index">
+                            <div class="blog">
+                                <div class="blog-content">
+                                    <div class="blog-author">
+                                        <span class="blogg">Blog:<span></span></span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <span class="created">
+                                            23 May 2020
+                                        </span>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <div class="blog-title">
+                                            <h4>Bride 2023 - new season trends</h4>
+                                        </div>
+                                    </div>
+                                    <div class="read-more">
+                                        <a class="">
+                                            Read More
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <div class="blog-img">
+                                    <img src="~/assets/images/blog-2.jpg">
+                                </div>
+
+                            </div>
+
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a asp-controller="BlogDetail" asp-action="Index">
+                            <div class="blog">
+                                <div class="blog-content">
+                                    <div class="blog-author">
+                                        <span class="blogg">Blog:<span></span></span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <span class="created">
+                                            23 May 2020
+                                        </span>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <div class="blog-title">
+                                            <h4>Bride 2023 - new season trends</h4>
+                                        </div>
+                                    </div>
+                                    <div class="read-more">
+                                        <a class="">
+                                            Read More
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <div class="blog-img">
+                                    <img src="~/assets/images/blog-3.jpg">
+                                </div>
+
+                            </div>
+                        </a>
+
+
+
+                    </div>
+                    <div class="col-4">
+                        <a asp-controller="BlogDetail" asp-action="Index">
+                            <div class="blog">
+                                <div class="blog-content">
+                                    <div class="blog-author">
+                                        <span class="blogg">Blog:<span></span></span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <span class="created">
+                                            23 May 2020
+                                        </span>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <div class="blog-title">
+                                            <h4>Bride 2023 - new season trends</h4>
+                                        </div>
+                                    </div>
+                                    <div class="read-more">
+                                        <a class="">
+                                            Read More
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <div class="blog-img">
+                                    <img src="~/assets/images/blog-3.jpg">
+                                </div>
+
+                            </div>
+                        </a>
+
+
+
+                    </div>
+                    <div class="col-4">
+                        <a asp-controller="BlogDetail" asp-action="Index">
+                            <div class="blog">
+                                <div class="blog-content">
+                                    <div class="blog-author">
+                                        <span class="blogg">Blog:<span></span></span>
+                                    </div>
+                                    <div class="blog-date">
+                                        <span class="created">
+                                            23 May 2020
+                                        </span>
+                                    </div>
+                                    <div class="blog-meta">
+                                        <div class="blog-title">
+                                            <h4>Bride 2023 - new season trends</h4>
+                                        </div>
+                                    </div>
+                                    <div class="read-more">
+                                        <a class="">
+                                            Read More
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <div class="blog-img">
+                                    <img src="~/assets/images/blog-3.jpg">
+                                </div>
+
+                            </div>
+                        </a>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <section id="subscrive-header">
+        <div class="container">
+            <div class="header-background">
+                <div class="header-background-content">
+                    <h4>Instagram</h4>
+                    <span>Follow Us</span>
+                </div>
+            </div>
+            <div class="subscrive-title">
+                <h3>Love is all around</h3>
+            </div>
+        </div>
+    </section>
+    <section id="subscrive">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-md-6">
+                    <div class="left-side">
+                        <h3>Sign up </h3>
+                        <h4>Stay in touch with us</h4>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-sm-12 col-md-6">
+                    <div class="block-content">
+                        <form>
+                            <div class="input-area">
+                                <input placeholder="Your email address">
+                            </div>
+                            <button type="submit">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-1.png">
+                        <span class="title">Free Shipping </span>
+                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-2.png">
+                        <span class="title">Free Shipping </span>
+                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-3.png">
+                        <span class="title">Custom Sizing</span>
+                        <p>Order your dress with free custom sizing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-4.png">
+                        <span class="title">Superb Quality</span>
+                        <p>We make commitments that the quality of our products will and always will be superb.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="~/assets/slicky/slick-1.8.1/slick/slick.min.js"></script>
+    <script src="~/assets/js/home.js"></script>
+}
+
+

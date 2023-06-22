@@ -1,0 +1,310 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kaushan+Script&family=Marck+Script&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=WindSong:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+}
+<!-- Start Main -->
+<main>
+    <section id="wrapper-about" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+        <div class="container page_text">
+            <h1>About us</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>About us</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="story-content">
+        <div class="container container-about">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <div class="block-ApImage">
+                        <img src="~/assets/images/AU-1.jpg">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-6">
+                    <div class="content-text">
+                        <div class="intro-text">
+                            <h4>Our story</h4>
+                        </div>
+                        <div class="text-about">
+                            <p>
+                                Lovely Bride was borne of the concept that bridal could be way cooler. When the
+                                company was founded in 2009, there was a creative swell of bloggers, photographers,
+                                planners, florists and fashion designers doing things differently. A change was
+                                happening in weddings, and brides were looking for something more authentic and REAL
+                                for their wedding day. So we plucked some of her designers right off of Etsy, and
+                                opened a boutique in a West Village townhouse in April 2010. Welcome home Lovely
+                                Bride! The sales stylists were fun, not judgey. The dresses were crafted, not
+                                produced. And the decor was light-hearted, not heavy. This unique style set the new
+                                standard for what bridal shopping could be!
+                            </p>
+                        </div>
+                        <div class="image-form">
+                            <img src="~/assets/images/AU-2.jpg">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="our-contact">
+        <div class="container">
+            <div class="blok-ApRawHtml">
+                <div class="contact-area">
+                    <p>
+                        We can't wait to meet you &amp; to connect you to a badass dress. Come see us &amp; tell us
+                        your
+                        story.
+                    </p>
+                    <a asp-controller="Contact" asp-action="Index" class="btn-hov">
+                        Contact
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="title_block">
+        <div class="container">
+            <div class="sub-title">
+                <p>What we do</p>
+                <h2>Bridal Industry<br> Transparency</h2>
+                <img src="~/assets/images/decor.png">
+            </div>
+        </div>
+
+    </section>
+    <section id="about-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="about-item">
+                        <div class="top" style="display:flex;">
+                            <div class="icon">
+                                <img src="~/assets/images/button 1.svg">
+                            </div>
+                            <div class="title">Designer &amp; Design</div>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                In the world of fashion, there are two differing business modes: running a brand and
+                                running a personal label. The running of a brand usually belongs to a profit-motivated
+                                registered company, while a personal label is much smaller in scale and is driven by
+                                fashion rather than profit.
+                            </p>
+                        </div>
+                        <a class="btn-hov">
+                            OUR TEAM
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="about-item">
+                        <div class="top" style="display:flex;">
+                            <div class="icon">
+                                <img src="~/assets/images/dress.svg">
+                            </div>
+                            <div class="title">Production Supply Chain</div>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                In the world of fashion, there are two differing business modes: running a brand and
+                                running a personal label. The running of a brand usually belongs to a profit-motivated
+                                registered company, while a personal label is much smaller in scale and is driven by
+                                fashion rather than profit.
+                            </p>
+                        </div>
+                        <a class="btn-hov our-btn">
+                            VISIT OUR SHOP
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-6">
+                    <div class="about-item">
+                        <div class="top" style="display:flex;">
+                            <div class="icon">
+                                <img src="~/assets/images/sew.svg">
+                            </div>
+                            <div class="title">Creation & Craftmanship</div>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                In the world of fashion, there are two differing business modes: running a brand and
+                                running a personal label. The running of a brand usually belongs to a profit-motivated
+                                registered company, while a personal label is much smaller in scale and is driven by
+                                fashion rather than profit.
+                            </p>
+                        </div>
+                        <a class="btn-hov our-bt">
+                            GET A QUOTE
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-sm-12 col-md-6">
+                    <div class="about-item">
+                        <div class="top" style="display:flex;">
+                            <div class="icon">
+                                <img src="~/assets/images/ring.svg">
+                            </div>
+                            <div class="title">Happiness Builder</div>
+                        </div>
+                        <div class="about-text">
+                            <p>
+                                In the world of fashion, there are two differing business modes: running a brand and
+                                running a personal label. The running of a brand usually belongs to a profit-motivated
+                                registered company, while a personal label is much smaller in scale and is driven by
+                                fashion rather than profit.
+                            </p>
+                        </div>
+
+                        <a class="btn-hov">
+                            SEE MORE
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="block-carousel-about"
+             style="background-image: url('/assets/images/backgroundd22.webp');background-repeat: no-repeat;background-position: center;">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="slider-content slide-cont">
+                                <div class="user-img">
+                                    <img src="~/assets/images/team3.jpg">
+                                </div>
+                                <div class="descript slide-color">
+                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
+                                    for helping me find the dress of my dreams!”
+
+                                </div>
+
+                                <div class="title slide-color">
+                                    Kelli Hansen
+                                </div>
+                                <div class="job">Design</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="slider-content slide-cont">
+                                <div class="user-img">
+                                    <img src="~/assets/images/team3.jpg">
+                                </div>
+                                <div class="descript slide-color">
+                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
+                                    for helping me find the dress of my dreams!”
+
+                                </div>
+
+                                <div class="title slide-color">
+                                    Kelli Hansen
+                                </div>
+                                <div class="job">Design</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide">
+                        <div class="owl-item">
+                            <div class="slider-content slide-cont">
+                                <div class="user-img">
+                                    <img src="~/assets/images/team3.jpg">
+                                </div>
+                                <div class="descript slide-color">
+                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
+                                    for helping me find the dress of my dreams!”
+
+                                </div>
+
+                                <div class="title slide-color">
+                                    Kelli Hansen
+                                </div>
+                                <div class="job">Design</div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next d-lg-block d-none"></div>
+            <div class="swiper-button-prev d-lg-block d-none"></div>
+            <div class="swiper-pagination about-pagination"></div>
+        </div>
+    </section>
+    <section id="footer-top-about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-1.png">
+                        <span class="title">Free Shipping </span>
+                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-2.png">
+                        <span class="title">Free Shipping </span>
+                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-3.png">
+                        <span class="title">Custom Sizing</span>
+                        <p>Order your dress with free custom sizing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-4.png">
+                        <span class="title">Superb Quality</span>
+                        <p>We make commitments that the quality of our products will and always will be superb.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/about.js"></script>
+}
+
+
+
+

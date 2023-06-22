@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Wishlist";
+}
+
+<!-- Main Start -->
+<main>
+    <section id="wrapper-wishlist" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+        <div class="container page_text">
+            <h1>Wishlist</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Wishlist</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="wishlist-table">
+        <div class="container">
+            <div class="table-area">
+                <div class="table-products">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-id="3">
+                                <td>
+                                    <img src="~/assets/images/dress1.jpg" alt="">
+                                </td>
+                                <td>Lotti Midi Dress</td>
+                                <td><span>$</span> 149.00</td>
+                                <td><i class="fa-solid fa-x delete-icon"></i></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="footer-wish">
+                    <button class="btn btn-primary shop"><a href="">Continue shopping</a></button>
+                    <span class="total-price">Grand total: $149</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Main End -->
+@section Scripts {
+    <script src="~/assets/js/wishlist.js"></script>
+}
+
+
