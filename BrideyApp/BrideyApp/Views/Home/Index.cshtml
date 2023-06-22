@@ -1,9 +1,10 @@
-﻿@{
+﻿@model HomeVM
+@{
     ViewData["Title"] = "Home";
 }
 
 @section Styles {
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kaushan+Script&family=Marck+Script&display=swap"
@@ -20,51 +21,39 @@
     <section id="slider">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="~/assets/images/slide.jpg" alt="">
-                    <div class="slide slide-1">
-                        <span class="saleName">Final sale</span>
-                        <h1 class="sale">75 % off</h1>
-                        <span class="caption-contain">
-                            and free ship order <br>over $100
-                        </span>
-                        <a class=" shop btn-hover" asp-controller="Shop" asp-action="Index">
-                            SHOP NOW
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
+                @foreach(var slider in Model.Sliders.Where(s=>s.Id != Model.Sliders.LastOrDefault().Id))
+                {
+                    <div class="swiper-slide">
+                        <img src="./assets/images/@slider.Image" alt="">
+                        <div class="slide slide-1">
+                            <span class="saleName">@slider.Header</span>
+                            <h1 class="sale">@slider.Title</h1>
+                            <span class="caption-contain">
+                               @slider.ShortDesc
+                            </span>
+                            <a class=" shop btn-hover">
+                                SHOP NOW
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
 
+                        </div>
                     </div>
-                </div>
+                }
                 <div class="swiper-slide">
-                    <img src="~/assets/images/slide1.jpg" alt="">
+                    <img src="./assets/images/@Model.Sliders.LastOrDefault().Image" alt="">
                     <div class="slide slide-2">
-                        <span class="saleName">Final sale</span>
-                        <h1 class="sale">75 % off</h1>
+                        <span class="saleName">@Model.Sliders.LastOrDefault().Header</span>
+                        <h1 class="sale">@Model.Sliders.LastOrDefault().Title</h1>
                         <span class="caption-contain">
-                            and free ship order <br>over $100
+                            @Model.Sliders.LastOrDefault().ShortDesc
                         </span>
-                        <a class="shop btn-hover" asp-controller="Shop" asp-action="Index">
-                            SHOP NOW
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
-                    </div>
-
-
-                </div>
-                <div class="swiper-slide">
-                    <img src="~/assets/images/slide2.jpg" alt="">
-                    <div class="slide slide-1">
-                        <span class="saleName">Final sale</span>
-                        <h1 class="sale">75 % off</h1>
-                        <span class="caption-contain">
-                            and free ship order <br>over $100
-                        </span>
-                        <a class="shop btn-hover" asp-controller="Shop" asp-action="Index">
+                        <a class="shop btn-hover">
                             SHOP NOW
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </a>
                     </div>
                 </div>
+           
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>

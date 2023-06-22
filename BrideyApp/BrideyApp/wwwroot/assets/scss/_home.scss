@@ -91,13 +91,14 @@
                 font-family: Roboto, Helvetica Neue, sans-serif;
                 text-decoration: none;
                 border: 1px solid #b8b8b8;
-                padding: 13px 19px 13px 12px;
+                padding: 13px 36px 13px 12px;
                 font-size: 11px;
                 display: block;
                 background: linear-gradient(to right, #e9ac98 50%, #fff2f2 50%);
                 background-size: 200% 100%;
                 background-position: right bottom;
                 transition: all .2s ease-out;
+               
 
                 &:hover {
 
@@ -120,22 +121,27 @@
             .sale {
                 position: absolute;
                 display: inline-block;
-                font-size: 75px;
-                color: rgb(88, 82, 94);
-                font-weight: 700;
+                font-family: 'Marcellus';
+                font-weight: 400;
+                font-size: 47px;
+                transform-origin: 50% 50%;
+                font-size: 48px;
+                color: #C08586;
             }
 
             .saleName {
-                font-family: 'Marck Script', cursive;
+             
+                font-family: 'Marcellus';
                 position: absolute;
-                font-size: 50px;
-                color: rgb(192, 133, 134);
+                font-size: 14px;
+                color: #000;
             }
 
             .caption-contain {
                 position: absolute;
                 text-align: start;
-                font-size: 30px;
+                font-family: 'Marcellus';
+                font-size: 24px;
                 font-weight: 500;
                 color: rgb(88, 82, 94);
             }
@@ -144,8 +150,8 @@
 
         .slide-1 {
             .shop {
-                top: 68%;
-                left: 13%;
+                top: 52% !important;
+                left: 22%!important;
 
             }
 
@@ -159,21 +165,25 @@
             }
 
             .saleName {
-                left: 14%;
-                top: 21%;
+              
+                top: 30%;
+                left: 22%;
+
             }
 
             .caption-contain {
-                left: 13%;
-                top: 51%;
+                left: 15% ;
+                top: 44% ;
+                font-size: 24px;
             }
 
         }
 
         .slide-2 {
             .shop {
-                top: 65%;
-                right: 26%;
+                top: 51%;
+                left: 67%;
+               
             }
 
             .sale {
@@ -182,15 +192,40 @@
             }
 
             .saleName {
-                right: 19%;
-                top: 17%;
+                right: 21%;
+                top: 26%;
             }
 
             .caption-contain {
-                right: 17%;
-                top: 48%;
+                right: 16%;
+                top: 42%;
+                font-size: 19px;
             }
 
+        }
+        .slide-3{
+
+            .shop {
+                top: 52% !important;
+                left: 21% !important;
+               
+            }
+
+            .sale {
+                top: 31%;
+                left: 14%;
+            }
+
+            .saleName {
+                top: 27%;
+                left: 22%;
+            }
+
+            .caption-contain {
+                left: 21%;
+                top: 42%;
+                font-size: 19px;
+            }
         }
 
         text-align: center;
@@ -211,21 +246,26 @@
     }
 
 }
+
 hr {
     color: #b4afaf;
 }
+
 #introducing {
     padding-top: 7%;
     padding-bottom: 6%;
-   .image{
-    overflow: hidden;
-    img{
-        &:hover{
-            transform: scale(1.1);
-            transition: 0.8s;
+
+    .image {
+        overflow: hidden;
+
+        img {
+            &:hover {
+                transform: scale(1.1);
+                transition: 0.8s;
+            }
         }
     }
-   }
+
     .apImage {
         float: right;
         position: relative;
@@ -259,10 +299,12 @@ hr {
 
     .introducing-right {
         margin-left: 17%;
-        .introducing-image{
+
+        .introducing-image {
             overflow: hidden;
-            img{
-                &:hover{
+
+            img {
+                &:hover {
                     transform: scale(1.1);
                     transition: 0.8s;
                 }
@@ -369,7 +411,8 @@ hr {
     }
 
 }
-.back-top{
+
+.back-top {
     float: right;
     text-align: center;
     position: fixed;
@@ -384,6 +427,7 @@ hr {
     line-height: 45px;
     font-size: 16px;
 }
+
 #products {
     .cart {
         position: relative;
@@ -687,7 +731,8 @@ hr {
             transition: 0.8s;
             width: 100%;
             height: 100%;
-            &:hover{
+
+            &:hover {
                 transform: scale(1.1);
             }
         }
@@ -710,12 +755,15 @@ hr {
 
 #block-carousel {
     margin-top: 3%;
-    .swiper-button-next{
+
+    .swiper-button-next {
         display: none !important;
     }
-    .swiper-button-prev{
+
+    .swiper-button-prev {
         display: none !important;
     }
+
     .owl-item {
         height: 572px;
 
@@ -807,7 +855,7 @@ hr {
         img {
             width: 100%;
             height: 100%;
-      
+
         }
 
         .blogg {
@@ -875,7 +923,7 @@ hr {
         }
 
         &:hover {
-          
+
             .blog-img {
                 opacity: 1;
                 height: 384px;
@@ -899,13 +947,14 @@ hr {
             }
 
         }
-        &:hover{
-            .primary-img{
-                   transform: scale(1) rotate(0);
-            }
-         
 
-          }
+        &:hover {
+            .primary-img {
+                transform: scale(1) rotate(0);
+            }
+
+
+        }
     }
 
 
@@ -998,6 +1047,7 @@ hr {
     }
 
 }
+
 #footer-top {
     background-color: #f9f9f5;
     padding-top: 6%;

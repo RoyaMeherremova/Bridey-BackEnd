@@ -1,5 +1,7 @@
 using BrideyApp.Data;
 using BrideyApp.Models;
+using BrideyApp.Services.Interfaces;
+using BrideyApp.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 });
 
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+builder.Services.AddScoped<ISliderService, SliderService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,7 +30,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.UseAuthorization();
