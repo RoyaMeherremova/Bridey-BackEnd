@@ -1,0 +1,44 @@
+﻿@model HomeBanner
+@{
+    ViewData["Title"] = "Detail";
+}
+<div class="container my-5">
+    <h4> Slider detail</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="padding-left: 114px;">
+                    Small-Image
+                </th>
+                <th style="padding-left: 70px;">
+                    Large-Image
+                </th>
+                <th style="padding-left: 70px;">
+                    Title
+                </th>
+                <th style="padding-left: 70px;">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-1">
+                    <img src="~/assets/images/@Model.SmallImage" style="width:250px;height:200px" />
+                </td>
+                <td class="py-1" style="padding: 0px;">
+                    <img src="~/assets/images/@Model.LargeImage" style="width:250px;height:200px" />
+                </td>
+                <td class="py-1">
+                    @Model.Title
+                </td>
+                <td class="py-1">
+                    @Html.Raw(Model.Description)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn mt-3" style="background: #696cffd1;color:#fff;" asp-action="Index">Back</a>
+</div>
+
+

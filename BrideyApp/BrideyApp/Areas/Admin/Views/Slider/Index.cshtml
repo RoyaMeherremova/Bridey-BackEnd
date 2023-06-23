@@ -5,7 +5,7 @@
 
 
 <div class="container my-5">
-    <h4 class="card-title" style="margin-left: 22px;">Slider</h4>
+    <h4 class="card-title text-center">Slider</h4>
     <div class="table-responsive" style="width: 97%;">
         <table class="table table-striped">
             <thead>
@@ -26,18 +26,18 @@
                 @foreach (var slider in Model)
                 {
                     <tr>
-                        <td class="py-1">
-                            <img src="~/assets/images/@slider.Image" style="width:203px;height:133px" alt="image" />
+                        <td class="py-1" style="width:0px">
+                            <img src="~/assets/images/@slider.Image" style="width: 297px;;height:133px" alt="image" />
                         </td>
                         <td class="py-1">
                             @slider.Title
                         </td>
                         <td class="py-1">
                             <div style="display:flex;gap:10px;">
-                                <a style="margin-top: 44px" class="btn btn-outline-info" asp-action="Detail" asp-route-id="@slider.Id">Info</a>
-                                <a style="margin-top: 44px;" class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@slider.Id">Edit</a>
+                                <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@slider.Id">Info</a>
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@slider.Id">Edit</a>
                                 <form asp-action="Delete" asp-route-id="@slider.Id" method="post">
-                                    <button style="margin-top: 44px;" type="submit" class="btn btn-outline-danger">Delete</button>
+                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
                                 </form>
                             </div>
 
@@ -49,8 +49,5 @@
             </tbody>
         </table>
     </div>
-
-
-
 </div>
 

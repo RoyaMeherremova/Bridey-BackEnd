@@ -14,9 +14,9 @@ namespace BrideyApp.Services
             _context = context;
         }
 
-        public async Task<List<Slider>> GetAll() => await _context.Sliders.Where(m => !m.SoftDelete).ToListAsync();
+        public async Task<List<Slider>> GetAll() => await _context.Sliders.ToListAsync();
 
-        public async Task<Slider> GetSliderById(int? id) => await _context.Sliders.Where(m => !m.SoftDelete).FirstOrDefaultAsync(m => m.Id == id);
+        public async Task<Slider> GetSliderById(int? id) => await _context.Sliders.FirstOrDefaultAsync(m => m.Id == id);
 
     }
 }

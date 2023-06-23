@@ -18,6 +18,9 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddScoped<ISliderService, SliderService>();
+
+builder.Services.AddScoped<IHomeBannerService, HomeBannerService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -26,11 +26,14 @@
                     <div class="swiper-slide">
                         <img src="./assets/images/@slider.Image" alt="">
                         <div class="slide slide-1">
-                            <span class="saleName">@slider.Header</span>
-                            <h1 class="sale">@slider.Title</h1>
-                            <span class="caption-contain">
-                               @slider.ShortDesc
-                            </span>
+                            <div style="text-align:center!important">
+                                <span class="saleName">@slider.Header</span>
+                                <h1 class="sale">@slider.Title</h1>
+                                <span class="caption-contain">
+                                    @Html.Raw(slider.ShortDesc)
+                                </span>
+                            </div>
+                         
                             <a class=" shop btn-hover">
                                 SHOP NOW
                                 <i class="fa-solid fa-arrow-right-long"></i>
@@ -74,7 +77,7 @@
                         </div>
                     </div>
                     <div class="image">
-                        <img src="~/assets/images/image-1.jpg" alt="">
+                        <img src="~/assets/images/@Model.HomeBanner.SmallImage" alt="">
                     </div>
                     <div class="apImage">
                         <img class="rot" src="~/assets/images/wedding.png" alt="">
@@ -84,21 +87,15 @@
                 <div class="col-lg-6 col-sm-12 col-md-6">
                     <div class="introducing-right">
                         <div class="introducing-image">
-                            <img src="~/assets/images/image-2.jpg" alt="">
+                            <img src="~/assets/images/@Model.HomeBanner.LargeImage" alt="">
                         </div>
                         <div class="info-text">
-                            <h3>We believe in a bridal revolution</h3>
+                            <h3>@Model.HomeBanner.Title</h3>
                             <p>
-                                We don't think bridal should be uncomfortable or kept in a box. We don't think you
-                                should
-                                be pressured into not feeling like yourself. Our dresses are unusual, figure
-                                flattering
-                                and above all comfortable.
+                             @Model.HomeBanner.Description.Substring(0,400)
                             </p>
                             <p>
-                                They are made to stand out in the bridal world and to make your guests salute you for
-                                being you. Our styles are designed and made in Wales, UK. We're part of a community,
-                                just like you. We believe in being yourself.
+                                @Model.HomeBanner.Description.Substring(400,288)
                             </p>
                             <a class="btn-about" asp-controller="About" asp-action="Index">
                                 MORE ABOUT US

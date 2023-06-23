@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\ViewModels\" />
+    <Folder Include="Views\Shared\Components\" />
   </ItemGroup>
 
 </Project>
