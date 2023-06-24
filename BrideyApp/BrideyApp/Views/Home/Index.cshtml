@@ -4,7 +4,7 @@
 }
 
 @section Styles {
-   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Kaushan+Script&family=Marck+Script&display=swap"
@@ -21,7 +21,7 @@
     <section id="slider">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                @foreach(var slider in Model.Sliders.Where(s=>s.Id != Model.Sliders.LastOrDefault().Id))
+                @foreach (var slider in Model.Sliders.Where(s => s.Id != Model.Sliders.LastOrDefault().Id))
                 {
                     <div class="swiper-slide">
                         <img src="./assets/images/@slider.Image" alt="">
@@ -33,7 +33,7 @@
                                     @Html.Raw(slider.ShortDesc)
                                 </span>
                             </div>
-                         
+
                             <a class=" shop btn-hover">
                                 SHOP NOW
                                 <i class="fa-solid fa-arrow-right-long"></i>
@@ -56,7 +56,7 @@
                         </a>
                     </div>
                 </div>
-           
+
             </div>
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -92,10 +92,10 @@
                         <div class="info-text">
                             <h3>@Model.HomeBanner.Title</h3>
                             <p>
-                             @Model.HomeBanner.Description.Substring(0,400)
+                                @Model.HomeBanner.Description.Substring(0,280)
                             </p>
                             <p>
-                                @Model.HomeBanner.Description.Substring(400,288)
+                                @*@Model.HomeBanner.Description.Substring(204,215)*@
                             </p>
                             <a class="btn-about" asp-controller="About" asp-action="Index">
                                 MORE ABOUT US
@@ -356,29 +356,23 @@
                 <div class="col-lg-6 col-sm-12">
                     <div class="about-us-text">
                         <div class="intro-text">
-                            <h4>Wedding salon in Baku</h4>
+                            <h4>@Model.AboutUs.Title</h4>
                             <p>
-                                Bridey bridal salon was created for brides who prefer laconic and modern wedding
-                                dresses. They are ideal for registering at the registry office, a small celebration
-                                or a minimalist wedding. We also pay great attention to jewelry and we know for sure
-                                that accents in a wedding look are very important.
+                                @Model.AboutUs.Description
                             </p>
                         </div>
                     </div>
                     <div class="image">
-                        <img src="~/assets/images/photo1.jpg" alt="">
+                        <img src="~/assets/images/@Model.AboutUs.SmallImage" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-us-right d-lg-block d-none">
                         <div class="about-us-img">
-                            <img src="~/assets/images/photo2.jpg" alt="">
+                            <img src="~/assets/images/@Model.AboutUs.LargeImage" alt="">
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
             <div class="btnn">
                 <a class="btn-about" asp-controller="Shop" asp-action="Index">
@@ -402,31 +396,16 @@
     <section id="brides">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-6 col-md-6">
-                    <div class="bride-img col-lg-block">
-                        <img src="~/assets/images/bride1.jfif">
+                @foreach (var bride in Model.Brides)
+                {
+                    <div class="col-lg-3 col-sm-6 col-md-6">
+                        <div class="bride-img col-lg-block">
+                            <img src="~/assets/images/@bride.Image">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-6">
-                    <div class="bride-img">
-                        <img src="~/assets/images/bride2.jfif">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-6">
-                    <div class="bride-img">
-                        <img src="~/assets/images/bride3.jpeg">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-md-6">
-                    <div class="bride-img">
-                        <img src="~/assets/images/bride4.jfif">
-                    </div>
-                </div>
-
+                }
             </div>
-
         </div>
-
     </section>
     <section id="block-carousel"
              style="background-image: url('/assets/images/bg-home1.jpg');background-repeat: no-repeat;background-position: center;">

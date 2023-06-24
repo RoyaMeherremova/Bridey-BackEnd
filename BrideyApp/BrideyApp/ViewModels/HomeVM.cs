@@ -8,5 +8,10 @@ namespace BrideyApp.ViewModels
 
         public HomeBanner HomeBanner { get; set; }
 
+        public AboutUs AboutUs { get; set; }
+
+        public List<Bride> Brides { get; set; }
+
+
     }
 }

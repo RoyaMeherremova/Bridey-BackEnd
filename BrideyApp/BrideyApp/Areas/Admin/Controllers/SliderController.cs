@@ -49,7 +49,6 @@ namespace BrideyApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SliderCreateVM slider)
         {
-
             try
             {
                 if (!ModelState.IsValid)
@@ -95,9 +94,7 @@ namespace BrideyApp.Areas.Admin.Controllers
 
         }
 
-        //-------PHOTO DELETE FROM PROJECT AND DATABASE-------
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id)
         {
             try
@@ -115,15 +112,15 @@ namespace BrideyApp.Areas.Admin.Controllers
 
                 _context.Sliders.Remove(slider);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                return Ok();
 
             }
             catch (Exception ex)
             {
                 ViewBag.error = ex.Message;
-                throw;
+                return View();
             }
-
         }
 
         //-----------UPDATE-----------
@@ -150,7 +147,6 @@ namespace BrideyApp.Areas.Admin.Controllers
 
         //-----------UPDATE-----------
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, SliderUpdateVM slider)
         {
             try

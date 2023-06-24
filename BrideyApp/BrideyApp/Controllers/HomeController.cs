@@ -11,33 +11,37 @@ namespace BrideyApp.Controllers
     {
         private readonly AppDbContext _context;
         private readonly ISliderService _sliderService;
-        private readonly IHomeBannerService _homeBannerService;
+        private readonly IBrideService _brideService;
 
-
-        public HomeController(AppDbContext context, ISliderService sliderService, IHomeBannerService homeBannerService)
+        public HomeController(AppDbContext context, ISliderService sliderService, IHomeBannerService homeBannerService, IBrideService brideService)
         {
             _context = context;
             _sliderService = sliderService;
-            _homeBannerService = homeBannerService;
+            _brideService = brideService;
         }
 
         public async Task<IActionResult> Index()
         {
             List<Slider> sliders = await _sliderService.GetAll();
 
-            HomeBanner homeBanners = await _context.HomeBanners.FirstOrDefaultAsync();
+            HomeBanner homeBanner = await _context.HomeBanners.FirstOrDefaultAsync();
 
+            AboutUs aboutUs = await _context.AboutUss.FirstOrDefaultAsync();
+
+            List<Bride> brides = await _brideService.GetAll();
 
             HomeVM model = new()
             {
                 Sliders = sliders,
-                HomeBanner = homeBanners
+                HomeBanner = homeBanner,
+                AboutUs = aboutUs,
+                Brides = brides
             };
-                
-                return View(model);
+
+            return View(model);
 
         }
 
-    
+
     }
 }

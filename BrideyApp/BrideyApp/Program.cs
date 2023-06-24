@@ -21,6 +21,11 @@ builder.Services.AddScoped<ISliderService, SliderService>();
 
 builder.Services.AddScoped<IHomeBannerService, HomeBannerService>();
 
+builder.Services.AddScoped<IAboutUsService, AboutUsService>();
+builder.Services.AddScoped<IBrideService, BrideService>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

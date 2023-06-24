@@ -4,36 +4,35 @@
 }
 
 <div class="container my-5">
-    <h4> Slider detail</h4>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="padding-left: 114px;">
+                <th style ="text-align: center;">
                     Image
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Header
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Title
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Description
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="py-1">
+                <td class="py-1" style="text-align: center;">
                     <img src="~/assets/images/@Model.Image" style="width:250px;height:200px" />
                 </td>
-                <td class="py-1">
+                <td class="py-1" style="text-align: center;">
                     @Model.Header
                 </td>
-                <td class="py-1">
+                <td class="py-1" style="text-align: center;">
                     @Model.Title
                 </td>
-                <td class="py-1">
+                <td class="py-1" style="text-align: center;">
                     @Html.Raw(Model.ShortDesc)
                 </td>
             </tr>

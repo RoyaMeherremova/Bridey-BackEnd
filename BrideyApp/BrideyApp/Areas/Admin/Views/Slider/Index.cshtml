@@ -3,51 +3,43 @@
     ViewData["Title"] = "Index";
 }
 
-
-<div class="container my-5">
-    <h4 class="card-title text-center">Slider</h4>
-    <div class="table-responsive" style="width: 97%;">
-        <table class="table table-striped">
+<div class="card mt-5" style="width: 95%;margin-left: 34px;">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
             <thead>
                 <tr>
-                    <th style="padding-left: 114px;">
-                        Image
-                    </th>
-                    <th style="padding-left: 70px;">
-                        Title
-                    </th>
-                    <th style="padding-left: 114px;">
-                        Operations
-                    </th>
-                    <a class="btn btn-success text-white" asp-action="Create" style="float:right">Create</a>
+                    <th style="text-align: center;">Image</th>
+                    <th style="text-align: center;">Title</th>
+                    <th style="text-align: center;"> Operations</th>
+                    <a class="btn btn-success text-white" asp-action="Create" style="float:right;margin: 22px;">Create</a>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var slider in Model)
-                {
-                    <tr>
-                        <td class="py-1" style="width:0px">
-                            <img src="~/assets/images/@slider.Image" style="width: 297px;;height:133px" alt="image" />
-                        </td>
-                        <td class="py-1">
-                            @slider.Title
-                        </td>
-                        <td class="py-1">
-                            <div style="display:flex;gap:10px;">
+            <tbody class="table-border-bottom-0">
+                    @foreach (var slider in Model)
+                    {
+                        <tr data-id="@slider.Id">
+                        <td class="py-1" style="text-align: center;">
+                                <img src="~/assets/images/@slider.Image" style="width: 297px;height:133px" alt="image" />
+                            </td>
+                        <td class="py-1" style="text-align: center;">
+                                    @slider.Title
+                            </td>
+                        <td class="py-1" style="text-align: center;">
                                 <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@slider.Id">Info</a>
                                 <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@slider.Id">Edit</a>
-                                <form asp-action="Delete" asp-route-id="@slider.Id" method="post">
-                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
-                                </form>
-                            </div>
+                                <a class="btn btn-outline-danger delete-slider">Delete</a>
+                            </td>
 
-                        </td>
-
-                    </tr>
-                }
+                        </tr>
+                    }
 
             </tbody>
         </table>
     </div>
 </div>
+@section Scripts {
+
+    <script src="~/admin/js/admin.js"></script>
+}
+
 

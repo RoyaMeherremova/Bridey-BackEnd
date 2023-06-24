@@ -3,36 +3,36 @@
     ViewData["Title"] = "Detail";
 }
 <div class="container my-5">
-    <h4> Slider detail</h4>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="padding-left: 114px;">
+                <th style="text-align: center;">
                     Small-Image
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Large-Image
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Title
                 </th>
-                <th style="padding-left: 70px;">
+                <th style="text-align: center;">
                     Description
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="py-1">
-                    <img src="~/assets/images/@Model.SmallImage" style="width:250px;height:200px" />
+
+                <td class="py-1"style="text-align: center;">
+                    <img src="~/assets/images/@Model.SmallImage" style="width: 94%;height:200px" />
                 </td>
-                <td class="py-1" style="padding: 0px;">
-                    <img src="~/assets/images/@Model.LargeImage" style="width:250px;height:200px" />
+                <td class="py-1" style="padding: 0px;text-align: center;">
+                    <img src="~/assets/images/@Model.LargeImage" style="width: 94%;height:200px" />
                 </td>
                 <td class="py-1">
                     @Model.Title
                 </td>
-                <td class="py-1">
+                <td class="py-1" style="width: 372px;text-align: center;">
                     @Html.Raw(Model.Description)
                 </td>
             </tr>

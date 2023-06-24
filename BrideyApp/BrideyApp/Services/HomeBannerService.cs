@@ -13,6 +13,7 @@ namespace BrideyApp.Services
         {
             _context = context;
         }
+        public async Task<List<HomeBanner>> GetAll() => await _context.HomeBanners.ToListAsync();
 
         public async Task<HomeBanner> GetHomeBannerById(int? id) => await _context.HomeBanners.FirstOrDefaultAsync(m => m.Id == id);
     }
