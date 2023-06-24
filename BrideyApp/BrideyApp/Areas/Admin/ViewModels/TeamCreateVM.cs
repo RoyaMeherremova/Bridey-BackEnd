@@ -9,6 +9,9 @@ namespace BrideyApp.Areas.Admin.ViewModels
         [Required]
         public string Name { get; set; }
         [Required]
+        public string Testimotionals { get; set; }
+        [Required]
         public int PositionId { get; set; }
+      
     }
 }

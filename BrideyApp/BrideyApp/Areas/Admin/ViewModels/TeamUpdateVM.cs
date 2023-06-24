@@ -8,6 +8,8 @@ namespace BrideyApp.Areas.Admin.ViewModels
         public IFormFile Photo { get; set; }
         [Required]
         public string Name { get; set; }
+        [Required]
+        public string Testimotionals { get; set; }
         public int PositionId { get; set; }
     }
 }

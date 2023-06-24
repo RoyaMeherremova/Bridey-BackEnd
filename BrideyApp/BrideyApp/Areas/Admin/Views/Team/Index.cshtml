@@ -20,13 +20,13 @@
                 {
                     <tr data-id="@team.Id">
                         <td class="py-1" style="text-align: center;">
-                            <img src="~/assets/images/@team.Image" style="width: 297px;height:133px" alt="image" />
+                            <img src="~/assets/images/@team.Image" style="width: 200px;height:200px" alt="image" />
                         </td>
                         <td class="py-1" style="text-align: center;">
                             @team.Name
                         </td>
                         <td class="py-1" style="text-align: center;">
-                            @team.Position
+                            @team.Position.Name
                         </td>
                         <td class="py-1" style="text-align: center;">
                             <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@team.Id">Info</a>
