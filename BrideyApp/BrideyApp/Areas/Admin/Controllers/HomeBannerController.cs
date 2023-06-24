@@ -15,7 +15,9 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
         private readonly IHomeBannerService _homeBannnerService;
-        public HomeBannerController(AppDbContext context, IWebHostEnvironment env,IHomeBannerService homeBannerService)
+        public HomeBannerController(AppDbContext context,
+                                    IWebHostEnvironment env,
+                                    IHomeBannerService homeBannerService)
         {
             _context = context;
             _env = env;

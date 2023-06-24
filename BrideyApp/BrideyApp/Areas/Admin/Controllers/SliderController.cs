@@ -14,7 +14,9 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly ISliderService _sliderService;
 
-        public SliderController(AppDbContext context, IWebHostEnvironment env, ISliderService sliderService)
+        public SliderController(AppDbContext context, 
+                                IWebHostEnvironment env,
+                                ISliderService sliderService)
         {
             _context = context;
             _env = env;
@@ -162,11 +164,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                     ShortDesc = dbSlider.ShortDesc,
                     Header = dbSlider.Header,
                 };
-                //if (!ModelState.IsValid)
-                //{
-                //    return View(model);
-                //}
-
                 if (slider.Photo != null)
                 {
                     if (!slider.Photo.CheckFileType("image/"))

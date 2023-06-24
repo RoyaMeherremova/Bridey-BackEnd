@@ -8,15 +8,12 @@ namespace BrideyApp.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Slider> Sliders { get; set; }
-
         public DbSet<Setting> Settings { get; set; }
-
         public DbSet<HomeBanner> HomeBanners { get; set; }
-
         public DbSet<AboutUs> AboutUss { get; set; }
-
         public DbSet<Bride> Brides { get; set; }
-
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Position> Positions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,8 +22,8 @@ namespace BrideyApp.Data
             modelBuilder.Entity<HomeBanner>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<AboutUs>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Bride>().HasQueryFilter(m => !m.SoftDelete);
-
-
+            modelBuilder.Entity<Team>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Position>().HasQueryFilter(m => !m.SoftDelete);
 
         }
 

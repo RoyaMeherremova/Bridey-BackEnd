@@ -15,7 +15,9 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly IBrideService _brideService;
 
-        public BrideController(AppDbContext context, IWebHostEnvironment env, IBrideService brideService)
+        public BrideController(AppDbContext context,
+                               IWebHostEnvironment env,
+                               IBrideService brideService)
         {
             _context = context;
             _env = env;

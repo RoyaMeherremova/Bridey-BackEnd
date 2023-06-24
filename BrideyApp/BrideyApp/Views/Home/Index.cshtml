@@ -412,71 +412,24 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <div class="slide">
+                    @foreach(var team in Model.Teams)
+                    {
+                       <div class="slide">
                         <div class="owl-item">
                             <div class="slider-content">
                                 <div class="block-image">
                                     <img src="~/assets/images/qoutes.png">
                                 </div>
                                 <div class="descript">
-                                    "I can’t thank you all enough. I loved everything about my experience. Thank you
-                                    for helping
-                                    me
-                                    find the dress of my dreams!"
+                                    @team.Testimonials
                                 </div>
                                 <div class="title">
-                                    Kelli Hansen
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide">
-                        <div class="owl-item">
-                            <div class="slider-content">
-                                <div class="block-image">
-                                    <img src="~/assets/images/qoutes.png">
-                                </div>
-                                <div class="descript">
-                                    "I can’t thank you all enough. I loved everything about my experience. Thank you
-                                    for helping
-                                    me
-                                    find the dress of my dreams!"
-                                </div>
-                                <div class="title">
-                                    Kelli Hansen
+                                    @team.Name
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide">
-                        <div class="owl-item">
-                            <div class="owl-item">
-                                <div class="slider-content">
-                                    <div class="block-image">
-                                        <img src="~/assets/images/qoutes.png">
-                                    </div>
-                                    <div class="descript">
-                                        "I can’t thank you all enough. I loved everything about my experience. Thank
-                                        you
-                                        for helping
-                                        me
-                                        find the dress of my dreams!"
-                                    </div>
-                                    <div class="title">
-                                        Kelli Hansen
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    </div> 
+                    }
                 </div>
             </div>
             <div class="swiper-button-next d-lg-block d-none"></div>

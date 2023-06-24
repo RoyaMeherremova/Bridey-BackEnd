@@ -12,6 +12,7 @@ namespace BrideyApp.ViewModels
 
         public List<Bride> Brides { get; set; }
 
+        public List<Team> Teams { get; set; }
 
     }
 }
