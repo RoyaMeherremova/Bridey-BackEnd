@@ -1,4 +1,5 @@
-﻿@{
+﻿@model AboutVM
+@{
     ViewData["Title"] = "About";
 }
 @section Styles {
@@ -30,29 +31,21 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-12 col-md-6">
                     <div class="block-ApImage">
-                        <img src="~/assets/images/AU-1.jpg">
+                        <img src="~/assets/images/@Model.AboutBanner.LargeImage">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12 col-md-6">
                     <div class="content-text">
                         <div class="intro-text">
-                            <h4>Our story</h4>
+                            <h4>@Model.AboutBanner.Title</h4>
                         </div>
                         <div class="text-about">
                             <p>
-                                Lovely Bride was borne of the concept that bridal could be way cooler. When the
-                                company was founded in 2009, there was a creative swell of bloggers, photographers,
-                                planners, florists and fashion designers doing things differently. A change was
-                                happening in weddings, and brides were looking for something more authentic and REAL
-                                for their wedding day. So we plucked some of her designers right off of Etsy, and
-                                opened a boutique in a West Village townhouse in April 2010. Welcome home Lovely
-                                Bride! The sales stylists were fun, not judgey. The dresses were crafted, not
-                                produced. And the decor was light-hearted, not heavy. This unique style set the new
-                                standard for what bridal shopping could be!
+                               @Model.AboutBanner.Description
                             </p>
                         </div>
                         <div class="image-form">
-                            <img src="~/assets/images/AU-2.jpg">
+                            <img src="~/assets/images/@Model.AboutBanner.SmallImage">
                         </div>
                     </div>
 

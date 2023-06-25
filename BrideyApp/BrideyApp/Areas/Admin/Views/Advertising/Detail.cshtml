@@ -1,0 +1,38 @@
+﻿@model Advertising
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    Image
+                </th>
+                <th style="text-align: center;">
+                    Name
+                </th>
+                <th style="text-align: center;">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-1" style="text-align: center;">
+                    <img src="~/assets/images/@Model.Image" style="width:90px;height:90px" />
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Name
+                </td>
+                <td class="py-1" style="text-align: center;width:300px">
+                    @Model.Description
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn mt-3" style="background: #696cffd1;color:#fff;" asp-action="Index">Back</a>
+</div>
+
+

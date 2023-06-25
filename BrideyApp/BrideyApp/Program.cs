@@ -23,6 +23,10 @@ builder.Services.AddScoped<IAboutUsService, AboutUsService>();
 builder.Services.AddScoped<IBrideService, BrideService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
 builder.Services.AddScoped<IPositionService, PositionService>();
+builder.Services.AddScoped<IAdvertisingService, AdvertisingService>();
+builder.Services.AddScoped<IAboutBannerService, AboutBannerService>();
+
+
 
 var app = builder.Build();
 

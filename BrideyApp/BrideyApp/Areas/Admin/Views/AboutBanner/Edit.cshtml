@@ -1,0 +1,51 @@
+﻿@model AboutBannerUpdateVM
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container my-5">
+    <div class="d-flex">
+        <div class="slider-content" style="width:200px;height:250px;margin-left: 4%;text-align: center;">
+            <span style="font-size: 17px;">Small Image</span>
+            <img style="width:100%;height:100%;margin-top: 13px;" src="~/assets/images/@Model.SmallImage" />
+        </div>
+        <div class="slider-content" style="width:200px;height:250px;margin-left: 11%;text-align: center;">
+            <span tyle="font-size: 17px;">Large Image</span>
+            <img style="width:100%;height:100%;margin-top: 13px;" src="~/assets/images/@Model.LargeImage" />
+        </div>
+    </div>
+
+    <form class="forms-sample mt-5" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div class="d-flex" style="gap: 30px;">
+            <div class="form-group">
+                <label style="padding-left:6px;" for="formFile" class="form-label my-2">Choose Small Photo</label>
+                <input style="width: 300px;" class="form-control" id="customFile" asp-for="SmallPhoto" />
+            </div>
+            <div class="form-group">
+                <label style="padding-left:6px;" for="formFile" class="form-label my-2">Choose Large Photo</label>
+                <input style="width: 300px;" class="form-control" id="customFile" asp-for="LargePhoto" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Title</label>
+            <input class="form-control" id="customFile" asp-for="Title" />
+            <span class="text-danger" asp-validation-for="Title">@ViewBag.error</span>
+        </div>
+        <div class="form-group">
+            <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Description</label>
+            <textarea class="form-control" asp-for="Description" rows="5"></textarea>
+            <span class="text-danger" asp-validation-for="Description">@ViewBag.error</span>
+        </div>
+        <div class="buttons my-3">
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <a class="btn btn-light" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+ }
+
+
+

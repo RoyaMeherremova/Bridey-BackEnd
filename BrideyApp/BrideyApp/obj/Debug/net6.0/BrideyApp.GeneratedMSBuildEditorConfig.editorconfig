@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\lenovo\Desktop\Bridey-BackEnd\BrideyApp\BrideyApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutBanner/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRCYW5uZXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutBanner/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRCYW5uZXJcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutBanner/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRCYW5uZXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutBanner/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRCYW5uZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutUs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRVc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,6 +46,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/AboutUs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRVc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/Advertising/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWR2ZXJ0aXNpbmdcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/Advertising/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWR2ZXJ0aXNpbmdcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/Advertising/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWR2ZXJ0aXNpbmdcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/Advertising/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWR2ZXJ0aXNpbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lenovo/Desktop/Bridey-BackEnd/BrideyApp/BrideyApp/Areas/Admin/Views/Bride/Create.cshtml]
