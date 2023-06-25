@@ -1,0 +1,155 @@
+﻿<header>
+    <div id="overlay" class="d-none"></div>
+    <section id="nav-area">
+        <div class="container">
+            <div class="row nav-area-content">
+                <div class="col-4 d-lg-block d-none">
+                    <div class="contact">
+                        <div class="left-side">
+                            <i class="fa-solid fa-headphones-simple"></i>
+                        </div>
+                        <div class="right-side">
+                            <span class="text">Call us</span>
+                            <span class="phone">+84 1800 33355</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-12 col-12">
+                    <div class="logo">
+                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/Logo.svg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-4  d-lg-block d-none">
+                    <div class="right-area">
+                        <div class="search">
+                            <i class="fa-solid fa-magnifying-glass icon" data-bs-toggle="modal"
+                               data-bs-target="#exampleModal"></i>
+                        </div>
+                        <div><i class="fa-regular fa-user icon user-icon"></i></div>
+                        <span class="count-wishlist">0</span>
+                        <div><a asp-controller="Wishlist" asp-action="Index"><i class="fa-regular fa-heart icon"></i></a></div>
+                        <span class="count-basket">0</span>
+                        <div class="basket">
+                            <a asp-controller="Basket" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a>
+                        </div>
+                    </div>
+                    <div class="login-register d-none">
+                        <ul>
+                            <li><a asp-controller="Login" asp-action="Index">Login</a></li>
+                            <li><span>/</span></li>
+                            <li><a asp-controller="Register" asp-action="Index">Register</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1><img src="~/assets/images/search-icon.png">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <input type="text">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="side-bar">
+        <div class="close"> <span>Close</span></div>
+        <ul>
+            <li class="activ"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Shop" asp-action="Index">Shop</a></li>
+            <li><a asp-controller="About" asp-action="Index">About</a></li>
+            <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
+            <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+        </ul>
+    </div>
+    <section id="responsive-nav-area" class="d-lg-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-2 d-lg-none">
+                    <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
+                </div>
+                <div class="col-md-10 col-10 d-lg-none">
+                    <div class="right-area">
+                        <div class="search responsive-icon">
+                            <i class="fa-solid fa-magnifying-glass icon"
+                               data-bs-toggle="modal" data-bs-target="#exampleModal-responsive"></i>
+                        </div>
+                        <div class="responsive-icon">
+                            <i class="fa-regular fa-user icon user-icon-responsive"></i>
+                        </div>
+                        <span class="count-wishlist">0</span>
+                        <div clas="responsive-icon">
+                            <a asp-controller="Wishlist" asp-action="Index">
+                                <i class="fa-regular fa-heart heart-icon"></i>
+                            </a>
+                        </div>
+                        <span class="count-basket">0</span>
+                        <div class="basket responsive-icon">
+                            <a asp-controller="Basket" asp-action="Index">
+                                <i class="fa-solid fa-basket-shopping"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="login-register-responsive d-none">
+                        <ul>
+                            <li><a asp-controller="Login" asp-action="Index">Login</a></li>
+                            <li> <span>/</span></li>
+                            <li><a asp-controller="Register" asp-action="Index">Register</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal responsive-modal fade" id="exampleModal-responsive" tabindex="-1"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <form>
+                                        <input type="text" placeholder="Search...">
+                                    </form>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="nav-down">
+        <div class="container">
+            <div class="d-lg-block d-none">
+                <ul class="top-menu">
+                    <img class="decor-img d-none" src="~/assets/images/decor2.png">
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-controller="About" asp-action="Index">About</a></li>
+                    <li><a asp-controller="Shop" asp-action="Index">Shop</a></li>
+                    <li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
+                    <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    <img class="decor-img d-none" src="~/assets/images/decor.png">
+                </ul>
+                <div class="right-area d-none">
+                    <div class="search"><i class="fa-solid fa-magnifying-glass icon"></i></div>
+                    <span class="count-wishlist">0</span>
+                    <div><a asp-controller="Wishlist" asp-action="Index"><i class="fa-regular fa-heart icon"></i></a></div>
+                    <span class="count-basket">0</span>
+                    <div class="basket">
+                        <a asp-controller="Basket" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>

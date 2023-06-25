@@ -149,5 +149,92 @@ namespace BrideyApp.Areas.Admin.Controllers
             };
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int? id, AboutBannerUpdateVM aboutBanner)
+        {
+            try
+            {
+                if (id == null) return BadRequest();
+                AboutBanner dbaboutBanner = await _aboutBannerService.GetAboutBannerById(id);
+                if (dbaboutBanner == null) return NotFound();
+
+                AboutBannerUpdateVM model = new()
+                {
+                    SmallImage = dbaboutBanner.SmallImage,
+                    LargeImage = dbaboutBanner.LargeImage,
+                    Title = dbaboutBanner.Title,
+                    Description = dbaboutBanner.Description,
+                };
+                if (aboutBanner.SmallPhoto != null)
+                {
+                    if (!aboutBanner.SmallPhoto.CheckFileType("image/"))
+                    {
+                        ModelState.AddModelError("Photo", "File type must be image");
+                        return View(model);
+                    }
+
+                    if (!aboutBanner.SmallPhoto.CheckFileSize(500))
+                    {
+                        ModelState.AddModelError("Photo", "Image size must be max 500kb");
+                        return View(model);
+
+                    }
+
+                    string deletePath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", dbaboutBanner.SmallImage);
+                    FileHelper.DeleteFile(deletePath);
+                    string fileName = Guid.NewGuid().ToString() + " " + aboutBanner.SmallPhoto.FileName;
+                    string newPath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", fileName);
+                    await FileHelper.SaveFileAsync(newPath, aboutBanner.SmallPhoto);
+                    dbaboutBanner.SmallImage = fileName;
+                }
+
+                else
+                {
+                    AboutBanner newAboutBanner = new()
+                    {
+                        SmallImage = dbaboutBanner.SmallImage
+                    };
+                }
+                if (aboutBanner.LargePhoto != null)
+                {
+                    if (!aboutBanner.LargePhoto.CheckFileType("image/"))
+                    {
+                        ModelState.AddModelError("Photo", "File type must be image");
+                        return View(model);
+                    }
+
+                    if (!aboutBanner.LargePhoto.CheckFileSize(500))
+                    {
+                        ModelState.AddModelError("Photo", "Image size must be max 500kb");
+                        return View(model);
+
+                    }
+
+                    string deletePath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", dbaboutBanner.LargeImage);
+                    FileHelper.DeleteFile(deletePath);
+                    string fileName = Guid.NewGuid().ToString() + " " + aboutBanner.LargePhoto.FileName;
+                    string newPath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", fileName);
+                    await FileHelper.SaveFileAsync(newPath, aboutBanner.LargePhoto);
+                    dbaboutBanner.LargeImage = fileName;
+                }
+                else
+                {
+                   AboutBanner newAboutlBanner = new()
+                    {
+                        LargeImage = dbaboutBanner.LargeImage
+                    };
+                }
+                dbaboutBanner.Title = aboutBanner.Title;
+                dbaboutBanner.Description = aboutBanner.Description;
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
     }
 }

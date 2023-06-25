@@ -1,0 +1,37 @@
+﻿@model List<Setting>
+@{
+    ViewData["Title"] = "Settings";
+}
+<div class="container my-5">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        Settings
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var setting in Model)
+                {
+                    <tr>
+
+                        <td>
+                            <div class="mt-2">
+                                <h6>@setting.Key</h6>
+                                @setting.Value
+                            </div>
+
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@setting.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

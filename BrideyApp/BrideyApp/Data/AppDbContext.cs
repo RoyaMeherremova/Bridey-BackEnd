@@ -32,6 +32,8 @@ namespace BrideyApp.Data
             modelBuilder.Entity<Position>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Advertising>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<HeaderBackground>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Setting>().HasQueryFilter(m => !m.SoftDelete);
+
 
 
 

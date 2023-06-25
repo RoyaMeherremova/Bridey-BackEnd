@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "h3+lXmYePqw32FSY5k6IV9+j+JZeZktxyiscZkTsu1U=",
+  "Hash": "aQOzEl9xjE5uRjTG2Vz9qrflpoKta54hb7pT6sS+Hfk=",
   "Source": "BrideyApp",
   "BasePath": "_content/BrideyApp",
   "Mode": "Default",
@@ -1292,6 +1292,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\700a5e67-7ae5-4964-85ac-cdd38ced5501 slide1.jpg"
     },
     {
+      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\7b62602c-6829-43f2-b841-0f8cb9331295 r.jfif",
+      "SourceId": "BrideyApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
+      "BasePath": "_content/BrideyApp",
+      "RelativePath": "assets/images/7b62602c-6829-43f2-b841-0f8cb9331295 r.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\7b62602c-6829-43f2-b841-0f8cb9331295 r.jfif"
+    },
+    {
       "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\9bb720fa-ef52-492e-aa75-a8a9254e7f5a service-2.png",
       "SourceId": "BrideyApp",
       "SourceType": "Discovered",
@@ -1698,6 +1715,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\c35c55a1-ea39-47d4-805f-4e7587da6cc3 d9db3ca8-4807-45b8-a534-b9696f7b551a bride3.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\ceae1b05-09e5-4e4c-b470-ac23dd9293de how_to_offset_carbon_emissions-f.png",
+      "SourceId": "BrideyApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
+      "BasePath": "_content/BrideyApp",
+      "RelativePath": "assets/images/ceae1b05-09e5-4e4c-b470-ac23dd9293de how_to_offset_carbon_emissions-f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\ceae1b05-09e5-4e4c-b470-ac23dd9293de how_to_offset_carbon_emissions-f.png"
     },
     {
       "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\cvetnoe.svg",

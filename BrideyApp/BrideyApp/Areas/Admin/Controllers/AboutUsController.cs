@@ -176,13 +176,13 @@ namespace BrideyApp.Areas.Admin.Controllers
                     if (!aboutUs.SmallPhoto.CheckFileType("image/"))
                     {
                         ModelState.AddModelError("Photo", "File type must be image");
-                        return View(aboutUs);
+                        return View(model);
                     }
 
                     if (!aboutUs.SmallPhoto.CheckFileSize(500))
                     {
                         ModelState.AddModelError("Photo", "Image size must be max 500kb");
-                        return View(aboutUs);
+                        return View(model);
 
                     }
 
@@ -206,13 +206,13 @@ namespace BrideyApp.Areas.Admin.Controllers
                     if (!aboutUs.LargePhoto.CheckFileType("image/"))
                     {
                         ModelState.AddModelError("Photo", "File type must be image");
-                        return View(aboutUs);
+                        return View(model);
                     }
 
                     if (!aboutUs.LargePhoto.CheckFileSize(500))
                     {
                         ModelState.AddModelError("Photo", "Image size must be max 500kb");
-                        return View(aboutUs);
+                        return View(model);
 
                     }
 

@@ -46,7 +46,6 @@ namespace BrideyApp.Areas.Admin.Controllers
             return View();
         }
 
-        //CREATE SLIDER
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SliderCreateVM slider)
@@ -102,19 +101,14 @@ namespace BrideyApp.Areas.Admin.Controllers
             try
             {
                 if (id == null) return BadRequest();
-
                 Slider slider = await _sliderService.GetSliderById(id);
-
                 if (slider == null) return NotFound();
-
                 string path = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", slider.Image);
-
                 FileHelper.DeleteFile(path);
 
 
                 _context.Sliders.Remove(slider);
                 await _context.SaveChangesAsync();
-
                 return Ok();
 
             }
@@ -125,16 +119,12 @@ namespace BrideyApp.Areas.Admin.Controllers
             }
         }
 
-        //-----------UPDATE-----------
 
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return BadRequest();
-
             Slider dbSlider = await _sliderService.GetSliderById(id);
-
-
             if (dbSlider == null) return NotFound();
 
             SliderUpdateVM model = new()
@@ -147,7 +137,6 @@ namespace BrideyApp.Areas.Admin.Controllers
             return View(model);
         }
 
-        //-----------UPDATE-----------
         [HttpPost]
         public async Task<IActionResult> Edit(int? id, SliderUpdateVM slider)
         {
