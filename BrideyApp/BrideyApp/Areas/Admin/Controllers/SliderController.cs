@@ -22,7 +22,6 @@ namespace BrideyApp.Areas.Admin.Controllers
             _env = env;
             _sliderService = sliderService;
         }
-
         public async Task<IActionResult> Index()
         {
             List<Slider> sliders = await _sliderService.GetAll();

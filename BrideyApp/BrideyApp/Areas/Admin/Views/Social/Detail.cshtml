@@ -1,0 +1,32 @@
+﻿@model Social
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    Icon
+                </th>
+                <th style="text-align: center;">
+                    Link
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Icon
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Link
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn mt-3" style="background: #696cffd1;color:#fff;" asp-action="Index">Back</a>
+</div>
+
+

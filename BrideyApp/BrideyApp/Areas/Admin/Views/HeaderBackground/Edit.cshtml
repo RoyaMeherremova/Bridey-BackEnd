@@ -1,0 +1,20 @@
+﻿@model HeaderBackground
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container my-5">
+    <form class="form-sample" method="post">
+        <label for="formFile" class="form-label my-2">@Model.Key</label>
+        <input class="form-control" id="banner-text" asp-for="@Model.Value" rows="3" />
+        <span class="text-danger" asp-validation-for="@Model.Value">@ViewBag.error</span>
+        <div class="buttons my-3">
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <a class="btn btn-light" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

@@ -72,8 +72,8 @@
                 <div class="col-lg-6 col-sm-12 col-md-6">
                     <div class="introducing-text">
                         <div class="intro-text">
-                            <h4>Introducing</h4>
-                            <span>A Global Bridal Brand</span>
+                            <h4>@Model.HeaderBackgrounds["IntroducingHeader"]</h4>
+                            <span>@Model.HeaderBackgrounds["IntroducingContent"]</span>
                         </div>
                     </div>
                     <div class="image">
@@ -81,7 +81,6 @@
                     </div>
                     <div class="apImage">
                         <img class="rot" src="~/assets/images/wedding.png" alt="">
-
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12 col-md-6">
@@ -92,10 +91,10 @@
                         <div class="info-text">
                             <h3>@Model.HomeBanner.Title</h3>
                             <p>
-                                @Model.HomeBanner.Description.Substring(0,280)
+                                @Model.HomeBanner.Description.Substring(0,204)
                             </p>
                             <p>
-                                @*@Model.HomeBanner.Description.Substring(204,215)*@
+                                @Model.HomeBanner.Description.Substring(204,215)
                             </p>
                             <a class="btn-about" asp-controller="About" asp-action="Index">
                                 MORE ABOUT US
@@ -114,8 +113,8 @@
         <div class="container">
             <div class="header-background">
                 <div class="header-background-content">
-                    <h4>Featured products</h4>
-                    <span>New Looks To Love</span>
+                    <h4>@Model.HeaderBackgrounds["FeaturedHeader"]</h4>
+                    <span>@Model.HeaderBackgrounds["FeaturedContent"]</span>
                 </div>
             </div>
         </div>
@@ -387,8 +386,8 @@
         <div class="container">
             <div class="header-background">
                 <div class="header-background-content">
-                    <h4>Salon of wedding dresses Bridey</h4>
-                    <span>we are chosen by the most beautiful and happiest brides!</span>
+                    <h4>@Model.HeaderBackgrounds["SalonHeader"]</h4>
+                    <span>@Model.HeaderBackgrounds["SalonContent"]</span>
                 </div>
             </div>
         </div>
@@ -408,7 +407,7 @@
         </div>
     </section>
     <section id="block-carousel"
-             style="background-image: url('/assets/images/bg-home1.jpg');background-repeat: no-repeat;background-position: center;">
+             style="background-image: url('/assets/images/@Model.HeaderBackgrounds["HeaderBackgroundTeamSlider"]');background-repeat: no-repeat;background-position: center;">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach (var team in Model.Teams)
@@ -442,8 +441,8 @@
         <div class="container">
             <div class="header-background">
                 <div class="header-background-content">
-                    <h4>Latest news</h4>
-                    <span>From The Blog</span>
+                    <h4>@Model.HeaderBackgrounds["LatestNewsHeader"]</h4>
+                    <span>@Model.HeaderBackgrounds["LatestNewsContent"]</span>
                 </div>
             </div>
         </div>
@@ -635,12 +634,12 @@
         <div class="container">
             <div class="header-background">
                 <div class="header-background-content">
-                    <h4>Instagram</h4>
-                    <span>Follow Us</span>
+                    <h4>@Model.HeaderBackgrounds["InstagramHeader"]</h4>
+                    <span>@Model.HeaderBackgrounds["InstagramContent"]</span>
                 </div>
             </div>
             <div class="subscrive-title">
-                <h3>Love is all around</h3>
+                <h3>@Model.HeaderBackgrounds["LoveHeader"]</h3>
             </div>
         </div>
     </section>
@@ -649,8 +648,8 @@
             <div class="row">
                 <div class="col-lg-4 col-sm-12 col-md-6">
                     <div class="left-side">
-                        <h3>Sign up </h3>
-                        <h4>Stay in touch with us</h4>
+                        <h3>@Model.Settings["SubscribeTitle"]</h3>
+                        <h4>@Model.Settings["SubscribeDescription"]</h4>
                     </div>
                 </div>
                 <div class="col-lg-8 col-sm-12 col-md-6">

@@ -2,7 +2,6 @@
 using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Configuration;
 
 namespace BrideyApp.Services
 {

@@ -14,7 +14,8 @@ namespace BrideyApp.Controllers
         private readonly IBrideService _brideService;
         private readonly ITeamService _teamService;
         private readonly IAdvertisingService _advertisingService;
-
+        private readonly ILayoutService _layoutService;
+        private readonly IHeaderBackgroundService _headerBackgroundService;
 
 
         public HomeController(AppDbContext context,
@@ -22,13 +23,17 @@ namespace BrideyApp.Controllers
                               IHomeBannerService homeBannerService,
                               IBrideService brideService, 
                               ITeamService teamService,
-                              IAdvertisingService advertisingService)
+                              IAdvertisingService advertisingService,
+                              ILayoutService layoutService,
+                              IHeaderBackgroundService headerBackgroundService)
         {
             _context = context;
             _sliderService = sliderService;
             _brideService = brideService;
             _teamService = teamService;
             _advertisingService = advertisingService;
+            _layoutService = layoutService;
+            _headerBackgroundService = headerBackgroundService;
         }
 
         public async Task<IActionResult> Index()
@@ -39,9 +44,6 @@ namespace BrideyApp.Controllers
             List<Bride> brides = await _brideService.GetAll();
             List<Team> teams = await _teamService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
-
-
-
             HomeVM model = new()
             {
                 Sliders = sliders,
@@ -49,7 +51,10 @@ namespace BrideyApp.Controllers
                 AboutUs = aboutUs,
                 Brides = brides,
                 Teams = teams,
-                Advertisings = advertisings
+                Advertisings = advertisings,
+                Settings = _layoutService.GetSettingDatas(),
+                HeaderBackgrounds = _headerBackgroundService.GetHeaderBackgroundDatas(),
+
             };
 
             return View(model);

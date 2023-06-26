@@ -17,6 +17,8 @@ namespace BrideyApp.Data
         public DbSet<Advertising> Advertisings { get; set; }
         public DbSet<HeaderBackground> HeaderBackgrounds { get; set; }
         public DbSet<AboutBanner> AboutBanners { get; set; }
+        public DbSet<Social> Socials { get; set; }
+
 
 
 
@@ -33,10 +35,8 @@ namespace BrideyApp.Data
             modelBuilder.Entity<Advertising>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<HeaderBackground>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Setting>().HasQueryFilter(m => !m.SoftDelete);
-
-
-
-
+            modelBuilder.Entity<Social>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<HeaderBackground>().HasQueryFilter(m => !m.SoftDelete);
 
         }
 

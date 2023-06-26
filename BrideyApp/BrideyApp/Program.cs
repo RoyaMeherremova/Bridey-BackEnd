@@ -27,6 +27,10 @@ builder.Services.AddScoped<IAdvertisingService, AdvertisingService>();
 builder.Services.AddScoped<IAboutBannerService, AboutBannerService>();
 builder.Services.AddScoped<ISettingService, SettingService>();
 builder.Services.AddScoped<ILayoutService, LayoutService>();
+builder.Services.AddScoped<ISocialService, SocialService>();
+builder.Services.AddScoped<IHeaderBackgroundService, HeaderBackgroundService>();
+
+
 
 
 

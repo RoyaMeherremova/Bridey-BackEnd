@@ -1,4 +1,5 @@
-﻿<footer>
+﻿@model FooterVM
+<footer>
     <section id="footer">
         <div class="container">
             <div class="row">
@@ -39,17 +40,17 @@
                 <div class="col-lg-4 col-sm-12 col-12 col-md-3">
                     <div class="logo">
                         <a asp-controller="Home" asp-action="Index">
-                            <img src="~/assets/images/Logo.svg">
+                            <img src="~/assets/images/@Model.Settings["Logo"]">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-12 col-md-4">
                     <div class="block-information">
                         <h4 class="title_block">Showroom</h4>
-                        <p>Box 565, Charlestown, Nevis, West Indies,Caribbean</p>
+                        <p>@Model.Settings["Address"]</p>
                         <ul>
-                            <li>Monday - Friday: <span>8am - 4pm </span></li>
-                            <li>Saturday: <span>9am - 5pm</span></li>
+                            <li>Monday - Friday: <span>@Model.Settings["WeekdaysTime"]</span></li>
+                            <li>Saturday: <span>@Model.Settings["WeekendTime"]</span></li>
                         </ul>
                     </div>
                     <div class="block-social">
@@ -57,28 +58,17 @@
                             Follow us
                         </h6>
                         <ul>
-                            <li class="facebook">
-                                <a href="#" title="Facebook" target="_blank"
-                                   rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
-                            </li>
-                            <li class="twitter">
-                                <a href="#" title="Twitter" target="_blank"
-                                   rel="noopener noreferrer"><i class="fa-brands fa-twitter"></i></a>
-                            </li>
-                            <li class="pinterest">
-                                <a href="#" title="Pinterest" target="_blank"
-                                   rel="noopener noreferrer"><i class="fa-brands fa-pinterest"></i></a>
-                            </li>
-                            <li class="instagram">
-                                <a href="#" title="Instagram" target="_blank"
-                                   rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-                            </li>
+                            @foreach(var social in Model.Socials)
+                            {
+                                <li class="facebook">
+                                    <a href="@social.Link" title="Facebook" target="_blank"
+                                   rel="noopener noreferrer"><i class="fa-brands @social.Icon"></i></a>
+                                </li>
+                            }
                         </ul>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </section>
     <hr>

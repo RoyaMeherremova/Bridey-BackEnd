@@ -1,4 +1,6 @@
-﻿<header>
+﻿@model LayoutVM
+
+<header>
     <div id="overlay" class="d-none"></div>
     <section id="nav-area">
         <div class="container">
@@ -10,13 +12,13 @@
                         </div>
                         <div class="right-side">
                             <span class="text">Call us</span>
-                            <span class="phone">+84 1800 33355</span>
+                            <span class="phone">@Model.Settings["Phone"]</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12 col-md-12 col-12">
                     <div class="logo">
-                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/Logo.svg" alt=""></a>
+                        <a asp-controller="Home" asp-action="Index"><img src="~/assets/images/@Model.Settings["Logo"]" alt=""></a>
                     </div>
                 </div>
                 <div class="col-4  d-lg-block d-none">
