@@ -15,7 +15,7 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly IAdvertisingService _advertisingService;
         public AdvertisingController(AppDbContext context,
-                                     IWebHostEnvironment env, 
+                                     IWebHostEnvironment env,
                                      IAdvertisingService advertisingService)
         {
             _context = context;
@@ -31,10 +31,18 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            Advertising dbAdvertising = await _advertisingService.GetAdvertisingById(id);
-            if (dbAdvertising == null) return NotFound();
-            return View(dbAdvertising);
+            try
+            {
+                if (id == null) return BadRequest();
+                Advertising dbAdvertising = await _advertisingService.GetAdvertisingById(id);
+                if (dbAdvertising == null) return NotFound();
+                return View(dbAdvertising);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpGet]
         public IActionResult Create()
@@ -73,7 +81,7 @@ namespace BrideyApp.Areas.Admin.Controllers
                 {
                     Image = fileName,
                     Name = advertising.Name,
-                    Description= advertising.Description,
+                    Description = advertising.Description,
                 };
                 await _context.Advertisings.AddAsync(newAdvertising);
                 await _context.SaveChangesAsync();
@@ -96,17 +104,11 @@ namespace BrideyApp.Areas.Admin.Controllers
                 if (id == null) return BadRequest();
                 Advertising dbAdvertising = await _advertisingService.GetAdvertisingById(id);
                 if (dbAdvertising == null) return NotFound();
-
                 string path = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", dbAdvertising.Image);
-
                 FileHelper.DeleteFile(path);
-
-
                 _context.Advertisings.Remove(dbAdvertising);
                 await _context.SaveChangesAsync();
-
                 return Ok();
-
             }
             catch (Exception ex)
             {
@@ -118,21 +120,31 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            Advertising dbAdvertising = await _advertisingService.GetAdvertisingById(id);
-            if (dbAdvertising == null) return NotFound();
-
-            AdvertisingUpdateVM model = new()
+            try
             {
-                Image = dbAdvertising.Image,
-                Name = dbAdvertising.Name,
-                Description = dbAdvertising.Description,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                Advertising dbAdvertising = await _advertisingService.GetAdvertisingById(id);
+                if (dbAdvertising == null) return NotFound();
+
+                AdvertisingUpdateVM model = new()
+                {
+                    Image = dbAdvertising.Image,
+                    Name = dbAdvertising.Name,
+                    Description = dbAdvertising.Description,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int? id,AdvertisingUpdateVM advertising)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int? id, AdvertisingUpdateVM advertising)
         {
             try
             {

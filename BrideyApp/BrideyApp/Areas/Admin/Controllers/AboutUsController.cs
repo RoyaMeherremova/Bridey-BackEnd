@@ -30,17 +30,24 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            AboutUs aboutUs = await _aboutUsService.GetAboutUsById(id);
-            if (aboutUs == null) return NotFound();
-            return View(aboutUs);
+            try
+            {
+                if (id == null) return BadRequest();
+                AboutUs aboutUs = await _aboutUsService.GetAboutUsById(id);
+                if (aboutUs == null) return NotFound();
+                return View(aboutUs);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -111,7 +118,6 @@ namespace BrideyApp.Areas.Admin.Controllers
         {
             try
             {
-
                 if (id == null) return BadRequest();
                 AboutUs aboutUs = await _aboutUsService.GetAboutUsById(id);
                 if (aboutUs == null) return NotFound();
@@ -141,27 +147,37 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            AboutUs aboutUs = await _aboutUsService.GetAboutUsById(id);
-            if (aboutUs == null) return NotFound();
-
-            AboutUsUpdateVM model = new()
+            try
             {
-                SmallImage = aboutUs.SmallImage,
-                LargeImage = aboutUs.LargeImage,
-                Title = aboutUs.Title,
-                Description = aboutUs.Description,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                AboutUs aboutUs = await _aboutUsService.GetAboutUsById(id);
+                if (aboutUs == null) return NotFound();
+
+                AboutUsUpdateVM model = new()
+                {
+                    SmallImage = aboutUs.SmallImage,
+                    LargeImage = aboutUs.LargeImage,
+                    Title = aboutUs.Title,
+                    Description = aboutUs.Description,
+                };
+                return View(model);
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, AboutUsUpdateVM aboutUs)
         {
             try
             {
                 if (id == null) return BadRequest();
-                AboutUs dbaboutUs= await _aboutUsService.GetAboutUsById(id);
+                AboutUs dbaboutUs = await _aboutUsService.GetAboutUsById(id);
                 if (dbaboutUs == null) return NotFound();
 
                 AboutUsUpdateVM model = new()

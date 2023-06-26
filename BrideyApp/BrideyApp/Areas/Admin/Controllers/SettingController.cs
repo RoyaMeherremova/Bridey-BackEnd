@@ -28,13 +28,21 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            Setting dbSetting = await _settingService.GetSettingByIdAsync(id);
-            Setting model = new()
+            try
             {
-                Value = dbSetting.Value,
-            };
+                Setting dbSetting = await _settingService.GetSettingByIdAsync(id);
+                Setting model = new()
+                {
+                    Value = dbSetting.Value,
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -3,7 +3,7 @@
     ViewData["Title"] = "Edit";
 }
 <div class="container my-5">
-    <form style="width: 70%;" class="forms-sample" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <form style="width: 70%;" class="forms-sample" asp-action="Edit" method="post">
         <div class="form-group">
             <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Header</label>
             <input class="form-control" id="customFile" asp-for="Name" />
@@ -19,6 +19,3 @@
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
  }
-
-
-

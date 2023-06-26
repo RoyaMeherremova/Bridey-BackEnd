@@ -21,7 +21,7 @@ namespace BrideyApp.Areas.Admin.Controllers
         {
             _context = context;
             _env = env;
-            _homeBannnerService=homeBannerService;
+            _homeBannnerService = homeBannerService;
         }
         public async Task<IActionResult> Index()
         {
@@ -32,10 +32,18 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            HomeBanner homeBanner = await _homeBannnerService.GetHomeBannerById(id);    
-            if (homeBanner == null) return NotFound();
-            return View(homeBanner);
+            try
+            {
+                if (id == null) return BadRequest();
+                HomeBanner homeBanner = await _homeBannnerService.GetHomeBannerById(id);
+                if (homeBanner == null) return NotFound();
+                return View(homeBanner);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpGet]
         public IActionResult Create()
@@ -112,7 +120,7 @@ namespace BrideyApp.Areas.Admin.Controllers
             try
             {
                 if (id == null) return BadRequest();
-                HomeBanner homeBanner = await _homeBannnerService.GetHomeBannerById(id);    
+                HomeBanner homeBanner = await _homeBannnerService.GetHomeBannerById(id);
                 if (homeBanner == null) return NotFound();
 
                 string pathSmallImg = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", homeBanner.SmallImage);
@@ -135,21 +143,31 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            HomeBanner dbhomeBanner = await _homeBannnerService.GetHomeBannerById(id);
-            if (dbhomeBanner == null) return NotFound();
-
-            HomeBannerUpdateVM model = new()
+            try
             {
-                SmallImage = dbhomeBanner.SmallImage,
-                LargeImage = dbhomeBanner.LargeImage,
-                Title = dbhomeBanner.Title,
-                Description = dbhomeBanner.Description,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                HomeBanner dbhomeBanner = await _homeBannnerService.GetHomeBannerById(id);
+                if (dbhomeBanner == null) return NotFound();
+
+                HomeBannerUpdateVM model = new()
+                {
+                    SmallImage = dbhomeBanner.SmallImage,
+                    LargeImage = dbhomeBanner.LargeImage,
+                    Title = dbhomeBanner.Title,
+                    Description = dbhomeBanner.Description,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, HomeBannerUpdateVM homeBanner)
         {
             try
@@ -221,7 +239,7 @@ namespace BrideyApp.Areas.Admin.Controllers
                 {
                     HomeBanner newHomeBanner = new()
                     {
-                       LargeImage = dbhomeBanner.LargeImage
+                        LargeImage = dbhomeBanner.LargeImage
                     };
                 }
                 dbhomeBanner.Title = homeBanner.Title;

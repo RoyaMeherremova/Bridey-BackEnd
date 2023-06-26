@@ -78,10 +78,10 @@ namespace BrideyApp.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TeamCreateVM team)
         {
-            @ViewBag.positions = await GetPositionsAsync();
-
             try
             {
+                @ViewBag.positions = await GetPositionsAsync();
+
                 if (!ModelState.IsValid)
                 {
                     return View(team);
@@ -129,29 +129,10 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            @ViewBag.positions = await GetPositionsAsync();
-
-            if (id == null) return BadRequest();
-            Team dbTeam = await _teamService.GetTeamById(id);
-            if (dbTeam == null) return NotFound();
-
-            TeamUpdateVM model = new()
-            {
-                Image = dbTeam.Image,
-                Name = dbTeam.Name,
-                Testimotionals = dbTeam.Testimonials,
-                PositionId = dbTeam.PositionId
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(int? id, TeamUpdateVM updatedTeam)
-        {
-            @ViewBag.positions = await GetPositionsAsync();
-
             try
             {
+                @ViewBag.positions = await GetPositionsAsync();
+
                 if (id == null) return BadRequest();
                 Team dbTeam = await _teamService.GetTeamById(id);
                 if (dbTeam == null) return NotFound();
@@ -163,7 +144,34 @@ namespace BrideyApp.Areas.Admin.Controllers
                     Testimotionals = dbTeam.Testimonials,
                     PositionId = dbTeam.PositionId
                 };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                throw;
+            }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int? id, TeamUpdateVM updatedTeam)
+        {
+            try
+            {
+                @ViewBag.positions = await GetPositionsAsync();
+
+                if (id == null) return BadRequest();
+                Team dbTeam = await _teamService.GetTeamById(id);
+                if (dbTeam == null) return NotFound();
+
+                TeamUpdateVM model = new()
+                {
+                    Image = dbTeam.Image,
+                    Name = dbTeam.Name,
+                    Testimotionals = dbTeam.Testimonials,
+                    PositionId = dbTeam.PositionId
+                };
                 if (updatedTeam.Photo != null)
                 {
                     if (!updatedTeam.Photo.CheckFileType("image/"))
@@ -205,9 +213,5 @@ namespace BrideyApp.Areas.Admin.Controllers
                 return View();
             }
         }
-
-
-
-
     }
 }

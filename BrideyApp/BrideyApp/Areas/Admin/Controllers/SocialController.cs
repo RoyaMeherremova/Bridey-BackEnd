@@ -26,11 +26,20 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
+            try
+            {
+                if (id == null) return BadRequest();
+                Social social = await _socialService.GetSocialById(id);
+                if (social == null) return NotFound();
+                return View(social);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
 
-            if (id == null) return BadRequest();
-            Social social = await _socialService.GetSocialById(id);
-            if (social == null) return NotFound();
-            return View(social);
+
         }
 
         [HttpGet]
@@ -91,19 +100,28 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            Social dbSocial = await _socialService.GetSocialById(id);
-            if (dbSocial == null) return NotFound();
-
-            SocialUpdateVM model = new()
+            try
             {
-                Icon = dbSocial.Icon,
-                Link = dbSocial.Link,   
+                if (id == null) return BadRequest();
+                Social dbSocial = await _socialService.GetSocialById(id);
+                if (dbSocial == null) return NotFound();
 
-            };
-            return View(model);
+                SocialUpdateVM model = new()
+                {
+                    Icon = dbSocial.Icon,
+                    Link = dbSocial.Link,
+
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, SocialUpdateVM social)
         {
             try
@@ -124,7 +142,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                 return View();
             }
         }
-
 
     }
 }

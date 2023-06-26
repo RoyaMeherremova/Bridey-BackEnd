@@ -16,7 +16,7 @@ namespace BrideyApp.Controllers
         private readonly IAdvertisingService _advertisingService;
         private readonly ILayoutService _layoutService;
         private readonly IHeaderBackgroundService _headerBackgroundService;
-
+        private readonly IBlogService _blogService;
 
         public HomeController(AppDbContext context,
                               ISliderService sliderService,
@@ -25,7 +25,8 @@ namespace BrideyApp.Controllers
                               ITeamService teamService,
                               IAdvertisingService advertisingService,
                               ILayoutService layoutService,
-                              IHeaderBackgroundService headerBackgroundService)
+                              IHeaderBackgroundService headerBackgroundService,
+                              IBlogService blogService)
         {
             _context = context;
             _sliderService = sliderService;
@@ -34,6 +35,7 @@ namespace BrideyApp.Controllers
             _advertisingService = advertisingService;
             _layoutService = layoutService;
             _headerBackgroundService = headerBackgroundService;
+            _blogService = blogService;
         }
 
         public async Task<IActionResult> Index()
@@ -44,6 +46,8 @@ namespace BrideyApp.Controllers
             List<Bride> brides = await _brideService.GetAll();
             List<Team> teams = await _teamService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
+            List<Blog> blogs = await _blogService.GetAll();
+
             HomeVM model = new()
             {
                 Sliders = sliders,
@@ -54,6 +58,7 @@ namespace BrideyApp.Controllers
                 Advertisings = advertisings,
                 Settings = _layoutService.GetSettingDatas(),
                 HeaderBackgrounds = _headerBackgroundService.GetHeaderBackgroundDatas(),
+                Blogs = blogs,
 
             };
 

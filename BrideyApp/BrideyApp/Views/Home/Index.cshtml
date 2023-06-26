@@ -451,182 +451,42 @@
         <div class="container">
             <div class="row">
                 <div class="blog-slider">
-                    <div class="col-4">
-                        <a asp-controller="BlogDetail" asp-action="Index">
-                            <div class="blog">
-                                <div class="blog-content">
-                                    <div class="blog-author">
-                                        <span class="blogg">Blog:<span></span></span>
-                                    </div>
-                                    <div class="blog-date">
-                                        <span class="created">
-                                            23 May 2020
-                                        </span>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <div class="blog-title">
-                                            <h4>Bride 2023 - new season trends</h4>
+                    @foreach (var blog in Model.Blogs)
+                    {
+                        <div class="col-4">
+                            <a asp-controller="BlogDetail" asp-action="Index">
+                                <div class="blog">
+                                    <div class="blog-content">
+                                        <div class="blog-author">
+                                            <span class="blogg">Blog:<span>@blog.Author.Name</span></span>
+                                        </div>
+                                        <div class="blog-date">
+                                            <span class="created">
+                                                @blog.CreatedDate
+                                            </span>
+                                        </div>
+                                        <div class="blog-meta">
+                                            <div class="blog-title">
+                                                <h4>@blog.Title</h4>
+                                            </div>
+                                        </div>
+                                        <div class="read-more">
+                                            <a>
+                                                Read More
+                                                <i class="fa-solid fa-arrow-right-long"></i>
+                                            </a>
+
                                         </div>
                                     </div>
-                                    <div class="read-more">
-                                        <a class="">
-                                            Read More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-
+                                    <div class="blog-img">
+                                        <img src="~/assets/images/@blog.Image">
                                     </div>
                                 </div>
-                                <div class="blog-img">
-                                    <img src="~/assets/images/blog-1.jpg">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a asp-controller="BlogDetail" asp-action="Index">
-                            <div class="blog">
-                                <div class="blog-content">
-                                    <div class="blog-author">
-                                        <span class="blogg">Blog:<span></span></span>
-                                    </div>
-                                    <div class="blog-date">
-                                        <span class="created">
-                                            23 May 2020
-                                        </span>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <div class="blog-title">
-                                            <h4>Bride 2023 - new season trends</h4>
-                                        </div>
-                                    </div>
-                                    <div class="read-more">
-                                        <a class="">
-                                            Read More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-
-                                    </div>
-
-                                </div>
-                                <div class="blog-img">
-                                    <img src="~/assets/images/blog-2.jpg">
-                                </div>
-
-                            </div>
-
-                        </a>
-                    </div>
-                    <div class="col-4">
-                        <a asp-controller="BlogDetail" asp-action="Index">
-                            <div class="blog">
-                                <div class="blog-content">
-                                    <div class="blog-author">
-                                        <span class="blogg">Blog:<span></span></span>
-                                    </div>
-                                    <div class="blog-date">
-                                        <span class="created">
-                                            23 May 2020
-                                        </span>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <div class="blog-title">
-                                            <h4>Bride 2023 - new season trends</h4>
-                                        </div>
-                                    </div>
-                                    <div class="read-more">
-                                        <a class="">
-                                            Read More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-
-                                    </div>
-
-                                </div>
-                                <div class="blog-img">
-                                    <img src="~/assets/images/blog-3.jpg">
-                                </div>
-
-                            </div>
-                        </a>
-
-
-
-                    </div>
-                    <div class="col-4">
-                        <a asp-controller="BlogDetail" asp-action="Index">
-                            <div class="blog">
-                                <div class="blog-content">
-                                    <div class="blog-author">
-                                        <span class="blogg">Blog:<span></span></span>
-                                    </div>
-                                    <div class="blog-date">
-                                        <span class="created">
-                                            23 May 2020
-                                        </span>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <div class="blog-title">
-                                            <h4>Bride 2023 - new season trends</h4>
-                                        </div>
-                                    </div>
-                                    <div class="read-more">
-                                        <a class="">
-                                            Read More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-
-                                    </div>
-
-                                </div>
-                                <div class="blog-img">
-                                    <img src="~/assets/images/blog-3.jpg">
-                                </div>
-
-                            </div>
-                        </a>
-
-
-
-                    </div>
-                    <div class="col-4">
-                        <a asp-controller="BlogDetail" asp-action="Index">
-                            <div class="blog">
-                                <div class="blog-content">
-                                    <div class="blog-author">
-                                        <span class="blogg">Blog:<span></span></span>
-                                    </div>
-                                    <div class="blog-date">
-                                        <span class="created">
-                                            23 May 2020
-                                        </span>
-                                    </div>
-                                    <div class="blog-meta">
-                                        <div class="blog-title">
-                                            <h4>Bride 2023 - new season trends</h4>
-                                        </div>
-                                    </div>
-                                    <div class="read-more">
-                                        <a class="">
-                                            Read More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-
-                                    </div>
-
-                                </div>
-                                <div class="blog-img">
-                                    <img src="~/assets/images/blog-3.jpg">
-                                </div>
-
-                            </div>
-                        </a>
-
-
-
-                    </div>
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
-
         </div>
 
     </section>

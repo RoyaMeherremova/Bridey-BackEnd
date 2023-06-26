@@ -29,6 +29,10 @@ builder.Services.AddScoped<ISettingService, SettingService>();
 builder.Services.AddScoped<ILayoutService, LayoutService>();
 builder.Services.AddScoped<ISocialService, SocialService>();
 builder.Services.AddScoped<IHeaderBackgroundService, HeaderBackgroundService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBlogService, BlogService>();
+
+
 
 
 

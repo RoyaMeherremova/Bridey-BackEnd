@@ -16,6 +16,7 @@
         <div class="form-group">
             <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Position</label>
             <select class="form-control" id="customFile" asp-for="PositionId" asp-items="@ViewBag.positions"></select>
+            <span class="text-danger" asp-validation-for="PositionId">@ViewBag.error</span>
         </div>
         <div class="form-group">
             <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Testimotionals</label>

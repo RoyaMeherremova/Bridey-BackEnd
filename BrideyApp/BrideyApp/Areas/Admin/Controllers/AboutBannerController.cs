@@ -14,7 +14,7 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
         private readonly IAboutBannerService _aboutBannerService;
-        public AboutBannerController(AppDbContext context, 
+        public AboutBannerController(AppDbContext context,
                                      IWebHostEnvironment env,
                                      IAboutBannerService aboutBannerService)
         {
@@ -32,10 +32,18 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            AboutBanner aboutBanner = await _aboutBannerService.GetAboutBannerById(id);
-            if (aboutBanner == null) return NotFound();
-            return View(aboutBanner);
+            try
+            {
+                if (id == null) return BadRequest();
+                AboutBanner aboutBanner = await _aboutBannerService.GetAboutBannerById(id);
+                if (aboutBanner == null) return NotFound();
+                return View(aboutBanner);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpGet]
@@ -43,7 +51,6 @@ namespace BrideyApp.Areas.Admin.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -136,21 +143,30 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            AboutBanner dbaboutBanner = await _aboutBannerService.GetAboutBannerById(id);
-            if (dbaboutBanner == null) return NotFound();
-
-            AboutBannerUpdateVM model = new()
+            try
             {
-                SmallImage = dbaboutBanner.SmallImage,
-                LargeImage = dbaboutBanner.LargeImage,
-                Title = dbaboutBanner.Title,
-                Description = dbaboutBanner.Description,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                AboutBanner dbaboutBanner = await _aboutBannerService.GetAboutBannerById(id);
+                if (dbaboutBanner == null) return NotFound();
+
+                AboutBannerUpdateVM model = new()
+                {
+                    SmallImage = dbaboutBanner.SmallImage,
+                    LargeImage = dbaboutBanner.LargeImage,
+                    Title = dbaboutBanner.Title,
+                    Description = dbaboutBanner.Description,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, AboutBannerUpdateVM aboutBanner)
         {
             try
@@ -220,7 +236,7 @@ namespace BrideyApp.Areas.Admin.Controllers
                 }
                 else
                 {
-                   AboutBanner newAboutlBanner = new()
+                    AboutBanner newAboutlBanner = new()
                     {
                         LargeImage = dbaboutBanner.LargeImage
                     };

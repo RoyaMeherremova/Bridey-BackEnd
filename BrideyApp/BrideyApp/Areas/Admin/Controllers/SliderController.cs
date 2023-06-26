@@ -14,7 +14,7 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly ISliderService _sliderService;
 
-        public SliderController(AppDbContext context, 
+        public SliderController(AppDbContext context,
                                 IWebHostEnvironment env,
                                 ISliderService sliderService)
         {
@@ -27,16 +27,22 @@ namespace BrideyApp.Areas.Admin.Controllers
             List<Slider> sliders = await _sliderService.GetAll();
             return View(sliders);
         }
-        //DETAIL
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
+            try
+            {
+                if (id == null) return BadRequest();
+                Slider slider = await _sliderService.GetSliderById(id);
 
-            if (id == null) return BadRequest();
-            Slider slider = await _sliderService.GetSliderById(id);
-
-            if (slider == null) return NotFound();
-            return View(slider);
+                if (slider == null) return NotFound();
+                return View(slider);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpGet]
@@ -79,7 +85,7 @@ namespace BrideyApp.Areas.Admin.Controllers
                     Header = slider.Header,
                     Title = slider.Title,
                     ShortDesc = slider.ShortDesc,
-                    
+
                 };
                 await _context.Sliders.AddAsync(newSlider);
                 await _context.SaveChangesAsync();
@@ -104,8 +110,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                 if (slider == null) return NotFound();
                 string path = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", slider.Image);
                 FileHelper.DeleteFile(path);
-
-
                 _context.Sliders.Remove(slider);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -122,21 +126,30 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            Slider dbSlider = await _sliderService.GetSliderById(id);
-            if (dbSlider == null) return NotFound();
-
-            SliderUpdateVM model = new()
+            try
             {
-                Image = dbSlider.Image,
-                Header = dbSlider.Header,
-                Title = dbSlider.Title,
-                ShortDesc = dbSlider.ShortDesc,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                Slider dbSlider = await _sliderService.GetSliderById(id);
+                if (dbSlider == null) return NotFound();
+
+                SliderUpdateVM model = new()
+                {
+                    Image = dbSlider.Image,
+                    Header = dbSlider.Header,
+                    Title = dbSlider.Title,
+                    ShortDesc = dbSlider.ShortDesc,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, SliderUpdateVM slider)
         {
             try

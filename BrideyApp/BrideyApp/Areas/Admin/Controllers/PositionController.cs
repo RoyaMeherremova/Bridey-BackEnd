@@ -27,10 +27,18 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            Position position = await _positionService.GetPositionById(id);
-            if (position == null) return NotFound();
-            return View(position);
+            try
+            {
+                if (id == null) return BadRequest();
+                Position position = await _positionService.GetPositionById(id);
+                if (position == null) return NotFound();
+                return View(position);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpGet]
         public IActionResult Create()
@@ -86,19 +94,28 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            Position dbPosition = await _positionService.GetPositionById(id);
-            if (dbPosition == null) return NotFound();
-
-            PositionUpdateVM model = new()
+            try
             {
-                Name = dbPosition.Name
-           
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                Position dbPosition = await _positionService.GetPositionById(id);
+                if (dbPosition == null) return NotFound();
+
+                PositionUpdateVM model = new()
+                {
+                    Name = dbPosition.Name
+
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                throw;
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, PositionUpdateVM position)
         {
             try
@@ -118,7 +135,5 @@ namespace BrideyApp.Areas.Admin.Controllers
                 return View();
             }
         }
-
-
     }
 }

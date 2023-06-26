@@ -33,10 +33,19 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Detail(int? id)
         {
-            if (id == null) return BadRequest();
-            Bride bride = await _brideService.GetBrideById(id);
-            if (bride == null) return NotFound();
-            return View(bride);
+            try
+            {
+                if (id == null) return BadRequest();
+                Bride bride = await _brideService.GetBrideById(id);
+                if (bride == null) return NotFound();
+                return View(bride);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+
         }
         [HttpGet]
         public IActionResult Create()
@@ -119,18 +128,27 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) return BadRequest();
-            Bride dbBride = await _brideService.GetBrideById(id);
-            if (dbBride == null) return NotFound();
-
-            BrideUpdateVM model = new()
+            try
             {
-                Image = dbBride.Image,
-            };
-            return View(model);
+                if (id == null) return BadRequest();
+                Bride dbBride = await _brideService.GetBrideById(id);
+                if (dbBride == null) return NotFound();
+
+                BrideUpdateVM model = new()
+                {
+                    Image = dbBride.Image,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id, BrideUpdateVM bride)
         {
             try
@@ -142,7 +160,7 @@ namespace BrideyApp.Areas.Admin.Controllers
                 BrideUpdateVM model = new()
                 {
                     Image = dbBride.Image,
-               
+
                 };
                 if (bride.Photo != null)
                 {

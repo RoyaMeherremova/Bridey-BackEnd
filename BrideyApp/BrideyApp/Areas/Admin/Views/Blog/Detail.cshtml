@@ -1,0 +1,45 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    Image
+                </th>
+                <th style="text-align: center;">
+                    Title
+                </th>
+                  <th style="text-align: center;">
+                    Author
+                </th>
+                <th style="text-align: center;">
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-1" style="text-align: center;">
+                    <img src="~/assets/images/@Model.Image" style="width:250px;height:200px" />
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Title
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Author.Name
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Description
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn mt-3" style="background: #696cffd1;color:#fff;" asp-action="Index">Back</a>
+</div>
+
+
+

@@ -26,12 +26,20 @@ namespace BrideyApp.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-            HeaderBackground dbHeaderBackground = await _headerBackgroundService.GetHeaderBackgroundByIdAsync(id);
-            HeaderBackground model = new()
+            try
             {
-                Value = dbHeaderBackground.Value,
-            };
-            return View(model);
+                HeaderBackground dbHeaderBackground = await _headerBackgroundService.GetHeaderBackgroundByIdAsync(id);
+                HeaderBackground model = new()
+                {
+                    Value = dbHeaderBackground.Value,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
