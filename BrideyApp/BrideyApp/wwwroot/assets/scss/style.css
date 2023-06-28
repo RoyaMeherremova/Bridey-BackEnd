@@ -2518,17 +2518,7 @@ hr {
   margin: auto;
   padding-bottom: 20px;
 }
-#footer-top-shop .service-item .title {
-  color: #000;
-  font-size: 16px;
-  line-height: 30px;
-  font-weight: 700;
-}
-#footer-top-shop .service-item p {
-  margin-top: 1%;
-  font-size: 14px;
-  color: #4b5955;
-}
+
 
 @font-face {
   font-family: Marcellus;
