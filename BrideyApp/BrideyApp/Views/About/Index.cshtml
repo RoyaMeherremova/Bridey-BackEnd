@@ -12,7 +12,7 @@
 }
 <!-- Start Main -->
 <main>
-    <section id="wrapper-about" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+    <section id="wrapper-about" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
         <div class="container page_text">
             <h1>About us</h1>
             <ul>
@@ -58,9 +58,7 @@
             <div class="blok-ApRawHtml">
                 <div class="contact-area">
                     <p>
-                        We can't wait to meet you &amp; to connect you to a badass dress. Come see us &amp; tell us
-                        your
-                        story.
+                        @Model.HeaderBackgrounds["HeaderContact"]
                     </p>
                     <a asp-controller="Contact" asp-action="Index" class="btn-hov">
                         Contact
@@ -75,8 +73,8 @@
     <section id="title_block">
         <div class="container">
             <div class="sub-title">
-                <p>What we do</p>
-                <h2>Bridal Industry<br> Transparency</h2>
+                <p>@Model.HeaderBackgrounds["BridalIndustryContent"]</p>
+                <h2>@Html.Raw(Model.HeaderBackgrounds["HeaderBridalIndustry"])</h2>
                 <img src="~/assets/images/decor.png">
             </div>
         </div>
@@ -85,171 +83,53 @@
     <section id="about-box">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-12 col-md-6">
+                @foreach(var aboutBox in Model.AboutBoxes)
+                {
+                    <div class="col-lg-3 col-sm-12 col-md-6">
                     <div class="about-item">
                         <div class="top" style="display:flex;">
                             <div class="icon">
-                                <img src="~/assets/images/button 1.svg">
+                                <img src="~/assets/images/@aboutBox.Image">
                             </div>
-                            <div class="title">Designer &amp; Design</div>
+                            <div class="title">@aboutBox.Title</div>
                         </div>
                         <div class="about-text">
                             <p>
-                                In the world of fashion, there are two differing business modes: running a brand and
-                                running a personal label. The running of a brand usually belongs to a profit-motivated
-                                registered company, while a personal label is much smaller in scale and is driven by
-                                fashion rather than profit.
+                               @aboutBox.Description
                             </p>
                         </div>
-                        <a class="btn-hov">
-                            OUR TEAM
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="about-item">
-                        <div class="top" style="display:flex;">
-                            <div class="icon">
-                                <img src="~/assets/images/dress.svg">
-                            </div>
-                            <div class="title">Production Supply Chain</div>
-                        </div>
-                        <div class="about-text">
-                            <p>
-                                In the world of fashion, there are two differing business modes: running a brand and
-                                running a personal label. The running of a brand usually belongs to a profit-motivated
-                                registered company, while a personal label is much smaller in scale and is driven by
-                                fashion rather than profit.
-                            </p>
-                        </div>
-                        <a class="btn-hov our-btn">
-                            VISIT OUR SHOP
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="about-item">
-                        <div class="top" style="display:flex;">
-                            <div class="icon">
-                                <img src="~/assets/images/sew.svg">
-                            </div>
-                            <div class="title">Creation & Craftmanship</div>
-                        </div>
-                        <div class="about-text">
-                            <p>
-                                In the world of fashion, there are two differing business modes: running a brand and
-                                running a personal label. The running of a brand usually belongs to a profit-motivated
-                                registered company, while a personal label is much smaller in scale and is driven by
-                                fashion rather than profit.
-                            </p>
-                        </div>
-                        <a class="btn-hov our-bt">
-                            GET A QUOTE
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3  col-sm-12 col-md-6">
-                    <div class="about-item">
-                        <div class="top" style="display:flex;">
-                            <div class="icon">
-                                <img src="~/assets/images/ring.svg">
-                            </div>
-                            <div class="title">Happiness Builder</div>
-                        </div>
-                        <div class="about-text">
-                            <p>
-                                In the world of fashion, there are two differing business modes: running a brand and
-                                running a personal label. The running of a brand usually belongs to a profit-motivated
-                                registered company, while a personal label is much smaller in scale and is driven by
-                                fashion rather than profit.
-                            </p>
-                        </div>
-
-                        <a class="btn-hov">
-                            SEE MORE
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
-                    </div>
-                </div>
+                </div> 
+                }
             </div>
         </div>
     </section>
     <section id="block-carousel-about"
-             style="background-image: url('/assets/images/backgroundd22.webp');background-repeat: no-repeat;background-position: center;">
+             style="background-image: url('/assets/images/@Model.SectionBackgroundImages["AboutTeamSliderImage"]');background-repeat: no-repeat;background-position: center;">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                @foreach(var team in Model.Teams)
+                {
+                  <div class="swiper-slide">
                     <div class="slide">
                         <div class="owl-item">
                             <div class="slider-content slide-cont">
                                 <div class="user-img">
-                                    <img src="~/assets/images/team3.jpg">
+                                    <img src="~/assets/images/@team.Image">
                                 </div>
                                 <div class="descript slide-color">
-                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
-                                    for helping me find the dress of my dreams!”
-
+                                    @team.Testimonials
                                 </div>
 
                                 <div class="title slide-color">
-                                    Kelli Hansen
+                                    @team.Name
                                 </div>
-                                <div class="job">Design</div>
+                                <div class="job">@team.Position.Name</div>
                             </div>
-
-
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide">
-                        <div class="owl-item">
-                            <div class="slider-content slide-cont">
-                                <div class="user-img">
-                                    <img src="~/assets/images/team3.jpg">
-                                </div>
-                                <div class="descript slide-color">
-                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
-                                    for helping me find the dress of my dreams!”
-
-                                </div>
-
-                                <div class="title slide-color">
-                                    Kelli Hansen
-                                </div>
-                                <div class="job">Design</div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide">
-                        <div class="owl-item">
-                            <div class="slider-content slide-cont">
-                                <div class="user-img">
-                                    <img src="~/assets/images/team3.jpg">
-                                </div>
-                                <div class="descript slide-color">
-                                    “I can’t thank you all enough. I loved everything about my experience. Thank you
-                                    for helping me find the dress of my dreams!”
-
-                                </div>
-
-                                <div class="title slide-color">
-                                    Kelli Hansen
-                                </div>
-                                <div class="job">Design</div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
+                </div>  
+                }
             </div>
             <div class="swiper-button-next d-lg-block d-none"></div>
             <div class="swiper-button-prev d-lg-block d-none"></div>
@@ -259,34 +139,16 @@
     <section id="footer-top-about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                @foreach(var advertising in Model.Advertisings)
+                {
+                   <div class="col-lg-3 col-sm-12 col-12 col-md-3">
                     <div class="service-item">
-                        <img src="~/assets/images/service-1.png">
-                        <span class="title">Free Shipping </span>
-                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                        <img src="~/assets/images/@advertising.Image">
+                        <span class="title">@advertising.Name</span>
+                        <p>@advertising.Description</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-2.png">
-                        <span class="title">Free Shipping </span>
-                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-3.png">
-                        <span class="title">Custom Sizing</span>
-                        <p>Order your dress with free custom sizing.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-4.png">
-                        <span class="title">Superb Quality</span>
-                        <p>We make commitments that the quality of our products will and always will be superb.</p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>

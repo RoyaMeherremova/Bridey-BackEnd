@@ -6,6 +6,7 @@ namespace BrideyApp.Services.Interfaces
     {
         Dictionary<string, string> GetSettingDatas();
         Task<List<Social>> GetAll();
+        Dictionary<string, string> GetSectionBackgroundImages();
 
     }
 }

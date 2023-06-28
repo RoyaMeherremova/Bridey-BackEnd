@@ -15,6 +15,6 @@ namespace BrideyApp.Services
         }
         public Dictionary<string, string> GetSettingDatas() => _context.Settings.AsEnumerable().ToDictionary(m => m.Key, m => m.Value);
         public async Task<List<Social>> GetAll() => await _context.Socials.ToListAsync();
-
+        public Dictionary<string, string> GetSectionBackgroundImages() => _context.SectionBackgroundImages.AsEnumerable().ToDictionary(s => s.Key, s => s.Value);
     }
 }

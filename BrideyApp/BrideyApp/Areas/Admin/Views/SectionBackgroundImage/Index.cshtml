@@ -1,0 +1,37 @@
+﻿@model List<SectionBackgroundImage>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card mt-5" style="width: 95%;margin-left: 34px;">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Key</th>
+                    <th style="text-align: center;">Value</th>
+                    <th style="text-align: center;"> Operations</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var backgroundImage in Model)
+                {
+                    <tr>
+                        <td class="py-1" style="text-align: center;">
+                            @backgroundImage.Key
+                        </td>
+                        <td class="py-1" style="text-align: center;">
+                            <img src="~/assets/images/@backgroundImage.Value" style="width: 297px;height:133px" alt="image" />
+                        </td>
+                     
+                        <td class="py-1" style="text-align: center;">
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@backgroundImage.Id">Edit</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

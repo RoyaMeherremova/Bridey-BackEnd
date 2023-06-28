@@ -21,6 +21,10 @@ namespace BrideyApp.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<SectionBackgroundImage> SectionBackgroundImages { get; set; }
+        public DbSet<AboutBox> AboutBoxes { get; set; }
+
+
 
 
 
@@ -42,6 +46,10 @@ namespace BrideyApp.Data
             modelBuilder.Entity<Author>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Blog>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<BlogComment>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<SectionBackgroundImage>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<AboutBox>().HasQueryFilter(m => !m.SoftDelete);
+
+
 
 
         }

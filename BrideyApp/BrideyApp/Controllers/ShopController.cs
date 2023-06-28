@@ -1,12 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BrideyApp.Models;
+using BrideyApp.Services.Interfaces;
+using BrideyApp.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BrideyApp.Controllers
 {
     public class ShopController : Controller
     {
-        public IActionResult Index()
+        private readonly ILayoutService _layoutService;
+
+        public ShopController(ILayoutService layoutService)
         {
-            return View();
+            _layoutService = layoutService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            ShopVM model = new()
+            {
+                SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
+            };
+            return View(model);
         }
     }
 }

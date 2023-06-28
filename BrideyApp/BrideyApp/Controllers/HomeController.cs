@@ -59,6 +59,7 @@ namespace BrideyApp.Controllers
                 Settings = _layoutService.GetSettingDatas(),
                 HeaderBackgrounds = _headerBackgroundService.GetHeaderBackgroundDatas(),
                 Blogs = blogs,
+                SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
 
             };
 

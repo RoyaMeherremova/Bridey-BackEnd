@@ -30,7 +30,7 @@
                                 <span class="saleName">@slider.Header</span>
                                 <h1 class="sale">@slider.Title</h1>
                                 <span class="caption-contain">
-                                    @Html.Raw(slider.ShortDesc)
+                                    @slider.ShortDesc
                                 </span>
                             </div>
 
@@ -407,7 +407,7 @@
         </div>
     </section>
     <section id="block-carousel"
-             style="background-image: url('/assets/images/@Model.HeaderBackgrounds["HeaderBackgroundTeamSlider"]');background-repeat: no-repeat;background-position: center;">
+             style="background-image: url('/assets/images/@Model.SectionBackgroundImages["HomeTeamSliderBackgroundImage"]');background-repeat: no-repeat;background-position: center;">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach (var team in Model.Teams)
@@ -454,7 +454,7 @@
                     @foreach (var blog in Model.Blogs)
                     {
                         <div class="col-4">
-                            <a asp-controller="BlogDetail" asp-action="Index">
+                            <a>
                                 <div class="blog">
                                     <div class="blog-content">
                                         <div class="blog-author">
@@ -555,5 +555,3 @@
     <script type="text/javascript" src="~/assets/slicky/slick-1.8.1/slick/slick.min.js"></script>
     <script src="~/assets/js/home.js"></script>
 }
-
-

@@ -12,6 +12,7 @@ namespace BrideyApp.ViewModels
         public List<Advertising> Advertisings { get; set; }
         public Dictionary<string, string> Settings { get; set; }
         public Dictionary<string, string> HeaderBackgrounds { get; set; }
+        public Dictionary<string, string> SectionBackgroundImages { get; set; }
         public List<Blog> Blogs { get; set; }
 
     }

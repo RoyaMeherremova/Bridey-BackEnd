@@ -31,11 +31,8 @@ builder.Services.AddScoped<ISocialService, SocialService>();
 builder.Services.AddScoped<IHeaderBackgroundService, HeaderBackgroundService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
-
-
-
-
-
+builder.Services.AddScoped<ISectionBackgroundImageService, SectionBackgroundImageService>();
+builder.Services.AddScoped<IAboutBoxService, AboutBoxService>();
 
 
 
