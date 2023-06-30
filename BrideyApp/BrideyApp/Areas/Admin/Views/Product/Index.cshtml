@@ -1,6 +1,8 @@
 ﻿@model Paginate<ProductListVM>
 @{
     ViewData["Title"] = "Index";
+    int take = ViewBag.take;
+    int changeCount = (Model.CurrentPage - 1) * take + 1;
 }
 <div class="card mt-5" style="width: 95%;margin-left: 34px;">
     <div class="table-responsive text-nowrap">
@@ -42,25 +44,25 @@
                 }
             </tbody>
         </table>
-        <nav class="paginate-area" aria-label="...">
-            <ul class="pagination">
-                <li class="page-item @(Model.HasPrevious ? " " : "disabled")">
-                    <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)">
-                        <span class="page-link @(Model.HasNext ? " " : "disabled")">Previous</span>
-                    </a>
-                </li>
-                @for (int i = 1; i <= Model.TotalPage; i++)
-                {
-                    <li class="page-item  @(Model.CurrentPage == i ? "disabled" : "") ">
-                        <a asp-action="Index" asp-route-page="@i"><span class="page-link">@i</span></a>
-                    </li>
-                }
-                <li class="page-item @(Model.HasNext ? " " : "disabled")">
-                    <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" class="page-link ">Next</a>
-                </li>
-            </ul>
-        </nav>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.HasPrevious ? " " : "disabled")">
+                <a asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" >
+                    <span class="page-link @(Model.HasNext ? " " : "disabled")" style="background: #696cffd9;color:#fff">Previous</span>
+                </a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPage; i++)
+            {
+                <li class="page-item  @(Model.CurrentPage == i ? "disabled" : "") ">
+                    <a asp-action="Index" asp-route-page="@i"><span class="page-link">@i</span></a>
+                </li>
+            }
+            <li class="page-item @(Model.HasNext ? " " : "disabled")" style="width: 83px;">
+                <a asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)" class="page-link" style="background: #696cffd9;color:#fff">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 @section Scripts {
 

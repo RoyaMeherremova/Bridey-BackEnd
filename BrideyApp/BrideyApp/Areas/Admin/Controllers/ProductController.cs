@@ -46,6 +46,7 @@ namespace BrideyApp.Areas.Admin.Controllers
             List<Product> datas = await _productService.GetPaginatedDatas(page, take, null, null, null, null, null);
             List<ProductListVM> mappedDatas = GetMappedDatas(datas);
             int pageCount = await GetPageCountAsync(take);
+            ViewBag.take = take;
             Paginate<ProductListVM> paginatedDatas = new(mappedDatas, page, pageCount);
             return View(paginatedDatas);
         }

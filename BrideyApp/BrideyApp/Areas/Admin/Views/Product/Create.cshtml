@@ -24,6 +24,11 @@
             <span class="text-danger" asp-validation-for="Video"></span>
         </div>
         <div class="form-group">
+            <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Rate</label>
+            <input class="form-control" asp-for="Rate" type="number" />
+            <span class="text-danger" asp-validation-for="Rate"></span>
+        </div>
+        <div class="form-group">
             <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Color</label>
             <select class="form-control" id="customFile" asp-for="ColorIds" asp-items="@ViewBag.colors"></select>
             <span class="text-danger" asp-validation-for="ColorIds">@ViewBag.error</span>
@@ -34,14 +39,19 @@
             <span class="text-danger" asp-validation-for="SizeIds">@ViewBag.error</span>
         </div>
         <div class="form-group">
+            <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Brand</label>
+            <select class="form-control" id="customFile" asp-for="BrandId" asp-items="@ViewBag.brands"></select>
+            <span class="text-danger" asp-validation-for="BrandId">@ViewBag.error</span>
+        </div>
+        <div class="form-group">
             <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Compisition</label>
             <select class="form-control" id="customFile" asp-for="CompositionIds" asp-items="@ViewBag.compositions"></select>
             <span class="text-danger" asp-validation-for="CompositionIds">@ViewBag.error</span>
         </div>
         <div class="form-group">
-            <label style="padding-left:6px;" for="formFile" class="form-label my-2">Add Price</label>
-            <input class="form-control" asp-for="Price" type="number" step=".01" />
-            <span class="text-danger" asp-validation-for="Price"></span>
+            <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Category</label>
+            <select class="form-control" id="customFile" asp-for="CategoryIds" asp-items="@ViewBag.categories"></select>
+            <span class="text-danger" asp-validation-for="CategoryIds">@ViewBag.error</span>
         </div>
         <div class="form-group">
             <label style="padding-left:6px;" for=" formFile" class="form-label my-2">Add Sale Count</label>
