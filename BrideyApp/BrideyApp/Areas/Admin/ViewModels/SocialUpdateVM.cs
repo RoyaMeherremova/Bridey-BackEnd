@@ -4,10 +4,10 @@ namespace BrideyApp.Areas.Admin.ViewModels
 {
     public class SocialUpdateVM
     {
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Icon { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Link { get; set; }
     }
 }

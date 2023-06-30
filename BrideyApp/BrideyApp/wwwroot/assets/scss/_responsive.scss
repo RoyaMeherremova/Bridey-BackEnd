@@ -905,7 +905,6 @@
                     &:nth-child(3) {
                         padding-top: 28px;
                         font-size: 15px;
-
                     }
 
                     &:nth-child(4) {
@@ -919,6 +918,10 @@
                     margin-left: 6px;
                     width: 99px;
                     height: 37px;
+
+                    a {
+                        font-size: 7px;
+                    }
                 }
             }
 
@@ -954,8 +957,6 @@
                         &:nth-child(4) {
                             padding-top: 47px;
                         }
-
-
                     }
 
                     .price {
@@ -963,19 +964,20 @@
                         display: flex !important;
                         height: 150px;
                     }
-
-
                 }
             }
 
             .footer-wish {
 
                 button {
-
                     margin-left: 24px;
                     width: 119px;
                     height: 52px;
                     font-size: 10px;
+
+                    a {
+                        font-size: 7px;
+                    }
                 }
             }
 
@@ -983,12 +985,8 @@
                 font-size: 15px;
                 position: relative;
                 left: 108%;
-
-
             }
-
         }
-
     }
 
     #wrapper-basket {
@@ -1980,7 +1978,6 @@
                     &:nth-child(3) {
                         padding-top: 41px;
                         font-size: 20px;
-
                     }
 
                     &:nth-child(4) {
@@ -1996,6 +1993,10 @@
                     width: 140px;
                     height: 51px;
                     font-size: 13px;
+
+                    a {
+                        font-size: 7px;
+                    }
                 }
             }
 

@@ -23,8 +23,18 @@ namespace BrideyApp.Data
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<SectionBackgroundImage> SectionBackgroundImages { get; set; }
         public DbSet<AboutBox> AboutBoxes { get; set; }
-
-
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<Composition> Compositions { get; set; }
+        public DbSet<ProductComposition> ProductCompositions { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
 
 
@@ -48,9 +58,17 @@ namespace BrideyApp.Data
             modelBuilder.Entity<BlogComment>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<SectionBackgroundImage>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<AboutBox>().HasQueryFilter(m => !m.SoftDelete);
-
-
-
+            modelBuilder.Entity<Product>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Size>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Color>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Composition>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Brand>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductImage>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductSize>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductComposition>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductColor>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Category>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductCategory>().HasQueryFilter(m => !m.SoftDelete);
 
         }
 

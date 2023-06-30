@@ -1,0 +1,85 @@
+﻿@model ProductDetailVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container my-5">
+    <div class="images">
+        <h4>Images</h4>
+        @foreach (var productImage in Model.Images)
+        {
+            <img src="~/assets/images/@productImage.Image" style="width:150px;height:100px" alt="image" />
+        }
+    </div>
+    <div class="images">
+        <h4>Video</h4>
+        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+        poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+        src="@Model.Video"
+        type="video/mp4"></video>
+    </div>
+    <div class="form-group">
+        <label class="my-2">Name</label>
+        <input class="form-control" disabled id="customFile" asp-for="Name" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Rate</label>
+        <div class="rating-box">
+            <ul style="display:flex;">
+                @for (int i = 0; i < Model.Rate; i++)
+                {
+                    <li><i class="fa fa-star"></i></li>
+                }
+                @for (int i = 0; i < 5 - Model.Rate; i++)
+                {
+                    <li><i class="fa fa-star" style="color:darkgrey"></i></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="my-2">Description</label>
+        <textarea class="form-control" disabled id="advert-text" asp-for="Description" rows="6"></textarea>
+    </div>
+    <div class="form-group">
+        <label class="my-2">Price</label>
+        <input type="text" disabled class="form-control" id="customFile" asp-for="Price" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Sale Count</label>
+        <input class="form-control" disabled id="customFile" asp-for="SaleCount" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Stock Count</label>
+        <input class="form-control" disabled id="customFile" asp-for="StockCount" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">SKU</label>
+        <input class="form-control" disabled id="customFile" asp-for="SKU" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Category</label>
+        <input class="form-control" disabled id="customFile" value="@string.Join(", " ,Model.ProductCategories.Select(m=>m.Category.Name))" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Size</label>
+        <input class="form-control" disabled id="customFile" value="@string.Join(", ",Model.ProductSizes.Select(m=>m.Size.Name))" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Tag</label>
+        <input class="form-control" disabled id="customFile" value="@string.Join(", ",Model.ProductCompositions.Select(m=>m.Composition.Name))" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Tag</label>
+        <input class="form-control" disabled id="customFile" value="@string.Join(", ",Model.ProductColors.Select(m=>m.Color.Name))" />
+    </div>
+    <div class="form-group">
+        <label class="my-2">Color</label>
+        @*<input class="form-control" disabled id="customFile" value="@Model.ColorName" />*@
+    </div>
+    <div class="form-group">
+        <div class="buttons my-3">
+            <a class="btn btn-info" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+</div>

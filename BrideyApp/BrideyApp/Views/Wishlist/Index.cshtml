@@ -1,10 +1,11 @@
-﻿@{
+﻿@model WishlistVM
+@{
     ViewData["Title"] = "Wishlist";
 }
 
 <!-- Main Start -->
 <main>
-    <section id="wrapper-wishlist" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+    <section id="wrapper-wishlist" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
         <div class="container page_text">
             <h1>Wishlist</h1>
             <ul>
@@ -46,8 +47,8 @@
 
                 </div>
                 <div class="footer-wish">
-                    <button class="btn btn-primary shop"><a href="">Continue shopping</a></button>
-                    <span class="total-price">Grand total: $149</span>
+                    <button class="btn btn-primary shop"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
+                    <span class="total-price">Grand total: $<span>149</span></span>
                 </div>
             </div>
         </div>

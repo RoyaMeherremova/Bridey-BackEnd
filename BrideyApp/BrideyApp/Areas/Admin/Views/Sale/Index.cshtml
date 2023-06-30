@@ -1,0 +1,38 @@
+﻿@model List<Sale>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card mt-5" style="width: 95%;margin-left: 34px;">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">Image</th>
+                    <th style="text-align: center;"> Operations</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var sale in Model)
+                {
+                    <tr data-id="@sale.Id">
+                        <td class="py-1" style="text-align: center;">
+                            <img src="~/assets/images/@sale.Image" style="width: 200px;height:200px" alt="image" />
+                        </td>
+                        <td class="py-1" style="text-align: center;">
+                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@sale.Id">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+
+    <script src="~/admin/js/admin.js"></script>
+}
+
+
+
+

@@ -4,9 +4,9 @@ namespace BrideyApp.Areas.Admin.ViewModels
 {
     public class SocialCreateVM
     {
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Icon { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Link { get; set; }
     }
 }

@@ -17,11 +17,6 @@ namespace BrideyApp.Controllers
         private readonly ITeamService _teamService;
         private readonly IAdvertisingService _advertisingService;
 
-
-
-
-
-
         public AboutController(AppDbContext context, 
                                ILayoutService layoutService, 
                                IHeaderBackgroundService headerBackgroundService,

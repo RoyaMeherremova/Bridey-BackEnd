@@ -6,9 +6,9 @@ namespace BrideyApp.Areas.Admin.ViewModels
     {
         public string Image { get; set; }
         public IFormFile Photo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Description { get; set; }
 
       

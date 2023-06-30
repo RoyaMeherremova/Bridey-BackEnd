@@ -242,6 +242,133 @@
 
         })
     })
+    $(document).on("click", ".delete-size", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "size/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+    $(document).on("click", ".delete-color", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "color/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+    $(document).on("click", ".delete-composition", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "composition/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+    $(document).on("click", ".delete-brand", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "brand/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+    $(document).on("click", ".delete-category", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "category/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+    $(document).on("click", ".delete-product", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "product/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
+
+
+
+
+
+
+
 
 })
 

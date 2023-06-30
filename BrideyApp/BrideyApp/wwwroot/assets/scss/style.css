@@ -1642,9 +1642,10 @@ img.rot {
   margin-left: 4%;
 }
 #blogss .right-side .list-posts .item-post .post-info h3 {
-  line-height: 0;
-  padding-bottom: 3px;
-  margin-top: 7px;
+  line-height: 0.4;
+  margin-bottom: 4px;
+  font-size: 29px;
+
 }
 #blogss .right-side .list-posts .item-post .post-info span {
   font-family: Nunito;
@@ -1923,7 +1924,6 @@ hr {
   flex-direction: column;
   height: 300px;
   width: 406px;
-  text-align: center;
 }
 #wrapper-shop .page_text h1 {
   text-transform: uppercase;
@@ -1931,6 +1931,7 @@ hr {
   font-weight: 600;
   font-size: 1.375rem;
   font-family: auto;
+  padding-left: 42%;
 }
 #wrapper-shop .page_text ul {
   list-style: none;
@@ -1938,6 +1939,8 @@ hr {
   align-items: center;
   padding: 0px !important;
   gap: 4px;
+ padding-left: 42% !important;
+
 }
 #wrapper-shop .page_text ul li {
   font-size: 14px;
@@ -2294,6 +2297,7 @@ hr {
   border-bottom: 1px dashed #bbb;
   margin-left: 17px;
   width: 209px;
+  margin-top: 18px;
 }
 #wpb_wrapper .products-variants .dresses-variants ul {
   padding-top: 14px !important;
@@ -2352,6 +2356,7 @@ hr {
   font-size: 17px;
   padding-bottom: 6px;
 }
+
 #wpb_wrapper .products-variants .widget-title-holder ul li a {
   padding-right: 5px;
   font-family: "Open Sans", sans-serif;
@@ -2361,9 +2366,19 @@ hr {
 }
 #wpb_wrapper .products-variants .banner {
   width: 227px;
-  height: 260px;
+  height: 270px;
   margin-left: 11px;
 }
+    #wpb_wrapper .cart .rating-box {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
 #wpb_wrapper .products-variants .banner img {
   width: 100%;
   height: 100%;
@@ -2478,7 +2493,7 @@ hr {
 #wpb_wrapper .load-more .btn-more:hover i {
   position: absolute;
   left: 18%;
-  top: 15px;
+  top: 17px;
   transition: all 0.2s ease-out;
 }
 #wpb_wrapper .product-name {
@@ -3600,18 +3615,19 @@ hr {
   align-items: center;
 }
 #basket-table .footer-wish .shop {
-  margin-left: 20px;
+  margin-left: 22px;
   margin-top: 2px;
   background-color: #e9ac98;
   border-color: #e9ac98;
   text-align: center;
   cursor: pointer;
-  width: 181px;
+  width: 162px;
   height: 49px;
 }
 #basket-table .footer-wish .shop a {
   color: #fff;
   text-decoration: none;
+  font-size:13px !important;
 }
 #basket-table .footer-wish .total-price {
   font-weight: 500;
@@ -3752,18 +3768,19 @@ hr {
   align-items: center;
 }
 #wishlist-table .footer-wish .shop {
-  margin-left: 71px;
+  margin-left: 82px;
   margin-top: 2px;
   background-color: #e9ac98;
   border-color: #e9ac98;
   text-align: center;
   cursor: pointer;
-  width: 181px;
+  width: 162px;
   height: 49px;
 }
 #wishlist-table .footer-wish .shop a {
   color: #fff;
   text-decoration: none;
+  font-size:13px;
 }
 #wishlist-table .footer-wish .total-price {
   font-weight: 500;
@@ -5223,6 +5240,10 @@ hr {
     width: 99px;
     height: 37px;
   }
+    #wishlist-table .table-area .footer-wish button a{
+        font-size: 7px !important;
+    }
+
   #wishlist-table .table-area .total-price {
     font-size: 15px;
     margin-right: 43px;
@@ -5259,6 +5280,9 @@ hr {
     height: 52px;
     font-size: 10px;
   }
+    #basket-table .table-area .footer-wish button a {
+        font-size: 7px !important;
+    }
   #basket-table .table-area .total-price {
     font-size: 15px;
     position: relative;
@@ -5879,10 +5903,19 @@ hr {
     height: 51px;
     font-size: 13px;
   }
+    #wishlist-table .table-area .footer-wish button a {
+        font-size: 7px !important;
+    }
+    #wishlist-table .table-area .footer-wish a {
+        font-size: 7px;
+    }
   #wishlist-table .table-area .total-price {
     font-size: 20px;
     margin-right: 85px;
   }
+    #basket-table .table-area .footer-wish button a {
+        font-size: 7px !important;
+    }
   #product-detail .prod-thumb-left {
     margin-bottom: 5%;
     left: 66px;

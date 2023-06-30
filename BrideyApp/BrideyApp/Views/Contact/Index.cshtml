@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactVM
+@{
     ViewData["Title"] = "Contact";
 }
 @section Styles {
@@ -7,7 +8,7 @@
 <!-- Start Main -->
 <main>
     <section id="wrapper-contact" class="contact-background"
-             style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+             style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
         <div class="container page_text">
             <h1>Contact us</h1>
             <ul>
@@ -38,17 +39,16 @@
                     <div class="elementor-column-wrap">
                         <h2>Our store</h2>
                         <p>
-                            Box 565, Charlestown, Nevis, West
-                            Indies,Caribbean
+                            @Model.Settings["Address"]
                         </p>
                         <h2>Our Business Hours</h2>
                         <p>
-                            Monday – Friday:<br><span style="color: #000000;">8am – 4pm</span><br>Saturday,
-                            Sunday:<br><span style="color: #000000;">9am – 5pm</span>
+                            Monday – Friday:<br><span style="color: #000000;">@Model.Settings["WeekdaysTime"]</span><br>Saturday,
+                            Sunday:<br><span style="color: #000000;">@Model.Settings["WeekendTime"]</span>
                         </p>
                         <h2>Our Contact Information</h2>
                         <p>
-                            <span>(844) 1800-3355</span><br><span>info@example.com</span>
+                            <span>@Model.Settings["Phone"]</span><br><span>@Model.Settings["Email"]</span>
                         </p>
                     </div>
                 </div>
@@ -78,34 +78,16 @@
     <section id="footer-top-contact">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-1.png">
-                        <span class="title">Free Shipping </span>
-                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                @foreach (var advertising in Model.Advertisings)
+                {
+                    <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                        <div class="service-item">
+                            <img src="~/assets/images/@advertising.Image">
+                            <span class="title">@advertising.Name</span>
+                            <p>@advertising.Description</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-2.png">
-                        <span class="title">Free Shipping </span>
-                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-3.png">
-                        <span class="title">Custom Sizing</span>
-                        <p>Order your dress with free custom sizing.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
-                        <img src="~/assets/images/service-4.png">
-                        <span class="title">Superb Quality</span>
-                        <p>We make commitments that the quality of our products will and always will be superb.</p>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>

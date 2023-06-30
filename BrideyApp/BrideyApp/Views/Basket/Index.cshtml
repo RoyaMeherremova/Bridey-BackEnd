@@ -1,11 +1,12 @@
-﻿@{
+﻿@model BasketVM
+@{
     ViewData["Title"] = "Basket";
 }
 
 <!-- Main Start -->
 <main>
 
-    <section id="wrapper-basket" style="background-image: url('/assets/images/bg-breadcrumb.jpg');">
+    <section id="wrapper-basket" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
         <div class="container page_text">
             <h1>Basket</h1>
             <ul>
@@ -56,7 +57,7 @@
 
                 </div>
                 <div class="footer-wish">
-                    <button class="btn btn-primary shop"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
+                    <button class="btn btn-primary shop"><a style="font-size:15px;" asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
                     <span class="total-price">Grand total: $149</span>
                 </div>
             </div>

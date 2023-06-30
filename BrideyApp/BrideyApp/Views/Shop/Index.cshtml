@@ -1,6 +1,10 @@
 ﻿@model ShopVM
 @{
     ViewData["Title"] = "Shop";
+    int? sumOfProductsCountByColor = 0;
+    int? sumOfProductsCountBySize = 0;
+    int? sumOfProductsCountByComposition = 0;
+    int? sumOfProductsCountByBrand = 0;
 }
 @section Styles {
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -79,51 +83,18 @@
                                         <span>All</span>
                                     </a>
                                 </li>
-                                <li>
-                                <li>
-                                    <a>
-                                        <div class="siluet siluet-sm"><img src="~/assets/images/pishnoe.svg"></div>
-                                        <span>Fluffy</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet"><img src="~/assets/images/a-siluet.svg"></div>
-                                        <span>Classic</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet"><img src="~/assets/images/pryamoe.svg"></div>
-                                        <span>Minimalism</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet"><img src="~/assets/images/korotkoe.svg"></div>
-                                        <span>Short</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet"><img src="~/assets/images/s-rukavom.svg"></div>
-                                        <span>Sleeves</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet suit-dress">
-                                            <img src="~/assets/images/venchanie.svg">
-                                        </div>
-                                        <span>Suits</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <div class="siluet"><img src="~/assets/images/cvetnoe.svg"></div>
-                                        <span>No white</span>
-                                    </a>
-                                </li>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li>
+                                        <a>
+                                            <div class="siluet">
+                                                <img style="margin-left: 6px;"
+                                                 src="~/assets/images/@category.Image">
+                                            </div>
+                                            <span>@category.Name</span>
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <div class="product-area">
@@ -162,17 +133,21 @@
                             <h5>Colors</h5>
                             <ul>
                                 <li>
-                                    <a>White</a><span>(25)</span>
+                                    <a>
+                                        All
+                                        @foreach (var item in Model.Colors)
+                                        {
+                                            sumOfProductsCountByColor += item.ProductColors?.Count();
+                                        }
+                                        <span>(@sumOfProductsCountByColor)</span>
+                                    </a>
                                 </li>
-                                <li>
-                                    <a>Cream</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Blue</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Red</a><span>(25)</span>
-                                </li>
+                                @foreach (var color in Model.Colors)
+                                {
+                                    <li>
+                                        <a>@color.Name</a><span>(@color.ProductColors?.Count())</span>
+                                    </li>
+                                }
                             </ul>
                         </div>
 
@@ -180,17 +155,21 @@
                             <h5>Sizes</h5>
                             <ul>
                                 <li>
-                                    <a>Small (S)</a><span>(25)</span>
+                                    <a>
+                                        All
+                                        @foreach (var item in Model.Sizes)
+                                        {
+                                            sumOfProductsCountBySize += item.ProductSizes?.Count();
+                                        }
+                                        <span>(@sumOfProductsCountBySize)</span>
+                                    </a>
                                 </li>
-                                <li>
-                                    <a>Medium (M)</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Large (L)</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Extra Large (XL)</a><span>(25)</span>
-                                </li>
+                                @foreach (var size in Model.Sizes)
+                                {
+                                    <li>
+                                        <a>@size.Name</a><span>(@size.ProductSizes?.Count())</span>
+                                    </li>
+                                }
                             </ul>
                         </div>
 
@@ -199,24 +178,21 @@
                             <div class="widget-title-holder">
                                 <ul>
                                     <li>
-                                        <a>All</a><span>(25)</span>
+                                        <a>
+                                            All
+                                            @foreach (var item in Model.Compositions)
+                                            {
+                                                sumOfProductsCountByComposition += item.ProductCompositions?.Count();
+                                            }
+                                            <span>(@sumOfProductsCountByComposition)</span>
+                                        </a>
                                     </li>
-                                    <li>
-                                        <a>Ceramic</a><span>(25)</span>
-                                    </li>
-                                    <li>
-                                        <a>Cotton</a><span>(25)</span>
-                                    </li>
-                                    <li>
-                                        <a>Matt paper</a><span>(25)</span>
-                                    </li>
-                                    <li>
-                                        <a>Polyester</a><span>(25)</span>
-                                    </li>
-                                    <li>
-                                        <a>Recycled cardboard</a><span>(25)</span>
-                                    </li>
-
+                                    @foreach (var composition in Model.Compositions)
+                                    {
+                                        <li>
+                                            <a>@composition.Name</a><span>(@composition.ProductCompositions?.Count())</span>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -225,26 +201,26 @@
                             <h5>Brands</h5>
                             <ul>
                                 <li>
-                                    <a>Greenery</a><span>(25)</span>
+                                    <a>
+                                        All
+                                        @foreach (var item in Model.Brands)
+                                        {
+                                            sumOfProductsCountByBrand += item.Products?.Count();
+                                        }
+                                        <span>(@sumOfProductsCountByBrand)</span>
+                                    </a>
                                 </li>
-                                <li>
-                                    <a>Design Studio</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Studi No-1</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Design & Branding</a><span>(25)</span>
-                                </li>
-                                <li>
-                                    <a>Natural</a><span>(25)</span>
-                                </li>
+                                @foreach (var brand in Model.Brands)
+                                {
+                                    <li>
+                                        <a>@brand.Name</a><span>(@brand.Products?.Count())</span>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <div class="banner">
-                            <img src="~/assets/images/banner.webp">
+                            <img src="~/assets/images/@Model.Sale.Image">
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-9 col-sm-12">
@@ -266,12 +242,24 @@
 
                                 </div>
                                 <div class="product-name">
-                                    <span>Modern classic</span>
+                                    <div class="rating-box d-flex" style="justify-content:center">
+                                        <ul class="d-flex" style="list-style:none;padding: 0px;margin: 7px 0px;">
+                                            @*   @for (int i = 0; i < product.Rate; i++)
+                                            {
+                                            <li><i class="fa fa-star" style="color: #ffe24d;"></i></li>
+                                            }
+                                            @for (int i = 0; i < 5 - product.Rate; i++)
+                                            {
+                                            <li><i class="fa fa-star" style="color:darkgrey"></i></li>
+                                            }*@
+                                        </ul>
+                                    </div>
                                     <span>Illusion Cap Sleeve Lace...</span>
                                 </div>
                                 <div class="product-price">
-                                    <p class="price">$<span class="price">23.90</span></p>
+                                    <p class="price" style="margin:0px;">$<span class="price">23.90</span></p>
                                 </div>
+
                                 <div class="functional-button">
                                     <ul>
                                         <li><a><i class="fa-solid fa-eye"></i></a></li>
@@ -385,20 +373,22 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
     </section>
     <section id="footer-top-shop">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-12 col-12 col-md-3">
-                    <div class="service-item">
+                @foreach (var brand in Model.Brands)
+                {
+                    <div class="col-lg-3 col-sm-12 col-12 col-md-3">
                         <div class="service-item">
-                            <img src="./assets/images/brand5.png">
+                            <div class="service-item">
+                                <img src="./assets/images/@brand.Image">
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         </div>
     </section>

@@ -4,7 +4,7 @@ namespace BrideyApp.Areas.Admin.ViewModels
 {
     public class BrideCreateVM
     {
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public IFormFile Photo { get; set; }
     }
 }

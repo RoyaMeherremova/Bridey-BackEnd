@@ -4,11 +4,11 @@ namespace BrideyApp.Areas.Admin.ViewModels
 {
     public class AdvertisingCreateVM
     {
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public IFormFile Photo { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Don't be empty")]
         public string Description { get; set; }
        
     }
