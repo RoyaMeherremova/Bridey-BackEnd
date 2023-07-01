@@ -137,9 +137,9 @@ namespace BrideyApp.Areas.Admin.Controllers
                         ModelState.AddModelError("Photos", "File type must be image");
                         return View(model);
                     }
-                    if (!photo.CheckFileSize(500))
+                    if (!photo.CheckFileSize(600))
                     {
-                        ModelState.AddModelError("Photos", "Image size must be max 500kb");
+                        ModelState.AddModelError("Photos", "Image size must be max 600kb");
                         return View(model);
                     }
                 }
@@ -365,9 +365,9 @@ namespace BrideyApp.Areas.Admin.Controllers
                             updatedProduct.Images = dbProduct.Images;
                             return View(updatedProduct);
                         }
-                        if (!photo.CheckFileSize(500))
+                        if (!photo.CheckFileSize(600))
                         {
-                            ModelState.AddModelError("Photos", "Image size must be max 500kb");
+                            ModelState.AddModelError("Photos", "Image size must be max 600kb");
                             updatedProduct.Images = dbProduct.Images;
                             return View(updatedProduct);
                         }
