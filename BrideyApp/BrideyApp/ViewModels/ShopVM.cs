@@ -1,4 +1,5 @@
-﻿using BrideyApp.Models;
+﻿using BrideyApp.Helpers;
+using BrideyApp.Models;
 
 namespace BrideyApp.ViewModels
 {
@@ -11,6 +12,8 @@ namespace BrideyApp.ViewModels
         public List<Brand> Brands { get; set; }
         public List<Category> Categories { get; set; }
         public Sale Sale { get; set; }
+        public Paginate<ProductVM> PaginateDatas { get; set; }
+
 
 
     }

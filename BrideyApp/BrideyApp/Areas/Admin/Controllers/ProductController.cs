@@ -43,7 +43,7 @@ namespace BrideyApp.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index(int page = 1, int take = 5)
         {
-            List<Product> datas = await _productService.GetPaginatedDatas(page, take, null, null, null, null, null);
+            List<Product> datas = await _productService.GetPaginatedDatas(page, take, null, null);
             List<ProductListVM> mappedDatas = GetMappedDatas(datas);
             int pageCount = await GetPageCountAsync(take);
             ViewBag.take = take;
@@ -240,7 +240,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                 newProduct.StockCount = model.StockCount;
                 newProduct.SKU = model.Name.Substring(0, 3) + "-" + random.Next();
                 newProduct.BrandId = model.BrandId;
-                newProduct.Rate = model.Rate;
                 newProduct.SaleCount = model.SaleCount;
                 newProduct.Video = model.Video;
 
@@ -316,7 +315,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                     Description = dbProduct.Description,
                     Price = dbProduct.Price,
                     SKU = dbProduct.SKU,
-                    Rate = dbProduct.Rate,
                     StockCount = dbProduct.StockCount,
                     SaleCount = dbProduct.SaleCount,
                     Video = dbProduct.Video,
@@ -469,7 +467,6 @@ namespace BrideyApp.Areas.Admin.Controllers
                 dbProduct.StockCount = updatedProduct.StockCount;
                 dbProduct.SaleCount = updatedProduct.SaleCount;
                 dbProduct.BrandId = updatedProduct.BrandId;
-                dbProduct.Rate = updatedProduct.Rate;
                 dbProduct.Video = updatedProduct.Video;
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index), new { page });

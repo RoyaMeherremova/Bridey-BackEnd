@@ -11,9 +11,6 @@ namespace BrideyApp.Areas.Admin.ViewModels
         public string SKU { get; set; }
 
         [Required(ErrorMessage = "Don`t be empty")]
-        public int Rate { get; set; }
-
-        [Required(ErrorMessage = "Don`t be empty")]
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Don`t be empty")]

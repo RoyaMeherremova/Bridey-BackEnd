@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xykopmvzhqPEfbceAfKYbRHxl2tLEg0L0vLBwyUEHzo=",
+  "Hash": "p2gPxa4x0OOjtFTAi83iVWv4G7XHe0avP5RSpQ2ocdY=",
   "Source": "BrideyApp",
   "BasePath": "_content/BrideyApp",
   "Mode": "Default",
@@ -1360,23 +1360,6 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\326aed3f-9aea-4fcd-9730-8a8c4517aec9 dress.svg"
     },
     {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\3dab7c94-ca6d-47ca-9601-bc177fd84f14_headphone2.png",
-      "SourceId": "BrideyApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
-      "BasePath": "_content/BrideyApp",
-      "RelativePath": "assets/images/3dab7c94-ca6d-47ca-9601-bc177fd84f14_headphone2.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\3dab7c94-ca6d-47ca-9601-bc177fd84f14_headphone2.png"
-    },
-    {
       "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\406c3879-84ca-4bf9-a86b-a20e510aa047 backgroundd22.webp",
       "SourceId": "BrideyApp",
       "SourceType": "Discovered",
@@ -1443,23 +1426,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\65926b59-328c-4ca6-b025-fa38d11b7d68 bride4.jfif"
-    },
-    {
-      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\6638f628-6474-4a37-8674-15248a038694_headphone4.png",
-      "SourceId": "BrideyApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
-      "BasePath": "_content/BrideyApp",
-      "RelativePath": "assets/images/6638f628-6474-4a37-8674-15248a038694_headphone4.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\images\\6638f628-6474-4a37-8674-15248a038694_headphone4.png"
     },
     {
       "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\6988a27a-86f5-4c37-a7f4-04e8aba990e2 cvetnoe.svg",

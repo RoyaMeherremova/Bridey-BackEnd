@@ -14,8 +14,6 @@ namespace BrideyApp.Areas.Admin.ViewModels
         public string Price { get; set; }
 
         [Required(ErrorMessage = "Don`t be empty")]
-        public int Rate { get; set; }
-        [Required(ErrorMessage = "Don`t be empty")]
         public int SaleCount { get; set; }
 
         [Required(ErrorMessage = "Don`t be empty")]

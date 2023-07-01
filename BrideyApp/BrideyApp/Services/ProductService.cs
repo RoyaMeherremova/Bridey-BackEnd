@@ -49,7 +49,7 @@ namespace BrideyApp.Services
         public async Task<int> GetCountAsync() => await _context.Products.CountAsync();
         public async Task<List<Product>> GetFeaturedProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.Rate).ToListAsync();
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
-        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId)
+        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId/* int? sizeId, int? colorId, int? brandId*/)
         {
             List<Product> products = null;
 
@@ -75,39 +75,39 @@ namespace BrideyApp.Services
                 .Take(take)
                 .ToListAsync();
             }
-            if (sizeId != null)
-            {
-                products = await _context.ProductSizes
-                .Include(p => p.Product)
-                .ThenInclude(p => p.Images)
-                .Where(pc => pc.Size.Id == sizeId)
-                .Select(p => p.Product)
-                .Skip((page * take) - take)
-                .Take(take)
-                .ToListAsync();
-            }
-            if (colorId != null)
-            {
-                products = await _context.ProductColors
-                .Include(p => p.Product)
-                .ThenInclude(p => p.Images)
-                .Where(pc => pc.Color.Id == colorId)
-                .Select(p => p.Product)
-                .Skip((page * take) - take)
-                .Take(take)
-                .ToListAsync();
-            }
-            if (brandId != null)
-            {
-                products = await _context.Products
-            .Include(p => p.Images)
-            .Include(c => c.Brand)
-            .Where(p => p.Brand.Id == brandId)
-            .Skip((page * take) - take)
-            .Take(take)
-            .ToListAsync();
+            //if (sizeId != null)
+            //{
+            //    products = await _context.ProductSizes
+            //    .Include(p => p.Product)
+            //    .ThenInclude(p => p.Images)
+            //    .Where(pc => pc.Size.Id == sizeId)
+            //    .Select(p => p.Product)
+            //    .Skip((page * take) - take)
+            //    .Take(take)
+            //    .ToListAsync();
+            //}
+            //if (colorId != null)
+            //{
+            //    products = await _context.ProductColors
+            //    .Include(p => p.Product)
+            //    .ThenInclude(p => p.Images)
+            //    .Where(pc => pc.Color.Id == colorId)
+            //    .Select(p => p.Product)
+            //    .Skip((page * take) - take)
+            //    .Take(take)
+            //    .ToListAsync();
+            //}
+            //if (brandId != null)
+            //{
+            //    products = await _context.Products
+            //.Include(p => p.Images)
+            //.Include(c => c.Brand)
+            //.Where(p => p.Brand.Id == brandId)
+            //.Skip((page * take) - take)
+            //.Take(take)
+            //.ToListAsync();
 
-            }
+            //}
             else
             {
              products = await _context.Products
