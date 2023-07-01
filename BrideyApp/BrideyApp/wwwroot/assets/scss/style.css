@@ -451,6 +451,7 @@ hr {
   background-size: 200% 100%;
   background-position: right bottom;
   transition: all 0.5s ease-out;
+  cursor:pointer
 }
 #products .btn-show-more a i {
   position: relative;
@@ -684,12 +685,14 @@ hr {
 #blogs .blog .blog-title {
   position: absolute;
   top: 46%;
+ 
 }
     #blogs .blog .blog-title h4 {
         font-weight: bolder;
         position: relative;
         top: 53px;
         color: #000000b0;
+
     }
 #blogs .blog .read-more a {
   text-decoration: none;
@@ -1462,6 +1465,7 @@ img.rot {
   transition: background-position 0.4s ease;
   display: inline-block;
   -webkit-text-fill-color: transparent;
+  cursor:pointer;
 }
 #blogss .blog-cart .post-info h3:hover {
   background-position: bottom;
@@ -1490,6 +1494,7 @@ img.rot {
   color: #4b5955;
   line-height: 1.8;
   margin-top: 26px;
+  cursor:pointer;
 }
 #blogss .blog-cart .post-info a span {
   position: relative;
@@ -1608,6 +1613,7 @@ img.rot {
 #blogss .right-side .tagcloud {
   margin-top: 26px;
   margin-left: 15px;
+  cursor:pointer;
 }
 #blogss .right-side .tagcloud a {
   color: #626262;
@@ -1645,6 +1651,7 @@ img.rot {
   line-height: 0.4;
   margin-bottom: 4px;
   font-size: 29px;
+  cursor:pointer;
 
 }
 #blogss .right-side .list-posts .item-post .post-info span {
@@ -3433,6 +3440,7 @@ hr {
   padding: 7px 15px;
   background-color: #f6f6f6;
   margin-bottom: 6px;
+
 }
 #site-content .widget_tag_cloud .tagcloud a:hover {
   color: #fff !important;
@@ -5125,9 +5133,10 @@ hr {
     left: 0%;
     margin-left: 5px;
   }
-  #blogss .right-side .tagcloud {
-    margin-left: 5px;
-  }
+    #blogss .right-side .tagcloud {
+        margin-left: 5px;
+
+    }
   #footer-top-blog {
     padding-top: 47px;
   }

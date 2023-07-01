@@ -27,7 +27,13 @@ namespace BrideyApp.Services
                                                                     .Include(m => m.ProductCategories)
                                                                     .ThenInclude(m => m.Category)
                                                                     .ToListAsync();
-        public async Task<Product> GetById(int? id) => await _context.Products.FindAsync(id);
+        public async Task<Product> GetById(int? id) => await _context.Products.Include(p => p.Images)
+                                                                               .Include(m => m.ProductSizes)
+                                                                               .Include(m => m.ProductCategories)
+                                                                               .Include(m => m.ProductColors)
+                                                                               .Include(m => m.ProductCompositions)
+                                                                               .FirstOrDefaultAsync(p => p.Id == id);
+
         public async Task<Product> GetFullDataById(int? id) => await _context.Products.Include(m => m.Images)
                                                                     .Include(m => m.ProductSizes)
                                                                     .ThenInclude(m => m.Size)
@@ -275,5 +281,16 @@ namespace BrideyApp.Services
                  .CountAsync();
         }
 
+        public async Task<ProductImage> GetImageById(int? id)
+        {
+            return await _context.ProductImages.FindAsync((int)id);
+        }
+
+        public async Task<Product> GetProductByImageId(int? id)
+        {
+            return await _context.Products
+                .Include(p => p.Images)
+                .FirstOrDefaultAsync(p => p.Images.Any(p => p.Id == id));
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿.active-status {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-color: greenyellow;
     border-radius: 50%;
     cursor: pointer;
@@ -8,10 +8,10 @@
 
 
 
-.deActive-status {
-    width: 20px;
-    height: 20px;
-    background-color: red;
+.de-active {
+    width: 16px;
+    height: 16px;
+    background-color: #ff0000cf;
     border-radius: 50%;
     cursor: pointer;
 }

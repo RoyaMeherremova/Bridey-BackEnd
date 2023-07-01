@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-9 col-sm-12 col-md-12 container-blog">
                     <div class="row">
-                        @foreach (var blog in Model.Blogs)
+                        @foreach (var blog in Model.PaginatedDatas.Datas)
                         {
                             <div class="col-lg-6 col-sm-12 col-md-6">
                                 <div class="blog-cart">
@@ -52,12 +52,25 @@
                             </div>
                         }
                     </div>
-                    <div class="pagination">
-                        <button class="left-btn"><i class="fa-solid fa-angles-left"></i></button>
-                        <button class="btn">1</button>
-                        <button class="btn">2</button>
-                        <button class="right-btn"><i class="fa-solid fa-angles-right"></i></button>
-                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item  @(Model.PaginatedDatas.HasPrevious? "active" :"disabled")">
+                                <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
+                            </li>
+
+                            @for (int i = 1; i <= Model.PaginatedDatas.TotalPage; i++)
+                            {
+
+                                <li class="page-item active @(Model.PaginatedDatas.CurrentPage == i ? "disabled" : "")">
+                                    <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-page="@i"><button class="btn">@i</button></a>
+                                </li>
+
+                            }
+                            <li class="page-item @(Model.PaginatedDatas.HasNext? "active" :"disabled")">
+                                <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
                 <div class="col-lg-3  col-sm-12 col-md-12">
                     <div class="right-side">

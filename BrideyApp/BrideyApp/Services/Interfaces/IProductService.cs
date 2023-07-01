@@ -21,6 +21,8 @@ namespace BrideyApp.Services.Interfaces
         Task<int> GetProductsCountByCompositionAsync(int? catId);
         Task<int> GetProductsCountByColorAsync(int? colorId);
         Task<int> GetProductsCountByBrandAsync(int? tagid);
+        Task<ProductImage> GetImageById(int? id);
+        Task<Product> GetProductByImageId(int? id);
 
     }
 }

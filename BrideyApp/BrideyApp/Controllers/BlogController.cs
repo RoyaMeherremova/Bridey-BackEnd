@@ -1,4 +1,5 @@
 ﻿using BrideyApp.Areas.Admin.ViewModels;
+using BrideyApp.Helpers;
 using BrideyApp.Models;
 using BrideyApp.Services;
 using BrideyApp.Services.Interfaces;
@@ -28,13 +29,15 @@ namespace BrideyApp.Controllers
             _advertisingService = advertisingService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int take = 4)
         {
             List<Blog> blogs = await _blogService.GetAll();
             List<Category> categories = await _categoryService.GetAll();
             List<Composition> compositions = await _compositionService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
-
+            List<Blog> paginateBlogs = await _blogService.GetPaginatedDatas(page, take);
+            int pageCount = await GetPageCountAsync(take);
+            Paginate<Blog> paginatedDatas = new(paginateBlogs, page, pageCount);
 
 
 
@@ -43,10 +46,17 @@ namespace BrideyApp.Controllers
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
                 Blogs = blogs,
                 Categories = categories,
+                PaginatedDatas = paginatedDatas,
                 Compositions = compositions,
                 Advertisings= advertisings
             };
             return View(model);
+        }
+        private async Task<int> GetPageCountAsync(int take)
+        {
+            var blogCount = await _blogService.GetCountAsync();
+
+            return (int)Math.Ceiling((decimal)blogCount / take);
         }
     }
 }

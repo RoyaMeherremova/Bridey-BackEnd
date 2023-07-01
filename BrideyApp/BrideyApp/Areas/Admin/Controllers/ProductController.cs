@@ -22,9 +22,9 @@ namespace BrideyApp.Areas.Admin.Controllers
         private readonly ICompositionService _compositionService;
         private readonly IBrandService _brandService;
         private readonly ICategoryService _categoryService;
-        public ProductController(AppDbContext context, 
+        public ProductController(AppDbContext context,
                                  IWebHostEnvironment env,
-                                 IProductService productService, 
+                                 IProductService productService,
                                  IBrandService brandService,
                                  ICategoryService categoryService,
                                  ICompositionService compositionService,
@@ -293,8 +293,286 @@ namespace BrideyApp.Areas.Admin.Controllers
             }
         }
 
-          
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id, int page)
+        {
+            try
+            {
+                if (id is null) return BadRequest();
+                Product dbProduct = await _productService.GetFullDataById((int)id);
+                if (dbProduct is null) return NotFound();
+                ViewBag.page = page;
+
+                ViewBag.colors = await GetColorsAsync();
+                ViewBag.compositions = await GetCompositionsAsync();
+                ViewBag.sizes = await GetSizesAsync();
+                ViewBag.brands = await GetBrandsAsync();
+                ViewBag.categories = await GetCategoriesAsync();
+
+                ProductUpdateVM model = new()
+                {
+                    Id = dbProduct.Id,
+                    Name = dbProduct.Name,
+                    Description = dbProduct.Description,
+                    Price = dbProduct.Price,
+                    SKU = dbProduct.SKU,
+                    Rate = dbProduct.Rate,
+                    StockCount = dbProduct.StockCount,
+                    SaleCount = dbProduct.SaleCount,
+                    Video = dbProduct.Video,
+                    Images = dbProduct.Images,
+                    CategoryIds = dbProduct.ProductCategories.Select(c => c.Category.Id).ToList(),
+                    CompositionIds = dbProduct.ProductCompositions.Select(t => t.Composition.Id).ToList(),
+                    ColorIds = dbProduct.ProductColors.Select(s => s.Color.Id).ToList(),
+                    SizeIds = dbProduct.ProductSizes.Select(s => s.Size.Id).ToList(),
+                    BrandId = dbProduct.BrandId
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int? id, int page, ProductUpdateVM updatedProduct)
+        {
+            try
+            {
+                ViewBag.colors = await GetColorsAsync();
+                ViewBag.compositions = await GetCompositionsAsync();
+                ViewBag.sizes = await GetSizesAsync();
+                ViewBag.brands = await GetBrandsAsync();
+                ViewBag.categories = await GetCategoriesAsync();
+
+                if (id is null) return BadRequest();
+                Product dbProduct = await _productService.GetFullDataById((int)id);
+                if (dbProduct is null) return NotFound();
+
+                if (!ModelState.IsValid)
+                {
+                    updatedProduct.Images = dbProduct.Images;
+                    return View(updatedProduct);
+                }
+                if (updatedProduct.Photos != null)
+                {
+                    foreach (var photo in updatedProduct.Photos)
+                    {
+                        if (!photo.CheckFileType("image/"))
+                        {
+                            ModelState.AddModelError("Photos", "File type must be image");
+                            updatedProduct.Images = dbProduct.Images;
+                            return View(updatedProduct);
+                        }
+                        if (!photo.CheckFileSize(500))
+                        {
+                            ModelState.AddModelError("Photos", "Image size must be max 500kb");
+                            updatedProduct.Images = dbProduct.Images;
+                            return View(updatedProduct);
+                        }
+                    }
+
+                    foreach (var item in dbProduct.Images)
+                    {
+                        string dbPath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", item.Image);
+                        FileHelper.DeleteFile(dbPath);
+                    }
+                    List<ProductImage> productImages = new();
+
+                    foreach (var photo in updatedProduct.Photos)
+                    {
+                        string fileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+
+                        string path = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", fileName);
+
+                        await FileHelper.SaveFileAsync(path, photo);
+
+                        ProductImage productImage = new()
+                        {
+                            Image = fileName
+                        };
+                        productImages.Add(productImage);
+                    }
+                    dbProduct.Images = productImages;
+                    dbProduct.Images.FirstOrDefault().IsMain = true;
+                }
+                else
+                {
+                    updatedProduct.Images = dbProduct.Images;
+                }
+
+                if (updatedProduct.ColorIds.Count > 0)
+                {
+                    List<ProductColor> productColors = new();
+
+                    foreach (var item in updatedProduct.ColorIds)
+                    {
+                        ProductColor productColor = new()
+                        {
+                            ColorId = item
+                        };
+                        productColors.Add(productColor);
+                    }
+                    dbProduct.ProductColors = productColors;
+                }
+                if (updatedProduct.CompositionIds.Count > 0)
+                {
+                    List<ProductComposition> productCompositions = new();
+
+                    foreach (var item in updatedProduct.CompositionIds)
+                    {
+                        ProductComposition productComposition = new()
+                        {
+                            CompositionId = item
+                        };
+                        productCompositions.Add(productComposition);
+                    }
+                    dbProduct.ProductCompositions = productCompositions;
+                }
+
+                if (updatedProduct.SizeIds.Count > 0)
+                {
+                    List<ProductSize> productSizes = new();
+
+                    foreach (var item in updatedProduct.SizeIds)
+                    {
+                        ProductSize productSize = new()
+                        {
+                            SizeId = item
+                        };
+                        productSizes.Add(productSize);
+                    }
+                    dbProduct.ProductSizes = productSizes;
+                }
+
+                if (updatedProduct.CategoryIds.Count > 0)
+                {
+                    List<ProductCategory> productCategories = new();
+
+                    foreach (var item in updatedProduct.CategoryIds)
+                    {
+                        ProductCategory productCategory = new()
+                        {
+                            CategoryId = item
+                        };
+                        productCategories.Add(productCategory);
+                    }
+                    dbProduct.ProductCategories = productCategories;
+                }
+
+                dbProduct.Name = updatedProduct.Name;
+                dbProduct.Description = updatedProduct.Description;
+                dbProduct.Price = updatedProduct.Price;
+                dbProduct.StockCount = updatedProduct.StockCount;
+                dbProduct.SaleCount = updatedProduct.SaleCount;
+                dbProduct.BrandId = updatedProduct.BrandId;
+                dbProduct.Rate = updatedProduct.Rate;
+                dbProduct.Video = updatedProduct.Video;
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index), new { page });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            try
+            {
+                if (id is null) return BadRequest();
+                Product dbProduct = await _productService.GetById((int)id);
+                if (dbProduct is null) return NotFound();
+
+                foreach (var productImage in dbProduct.Images)
+                {
+                    string dbPath = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", productImage.Image);
+                    FileHelper.DeleteFile(dbPath);
+                }
+
+                _context.Products.Remove(dbProduct);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteProductImage(int? id)
+        {
+            try
+            {
+                if (id is null) return BadRequest();
+                ProductImage image = await _productService.GetImageById((int)id);
+                if (image is null) return NotFound();
+                Product dbProduct = await _productService.GetProductByImageId((int)id);
+                if (dbProduct is null) return NotFound();
+                RemoveImageResponse response = new();
+                response.Result = false;
+
+                if (dbProduct.Images.Count > 1)
+                {
+                    string path = FileHelper.GetFilePath(_env.WebRootPath, "assets/images", image.Image);
+                    FileHelper.DeleteFile(path);
+                    _context.ProductImages.Remove(image);
+                    await _context.SaveChangesAsync();
+                }
+                dbProduct.Images.FirstOrDefault().IsMain = true;
+                response.Id = dbProduct.Images.FirstOrDefault().Id;
+                await _context.SaveChangesAsync();
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
 
 
+        [HttpPost]
+        public async Task<IActionResult> SetMainİmage(int? id)
+        {
+            try
+            {
+                if (id == null) return BadRequest();
+                ProductImage image = await _productService.GetImageById((int)id);
+                if (image is null) return NotFound();
+                Product dbProduct = await _productService.GetProductByImageId((int)id);
+                if (dbProduct is null) return NotFound();
+
+                if (!image.IsMain)
+                {
+                    image.IsMain = true;
+                    await _context.SaveChangesAsync();
+                }
+                var images = dbProduct.Images.Where(m => m.Id != id).ToList();
+
+                foreach (var item in images)
+                {
+                    if (item.IsMain)
+                    {
+                        item.IsMain = false;
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                return Ok(image.IsMain);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
+        }
     }
 }

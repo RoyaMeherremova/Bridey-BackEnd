@@ -1,0 +1,116 @@
+﻿@model ProductUpdateVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+@section Css{
+    <link rel="stylesheet" href="~/admin/assets/css/main.css">
+}
+<div class="container my-5">
+    <div class="d-flex">
+        <div class="images d-flex" style="text-align:center">
+            <h4>Images</h4>
+            @foreach (var productImage in Model.Images)
+            {
+                <div style="width:200px; margin-right:10px;" data-id="@productImage.Id">
+                    <img style="width:170px;height:190px" class="img-fluid" src="~/assets/images/@productImage.Image" />
+                    <div class=" d-flex align-items-center justify-content-center" style="margin-top: 13px;" data-id="@productImage.Id">
+                        <a class="delete-image"><i class="fa-solid fa-trash" style="color: #c60101; cursor:pointer;"></i></a>
+                        <div class="statuses" style=" margin-left:10px;">
+                            @if (productImage.IsMain)
+                            {
+                                <div class="active-status image-status"></div>
+                            }
+                            else
+                            {
+                                <div class="de-active image-status"></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="images" style="text-align:center">
+            <h4>Video</h4>
+            <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                   poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                   src="@Model.Video"
+                   type="video/mp4" style="width:200px;height:190px"></video>
+        </div>
+    </div>
+
+    <form class="form-sample" asp-action="Edit" asp-route-page="@ViewBag.page" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Add Photos</label>
+            <input class="form-control" id="customFile" asp-for="Photos" />
+            <span class="text-danger" asp-validation-for="Photos"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Add Video</label>
+            <input class="form-control" id="customFile" asp-for="Video" />
+            <span class="text-danger" asp-validation-for="Video"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Name</label>
+            <input class="form-control" id="customFile" asp-for="Name" />
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Price</label>
+            <input class="form-control" id="customFile" asp-for="Price" />
+            <span class="text-danger" asp-validation-for="Price"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Description</label>
+            <textarea class="form-control" id="advert-text" asp-for="Description" rows="5"></textarea>
+            <span class="text-danger" asp-validation-for="Description">@ViewBag.error</span>
+        </div>
+        <div class="mt-5">
+            <label for="formFile" class="form-label my-2">Color</label>
+            <select class="form-control" id="customFile" asp-for="ColorIds" asp-items="@ViewBag.colors"></select>
+        </div>
+        <div class="mt-5">
+            <label for="formFile" class="form-label my-2">Size</label>
+            <select class="form-control" id="customFile" asp-for="SizeIds" asp-items="@ViewBag.sizes"></select>
+        </div>
+        <div class="mt-5">
+            <label for="formFile" class="form-label my-2">Composition</label>
+            <select class="form-control" id="customFile" asp-for="CompositionIds" asp-items="@ViewBag.compositions"></select>
+        </div>
+        <div class="mt-5">
+            <label for="formFile" class="form-label my-2">Category</label>
+            <select class="form-control" id="customFile" asp-for="CategoryIds" asp-items="@ViewBag.categories"></select>
+        </div>
+        <div class="mt-5">
+            <label for="formFile" class="form-label my-2">Brand</label>
+            <select class="form-control" id="customFile" asp-for="BrandId" asp-items="@ViewBag.brands"></select>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">SaleCount</label>
+            <input class="form-control" id="customFile" asp-for="SaleCount" />
+            <span class="text-danger" asp-validation-for="SaleCount"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">StockCount</label>
+            <input class="form-control" id="customFile" asp-for="StockCount" />
+            <span class="text-danger" asp-validation-for="StockCount"></span>
+        </div>
+        <div class="form-group">
+            <label for="formFile" class="form-label my-2">Rate Count</label>
+            <input class="form-control" id="customFile" asp-for="Rate" />
+            <span class="text-danger" asp-validation-for="Rate"></span>
+        </div>
+        <div class="buttons my-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn" style="background-color: #696cff;color:#fff;" asp-route-page="@ViewBag.page" asp-action="Index">Back</a>
+        </div>
+
+
+    </form>
+
+</div>
+@section Scripts {
+
+    <script src="~/admin/js/admin.js"></script>
+}
+

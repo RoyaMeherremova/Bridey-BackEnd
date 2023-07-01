@@ -42,9 +42,6 @@ builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

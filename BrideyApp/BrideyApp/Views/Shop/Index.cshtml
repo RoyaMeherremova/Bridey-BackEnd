@@ -365,12 +365,25 @@
 
                         </div>
                     </div>
-                    <div class="load-more">
-                        <a class="btn-more">
-                            Load More
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </a>
-                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item  @(Model.PaginatedDatas.HasPrevious? "active" :"disabled")">
+                                <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
+                            </li>
+
+                            @for (int i = 1; i <= Model.PaginatedDatas.TotalPage; i++)
+                            {
+
+                                <li class="page-item active @(Model.PaginatedDatas.CurrentPage == i ? "disabled" : "")">
+                                    <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-page="@i"><button class="btn">@i</button></a>
+                                </li>
+
+                            }
+                            <li class="page-item @(Model.PaginatedDatas.HasNext? "active" :"disabled")">
+                                <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
+                            </li>
+                        </ul>
+                    </nav>
 
                 </div>
             </div>

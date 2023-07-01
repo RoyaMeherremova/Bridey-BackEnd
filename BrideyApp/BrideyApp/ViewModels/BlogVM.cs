@@ -1,4 +1,5 @@
-﻿using BrideyApp.Models;
+﻿using BrideyApp.Helpers;
+using BrideyApp.Models;
 
 namespace BrideyApp.ViewModels
 {
@@ -9,6 +10,8 @@ namespace BrideyApp.ViewModels
         public List<Category> Categories { get; set; }
         public List<Composition> Compositions { get; set; }
         public List<Advertising> Advertisings { get; set; }
+        public Paginate<Blog> PaginatedDatas { get; set; }
+
 
 
     }
