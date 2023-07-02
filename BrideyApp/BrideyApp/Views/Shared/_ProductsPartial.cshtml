@@ -4,16 +4,15 @@
 {
 
     <div class="col-lg-4 col-sm-12 col-md-6">
-        <div class="cart">
+        <div class="cart" >
             <div class="new">New</div>
             <div class="product-img">
-                <a asp-controller="ProductDetail" asp-action="Index">
-
-                    <img src="~/assets/images/bride 0ne.webp" class="primary-img"
+                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">
+                    <img src="~/assets/images/@product.Images?.Where(p=>p.IsMain).FirstOrDefault()?.Image" class="primary-img"
                      alt="Card image cap">
                     <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
                        poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
-                       src="https://cdn-1.jjshouse.com/upimg/s1140/aa/41/0563cee4ef0d46ca3d9b77dc0b0daa41.mp4"
+                       src="@product.Video"
                        type="video/mp4"></video>
                 </a>
 
@@ -31,10 +30,10 @@
                     }
                     </ul>
                 </div>
-                <span>Illusion Cap Sleeve Lace...</span>
+                <span>@product.Name</span>
             </div>
             <div class="product-price">
-                <p class="price" style="margin:0px;">$<span class="price">23.90</span></p>
+                <p class="price" style="margin:0px;">$<span class="price">@product.Price</span></p>
             </div>
 
             <div class="functional-button">
@@ -53,19 +52,18 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item  @(Model.HasPrevious? "active" :"disabled")">
-            <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
+            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
         </li>
 
         @for (int i = 1; i <= Model.TotalPage; i++)
         {
 
             <li class="page-item active @(Model.CurrentPage == i ? "disabled" : "")">
-                <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-page="@i"><button class="btn">@i</button></a>
+                <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@i"><button class="btn">@i</button></a>
             </li>
-
         }
         <li class="page-item @(Model.HasNext? "active" :"disabled")">
-            <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
+            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
         </li>
     </ul>
 </nav>

@@ -15,7 +15,7 @@ namespace BrideyApp.Services
         {
             _context = context;
         }
-        public async Task<List<Product>> GetAll() => await _context.Products.Include(m => m.Images)
+        public async Task<IEnumerable<Product>> GetAll() => await _context.Products.Include(m => m.Images)
                                                                     .Include(m => m.ProductSizes)
                                                                     .ThenInclude(m => m.Size)
                                                                     .Include(m => m.Brand)
@@ -23,7 +23,7 @@ namespace BrideyApp.Services
                                                                     .ThenInclude(m => m.Composition)
                                                                     .Include(m => m.ProductColors)
                                                                     .ThenInclude(m => m.Color)
-                                                                    //.Include(m => m.ProductComments)
+                                                                    .Include(m => m.ProductComments)
                                                                     .Include(m => m.ProductCategories)
                                                                     .ThenInclude(m => m.Category)
                                                                     .ToListAsync();
@@ -46,10 +46,29 @@ namespace BrideyApp.Services
                                                                     .Include(m => m.ProductCategories)
                                                                     .ThenInclude(m => m.Category)
                                                                     .FirstOrDefaultAsync(m => m.Id == id);
+
+        public async Task<List<ProductVM>> GetMappedAllProducts()
+        {
+            List<ProductVM> model = new();
+            var products = await _context.Products.Include(p => p.Images).ToListAsync();
+            foreach (var item in products)
+            {
+                model.Add(new ProductVM
+                {
+                    Id = item.Id,
+                    Price = item.Price,
+                    Name = item.Name,
+                    Images = item.Images,
+                    Rate= item.Rate,
+                    Video = item.Video,
+                });
+            }
+            return model;
+        }
         public async Task<int> GetCountAsync() => await _context.Products.CountAsync();
         public async Task<List<Product>> GetFeaturedProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.Rate).ToListAsync();
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
-        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId/* int? sizeId, int? colorId, int? brandId*/)
+        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId)
         {
             List<Product> products = null;
 
@@ -75,39 +94,39 @@ namespace BrideyApp.Services
                 .Take(take)
                 .ToListAsync();
             }
-            //if (sizeId != null)
-            //{
-            //    products = await _context.ProductSizes
-            //    .Include(p => p.Product)
-            //    .ThenInclude(p => p.Images)
-            //    .Where(pc => pc.Size.Id == sizeId)
-            //    .Select(p => p.Product)
-            //    .Skip((page * take) - take)
-            //    .Take(take)
-            //    .ToListAsync();
-            //}
-            //if (colorId != null)
-            //{
-            //    products = await _context.ProductColors
-            //    .Include(p => p.Product)
-            //    .ThenInclude(p => p.Images)
-            //    .Where(pc => pc.Color.Id == colorId)
-            //    .Select(p => p.Product)
-            //    .Skip((page * take) - take)
-            //    .Take(take)
-            //    .ToListAsync();
-            //}
-            //if (brandId != null)
-            //{
-            //    products = await _context.Products
-            //.Include(p => p.Images)
-            //.Include(c => c.Brand)
-            //.Where(p => p.Brand.Id == brandId)
-            //.Skip((page * take) - take)
-            //.Take(take)
-            //.ToListAsync();
+            if (sizeId != null)
+            {
+                products = await _context.ProductSizes
+                .Include(p => p.Product)
+                .ThenInclude(p => p.Images)
+                .Where(pc => pc.Size.Id == sizeId)
+                .Select(p => p.Product)
+                .Skip((page * take) - take)
+                .Take(take)
+                .ToListAsync();
+            }
+            if (colorId != null)
+            {
+                products = await _context.ProductColors
+                .Include(p => p.Product)
+                .ThenInclude(p => p.Images)
+                .Where(pc => pc.Color.Id == colorId)
+                .Select(p => p.Product)
+                .Skip((page * take) - take)
+                .Take(take)
+                .ToListAsync();
+            }
+            if (brandId != null)
+            {
+             products = await _context.Products
+            .Include(p => p.Images)
+            .Include(c => c.Brand)
+            .Where(p => p.Brand.Id == brandId)
+            .Skip((page * take) - take)
+            .Take(take)
+            .ToListAsync();
 
-            //}
+            }
             else
             {
              products = await _context.Products
@@ -145,7 +164,8 @@ namespace BrideyApp.Services
                     Price = product.Price,
                     Name = product.Name,
                     Images = product.Images,
-                    Rate = product.Rate
+                    Rate = product.Rate,
+                    Video = product.Video
                 });
             }
             return model;
@@ -168,7 +188,9 @@ namespace BrideyApp.Services
                     Price = product.Price,
                     Name = product.Name,
                     Images = product.Images,
-                    Rate = product.Rate
+                    Rate = product.Rate,
+                    Video = product.Video
+
                 });
             }
             return model;
@@ -191,7 +213,9 @@ namespace BrideyApp.Services
                     Price = product.Price,
                     Name = product.Name,
                     Images = product.Images,
-                    Rate = product.Rate
+                    Rate = product.Rate,
+                    Video = product.Video
+
                 });
             }
             return model;
@@ -214,7 +238,9 @@ namespace BrideyApp.Services
                     Price = product.Price,
                     Name = product.Name,
                     Images = product.Images,
-                    Rate = product.Rate
+                    Rate = product.Rate,
+                    Video = product.Video
+
                 });
             }
             return model;
@@ -236,7 +262,9 @@ namespace BrideyApp.Services
                     Price = product.Price,
                     Name = product.Name,
                     Images = product.Images,
-                    Rate = product.Rate
+                    Rate = product.Rate,
+                    Video = product.Video
+
                 });
             }
             return model;
@@ -292,5 +320,6 @@ namespace BrideyApp.Services
                 .Include(p => p.Images)
                 .FirstOrDefaultAsync(p => p.Images.Any(p => p.Id == id));
         }
+       
     }
 }

@@ -12,7 +12,7 @@ namespace BrideyApp.Services
         {
             _context = context;
         }
-        public async Task<List<Composition>> GetAll() => await _context.Compositions.ToListAsync();
+        public async Task<List<Composition>> GetAll() => await _context.Compositions.Include(m => m.ProductCompositions).ToListAsync();
 
         public async Task<Composition> GetCompositionById(int? id) => await _context.Compositions.FirstOrDefaultAsync(m => m.Id == id);
     }

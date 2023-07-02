@@ -110,7 +110,23 @@ $(document).ready(function () {
       $(".side-bar").css("transform", `translateX(${-239}px)`);
       $("body").css("overflow", 'scroll');
     })
-  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
 
 
 

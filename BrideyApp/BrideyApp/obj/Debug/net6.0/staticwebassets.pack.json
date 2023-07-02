@@ -285,6 +285,18 @@
       "PackagePath": "staticwebassets\\assets\\images\\14dc733a-3ba2-415f-b119-bb5a94e544e9 brand1.png"
     },
     {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\16213e5e-7798-4cb6-aac0-de658921e7f0_drse2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\16213e5e-7798-4cb6-aac0-de658921e7f0_drse2.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\16bb7053-5390-4081-844d-2bd4bfcc5fa6_dres2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\16bb7053-5390-4081-844d-2bd4bfcc5fa6_dres2.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\18eff045-6b10-4444-a301-ab14d210cea7_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\18eff045-6b10-4444-a301-ab14d210cea7_dres3.webp"
+    },
+    {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\1c08523c-bfbd-4d13-9fa6-4ee94d54a7ec service-4.png",
       "PackagePath": "staticwebassets\\assets\\images\\1c08523c-bfbd-4d13-9fa6-4ee94d54a7ec service-4.png"
     },
@@ -301,8 +313,16 @@
       "PackagePath": "staticwebassets\\assets\\images\\2a349a5e-e836-42b9-a97d-de920f8bc359 brand2.png"
     },
     {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\2d6085b6-dd59-4b5a-bcda-76740f1d5649_dres5.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\2d6085b6-dd59-4b5a-bcda-76740f1d5649_dres5.webp"
+    },
+    {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\2f01f066-32b5-403f-a3af-231b01b92a69 AU-1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\2f01f066-32b5-403f-a3af-231b01b92a69 AU-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\2f06a5ea-8e5e-4631-a99c-9bd3b8720854_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\2f06a5ea-8e5e-4631-a99c-9bd3b8720854_dres3.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\3028b669-ec59-46ef-af6d-7cd2303969ec brand3.png",
@@ -311,6 +331,18 @@
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\326aed3f-9aea-4fcd-9730-8a8c4517aec9 dress.svg",
       "PackagePath": "staticwebassets\\assets\\images\\326aed3f-9aea-4fcd-9730-8a8c4517aec9 dress.svg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\3af3656b-2cb8-4e05-b971-3e345c508b0c_dres1.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\3af3656b-2cb8-4e05-b971-3e345c508b0c_dres1.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\3e3f4122-9d01-46fe-b7c5-5e89e69aec3f_dres7.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\3e3f4122-9d01-46fe-b7c5-5e89e69aec3f_dres7.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\3f461589-e5a5-468b-be53-3f21a7c85836_dres2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\3f461589-e5a5-468b-be53-3f21a7c85836_dres2.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\406c3879-84ca-4bf9-a86b-a20e510aa047 backgroundd22.webp",
@@ -357,8 +389,24 @@
       "PackagePath": "staticwebassets\\assets\\images\\792e433b-5890-4f31-af94-438483b30cc1 a-siluet.svg"
     },
     {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\79417bf0-e4c6-4e2d-8c04-1d84d0bf6557_bride2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\79417bf0-e4c6-4e2d-8c04-1d84d0bf6557_bride2.webp"
+    },
+    {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\7bf1d92f-4d25-4422-9b44-b8a93e175a51 team1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\7bf1d92f-4d25-4422-9b44-b8a93e175a51 team1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\7ce5d019-9d52-4573-8444-93cdf147afe5_bride3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\7ce5d019-9d52-4573-8444-93cdf147afe5_bride3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\7e44f35e-3ae8-4881-bf98-4f70002da3bd_dres4.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\7e44f35e-3ae8-4881-bf98-4f70002da3bd_dres4.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\7e7be4fd-55be-4296-9e60-f169dabd83c0_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\7e7be4fd-55be-4296-9e60-f169dabd83c0_dres3.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\85ea8955-0f63-4be0-aaad-1072b0dac507 korotkoe.svg",
@@ -367,6 +415,10 @@
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\8d88e590-b9ae-4247-8a53-995515ae37bf pishnoe.svg",
       "PackagePath": "staticwebassets\\assets\\images\\8d88e590-b9ae-4247-8a53-995515ae37bf pishnoe.svg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\913d3dc6-5b31-4e42-8d26-7e93bf47526f_dres2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\913d3dc6-5b31-4e42-8d26-7e93bf47526f_dres2.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\96bda129-b907-4868-b8a1-2c3a70077a6c bloog.jpg",
@@ -401,8 +453,36 @@
       "PackagePath": "staticwebassets\\assets\\images\\a75ef0df-d7e9-49ed-8467-a619fb5808b8 team3.jpg"
     },
     {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\a82aee08-da16-48b1-b90d-37df47a5e21d_dres4.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\a82aee08-da16-48b1-b90d-37df47a5e21d_dres4.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\b2980ee7-a859-4aee-9f24-ee00d9b72432_dres.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\b2980ee7-a859-4aee-9f24-ee00d9b72432_dres.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\b59e721c-5676-4289-9a1b-ff1beabdd032 3f9e555c-b24b-4c66-aa3e-17d8bb5deec1_sale.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\b59e721c-5676-4289-9a1b-ff1beabdd032 3f9e555c-b24b-4c66-aa3e-17d8bb5deec1_sale.jpg"
+    },
+    {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\b8e9a0c5-c5fb-4345-8743-a75468425a03 zakritie.svg",
       "PackagePath": "staticwebassets\\assets\\images\\b8e9a0c5-c5fb-4345-8743-a75468425a03 zakritie.svg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\b934c16d-3006-4fe9-bbbc-a217032c0155_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\b934c16d-3006-4fe9-bbbc-a217032c0155_dres3.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\bc9f9230-a930-4088-8dbb-e9f33b7fbbaf_dres6.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\bc9f9230-a930-4088-8dbb-e9f33b7fbbaf_dres6.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\bd8f60b9-bc9d-4a1c-a806-fee9b7dc6641_dres8.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\bd8f60b9-bc9d-4a1c-a806-fee9b7dc6641_dres8.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\bed16c03-44f9-487b-b965-a401179a2eee_dre1.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\bed16c03-44f9-487b-b965-a401179a2eee_dre1.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\bg-breadcrumb.jpg",
@@ -429,8 +509,28 @@
       "PackagePath": "staticwebassets\\assets\\images\\bridey-logo.jpg"
     },
     {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c0050f6d-1685-4370-87b3-9976cfe06490_bride.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\c0050f6d-1685-4370-87b3-9976cfe06490_bride.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c3269a3f-765e-4afa-a7d4-66c128949c42_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\c3269a3f-765e-4afa-a7d4-66c128949c42_dres3.webp"
+    },
+    {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c35c55a1-ea39-47d4-805f-4e7587da6cc3 d9db3ca8-4807-45b8-a534-b9696f7b551a bride3.jpeg",
       "PackagePath": "staticwebassets\\assets\\images\\c35c55a1-ea39-47d4-805f-4e7587da6cc3 d9db3ca8-4807-45b8-a534-b9696f7b551a bride3.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c71ad18e-69b8-4893-92dc-8e830fcee7c1_dres2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\c71ad18e-69b8-4893-92dc-8e830fcee7c1_dres2.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c95b4e23-787e-411d-ac36-1c290c5e4ae7_dress1.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\c95b4e23-787e-411d-ac36-1c290c5e4ae7_dress1.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c961cc9b-a8dd-46c1-9b7d-2c21f27a1699_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\c961cc9b-a8dd-46c1-9b7d-2c21f27a1699_dres3.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\c981759b-a8c2-4921-bd75-dade81651400_productttt.webp",
@@ -447,6 +547,10 @@
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\d09d4ae5-ee8d-4bc6-816a-9f6686a9957a brand5.png",
       "PackagePath": "staticwebassets\\assets\\images\\d09d4ae5-ee8d-4bc6-816a-9f6686a9957a brand5.png"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\dd68832d-3ed5-47d0-af0e-facbe152772e_dress.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\dd68832d-3ed5-47d0-af0e-facbe152772e_dress.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\decor.png",
@@ -555,6 +659,14 @@
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\f0add9a7-117f-4cbe-80f1-a3290fb3c225 service-1.png",
       "PackagePath": "staticwebassets\\assets\\images\\f0add9a7-117f-4cbe-80f1-a3290fb3c225 service-1.png"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\f105c284-487b-4fc6-b329-218fa6e20434_dres3.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\f105c284-487b-4fc6-b329-218fa6e20434_dres3.webp"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\f7560cd3-d955-4b52-89fd-b8313d6a721a_dress2.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\f7560cd3-d955-4b52-89fd-b8313d6a721a_dress2.webp"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\fa37a809-06a9-4e25-b6fe-0e96006e56f2 slide2.jpg",
@@ -707,6 +819,10 @@
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\scss\\style.scss",
       "PackagePath": "staticwebassets\\assets\\scss\\style.scss"
+    },
+    {
+      "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\scss\\swiper-bundle.min.css",
+      "PackagePath": "staticwebassets\\assets\\scss\\swiper-bundle.min.css"
     },
     {
       "Id": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\slicky\\slick-1.8.1\\.gitignore",

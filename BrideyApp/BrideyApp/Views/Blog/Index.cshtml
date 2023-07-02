@@ -91,7 +91,7 @@
                                 @foreach (var category in Model.Categories)
                                 {
                                     <li>
-                                        <a>@category.Name<span>(01)</span></a>
+                                        <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name<span>(@category.ProductCategories?.Count())</span></a>
                                     </li>
                                 }
                             </ul>
@@ -104,7 +104,7 @@
                             {
                                 <div class="item-post d-flex">
                                     <div class="post-thumb">
-                                        <a asp-controller="BlogDetail" asp-action="Index" class="">
+                                        <a class="">
                                             <img src="~/assets/images/@blog.Image">
                                         </a>
                                     </div>
@@ -122,7 +122,7 @@
                         <div class="tagcloud">
                             @foreach(var composition in Model.Compositions)
                             {
-                                  <a>@composition.Name</a>
+                                <a asp-controller="Shop" asp-action="Index" asp-route-compositionId="@composition.Id">@composition.Name</a>
                             }
                         </div>
                     </div>

@@ -51,7 +51,7 @@
             <div class="sort d-lg-block d-none">
                 <div class="d-flex" style="justify-content:space-between;align-items:center;">
                     <div class="sort-result">
-                        <p>Showing <span>1–12</span> of <span>17</span>results</p>
+                        <p>Showing <span>@Model.PaginateDatas.CurrentPage–@Model.PaginateDatas.TotalPage</span> of <span>@Model.PaginateDatas.Datas.Count()</span>   results</p>
                     </div>
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Sort By Latest</option>
@@ -64,7 +64,6 @@
 
             </div>
         </div>
-
     </section>
     <section id="wpb_wrapper">
         <div class="container container-shop">
@@ -75,7 +74,7 @@
                             <h5>Categories</h5>
                             <ul>
                                 <li>
-                                    <a>
+                                    <a class="all-product">
                                         <div class="siluet">
                                             <img style="margin-left: 6px;"
                                                  src="~/assets/images/kruzhevnie.svg">
@@ -86,7 +85,7 @@
                                 @foreach (var category in Model.Categories)
                                 {
                                     <li>
-                                        <a>
+                                        <a data-id="@category.Id" class="category">
                                             <div class="siluet">
                                                 <img style="margin-left: 6px;"
                                                  src="~/assets/images/@category.Image">
@@ -133,7 +132,7 @@
                             <h5>Colors</h5>
                             <ul>
                                 <li>
-                                    <a>
+                                    <a class="all-product">
                                         All
                                         @foreach (var item in Model.Colors)
                                         {
@@ -145,7 +144,7 @@
                                 @foreach (var color in Model.Colors)
                                 {
                                     <li>
-                                        <a>@color.Name</a><span>(@color.ProductColors?.Count())</span>
+                                        <a data-id="@color.Id" class="color">@color.Name <span>(@color.ProductColors?.Count())</span></a>
                                     </li>
                                 }
                             </ul>
@@ -155,7 +154,7 @@
                             <h5>Sizes</h5>
                             <ul>
                                 <li>
-                                    <a>
+                                    <a class="all-product">
                                         All
                                         @foreach (var item in Model.Sizes)
                                         {
@@ -167,7 +166,7 @@
                                 @foreach (var size in Model.Sizes)
                                 {
                                     <li>
-                                        <a>@size.Name</a><span>(@size.ProductSizes?.Count())</span>
+                                        <a data-id="@size.Id" class="size">@size.Name <span>(@size.ProductSizes?.Count())</span></a>
                                     </li>
                                 }
                             </ul>
@@ -178,7 +177,7 @@
                             <div class="widget-title-holder">
                                 <ul>
                                     <li>
-                                        <a>
+                                        <a class="all-product">
                                             All
                                             @foreach (var item in Model.Compositions)
                                             {
@@ -190,7 +189,7 @@
                                     @foreach (var composition in Model.Compositions)
                                     {
                                         <li>
-                                            <a>@composition.Name</a><span>(@composition.ProductCompositions?.Count())</span>
+                                            <a data-id="@composition.Id" class="composition">@composition.Name <span>(@composition.ProductCompositions?.Count())</span></a>
                                         </li>
                                     }
                                 </ul>
@@ -201,7 +200,7 @@
                             <h5>Brands</h5>
                             <ul>
                                 <li>
-                                    <a>
+                                    <a class="all-product">
                                         All
                                         @foreach (var item in Model.Brands)
                                         {
@@ -213,7 +212,7 @@
                                 @foreach (var brand in Model.Brands)
                                 {
                                     <li>
-                                        <a>@brand.Name</a><span>(@brand.Products?.Count())</span>
+                                        <a data-id="@brand.Id" class="brand">@brand.Name <span>(@brand.Products?.Count())</span></a>
                                     </li>
                                 }
                             </ul>
@@ -224,8 +223,8 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-sm-12">
-                    <div class="row">
-                     <partial name="_ProductListPartial" model="Model.PaginateDatas" />
+                    <div class="row productss-area">
+                     <partial name="_ProductsPartial" model="Model.PaginateDatas" />
                     </div>
            
                 </div>

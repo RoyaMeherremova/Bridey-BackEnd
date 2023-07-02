@@ -14,7 +14,7 @@ namespace BrideyApp.Services
             _context = context;
         }
 
-        public async Task<List<Brand>> GetAll() => await _context.Brands.ToListAsync();
+        public async Task<List<Brand>> GetAll() => await _context.Brands.Include(m=>m.Products).ToListAsync();
 
         public async Task<Brand> GetBrandById(int? id) => await _context.Brands.FirstOrDefaultAsync(m => m.Id == id);
     }

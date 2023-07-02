@@ -49,4 +49,56 @@ $(document).ready(function () {
     $(".products-variants-responsive").css("transform", `translateX(${-239}px)`);
     $("body").css("overflow", 'scroll');
   })
+    //all-products
+    function getProductsById(clickedElem, url) {
+        $(document).on("click", clickedElem, function (e) {
+            e.preventDefault();
+            debugger
+            let id = $(this).attr("data-id");
+            let data = { id: id };
+            let parent = $(".productss-area")
+            $.ajax({
+                url: url,
+                type: "Get",
+                data: data,
+                success: function (res) {
+                    debugger
+                    $(parent).html(res);
+                }
+            })
+        })
+
+    }
+
+    getAllProducts(".all-product", "/Shop/GetAllProducts")
+
+    function getAllProducts(clickedElem, url) {
+        $(document).on("click", clickedElem, function (e) {
+            e.preventDefault();
+            let parent = $(".productss-area")
+            $.ajax({
+                url: url,
+                type: "Get",
+                success: function (res) {
+                    $(parent).html(res);
+                }
+            })
+        })
+
+    }
+
+    getProductsById(".category", "/Shop/GetProductsByCategory")
+    getProductsById(".color", "/Shop/GetProductsByColor")
+    getProductsById(".composition", "/Shop/GetProductsByComposition")
+    getProductsById(".size", "/Shop/GetProductsBySize")
+    getProductsById(".brand", "/Shop/GetProductsByBrand")
+
+
+
+
+
+
 });
+
+
+

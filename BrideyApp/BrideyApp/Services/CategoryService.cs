@@ -14,7 +14,7 @@ namespace BrideyApp.Services
             _context = context;
         }
 
-        public async Task<List<Category>> GetAll() => await _context.Categories.ToListAsync();
+        public async Task<List<Category>> GetAll() => await _context.Categories.Include(m=>m.ProductCategories).ToListAsync();
 
         public async Task<Category> GetCategoryById(int? id) => await _context.Categories.FirstOrDefaultAsync(m => m.Id == id);
     }

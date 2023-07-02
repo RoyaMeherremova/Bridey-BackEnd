@@ -13,7 +13,7 @@ namespace BrideyApp.Services
         {
             _context = context;
         }
-        public async Task<List<Size>> GetAll() => await _context.Sizes.ToListAsync();
+        public async Task<List<Size>> GetAll() => await _context.Sizes.Include(m=>m.ProductSizes).ToListAsync();
 
         public async Task<Size> GetSizeById(int? id) => await _context.Sizes.FirstOrDefaultAsync(m => m.Id == id);
 

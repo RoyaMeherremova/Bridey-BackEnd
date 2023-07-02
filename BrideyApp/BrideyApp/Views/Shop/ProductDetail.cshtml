@@ -1,0 +1,298 @@
+﻿@model ProductDetailVM
+
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/assets/slicky/slick-1.8.1/slick/slick.css" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css'>
+
+}
+<!-- Start Main -->
+<main>
+    <section id="wrapper-productDetail" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <h1 style="margin-bottom: 25px;">Product Detail</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Product Detail</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="product-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-md-12">
+                    <div class="prod-thumb-left">
+                        <div class="basicImage">
+                            <img src="~/assets/images/@Model.Images.Where(m=>m.IsMain).FirstOrDefault().Image">
+                        </div>
+                        <div class="row">
+                            <div class="prod-images detail-carousel">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <div class="item">
+                                        <img src="~/assets/images/@image.Image">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-md-12">
+                    <div class="prod-info-vertical">
+                        <div class="breadcrumb">
+                            <ul>
+                                <li>
+                                    <a>Home / </a>
+                                </li>
+                                @foreach (var item in Model.ProductCategories)
+                                {
+                                    <li>
+                                        <a href="#">@string.Join("," , item.Category.Name)/</a>
+                                    </li>
+                                }
+                                <li>
+                                    <a>#289437</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prod-info_">
+                            <h1 class="prod-name">
+                                @Model.Name
+                            </h1>
+                            <div class="product-rate">
+                                @for (int i = 0; i < Model.Rate; i++)
+                                {
+                                    <i class="fa-solid fa-star" style="color: #b97a56;"></i>
+
+                                }
+                                <div class="count-review"><span>(<span>1</span>customer review)</span></div>
+                            </div>
+
+                            <div>
+                                <h1 class="category">
+                                    Category:
+                                </h1>
+                                @foreach (var item in Model.ProductCategories)
+                                {
+                                    <span class="category-name">@string.Join("," , item.Category.Name)</span>
+                                }
+                            </div>
+
+
+                        </div>
+                        <div class="socialShare">
+                            <h1 class="social">
+                                Share:
+                            </h1>
+                            @foreach (var social in Model.Socials)
+                            {
+                                <span><a><i class="fa-brands @social.Icon"></i></a></span>
+
+                            }
+                        </div>
+                        <div class="prod-info-tag">
+                            <div class="goods-tags-item is-new">New</div>
+                            <div class="goods-tags-item is-free-shipping">Free Shipping</div>
+                        </div>
+                        <div class="prod-price">
+                            <span>$</span><span>@Model.Price</span>
+                        </div>
+                        <div class="prod-info-extra">
+                            <span class="color">Color:</span>
+                            @foreach (var item in Model.ProductColors)
+                            {
+                                <span class="colorName">@string.Join("," , item.Color.Name)</span>
+                            }
+                        </div>
+                        <div class="prod-size">
+                            <span class="size">Size</span>
+                            <div class="style-select-item-size">
+                                @foreach (var item in Model.ProductSizes)
+                                {
+                                    <span>@item.Size.Name.Substring(0,1)</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="number">
+                                <span class="minus">-</span>
+                                <input type="text" value="1" />
+                                <span class="plus">+</span>
+                            </div>
+
+                        </div>
+                        <button class="add-button">Add to bag</button>
+                        <div class="prod-info-time">
+                            <div>
+                                <span><i class="fa-solid fa-truck-arrow-right"></i></span>
+                            </div>
+                            <div class="info-a">
+                                <span class="prod-info-time__right">
+                                    <span>Ship to </span>
+                                    <span class="ship-to-country-name">United States</span>
+                                </span>
+                                <span class="prod-info-time__right">
+                                    <span>Tailoring Time</span>
+                                    <span>15-18</span>
+
+                                </span>
+                                <span class="prod-info-time__right">
+                                    <span>Shipping Time</span>
+                                    <span class="faq-delivery-time">: 3-6 Days</span>
+                                </span>
+                            </div>
+                            <div class="prod-info-text">
+                                <p>
+                                    This dress is Made-To-Order. Whether you choose a standard size or custom
+                                    measurements, our tailors craft each dress to order.
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                        <div class="complete-look-content">
+                            <div class="tab-info">
+                                <ul class="tabs">
+                                    <li class="tab-link current" data-tab="tab-1">Description</li>
+                                    <li class="tab-link" data-tab="tab-2">Product Details</li>
+                                    <li class="tab-link" data-tab="tab-3">Reviews</li>
+                                </ul>
+
+                                <div id="tab-1" class="tab-content current">
+                                    <p>
+                                        @Model.Description
+                                    </p>
+                                </div>
+                                <div id="tab-2" class="tab-content">
+                                    <p>Data sheet</p>
+                                    <div class="product-features">
+                                        <div>
+                                            <div class="name">Composition</div>
+                                            @foreach (var item in Model.ProductCompositions)
+                                            {
+                                                <div class="name">@item.Composition.Name</div>
+                                            }
+                                        </div>
+                                        <div>
+                                            <div class="value">SKU</div>
+                                            <div class="value">@Model.SKU</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-3" class="tab-content">
+                                    <h6 class="product-rewiev">Comments (01)</h6>
+                                    <div class="user-area d-flex">
+                                    @*    <div class="user-img">
+                                            <img src="~/assets/images/team3.jpg">
+                                        </div>*@
+                                        <div class="user-info">
+                                            <h2 class="user-name">Donald Chavez</h2>
+                                            <span class="date">21 July 2021</span>
+                                            <p class="user-comment">
+                                                Lorem ipsum dolor sit amet, consectetur adipisi
+                                                elit.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="info-for-user">
+                                        <p>Add a review</p>
+                                        <p>Your email address will not be published. Required fields are marked *</p>
+                                        <p style="margin-top: 22px;">Your rating *</p>
+                                        <div class="product-rate">
+                                            <i class="fa-solid fa-star" style="color: #b97a56;"></i>
+                                            <i class="fa-solid fa-star" style="color: #b97a56;"></i>
+                                            <i class="fa-solid fa-star" style="color: #b97a56;"></i>
+                                            <i class="fa-regular fa-star" style="color: #b97a56;"></i>
+                                            <i class="fa-regular fa-star" style="color: #b97a56;"></i>
+                                        </div>
+                                        <p style="margin-top: 22px;">Your review *</p>
+                                    </div>
+
+                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+                                    <div class="label">
+                                        <label for="">Name *</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="text">
+                                    </div>
+                                    <div class="label">
+                                        <label for="">Email *</label>
+                                    </div>
+                                    <div class="input">
+                                        <input type="email">
+                                    </div>
+
+
+                                    <div class="submit-button">
+                                        <button type="submit">SUBMIT</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="related-products">
+        <div class="container">
+            <div class="header-background">
+                <div class="header-background-content">
+                    <h4>Featured products</h4>
+                    <span>New Looks To Love</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="prod-carousel">
+                    @foreach (var featuredProduct in Model.FeaturedProducts)
+                    {
+                        <div class="cart">
+                            <div class="product-img">
+                                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@featuredProduct.Id">
+                                    <img src="~/assets/images/@featuredProduct.Images?.Where(p=>p.IsMain).FirstOrDefault()?.Image" class="primary-img"
+                                     alt="Card image cap">
+                                    <video style="width:283px;height:392px" class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                                       poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
+                                       src="@featuredProduct.Video"
+                                       type="video/mp4"></video>
+                                </a>
+                                <span class="history-shop-price no-off"><span>$</span>@featuredProduct.Price</span>
+                            </div>
+                        </div>
+                    
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="~/assets/slicky/slick-1.8.1/slick/slick.min.js"></script>
+    <script src="~/assets/js/productDetail.js"></script>
+
+}
+
+
+
