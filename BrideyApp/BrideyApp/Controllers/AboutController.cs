@@ -2,7 +2,7 @@
 using BrideyApp.Models;
 using BrideyApp.Services;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.About;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

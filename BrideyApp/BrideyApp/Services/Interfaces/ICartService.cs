@@ -1,4 +1,5 @@
 ﻿using BrideyApp.Models;
+using BrideyApp.ViewModels;
 
 namespace BrideyApp.Services.Interfaces
 {

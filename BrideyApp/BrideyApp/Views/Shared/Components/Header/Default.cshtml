@@ -1,4 +1,5 @@
 ﻿@model LayoutVM
+@inject UserManager<AppUser> userManager;
 
 <header>
     <div id="overlay" class="d-none"></div>
@@ -37,10 +38,23 @@
                     </div>
                     <div class="login-register d-none">
                         <ul>
-                            <li><a asp-controller="Login" asp-action="Index">Login</a></li>
-                            <li><span>/</span></li>
-                            <li><a asp-controller="Register" asp-action="Index">Register</a></li>
-
+                              @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <form asp-controller="Account" asp-action="Logout" asp-route-userId="@userManager.Users.Where(m=>m.UserName==User.Identity.Name).FirstOrDefault().Id" method="post">
+                                        <button style="border:none; color: black" type="submit" class="nav-link">Logout</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="my-account.html">@User.Identity.Name</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                                <li><span>/</span></li>
+                                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                            }
                         </ul>
                     </div>
                     <!-- Modal -->

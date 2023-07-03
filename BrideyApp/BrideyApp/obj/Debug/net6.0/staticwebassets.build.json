@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ABokqYo4PNXAA7uoIqMqhTa/WfTZ/mIJPBGklcYysF8=",
+  "Hash": "hYxs1emrNCi6cOpTaqztp6BwUX8e/qjLeJ1CDDw6JwQ=",
   "Source": "BrideyApp",
   "BasePath": "_content/BrideyApp",
   "Mode": "Default",
@@ -12646,6 +12646,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\templates\\verify.html",
+      "SourceId": "BrideyApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
+      "BasePath": "_content/BrideyApp",
+      "RelativePath": "templates/verify.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\templates\\verify.html"
     }
   ]
 }

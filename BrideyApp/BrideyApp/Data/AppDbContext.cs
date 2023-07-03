@@ -36,6 +36,10 @@ namespace BrideyApp.Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
         public DbSet<Sale> Sales { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartProduct> CartProducts { get; set; }
+
+
 
 
 

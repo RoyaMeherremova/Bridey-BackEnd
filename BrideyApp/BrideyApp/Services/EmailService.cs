@@ -10,26 +10,28 @@ namespace BrideyApp.Services
 {
     public class EmailService: IEmailService
     {
-        private readonly EmailSetting _emailSetting;
-        public EmailService(IOptions<EmailSetting> emailSetting)
+        private readonly EmailSettings _emailSettings;
+        public EmailService(IOptions<EmailSettings> emailSettings)
         {
-            _emailSetting = emailSetting.Value;
+            _emailSettings = emailSettings.Value;
         }
+
         public void Send(string to, string subject, string html, string from = null)
         {
-            // create email message
+            // create message
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(from ?? _emailSetting.From));
+            email.From.Add(MailboxAddress.Parse(from ?? _emailSettings.FromAddress));
             email.To.Add(MailboxAddress.Parse(to));
             email.Subject = subject;
             email.Body = new TextPart(TextFormat.Html) { Text = html };
 
             // send email
             using var smtp = new SmtpClient();
-            smtp.Connect(_emailSetting.SmtpServer, _emailSetting.Port, SecureSocketOptions.StartTls);
-            smtp.Authenticate(_emailSetting.Username, _emailSetting.Password);
+            smtp.Connect(_emailSettings.Server, _emailSettings.Port, SecureSocketOptions.StartTls);
+            smtp.Authenticate(_emailSettings.UserName, _emailSettings.Password);
             smtp.Send(email);
             smtp.Disconnect(true);
+
         }
     }
 }

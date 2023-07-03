@@ -1,0 +1,76 @@
+﻿ @model RegisterVM 
+@inject ILayoutService layout;
+ <!-- Main Start -->
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+}
+@{
+    ViewData["Title"] = "Register";
+    string[] res = (string[])TempData["errors"];
+}
+<main>
+    <section id="wrapper-register" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <h1>
+                Register
+            </h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Register</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="register">
+        <div class="container">
+            <form class="form-register" method="post" asp-action="Register">
+                @if (res != null)
+                {
+                    foreach (var item in res)
+                    {
+                        <div class="text-danger">@item</div>
+                    }
+                }
+                <div class="form-register-wrap">
+                    <h2 class="register-form-title">Register</h2>
+                    <label for="username">FirstName<span class="required">*</span></label>
+                    <input type="text" class="input-text" asp-for="FirstName">
+                    <span class="text-danger" asp-validation-for="FirstName"></span>
+                    <label for="username">LastName<span class="required">*</span></label>
+                    <input type="text" class="input-text" asp-for="LastName">
+                    <span class="text-danger" asp-validation-for="LastName"></span>
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" class="input-text" asp-for="Email">
+                    <span class="text-danger" asp-validation-for="Email"></span>
+
+                    <div class="area-password">
+                        <label for="password">Password<span class="required">*</span></label>
+                    </div>
+                    <div class="area-password">
+                        <input type="password" class="password" asp-for="Password"/><i class="fa-regular fa-eye eyes"></i>
+                        <span class="text-danger" asp-validation-for="Password"></span>
+                    </div>
+                    <label for="password">Confirm Password<span class="required">*</span></label>
+                    <div class="area-password confirm-password">
+                        <input type="password" class="password" asp-for="ConfirmPassword"><i class="fa-regular fa-eye eyes"></i>
+                        <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                    </div>
+                    <button type="submit">Register</button>
+
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+</main>
+<!-- Main End -->
+@section Scripts {
+   @* <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="~/assets/js/register.js"></script>*@
+}
+

@@ -381,6 +381,68 @@ namespace BrideyApp.Migrations
                     b.ToTable("Brides");
                 });
 
+            modelBuilder.Entity("BrideyApp.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("BrideyApp.Models.CartProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartProducts");
+                });
+
             modelBuilder.Entity("BrideyApp.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -1150,7 +1212,7 @@ namespace BrideyApp.Migrations
             modelBuilder.Entity("BrideyApp.Models.BlogComment", b =>
                 {
                     b.HasOne("BrideyApp.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("BlogComments")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("BrideyApp.Models.Blog", "Blog")
@@ -1162,6 +1224,34 @@ namespace BrideyApp.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Blog");
+                });
+
+            modelBuilder.Entity("BrideyApp.Models.Cart", b =>
+                {
+                    b.HasOne("BrideyApp.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("BrideyApp.Models.CartProduct", b =>
+                {
+                    b.HasOne("BrideyApp.Models.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BrideyApp.Models.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("BrideyApp.Models.Product", b =>
@@ -1216,11 +1306,11 @@ namespace BrideyApp.Migrations
             modelBuilder.Entity("BrideyApp.Models.ProductComment", b =>
                 {
                     b.HasOne("BrideyApp.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("ProductComments")
                         .HasForeignKey("AppUserId");
 
                     b.HasOne("BrideyApp.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductComments")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1341,6 +1431,13 @@ namespace BrideyApp.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BrideyApp.Models.AppUser", b =>
+                {
+                    b.Navigation("BlogComments");
+
+                    b.Navigation("ProductComments");
+                });
+
             modelBuilder.Entity("BrideyApp.Models.Author", b =>
                 {
                     b.Navigation("Blogs");
@@ -1354,6 +1451,11 @@ namespace BrideyApp.Migrations
             modelBuilder.Entity("BrideyApp.Models.Brand", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("BrideyApp.Models.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
                 });
 
             modelBuilder.Entity("BrideyApp.Models.Category", b =>
@@ -1378,11 +1480,15 @@ namespace BrideyApp.Migrations
 
             modelBuilder.Entity("BrideyApp.Models.Product", b =>
                 {
+                    b.Navigation("CartProducts");
+
                     b.Navigation("Images");
 
                     b.Navigation("ProductCategories");
 
                     b.Navigation("ProductColors");
+
+                    b.Navigation("ProductComments");
 
                     b.Navigation("ProductCompositions");
 

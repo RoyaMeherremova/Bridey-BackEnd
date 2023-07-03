@@ -1,0 +1,53 @@
+﻿@model LoginVM
+@inject ILayoutService layout;
+
+<!-- Main Start -->
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+}
+<main>
+    <section id="wrapper-login" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <h1>
+                Log in to your account
+            </h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Login</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="login">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <form class="form-login" method="post" asp-action="Login">
+            <div class="form-login-wrap">
+                <h2 class="login-form-title">Login</h2>
+                <label for="username">Username or email address<span class="required">*</span></label>
+                <input type="text" class="input-text" type="email" asp-for="EmailOrUsername">
+                <span class="text-danger" asp-validation-for="EmailOrUsername"></span>
+                <label for="password">Password<span class="required">*</span></label>
+                <div class="area-password">
+                    <input type="password" class="password" asp-for="Password"><i class="fa-regular fa-eye eyes"></i>
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+                <button type="submit">Log in</button>
+                <div class="login-bottom">
+                    <input type="checkbox" id="remember_me" asp-for="IsRememberMe"><span>Remember me</span>
+                    <p><a asp-controller="Account" asp-action="ForgotPassword">Lost your password?</a></p>
+                </div>
+
+            </div>
+        </form>
+    </section>
+
+</main>
+<!-- Main End -->
+@section Scripts {
+    <script src="~/assets/js/login.js"></script>
+}
+
