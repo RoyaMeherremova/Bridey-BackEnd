@@ -22,6 +22,9 @@ namespace BrideyApp.Services
         public async Task<List<Blog>> GetAll() => await _context.Blogs .Include(m => m.Author)
                                                                          .ToListAsync();
         public async Task<Blog> GetById(int? id) => await _context.Blogs.Include(m => m.Author)
-                                                                             .FirstOrDefaultAsync(m => m.Id == id);
+                                                                         .Include(m => m.BlogComments)
+                                                                         .FirstOrDefaultAsync(m => m.Id == id);
+
+     
     }
 }

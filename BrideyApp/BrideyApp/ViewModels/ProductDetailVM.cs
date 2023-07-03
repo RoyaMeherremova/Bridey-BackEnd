@@ -23,8 +23,6 @@ namespace BrideyApp.ViewModels
         public ICollection<ProductSize> ProductSizes { get; set; }
         public ICollection<ProductColor> ProductColors { get; set; }
         public string Brand { get; set; }
-        //public IEnumerable<Advert> Adverts { get; set; }
-        //public Dictionary<string, string> SectionBgs { get; set; }
         public ProductCommentVM ProductCommentVM { get; set; }
     }
 }

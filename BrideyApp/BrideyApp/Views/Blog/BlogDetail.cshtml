@@ -1,0 +1,212 @@
+﻿@model BlogVM
+@inject UserManager<AppUser> userManager
+<!-- Start Main -->
+@section Styles {
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+}
+<main>
+    <section id="wrapper-blogDetail" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <h1 style="margin-bottom: 25px;">Blog Detail</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Blog Detail</span></li>
+            </ul>
+        </div>
+    </section>
+    <section id="site-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12 col-md-12">
+                    <div class="post-thumbnail" style="background-image: url('/assets/images/@Model.Blog.Image');">
+                    </div>
+                    <div class="entry-header">
+                        <span class="blog-category">Getting Started</span>
+                        <span class="post-author">POST BY <span>@Model.Blog.Author.Name</span></span>
+                        <span class="posted-on"><i class="fa-regular fa-calendar"></i>@Model.Blog.CreatedDate.ToString("dd MMMMM yyyy")</span>
+                    </div>
+                    <div class="entry-content">
+                        <p>
+                            @Model.Blog.Description.Substring(0,222) <span id="more-161"></span>
+                        </p>
+                        <p>
+                            @Model.Blog.Description.Substring(222,808)
+                        </p>
+                    </div>
+                    <div class="related-posts-title">
+                        <h3>Related Posts</h3>
+                        <div class="row">
+                            @foreach (var blog in Model.Blogs.Take(3))
+                            {
+                                <div class="col-lg-4 col-sm-12 col-md-6">
+
+                                    <div class="related-blog">
+                                        <img src="~/assets/images/@blog.Image">
+                                        <h5>@Model.Blog.Title</h5>
+                                        <span class="post-info-author-text">
+                                            By
+                                        </span>
+                                        <span class="author-text">
+                                            @Model.Blog.Author.Name
+                                        </span>
+                                        <span class="date">
+                                            @Model.Blog.CreatedDate.ToString("d/ M/ y")
+                                        </span>
+                                    </div>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="comment-list-wrap">
+                        <span class="count-comment">
+                            @if (Model.Blog.BlogComments.Count == 0)
+                            {
+                                <a href="#" style="text-decoration:none;color:#212529">0 Comments</a>
+                            }
+                            else
+                            {
+                                <a href="#">( @Model.Blog.BlogComments.Count Review ) Comments</a>
+                            }
+                        </span>
+                        @foreach (var item in Model.Blog.BlogComments)
+                        {
+                            <div class="comment-body d-flex">
+                                <div class="comment-meta-left">
+                                    <img src="~/assets/images/userr.png">
+                                </div>
+                                <div class="comment-meta-right">
+
+                                    <div id="div-comment-5" class="comment-content">
+                                        <div class="commentmetadata">
+                                            <span>>@item.Name</span>
+                                            <span class="date">@item.CreatedDate.ToString("dd MMMM yyyy")</span>
+                                        </div>
+
+                                        <div class="comment-text">
+                                            <p>
+                                                @item.Message
+                                            </p>
+                                        </div>
+                                        <div class="reply"><a class="comment-reply-link">Reply</a></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        }
+                  
+                    </div>
+                    
+                     <span class="top-respond">Leave a Reply</span>
+                        <p>Your email address will not be published<span>*</span></p>
+                        <form method="post" asp-action="PostComment" asp-route-id="@Model.Blog.Id" asp-route-userId="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Id">
+                            <div class="inputs-area">
+                                <input id="author" name="author" type="text" placeholder="Your Name *" value=""
+                                   size="30" aria-required="true" value="@string.Join(" ", userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).FirstName, userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).LastName)"
+                                   asp-for="BlogCommentVM.Name">
+                                <input id="email" name="email" type="email" placeholder="Email Address *"
+                                   size="30" aria-required="true" value="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Email"
+                                   asp-for="BlogCommentVM.Email">
+                            </div>
+                            <textarea id="comment" placeholder="Comment"></textarea>
+                            <div class="comment-form">
+                                <input type="checkbox" asp-for="BlogCommentVM.Message"><label>
+                                    Save my name, email, and website in this browser for the
+                                    next time I comment.
+                                </label>
+                            </div>
+                            <button type="submit">Post Comment</button>
+                        </form>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-md-12">
+                    <div class="categories-2" style="height:231px">
+                        <span class="title">Product Categories</span>
+                        <ul>
+                            @foreach (var category in Model.Categories)
+                            {
+                                <li class="cat-item"><a asp-controller="Shop" asp-action="Index" asp-route-cateId="@category.Id">@category.Name</a><span>(@category.ProductCategories?.Count())</span></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="recent-posts">
+                        <span class="title">Recent Posts</span>
+                        <ul>
+                            @foreach (var blog in Model.Blogs.Take(3))
+                            {
+                                <li>
+                                    <div class="recent-posts-thumbnail">
+                                        <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id">
+                                            <img src="~/assets/images/@blog.Image">
+                                        </a>
+                                    </div>
+                                    <div class="recent-posts-info">
+                                        <a class="post-title">
+                                            <span>@blog.Title</span>
+                                        </a>
+                                        <span class="post-date">@blog.CreatedDate.ToString("dddd M yyyy")</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="widget_tag_cloud">
+                        <span class="title">Compositions</span>
+                        <div class="tagcloud">
+                            @foreach (var composition in Model.Compositions)
+                            {
+                                <a asp-controller="Shop" asp-action="Index" asp-route-compositionId="@composition.Id">@composition.Name</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section id="footer-top-blog-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12 col-md-3 col-12">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-1.png">
+                        <span class="title">Free Shipping </span>
+                        <p>Once receiving your order, we will turn your products around in 3-5 business days.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-3 col-12">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-2.png">
+                        <span class="title">Free Shipping </span>
+                        <p>We accept returns for freshly purchased products within 7 days from the payment.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-3 col-12">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-3.png">
+                        <span class="title">Custom Sizing</span>
+                        <p>Order your dress with free custom sizing.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-3 col-12">
+                    <div class="service-item">
+                        <img src="~/assets/images/service-4.png">
+                        <span class="title">Superb Quality</span>
+                        <p>We make commitments that the quality of our products will and always will be superb.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End Main -->
+@section Scripts {
+    <script src="~/assets/js/blogDetail.js"></script>
+}
+

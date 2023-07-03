@@ -10,7 +10,7 @@ namespace BrideyApp.Models
 
         public bool IsRememberMe { get; set; }
 
-        //public ICollection<ProductComment> ProductComments { get; set; }
-        //public ICollection<BlogComment> BlogComments { get; set; }
+        public ICollection<ProductComment> ProductComments { get; set; }
+        public ICollection<BlogComment> BlogComments { get; set; }
     }
 }
