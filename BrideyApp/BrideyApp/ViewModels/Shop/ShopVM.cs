@@ -14,6 +14,7 @@ namespace BrideyApp.ViewModels.Shop
         public List<Category> Categories { get; set; }
         public Sale Sale { get; set; }
         public Paginate<ProductVM> PaginateDatas { get; set; }
+        public int CountProducts { get; set; }
 
 
 

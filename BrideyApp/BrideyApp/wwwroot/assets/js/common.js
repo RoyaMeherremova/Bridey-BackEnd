@@ -92,7 +92,7 @@ $(document).ready(function () {
 
         let id = $(this).parent().parent().attr("data-id");
         let prod = $(this).parent().parent();
-        let tbody = $(".tbody").children();
+        let tbody = $(".tbody-basket").children();
         let data = { id: id };
 
         $.ajax({
@@ -112,10 +112,10 @@ $(document).ready(function () {
 
     //change product count
     $(document).on("click", ".inc", function () {
-        let id = $(this).parent().parent().parent().attr("data-id");
-        let nativePrice = parseFloat($(this).parent().parent().prev().children().eq(1).text());
-        let total = $(this).parent().parent().next().children().eq(1);
-        let count = $(this).prev().prev();
+        let id = $(this).parent().parent().attr("data-id");
+        let nativePrice = parseFloat($(this).parent().prev().children().eq(1).text());
+        let total = $(this).parent().next().children().eq(1);
+        let count = $(this).prev();
 
         $.ajax({
             type: "Post",
@@ -129,9 +129,9 @@ $(document).ready(function () {
     })
 
     $(document).on("click", ".dec", function () {
-        let id = $(this).parent().parent().parent().attr("data-id");
-        let nativePrice = parseFloat($(this).parent().parent().prev().children().eq(1).text());
-        let total = $(this).parent().parent().next().children().eq(1);
+        let id = $(this).parent().parent().attr("data-id");
+        let nativePrice = parseFloat($(this).parent().prev().children().eq(1).text());
+        let total = $(this).parent().next().children().eq(1);
         let count = $(this).next();
 
         $.ajax({
@@ -149,10 +149,10 @@ $(document).ready(function () {
     })
 
     function grandTotal() {
-        let tbody = $(".tbody").children()
+        let tbody = $(".tbody-basket").children()
         let sum = 0;
         for (var prod of tbody) {
-            let price = parseFloat($(prod).children().eq(5).children().eq(1).text())
+            let price = parseFloat($(prod).children().eq(4).children().eq(1).text())
             sum += price
         }
         $(".grand-total").text(sum);

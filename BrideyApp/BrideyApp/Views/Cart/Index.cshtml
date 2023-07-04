@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
     decimal grandTotal = 0;
 }
-    <!-- Main Start -->
+<!-- Main Start -->
 <main>
-    <section id="wrapper-basket" style="background-image: url('~/assets/images/@layout.GetSectionBackgroundImages()[" BasicSmallBackgroundImage"]');">
+    <section id="wrapper-basket" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]')">
         <div class="container page_text">
             <h1>Basket</h1>
             <ul>
@@ -25,7 +25,7 @@
         <div class="container">
             <div class="table-area">
                 <div class="table-products">
-                     @if (Model.Count > 0)
+                    @if (Model.Count > 0)
                     {
                         <table class="table product-table">
                             <thead>
@@ -38,23 +38,23 @@
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="tbody-basket">
                                 @foreach (var item in Model)
                                 {
                                     <tr data-id="@item.Id">
-                                    <td>
-                                        <img src="~/assets/images/@item.Image" alt="">
-                                    </td>
-                                    <td>@item.Name</td>
+                                        <td>
+                                            <img src="~/assets/images/@item.Image" alt="">
+                                        </td>
+                                        <td>@item.Name</td>
                                         <td><span>$</span> <span>@item.Price.ToString("0.00")</span></td>
-                                    <td>
+                                        <td>
                                             <button class="minus dec"><i class="fa-solid fa-minus"></i></button>
                                             <input value="@item.Count" type="text" disabled="">
                                             <button class="plus inc"><i class="fa-solid fa-plus "></i></button>
-                                    </td>
+                                        </td>
                                         <td class="price"><span>$</span><span>@item.Total.ToString("0.00")</span> </td>
-                                    <td><i class="fa-solid fa-x delete-icon"></i></td>
-                                </tr>
+                                        <td><i class="fa-solid fa-x delete-product"></i></td>
+                                    </tr>
                                 }
                             </tbody>
 
@@ -62,12 +62,12 @@
                     }
                 </div>
                 <div class="footer-wish">
-                    <button class="btn btn-primary shop"><a>Continue shopping></a></button>
-                      @foreach (var item in Model)
-                                            {
-                                                grandTotal += item.Total;
-                                            }
-                    <span class="total-price">Grand total: $<span>@grandTotal.ToString("0.00")</span></span>
+                    <button class="btn btn-primary shop"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
+                    @foreach (var item in Model)
+                    {
+                        grandTotal += item.Total;
+                    }
+                    <span class="total-price">Grand total: $<span class="grand-total">@grandTotal.ToString("0.00")</span></span>
                 </div>
             </div>
         </div>

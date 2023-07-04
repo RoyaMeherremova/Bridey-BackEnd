@@ -1,10 +1,6 @@
 ﻿@model ShopVM
 @{
     ViewData["Title"] = "Shop";
-    int? sumOfProductsCountByColor = 0;
-    int? sumOfProductsCountBySize = 0;
-    int? sumOfProductsCountByComposition = 0;
-    int? sumOfProductsCountByBrand = 0;
 }
 @section Styles {
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -12,7 +8,7 @@
 }
 <!-- Start Main -->
 <main>
-    <section id="wrapper-shop" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
+    <section id="wrapper-shop" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]')">
         <div class="container page_text">
             <h1>Shop</h1>
             <ul>
@@ -137,11 +133,7 @@
                                 <li>
                                     <a class="all-product">
                                         All
-                                        @foreach (var item in Model.Colors)
-                                        {
-                                            sumOfProductsCountByColor += item.ProductColors?.Count();
-                                        }
-                                        <span>(@sumOfProductsCountByColor)</span>
+                                        <span>(@Model.CountProducts)</span>
                                     </a>
                                 </li>
                                 @foreach (var color in Model.Colors)
@@ -159,11 +151,7 @@
                                 <li>
                                     <a class="all-product">
                                         All
-                                        @foreach (var item in Model.Sizes)
-                                        {
-                                            sumOfProductsCountBySize += item.ProductSizes?.Count();
-                                        }
-                                        <span>(@sumOfProductsCountBySize)</span>
+                                        <span>(@Model.CountProducts)</span>
                                     </a>
                                 </li>
                                 @foreach (var size in Model.Sizes)
@@ -182,11 +170,7 @@
                                     <li>
                                         <a class="all-product">
                                             All
-                                            @foreach (var item in Model.Compositions)
-                                            {
-                                                sumOfProductsCountByComposition += item.ProductCompositions?.Count();
-                                            }
-                                            <span>(@sumOfProductsCountByComposition)</span>
+                                            <span>(@Model.CountProducts)</span>
                                         </a>
                                     </li>
                                     @foreach (var composition in Model.Compositions)
@@ -205,11 +189,7 @@
                                 <li>
                                     <a class="all-product">
                                         All
-                                        @foreach (var item in Model.Brands)
-                                        {
-                                            sumOfProductsCountByBrand += item.Products?.Count();
-                                        }
-                                        <span>(@sumOfProductsCountByBrand)</span>
+                                    <span>(@Model.CountProducts)</span>
                                     </a>
                                 </li>
                                 @foreach (var brand in Model.Brands)

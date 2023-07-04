@@ -111,13 +111,14 @@ namespace BrideyApp.Controllers
             {
 
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
-                Sizes= sizes,
-                Colors= colors,
+                Sizes = sizes,
+                Colors = colors,
                 Compositions = compositions,
                 Brands = brands,
                 Categories = categories,
-                Sale= sale,
+                Sale = sale,
                 PaginateDatas = paginatedDatas,
+                CountProducts = await _productService.GetCountAsync()
                
             };
             return View(model);

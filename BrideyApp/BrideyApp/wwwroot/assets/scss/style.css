@@ -1130,7 +1130,6 @@ img.rot {
     right: 8%;
     top: 73%;
     height: 37px;
-  
 }
 
     .login-register .bx-log-out {
@@ -1143,6 +1142,7 @@ img.rot {
         position: relative;
         left: 42px;
     }
+
     .login-register .bx-log-register {
         border: 1px solid #eaeaea;
         background: #fff;
@@ -1153,22 +1153,23 @@ img.rot {
         gap: 7px;
     }
 
-        .login-register ul li {
-            list-style: none;
-        }
+    .login-register ul li {
+        list-style: none;
+    }
 
-            .login-register ul li a {
-                font-size: 17px;
-                color: #666;
-                text-decoration: none;
-            }
-            .login-register ul li .dropdown-item {
-                font-family: 'Marcellus';
-            }
-
-        .login-register ul span {
+        .login-register ul li a {
+            font-size: 17px;
             color: #666;
+            text-decoration: none;
         }
+
+        .login-register ul li .dropdown-item {
+            font-family: 'Marcellus';
+        }
+
+    .login-register ul span {
+        color: #666;
+    }
 
 .login-register-responsive {
     position: absolute;
@@ -2578,7 +2579,7 @@ hr {
         color: gray;
         height: 39px;
         width: 205px;
-        cursor:pointer;
+        cursor: pointer;
     }
 
 hr {
@@ -2906,7 +2907,7 @@ hr {
                         display: block;
                         font-size: 9px;
                         padding: 9px 7px 6px 9px;
-                        cursor:pointer;
+                        cursor: pointer;
                     }
 
                         #wpb_wrapper .cart .functional-button ul li a i {
@@ -3947,7 +3948,7 @@ hr {
 
                 #site-content .categories-2 ul li a {
                     text-decoration: none !important;
-                    color: inherit !important; 
+                    color: inherit !important;
                     cursor: pointer;
                 }
 
@@ -3995,7 +3996,7 @@ hr {
             }
 
                 #site-content .recent-posts ul li a {
-                    color:inherit;
+                    color: inherit;
                     text-decoration: none;
                 }
 
@@ -4291,13 +4292,13 @@ hr {
         text-align: center;
         cursor: pointer;
         width: 162px;
-        height: 49px;
+        height: 45px;
     }
 
         #basket-table .footer-wish .shop a {
             color: #fff;
             text-decoration: none;
-            font-size: 13px !important;
+            font-size: 12px !important;
         }
 
     #basket-table .footer-wish .total-price {
@@ -5143,6 +5144,7 @@ hr {
 #login {
     padding-top: 71px;
 }
+
     #login .validation-summary-errors {
         display: flex;
         justify-content: center;
