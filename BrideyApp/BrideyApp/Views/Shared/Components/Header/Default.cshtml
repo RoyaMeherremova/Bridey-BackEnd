@@ -37,9 +37,10 @@
                         </div>
                     </div>
                     <div class="login-register d-none">
-                        <ul>
-                              @if (User.Identity.IsAuthenticated)
-                            {
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="bx-log-out">
                                 <li class="nav-item">
                                     <form asp-controller="Account" asp-action="Logout" asp-route-userId="@userManager.Users.Where(m=>m.UserName==User.Identity.Name).FirstOrDefault().Id" method="post">
                                         <button style="border:none; color: black" type="submit" class="nav-link">Logout</button>
@@ -48,14 +49,18 @@
                                 <li>
                                     <a class="dropdown-item" href="my-account.html">@User.Identity.Name</a>
                                 </li>
-                            }
-                            else
-                            {
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="bx-log-register">
+
                                 <li><a asp-controller="Account" asp-action="Login">Login</a></li>
                                 <li><span>/</span></li>
                                 <li><a asp-controller="Account" asp-action="Register">Register</a></li>
-                            }
-                        </ul>
+                            </ul>
+                        }
+
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -160,7 +165,7 @@
                     <div class="search"><i class="fa-solid fa-magnifying-glass icon"></i></div>
                     <span class="count-wishlist">0</span>
                     <div><a asp-controller="Wishlist" asp-action="Index"><i class="fa-regular fa-heart icon"></i></a></div>
-                    <span class="count-basket">0</span>
+                    <span class="count-basket">@Model.BasketCount</span>
                     <div class="basket">
                         <a asp-controller="Basket" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a>
                     </div>

@@ -42,7 +42,7 @@ namespace BrideyApp.Services
                                                                     .ThenInclude(m => m.Composition)
                                                                     .Include(m => m.ProductColors)
                                                                     .ThenInclude(m => m.Color)
-                                                                    //.Include(m => m.ProductComments)
+                                                                    .Include(m => m.ProductComments)
                                                                     .Include(m => m.ProductCategories)
                                                                     .ThenInclude(m => m.Category)
                                                                     .FirstOrDefaultAsync(m => m.Id == id);
@@ -70,7 +70,20 @@ namespace BrideyApp.Services
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
         public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId)
         {
-            List<Product> products = null;
+            List<Product> products = products = await _context.Products
+            .Include(p => p.Images)
+            .Include(p => p.ProductCategories)
+            .ThenInclude(pc => pc.Category)
+            .Include(p => p.ProductCompositions)
+            .ThenInclude(pt => pt.Composition)
+            .Include(p => p.ProductSizes)
+            .ThenInclude(ps => ps.Size)
+            .Include(p => p.ProductColors)
+            .ThenInclude(ps => ps.Color)
+            .Include(p => p.Brand)
+            .Skip((page * take) - take)
+            .Take(take)
+            .ToListAsync(); ;
 
             if (cateId != null)
             {
@@ -96,14 +109,12 @@ namespace BrideyApp.Services
             }
             if (sizeId != null)
             {
-                products = await _context.ProductSizes
-                .Include(p => p.Product)
-                .ThenInclude(p => p.Images)
-                .Where(pc => pc.Size.Id == sizeId)
-                .Select(p => p.Product)
-                .Skip((page * take) - take)
-                .Take(take)
-                .ToListAsync();
+                products = await _context.ProductSizes.Where(m=>m.SizeId == sizeId).Include(p => p.Product)
+                                                                     .ThenInclude(p => p.Images)
+                                                                     .Select(p => p.Product)
+                                                                     .Skip((page * take) - take)
+                                                                     .Take(take)
+                                                                     .ToListAsync();
             }
             if (colorId != null)
             {
@@ -127,26 +138,10 @@ namespace BrideyApp.Services
             .ToListAsync();
 
             }
-            else
-            {
-             products = await _context.Products
-            .Include(p => p.Images)
-            .Include(p => p.ProductCategories)
-            .ThenInclude(pc => pc.Category)
-            .Include(p => p.ProductCompositions)
-            .ThenInclude(pt => pt.Composition)
-            .Include(p => p.ProductSizes)
-            .ThenInclude(ps => ps.Size)
-            .Include(p => p.ProductColors)
-            .ThenInclude(ps => ps.Color)
-            .Include(p => p.Brand)
-            .Skip((page * take) - take)
-            .Take(take)
-            .ToListAsync();
-            }
+          
             return products;
         }
-        public async Task<List<ProductVM>> GetProductsByCategoryIdAsync(int? id, int page = 1, int take = 6)
+        public async Task<List<ProductVM>> GetProductsByCategoryIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
             List<Product> products = await _context.ProductCategories.Include(p => p.Product)
@@ -170,7 +165,7 @@ namespace BrideyApp.Services
             }
             return model;
         }
-        public async Task<List<ProductVM>> GetProductsByColorIdAsync(int? id, int page = 1, int take = 6)
+        public async Task<List<ProductVM>> GetProductsByColorIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
             List<Product> products = await _context.ProductColors.Include(p => p.Product)
@@ -195,7 +190,7 @@ namespace BrideyApp.Services
             }
             return model;
         }
-        public async Task<List<ProductVM>> GetProductsBySizeIdAsync(int? id, int page = 1, int take = 6)
+        public async Task<List<ProductVM>> GetProductsBySizeIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
             List<Product> products = await _context.ProductSizes.Include(p => p.Product)
@@ -220,7 +215,7 @@ namespace BrideyApp.Services
             }
             return model;
         }
-        public async Task<List<ProductVM>> GetProductsByCompositionIdAsync(int? id, int page = 1, int take = 6)
+        public async Task<List<ProductVM>> GetProductsByCompositionIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
             List<Product> products = await _context.ProductCompositions.Include(p => p.Product)
@@ -245,7 +240,7 @@ namespace BrideyApp.Services
             }
             return model;
         }
-        public async Task<List<ProductVM>> GetProductsByBrandIdAsync(int? id, int page = 1, int take = 6)
+        public async Task<List<ProductVM>> GetProductsByBrandIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
             List<Product> products = await _context.Products.Include(p => p.Images)
@@ -273,6 +268,7 @@ namespace BrideyApp.Services
         {
             return await _context.ProductCategories
                  .Include(p => p.Product)
+                 .Include(c => c.Category)
                  .Where(pc => pc.Category.Id == id)
                  .Select(p => p.Product)
                  .CountAsync();

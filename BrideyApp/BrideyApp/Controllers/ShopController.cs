@@ -3,12 +3,14 @@ using BrideyApp.Helpers;
 using BrideyApp.Models;
 using BrideyApp.Services;
 using BrideyApp.Services.Interfaces;
+using BrideyApp.ViewModels.Cart;
 using BrideyApp.ViewModels.Product;
 using BrideyApp.ViewModels.Shop;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Data;
 using System.Drawing;
@@ -29,6 +31,8 @@ namespace BrideyApp.Controllers
         private readonly IProductService _productService;
         private readonly IHeaderBackgroundService _headerBackgroundService;
         private readonly ISocialService _socialService;
+        private readonly ICartService _cartService;
+
 
         public ShopController(ILayoutService layoutService,
                               ISizeService sizeService, 
@@ -39,7 +43,8 @@ namespace BrideyApp.Controllers
                               AppDbContext context,
                               IProductService productService,
                               IHeaderBackgroundService headerBackgroundService,
-                              ISocialService socialService)
+                              ISocialService socialService,
+                              ICartService cartService)
         {
             _layoutService = layoutService;
             _sizeService = sizeService;
@@ -51,6 +56,7 @@ namespace BrideyApp.Controllers
             _productService = productService;
             _headerBackgroundService = headerBackgroundService;
             _socialService = socialService;
+            _cartService = cartService;
         }
 
         public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null)
@@ -89,6 +95,7 @@ namespace BrideyApp.Controllers
             {
                 pageCount = await GetPageCountAsync(take, null, null, null, null, null);
             }
+     
             Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
 
             List<Size> sizes = await _sizeService.GetAll();
@@ -102,6 +109,7 @@ namespace BrideyApp.Controllers
 
             ShopVM model = new()
             {
+
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
                 Sizes= sizes,
                 Colors= colors,
@@ -169,16 +177,30 @@ namespace BrideyApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts(int page =1,int take=6)
+        public async Task<IActionResult> GetAllProducts(int page =1,int take=9)
+        {
+            int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
+            var products =  await _productService.GetPaginatedDatas(page, take, null, null, null, null, null);
+            List<ProductVM> mappedDatas = GetMappedDatas(products);
+            Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
+            return PartialView("_ProductsPartial", paginatedDatas);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRangeProducts(decimal value1, decimal value2, int page = 1, int take = 9)
         {
             int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
             var products = await _productService.GetMappedAllProducts();
+            if (value1 != 0 && value2 != 0)
+            {
+                products = products.Where(x => x.Price >= value1 && x.Price <= value2).ToList();
+            }
             Paginate<ProductVM> paginatedDatas = new(products, page, pageCount);
             return PartialView("_ProductsPartial", paginatedDatas);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProductsByCategory(int? id, int page = 1, int take = 6)
+        public async Task<IActionResult> GetProductsByCategory(int? id, int page = 1, int take = 9)
         {
             if (id is null) return BadRequest();
             ViewBag.cateId = id;
@@ -193,7 +215,7 @@ namespace BrideyApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProductsByColor(int? id, int page = 1, int take = 6)
+        public async Task<IActionResult> GetProductsByColor(int? id, int page = 1, int take = 9)
         {
             if (id is null) return BadRequest();
             ViewBag.colorId = id;
@@ -207,7 +229,7 @@ namespace BrideyApp.Controllers
             return PartialView("_ProductsPartial", model);
         }
         [HttpGet]
-        public async Task<IActionResult> GetProductsBySize(int? id, int page = 1, int take = 6)
+        public async Task<IActionResult> GetProductsBySize(int? id, int page = 1, int take = 9)
         {
             if (id is null) return BadRequest();
             ViewBag.sizeId = id;
@@ -221,7 +243,7 @@ namespace BrideyApp.Controllers
             return PartialView("_ProductsPartial", model);
         }
         [HttpGet]
-        public async Task<IActionResult> GetProductsByComposition(int? id, int page = 1, int take = 6)
+        public async Task<IActionResult> GetProductsByComposition(int? id, int page = 1, int take = 9)
         {
             if (id is null) return BadRequest();
             ViewBag.compositionId = id;
@@ -236,7 +258,7 @@ namespace BrideyApp.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProductsByBrand(int? id, int page = 1, int take = 6)
+        public async Task<IActionResult> GetProductsByBrand(int? id, int page = 1, int take = 9)
         {
             if (id is null) return BadRequest();
             ViewBag.brandId = id;
@@ -278,9 +300,9 @@ namespace BrideyApp.Controllers
                     SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
                     HeaderBackgrounds = _headerBackgroundService.GetHeaderBackgroundDatas(),
                     Socials = await _socialService.GetAll(),
-                    FeaturedProducts = await _productService.GetFeaturedProducts()
-                    //ProductCommentVM = new(),
-                    //ProductComments = dbProduct.ProductComments
+                    FeaturedProducts = await _productService.GetFeaturedProducts(),
+                    ProductCommentVM = new(),
+                    ProductComments = dbProduct.ProductComments.ToList()
                 };
 
                 return View(model);
@@ -315,39 +337,57 @@ namespace BrideyApp.Controllers
             return RedirectToAction(nameof(ProductDetail), new { id });
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Filter(string value)
-        //{
-        //    if (value is null) return BadRequest();
-        //    var products = await _productService.GetAll();
-        //    switch (value)
-        //    {
-        //        case "Sort by Default":
-        //            products = products;
-        //            break;
-        //        case "Sort by Popularity":
-        //            products = products.OrderByDescending(p => p.SaleCount);
-        //            break;
-        //        case "Sort by Avarage Rating":
-        //            products = products.OrderByDescending(p => p.Rate);
-        //            break;
-        //        case "Sort by Latest":
-        //            products = products.OrderByDescending(p => p.CreatedDate);
-        //            break;
-        //        case "Sort by High Price":
-        //            products = products.OrderByDescending(p => p.Price);
-        //            break;
-        //        case "Sort by Low Price":
-        //            products = products.OrderBy(p => p.Price);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //    return PartialView("_ProductsPartial", products);
+        public async Task<IActionResult> Filter(string value)
+        {
+            if (value is null) return BadRequest();
+            var products = await _productService.GetAll();
+            switch (value)
+            {
+                case "0":
+                    products = products;
+                    break;
+                case "1":
+                    products = products.OrderByDescending(p => p.SaleCount);
+                    break;
+                case "2":
+                    products = products.OrderByDescending(p => p.Rate);
+                    break;
+                case "3":
+                    products = products.OrderByDescending(p => p.CreatedDate);
+                    break;
+                case "4":
+                    products = products.OrderByDescending(p => p.Price);
+                    break;
+                case "5":
+                    products = products.OrderBy(p => p.Price);
+                    break;
+                default:
+                    break;
+            }
+            return PartialView("_ProductListPartial", products);
 
-        //}
-
+        }
 
 
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int? id)
+        {
+            if (id is null) return BadRequest();
+
+            Product dbProduct = await _productService.GetById((int)id);
+
+            if (dbProduct == null) return NotFound();
+
+            List<CartVM> carts = _cartService.GetDatasFromCookie();
+
+            CartVM existProduct = carts.FirstOrDefault(p => p.ProductId == id);
+
+            _cartService.SetDatasToCookie(carts, dbProduct, existProduct);
+
+            int cartCount = carts.Count;
+
+            return Ok(cartCount);
+        }
     }
 }

@@ -75,7 +75,7 @@ $(document).ready(function () {
         $(document).on("click", clickedElem, function (e) {
             let id = $(this).attr("data-id");
             let data = { id: id };
-            let count = (".rounded-circle");
+            let count = (".count-basket");
             $.ajax({
                 type: "Post",
                 url: url,
@@ -109,6 +109,45 @@ $(document).ready(function () {
         })
         return false;
     })
+
+    //change product count
+    $(document).on("click", ".inc", function () {
+        let id = $(this).parent().parent().parent().attr("data-id");
+        let nativePrice = parseFloat($(this).parent().parent().prev().children().eq(1).text());
+        let total = $(this).parent().parent().next().children().eq(1);
+        let count = $(this).prev().prev();
+
+        $.ajax({
+            type: "Post",
+            url: `Cart/IncrementProductCount?id=${id}`,
+            success: function (res) {
+                res++;
+                subTotal(res, nativePrice, total, count)
+                grandTotal();
+            }
+        })
+    })
+
+    $(document).on("click", ".dec", function () {
+        let id = $(this).parent().parent().parent().attr("data-id");
+        let nativePrice = parseFloat($(this).parent().parent().prev().children().eq(1).text());
+        let total = $(this).parent().parent().next().children().eq(1);
+        let count = $(this).next();
+
+        $.ajax({
+            type: "Post",
+            url: `Cart/DecrementProductCount?id=${id}`,
+            success: function (res) {
+                if ($(count).val() == 1) {
+                    return;
+                }
+                res--;
+                subTotal(res, nativePrice, total, count)
+                grandTotal();
+            }
+        })
+    })
+
     function grandTotal() {
         let tbody = $(".tbody").children()
         let sum = 0;
@@ -124,6 +163,8 @@ $(document).ready(function () {
         let subtotal = parseFloat(nativePrice * $(count).val());
         $(total).text(subtotal);
     }
+
+
 
 
 });

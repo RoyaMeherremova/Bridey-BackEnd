@@ -48,6 +48,7 @@ namespace BrideyApp.Controllers
 
             return Ok();
         }
+        [HttpPost]
         public IActionResult IncrementProductCount(int? id)
         {
             if (id is null) return BadRequest();

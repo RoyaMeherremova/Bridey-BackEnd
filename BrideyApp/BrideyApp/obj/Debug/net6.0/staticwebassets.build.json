@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hYxs1emrNCi6cOpTaqztp6BwUX8e/qjLeJ1CDDw6JwQ=",
+  "Hash": "qC8gNv36JqIu+bSfD6mJQ4sgQ4w4nEhIQRZgjumZoZk=",
   "Source": "BrideyApp",
   "BasePath": "_content/BrideyApp",
   "Mode": "Default",
@@ -2004,6 +2004,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\b934c16d-3006-4fe9-bbbc-a217032c0155_dres3.webp"
+    },
+    {
+      "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\background.jpeg",
+      "SourceId": "BrideyApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\",
+      "BasePath": "_content/BrideyApp",
+      "RelativePath": "assets/images/background.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\background.jpeg"
     },
     {
       "Identity": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\wwwroot\\assets\\images\\bc9f9230-a930-4088-8dbb-e9f33b7fbbaf_dres6.webp",

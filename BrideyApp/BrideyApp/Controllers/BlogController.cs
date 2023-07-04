@@ -80,7 +80,9 @@ namespace BrideyApp.Controllers
                 Blogs = blogs.ToList(),
                 Categories = await _categoryService.GetAll(),
                 Compositions = await _compositionService.GetAll(),
+                Advertisings= await _advertisingService.GetAll(),
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
+
             };
             return View(model);
         }

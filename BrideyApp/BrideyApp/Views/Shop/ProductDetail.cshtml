@@ -1,4 +1,5 @@
 ﻿@model ProductDetailVM
+@inject UserManager<AppUser> userManager
 
 @section Styles {
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
@@ -10,7 +11,7 @@
 }
 <!-- Start Main -->
 <main>
-    <section id="wrapper-productDetail" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
+    <section id="wrapper-productDetail" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]')">
         <div class="container page_text">
             <h1 style="margin-bottom: 25px;">Product Detail</h1>
             <ul>
@@ -19,6 +20,7 @@
                         Home
                         <i class="fa-solid fa-angle-right"></i>
                     </a>
+
                 </li>
                 <li><span>Product Detail</span></li>
             </ul>
@@ -30,7 +32,7 @@
                 <div class="col-lg-6 col-sm-12 col-md-12">
                     <div class="prod-thumb-left">
                         <div class="basicImage">
-                            <img src="~/assets/images/@Model.Images.Where(m=>m.IsMain).FirstOrDefault().Image">
+                            <img src="~/assets/images/@Model.Images?.FirstOrDefault(m=>m.IsMain)?.Image">
                         </div>
                         <div class="row">
                             <div class="prod-images detail-carousel">
@@ -128,6 +130,14 @@
                             </div>
 
                         </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn add-button" data-id="@Model.Id">Add to bag</a>
+                        }
+                        else
+                        {
+                            <a class="btn add-button" asp-controller="Account" asp-action="Index">Add to bag</a>
+                        }
                         <button class="add-button">Add to bag</button>
                         <div class="prod-info-time">
                             <div>
@@ -188,20 +198,22 @@
                                     </div>
                                 </div>
                                 <div id="tab-3" class="tab-content">
-                                    <h6 class="product-rewiev">Comments (01)</h6>
+                                    <h6 class="product-rewiev">Comments (@Model.ProductComments.Count)</h6>
+                                     @foreach (var item in Model.ProductComments)
+                                    {
                                     <div class="user-area d-flex">
-                                    @*    <div class="user-img">
-                                            <img src="~/assets/images/team3.jpg">
-                                        </div>*@
+                                        <div class="user-img">
+                                            <img src="~/assets/images/userr.png">
+                                        </div>
                                         <div class="user-info">
-                                            <h2 class="user-name">Donald Chavez</h2>
-                                            <span class="date">21 July 2021</span>
+                                            <h2 class="user-name">@item.Name</h2>
+                                            <span class="date">@item.CreatedDate.ToString("dd MMMMM yyyy")</span>
                                             <p class="user-comment">
-                                                Lorem ipsum dolor sit amet, consectetur adipisi
-                                                elit.
+                                               @item.Message
                                             </p>
                                         </div>
                                     </div>
+                                    }
                                     <div class="info-for-user">
                                         <p>Add a review</p>
                                         <p>Your email address will not be published. Required fields are marked *</p>

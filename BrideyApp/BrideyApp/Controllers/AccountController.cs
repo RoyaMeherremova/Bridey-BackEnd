@@ -48,54 +48,63 @@ namespace BrideyApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterVM model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-
-
-            AppUser newUser = new()
-            {
-                UserName = string.Join("_", model.FirstName, model.LastName),
-                Email = model.Email,
-                LastName = model.LastName,
-                FirstName = model.FirstName,
-            };
-
-            IdentityResult result = await _userManager.CreateAsync(newUser, model.Password);
-
-            if (!result.Succeeded)
-            {
-                foreach (var item in result.Errors)
+                if (!ModelState.IsValid)
                 {
-                    ModelState.AddModelError(string.Empty, item.Description);
+                    return View(model);
                 }
-                return View(model);
+
+                AppUser newUser = new()
+                {
+                    UserName = string.Join("_", model.FirstName, model.LastName),
+                    Email = model.Email,
+                    LastName = model.LastName,
+                    FirstName = model.FirstName,
+                };
+
+                IdentityResult result = await _userManager.CreateAsync(newUser, model.Password);
+
+                if (!result.Succeeded)
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, item.Description);
+                    }
+                    TempData["errors"] = model.ErrorMessages;
+                    return RedirectToAction("Index", model);
+                }
+
+                await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
+
+                string token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+
+                string link = Url.Action(nameof(ConfirmEmail), "Account", new { userId = newUser.Id, token }, Request.Scheme, Request.Host.ToString());
+
+                string subject = "Register confirmation";
+
+                string html = string.Empty;
+
+                using (StreamReader reader = new StreamReader("wwwroot/templates/verify.html"))
+                {
+                    html = reader.ReadToEnd();
+                }
+
+                html = html.Replace("{{link}}", link);
+                html = html.Replace("{{headerText}}", "Welcome");
+
+                _emailService.Send(newUser.Email, subject, html);
+
+                return RedirectToAction(nameof(VerifyEmail));
             }
-
-            //await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
-
-            string token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-
-            string link = Url.Action(nameof(ConfirmEmail), "Account", new { userId = newUser.Id, token }, Request.Scheme, Request.Host.ToString());
-
-            string subject = "Register confirmation";
-
-            string html = string.Empty;
-
-            using (StreamReader reader = new StreamReader("wwwroot/templates/verify.html"))
+            catch (Exception ex)
             {
-                html = reader.ReadToEnd();
+                ViewBag.error = ex.Message;
+                return RedirectToAction("Index", model);
             }
-
-            html = html.Replace("{{link}}", link);
-            html = html.Replace("{{headerText}}", "Wellcome");
-
-            _emailService.Send(newUser.Email, subject, html);
-
-            return RedirectToAction(nameof(VerifyEmail));
-
         }
+
+
 
         //public async Task CreateRole()
         //{
@@ -111,13 +120,15 @@ namespace BrideyApp.Controllers
 
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
-            if (userId is null || token is null) return BadRequest();
+            if (userId == null || token == null) return BadRequest();
+
             AppUser user = await _userManager.FindByIdAsync(userId);
-            if (user is null) return NotFound();
+
+            if (user == null) return NotFound();
 
             await _userManager.ConfirmEmailAsync(user, token);
 
-            await _signInManager.SignInAsync(user, user.IsRememberMe);
+            await _signInManager.SignInAsync(user, false);
 
             List<CartVM> cartVMs = new();
             Cart dbCart = await _cartService.GetByUserIdAsync(userId);

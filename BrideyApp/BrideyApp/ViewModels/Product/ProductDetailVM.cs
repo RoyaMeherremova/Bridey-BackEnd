@@ -15,7 +15,6 @@ namespace BrideyApp.ViewModels.Product
         public Dictionary<string, string> HeaderBackgrounds { get; set; }
         public List<Social> Socials { get; set; }
         public List<Models.Product> FeaturedProducts { get; set; }
-
         public ICollection<ProductComment> ProductComments { get; set; }
         public ICollection<ProductCategory> ProductCategories { get; set; }
         public ICollection<ProductComposition> ProductCompositions { get; set; }

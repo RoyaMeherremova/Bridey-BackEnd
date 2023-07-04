@@ -1127,16 +1127,26 @@ img.rot {
 
 .login-register {
     position: absolute;
-    right: 7%;
+    right: 8%;
     top: 73%;
-    width: 143px;
     height: 37px;
-    border: 1px solid #eaeaea;
-    background: #fff;
+  
 }
 
-    .login-register ul {
-        padding: 0px;
+    .login-register .bx-log-out {
+        border: 1px solid #eaeaea;
+        background: #fff;
+        padding: 7px;
+        margin-top: 2px;
+        display: flex;
+        gap: 7px;
+        position: relative;
+        left: 42px;
+    }
+    .login-register .bx-log-register {
+        border: 1px solid #eaeaea;
+        background: #fff;
+        padding: 4px;
         margin-left: 7px;
         margin-top: 2px;
         display: flex;
@@ -1151,6 +1161,9 @@ img.rot {
                 font-size: 17px;
                 color: #666;
                 text-decoration: none;
+            }
+            .login-register ul li .dropdown-item {
+                font-family: 'Marcellus';
             }
 
         .login-register ul span {
@@ -1853,19 +1866,20 @@ img.rot {
                     cursor: pointer;
                     padding: 3px 0;
                 }
+
                     #blogss .right-side .widget-content ul li a {
                         text-decoration: none;
                         color: inherit;
                     }
 
-                    #blogss .right-side .widget-content ul li a:hover {
-                        color: #e9ac98;
-                    }
+                        #blogss .right-side .widget-content ul li a:hover {
+                            color: #e9ac98;
+                        }
 
-                    #blogss .right-side .widget-content ul li a span {
-                        margin-left: 4px;
-                        color: #9faaa7;
-                    }
+                        #blogss .right-side .widget-content ul li a span {
+                            margin-left: 4px;
+                            color: #9faaa7;
+                        }
 
         #blogss .right-side .tagcloud {
             margin-top: 26px;
@@ -2564,6 +2578,7 @@ hr {
         color: gray;
         height: 39px;
         width: 205px;
+        cursor:pointer;
     }
 
 hr {
@@ -2655,51 +2670,52 @@ hr {
             border: none;
         }
 
-   
 
-        #wpb_wrapper .products-variants h5 {
-            text-transform: uppercase;
-            color: #000;
-            font-size: 17px;
-            line-height: 1.8em;
-            letter-spacing: 2px;
-            font-weight: 400;
-            font-family: Lora, serif;
-            border-bottom: 1px dashed #bbb;
-            margin-left: 17px;
-            width: 209px;
-            margin-top: 18px;
+
+    #wpb_wrapper .products-variants h5 {
+        text-transform: uppercase;
+        color: #000;
+        font-size: 17px;
+        line-height: 1.8em;
+        letter-spacing: 2px;
+        font-weight: 400;
+        font-family: Lora, serif;
+        border-bottom: 1px dashed #bbb;
+        margin-left: 17px;
+        width: 209px;
+        margin-top: 18px;
+    }
+
+    #wpb_wrapper .products-variants .dresses-variants ul {
+        padding-top: 14px !important;
+        list-style: none;
+        padding: 0;
+    }
+
+        #wpb_wrapper .products-variants .dresses-variants ul li {
+            margin-bottom: -17px;
         }
 
-        #wpb_wrapper .products-variants .dresses-variants ul {
-            padding-top: 14px !important;
-            list-style: none;
-            padding: 0;
-        }
-
-            #wpb_wrapper .products-variants .dresses-variants ul li {
-                margin-bottom: -17px;
+            #wpb_wrapper .products-variants .dresses-variants ul li .all-dress {
+                font-size: 22px;
+                position: relative;
+                left: 12px;
             }
 
-                #wpb_wrapper .products-variants .dresses-variants ul li .all-dress {
-                    font-size: 22px;
-                    position: relative;
-                    left: 12px;
-                }
+            #wpb_wrapper .products-variants .dresses-variants ul li a .siluet {
+                display: inline;
+            }
 
-                #wpb_wrapper .products-variants .dresses-variants ul li a .siluet {
-                    display: inline;
-                }
-                #wpb_wrapper .products-variants .dresses-variants ul li a {
-                    text-decoration:none;
-                    cursor:pointer;
-                    color:#212529;
-                }
+            #wpb_wrapper .products-variants .dresses-variants ul li a {
+                text-decoration: none;
+                cursor: pointer;
+                color: #212529;
+            }
 
-                    #wpb_wrapper .products-variants .dresses-variants ul li a .siluet img {
-                        height: 52px;
-                        width: 52px;
-                    }
+                #wpb_wrapper .products-variants .dresses-variants ul li a .siluet img {
+                    height: 52px;
+                    width: 52px;
+                }
 
                 #wpb_wrapper .products-variants .dresses-variants ul li a span {
                     border-bottom: 1px dashed #bbb;
@@ -2730,38 +2746,38 @@ hr {
                         height: 48px;
                     }
 
-        #wpb_wrapper .products-variants .widget-title-holder ul {
-            padding: 0;
-            list-style: none;
-            margin-left: 16px;
+    #wpb_wrapper .products-variants .widget-title-holder ul {
+        padding: 0;
+        list-style: none;
+        margin-left: 16px;
+    }
+
+        #wpb_wrapper .products-variants .widget-title-holder ul li {
+            color: #717171;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 300;
+            font-size: 17px;
+            padding-bottom: 6px;
         }
 
-            #wpb_wrapper .products-variants .widget-title-holder ul li {
-                color: #717171;
+            #wpb_wrapper .products-variants .widget-title-holder ul li a {
+                padding-right: 5px;
                 font-family: "Open Sans", sans-serif;
-                font-weight: 300;
-                font-size: 17px;
-                padding-bottom: 6px;
+                cursor: pointer;
+                text-decoration: none;
+                color: #717171;
             }
-
-                #wpb_wrapper .products-variants .widget-title-holder ul li a {
-                    padding-right: 5px;
-                    font-family: "Open Sans", sans-serif;
-                    cursor: pointer;
-                    text-decoration: none;
-                    color: #717171;
-                }
 
                 #wpb_wrapper .products-variants .widget-title-holder ul li a:hover {
                     color: #ce56a1;
                 }
 
 
-        #wpb_wrapper .products-variants .banner {
-            width: 227px;
-            height: 270px;
-            margin-left: 11px;
-        }
+    #wpb_wrapper .products-variants .banner {
+        width: 227px;
+        height: 270px;
+        margin-left: 11px;
+    }
 
     #wpb_wrapper .cart .rating-box {
         display: -webkit-box;
@@ -2800,7 +2816,7 @@ hr {
             cursor: pointer;
         }
 
-        #wpb_wrapper  .pagination .left-btn {
+        #wpb_wrapper .pagination .left-btn {
             width: 30px;
             height: 30px;
             border: none;
@@ -2890,6 +2906,7 @@ hr {
                         display: block;
                         font-size: 9px;
                         padding: 9px 7px 6px 9px;
+                        cursor:pointer;
                     }
 
                         #wpb_wrapper .cart .functional-button ul li a i {
@@ -3567,13 +3584,13 @@ hr {
         padding-top: 3%;
     }
 
-   
+
 
         #related-products .prod-carousel .rel-product .py-3 span {
             font-size: 14px;
             color: #5c3c30;
             font-weight: 600;
-            padding-left:3px;
+            padding-left: 3px;
         }
 
     #related-products #slick-slide-control00::before {
@@ -3929,6 +3946,8 @@ hr {
             }
 
                 #site-content .categories-2 ul li a {
+                    text-decoration: none !important;
+                    color: inherit !important; 
                     cursor: pointer;
                 }
 
@@ -3976,6 +3995,7 @@ hr {
             }
 
                 #site-content .recent-posts ul li a {
+                    color:inherit;
                     text-decoration: none;
                 }
 
@@ -4538,7 +4558,6 @@ hr {
                 font-size: 14px;
                 margin: 4px;
                 margin: 0 !important;
-                
             }
 
                 #wrapper-about .page_text ul li span {
@@ -5124,6 +5143,10 @@ hr {
 #login {
     padding-top: 71px;
 }
+    #login .validation-summary-errors {
+        display: flex;
+        justify-content: center;
+    }
 
     #login .form-login {
         display: flex;
@@ -7242,16 +7265,17 @@ hr {
     position: relative;
     margin-left: 14%;
 }
-#related-products  .product-img {
+
+#related-products .product-img {
     position: relative;
     width: 400px;
     height: 400px;
 }
 
-#related-products .product-img .primary-img {
-    width: 290px;
-    transition: all 0.8s cubic-bezier(0, 0, 0.05, 1);
-}
+    #related-products .product-img .primary-img {
+        width: 290px;
+        transition: all 0.8s cubic-bezier(0, 0, 0.05, 1);
+    }
 
 
     #related-products .product-img .secondary-img {
@@ -7261,21 +7285,21 @@ hr {
         opacity: 0;
         visibility: hidden;
         width: 283px;
-        height:392px;
+        height: 392px;
         transition: 0.8s cubic-bezier(0, 0, 0.2, 1);
     }
 
-#related-products .product-img img {
-    width: 100%;
-    height: 100%;
-}
+    #related-products .product-img img {
+        width: 100%;
+        height: 100%;
+    }
 
-#related-products .product-img:hover .product-img .primary-img {
-    transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
-}
+    #related-products .product-img:hover .product-img .primary-img {
+        transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
+    }
 
-#related-products .product-img:hover .secondary-img {
-    opacity: 1;
-    visibility: visible;
-    transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
-}
+    #related-products .product-img:hover .secondary-img {
+        opacity: 1;
+        visibility: visible;
+        transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
+    }
