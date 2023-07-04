@@ -1,5 +1,5 @@
 ﻿using BrideyApp.Models;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Product;
 
 namespace BrideyApp.Services.Interfaces
 {

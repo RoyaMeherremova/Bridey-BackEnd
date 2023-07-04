@@ -1,0 +1,81 @@
+﻿@model List<CartDetailVM>
+@inject ILayoutService layout;
+@{
+    ViewData["Title"] = "Index";
+    decimal grandTotal = 0;
+}
+    <!-- Main Start -->
+<main>
+    <section id="wrapper-basket" style="background-image: url('~/assets/images/@layout.GetSectionBackgroundImages()[" BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <h1>Basket</h1>
+            <ul>
+                <li>
+                    <a asp-controller="Home" asp-action="Index">
+                        Home
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </li>
+                <li><span>Basket</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="basket-table">
+        <div class="container">
+            <div class="table-area">
+                <div class="table-products">
+                     @if (Model.Count > 0)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr data-id="@item.Id">
+                                    <td>
+                                        <img src="~/assets/images/@item.Image" alt="">
+                                    </td>
+                                    <td>@item.Name</td>
+                                        <td><span>$</span> <span>@item.Price.ToString("0.00")</span></td>
+                                    <td>
+                                        <button class="minus"><i class="fa-solid fa-minus"></i></button>
+                                            <input value="@item.Count" type="text" disabled="">
+                                        <button class="plus"><i class="fa-solid fa-plus "></i></button>
+                                    </td>
+                                        <td class="price"><span>$</span><span>@item.Total.ToString("0.00")</span> </td>
+                                    <td><i class="fa-solid fa-x delete-icon"></i></td>
+                                </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    }
+                </div>
+                <div class="footer-wish">
+                    <button class="btn btn-primary shop"><a>Continue shopping></a></button>
+                      @foreach (var item in Model)
+                                            {
+                                                grandTotal += item.Total;
+                                            }
+                    <span class="total-price">Grand total: $<span>@grandTotal.ToString("0.00")</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- Main End -->
+@section Scripts {
+    <script src="~/assets/js/basket.js"></script>
+    <script src="~/assets/js/common.js"></script>
+}

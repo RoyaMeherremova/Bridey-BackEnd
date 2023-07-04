@@ -4,7 +4,7 @@ using BrideyApp.Helpers;
 using BrideyApp.Models;
 using BrideyApp.Services;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

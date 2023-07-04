@@ -34,7 +34,7 @@
                                 </span>
                             </div>
 
-                            <a class=" shop btn-hover">
+                            <a class=" shop btn-hover" asp-controller="Shop" asp-action="Index">
                                 SHOP NOW
                                 <i class="fa-solid fa-arrow-right-long"></i>
                             </a>
@@ -122,223 +122,43 @@
     <section id="products">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dress1.jpg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss1.jpg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>Modern classic</span>
-                            <span>Illusion Cap Sleeve Lace...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
+                @foreach(var product in Model.Products)
+                {
+                    <div class="col-lg-3 col-sm-12 col-md-6">
+                        <div class="cart">
+                            <div class="new">New</div>
+                            <div class="product-img">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
+                                    <img src="~/assets/images/@product.Images.Where(m=>m.IsMain).FirstOrDefault().Image" class="primary-img" alt="Card image cap">
+                                    <img src="~/assets/images/@product.Images.Where(m=>!m.IsMain).FirstOrDefault().Image" class="secondary-img" alt="Card image cap">
+                                </a>
+                            </div>
+                            <div class="product-name">
+                                @*<span>@product.ProductCategories.FirstOrDefault().Category.Name</span>*@
+                                <span>@product.Name...</span>
+                            </div>
+                            <div class="product-price">
+                                <p class="price">$<span class="price">@product.Price</span></p>
+                            </div>
+                            <div class="functional-buttons">
+                                <ul>
+                                    <li><a><i class="fa-solid fa-eye"></i></a></li>
+                                    <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a class="add-to-cart-icon" data-id="@product.Id"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-controller="Account" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                                    }
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
+
                     </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dress2.jpg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss2.jpg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>Wedding dresses</span>
-                            <span>Floral Beaded Wedding Dress...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">35.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dress3.jpg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss3.jpg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>With corset lacing</span>
-                            <span>Beaded Bodice with Tiered...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">29.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dress4.jfif" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss4.jfif" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>Wedding Dresses</span>
-                            <span>Floral Tall Plus Wedding...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dresss5.jpg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dress5.jpg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>Minimalism</span>
-                            <span>Short Sleeve Low Back...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a asp-controller="ProductDetail" asp-action="Index">
-                                <img src="~/assets/images/dress7.jpeg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss7.jpeg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>Minimalism</span>
-                            <span>Illusion Sleeve Plunging...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a>
-                                <img src="~/assets/images/dress6.jfif" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss6.jfif" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>With long sleeve</span>
-                            <span>Strapless Sweetheart Tulle...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-sm-12 col-md-6">
-                    <div class="cart">
-                        <div class="new">New</div>
-                        <div class="product-img">
-                            <a>
-                                <img src="~/assets/images/dress8.jpg" class="primary-img" alt="Card image cap">
-                                <img src="~/assets/images/dresss8.jpg" class="secondary-img" alt="Card image cap">
-                            </a>
-                        </div>
-                        <div class="product-name">
-                            <span>With puffed sleeves</span>
-                            <span>Floral Applique Sheer...</span>
-                        </div>
-                        <div class="product-price">
-                            <p class="price">$<span class="price">23.90</span></p>
-                        </div>
-                        <div class="functional-buttons">
-                            <ul>
-                                <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                <li><a><i class="fa-regular fa-heart"></i></a></li>
-                                <li><a><i class="fa-solid fa-basket-shopping"></i></a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
+                }
             </div>
             <div class="btn-show-more">
                 <a asp-controller="Shop" asp-action="Index">
@@ -471,7 +291,7 @@
                                             </div>
                                         </div>
                                         <div class="read-more">
-                                            <a>
+                                            <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id">
                                                 Read More
                                                 <i class="fa-solid fa-arrow-right-long"></i>
                                             </a>

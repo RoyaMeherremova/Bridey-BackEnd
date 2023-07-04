@@ -1,5 +1,5 @@
 ﻿using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Wishlist;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrideyApp.Controllers

@@ -1,7 +1,7 @@
 ﻿using BrideyApp.Data;
 using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +17,7 @@ namespace BrideyApp.Controllers
         private readonly ILayoutService _layoutService;
         private readonly IHeaderBackgroundService _headerBackgroundService;
         private readonly IBlogService _blogService;
+        private readonly IProductService _productService;
 
         public HomeController(AppDbContext context,
                               ISliderService sliderService,
@@ -26,7 +27,8 @@ namespace BrideyApp.Controllers
                               IAdvertisingService advertisingService,
                               ILayoutService layoutService,
                               IHeaderBackgroundService headerBackgroundService,
-                              IBlogService blogService)
+                              IBlogService blogService,
+                              IProductService productService)
         {
             _context = context;
             _sliderService = sliderService;
@@ -36,6 +38,7 @@ namespace BrideyApp.Controllers
             _layoutService = layoutService;
             _headerBackgroundService = headerBackgroundService;
             _blogService = blogService;
+            _productService = productService;
         }
 
         public async Task<IActionResult> Index()
@@ -47,6 +50,7 @@ namespace BrideyApp.Controllers
             List<Team> teams = await _teamService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
             List<Blog> blogs = await _blogService.GetAll();
+            List<Product> products = await _context.Products.Include(m=>m.Images).Include(p=>p.ProductCategories).Take(8).ToListAsync();
 
             HomeVM model = new()
             {
@@ -60,6 +64,7 @@ namespace BrideyApp.Controllers
                 HeaderBackgrounds = _headerBackgroundService.GetHeaderBackgroundDatas(),
                 Blogs = blogs,
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
+                Products = products
 
             };
 

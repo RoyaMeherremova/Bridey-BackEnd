@@ -43,6 +43,89 @@ $(document).ready(function () {
 
         }
     });
+
+
+
+     //HAMBURGER
+    $(".hamburger").on("click", function () {
+        $("#overlay").removeClass("d-none");
+        $(".side-bar").css("transform", `translateX(${0}px)`);
+        $("body").css("overflow-y", 'hidden');
+    })
+
+
+    $(".close").on("click", function () {
+        $("#overlay").addClass("d-none");
+        $(".side-bar").css("transform", `translateX(${-239}px)`);
+        $("body").css("overflow", 'scroll');
+
+    })
+    $("#overlay").on("click", function () {
+        $("#overlay").addClass("d-none");
+        $(".side-bar").css("transform", `translateX(${-239}px)`);
+        $("body").css("overflow", 'scroll');
+    })
+
+
+
+    //add cart
+    AddToCart(".add-to-cart-icon", "/Shop/AddToCart");
+
+    function AddToCart(clickedElem, url) {
+        $(document).on("click", clickedElem, function (e) {
+            let id = $(this).attr("data-id");
+            let data = { id: id };
+            let count = (".rounded-circle");
+            $.ajax({
+                type: "Post",
+                url: url,
+                data: data,
+                success: function (res) {
+                    $(count).text(res);
+                }
+            })
+            return false;
+        })
+    }
+    //delete product from basket
+    $(document).on("click", ".delete-product", function () {
+
+        let id = $(this).parent().parent().attr("data-id");
+        let prod = $(this).parent().parent();
+        let tbody = $(".tbody").children();
+        let data = { id: id };
+
+        $.ajax({
+            type: "Post",
+            url: `Cart/DeleteDataFromBasket`,
+            data: data,
+            success: function () {
+                if ($(tbody).length == 1) {
+                    $(".product-table").addClass("d-none");
+                }
+                $(prod).remove();
+                grandTotal();
+            }
+        })
+        return false;
+    })
+    function grandTotal() {
+        let tbody = $(".tbody").children()
+        let sum = 0;
+        for (var prod of tbody) {
+            let price = parseFloat($(prod).children().eq(5).children().eq(1).text())
+            sum += price
+        }
+        $(".grand-total").text(sum);
+    }
+
+    function subTotal(res, nativePrice, total, count) {
+        $(count).val(res);
+        let subtotal = parseFloat(nativePrice * $(count).val());
+        $(total).text(subtotal);
+    }
+
+
 });
 
 
@@ -88,45 +171,8 @@ document.addEventListener("click", function (e) {
 
 
 
-//HAMBURGER
 
 
-$(document).ready(function () {
-    $(".hamburger").on("click", function () {
-      $("#overlay").removeClass("d-none");
-      $(".side-bar").css("transform", `translateX(${0}px)`);
-      $("body").css("overflow-y", 'hidden');
-    })
-  
-  
-    $(".close").on("click", function () {
-      $("#overlay").addClass("d-none");
-      $(".side-bar").css("transform", `translateX(${-239}px)`);
-      $("body").css("overflow", 'scroll');
-  
-    })
-    $("#overlay").on("click", function () {
-      $("#overlay").addClass("d-none");
-      $(".side-bar").css("transform", `translateX(${-239}px)`);
-      $("body").css("overflow", 'scroll');
-    })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-});
 
 
 

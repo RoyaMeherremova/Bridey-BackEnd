@@ -1,6 +1,6 @@
 ﻿using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Contact;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrideyApp.Controllers

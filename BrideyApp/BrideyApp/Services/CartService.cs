@@ -1,7 +1,7 @@
 ﻿using BrideyApp.Data;
 using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
+using BrideyApp.ViewModels.Cart;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 

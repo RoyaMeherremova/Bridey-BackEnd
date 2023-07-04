@@ -2,8 +2,8 @@
 using BrideyApp.Helpers.Enums;
 using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
-using BrideyApp.ViewModels;
 using BrideyApp.ViewModels.Account;
+using BrideyApp.ViewModels.Cart;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -73,7 +73,7 @@ namespace BrideyApp.Controllers
                 return View(model);
             }
 
-            await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
+            //await _userManager.AddToRoleAsync(newUser, Roles.Admin.ToString());
 
             string token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
