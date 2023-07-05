@@ -41,21 +41,21 @@
                     <div class="related-posts-title">
                         <h3>Related Posts</h3>
                         <div class="row">
-                            @foreach (var blog in Model.Blogs.Take(3))
+                            @foreach (var blog in Model.RelatedBlogs.Take(3))
                             {
                                 <div class="col-lg-4 col-sm-12 col-md-6">
 
                                     <div class="related-blog">
                                         <img src="~/assets/images/@blog.Image">
-                                        <h5>@Model.Blog.Title</h5>
+                                        <a asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id"><h5>@blog.Title</h5></a>
                                         <span class="post-info-author-text">
                                             By
                                         </span>
                                         <span class="author-text">
-                                            @Model.Blog.Author.Name
+                                            @blog.Author.Name
                                         </span>
                                         <span class="date">
-                                            @Model.Blog.CreatedDate.ToString("d/ M/ y")
+                                            @blog.CreatedDate.ToString("d/ M/ y")
                                         </span>
                                     </div>
 
@@ -71,7 +71,7 @@
                             }
                             else
                             {
-                                <a href="#">( @Model.Blog.BlogComments.Count Review ) Comments</a>
+                                <a href="#"> @Model.Blog.BlogComments.Count()  Comments</a>
                             }
                         </span>
                         @foreach (var item in Model.Blog.BlogComments)
@@ -109,10 +109,10 @@
                         <p>Your email address will not be published<span>*</span></p>
                         <form method="post" asp-action="PostComment" asp-route-id="@Model.Blog.Id" asp-route-userId="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Id">
                             <div class="inputs-area">
-                                <input id="author" name="author" type="text" placeholder="Your Name *" value=""
+                                <input id="author"  type="text" placeholder="Your Name *" 
                                    size="30" aria-required="true" value="@string.Join(" ", userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).FirstName, userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).LastName)"
                                    asp-for="BlogCommentVM.Name">
-                                <input id="email" name="email" type="email" placeholder="Email Address *"
+                                <input id="email" type="email" placeholder="Email Address *"
                                    size="30" aria-required="true" value="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Email"
                                    asp-for="BlogCommentVM.Email">
                             </div>
@@ -149,7 +149,7 @@
                                         </a>
                                     </div>
                                     <div class="recent-posts-info">
-                                        <a class="post-title">
+                                        <a class="post-title" asp-controller="Blog" asp-action="BlogDetail" asp-route-id="@blog.Id">
                                             <span>@blog.Title</span>
                                         </a>
                                         <span class="post-date">@blog.CreatedDate.ToString("dddd M yyyy")</span>

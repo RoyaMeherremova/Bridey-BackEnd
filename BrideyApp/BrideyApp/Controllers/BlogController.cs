@@ -82,6 +82,7 @@ namespace BrideyApp.Controllers
                 Compositions = await _compositionService.GetAll(),
                 Advertisings= await _advertisingService.GetAll(),
                 SectionBackgroundImages = _layoutService.GetSectionBackgroundImages(),
+                RelatedBlogs = _blogService.GetRelatedBlogs(),
 
             };
             return View(model);

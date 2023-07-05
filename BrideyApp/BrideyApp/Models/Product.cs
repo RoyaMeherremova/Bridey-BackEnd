@@ -19,6 +19,7 @@ namespace BrideyApp.Models
         public ICollection<ProductComposition> ProductCompositions { get; set; }
         public ICollection<ProductColor> ProductColors { get; set; }
         public ICollection<CartProduct> CartProducts { get; set; }
+        public ICollection<WishlistProduct> WishlistProducts { get; set; }
 
         public string Video { get; set; }
         public ICollection<ProductComment> ProductComments { get; set; }

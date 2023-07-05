@@ -54,7 +54,7 @@
                     </div>
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item  @(Model.PaginatedDatas.HasPrevious? "active" :"disabled")">
+                            <li class="page-item  @(Model.PaginatedDatas.HasPrevious? " " :"d-none")">
                                 <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
                             </li>
 
@@ -66,7 +66,7 @@
                                 </li>
 
                             }
-                            <li class="page-item @(Model.PaginatedDatas.HasNext? "active" :"disabled")">
+                            <li class="page-item @(Model.PaginatedDatas.HasNext? " " :"d-none")">
                                 <a style="color:#fff" asp-action="Index" asp-route-page="@(Model.PaginatedDatas.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
                             </li>
                         </ul>
@@ -91,7 +91,7 @@
                                 @foreach (var category in Model.Categories)
                                 {
                                     <li>
-                                        <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name<span>(@category.ProductCategories?.Count())</span></a>
+                                        <a asp-controller="Shop" asp-action="Index" asp-route-cateId="@category.Id">@category.Name<span>(@category.ProductCategories?.Count())</span></a>
                                     </li>
                                 }
                             </ul>

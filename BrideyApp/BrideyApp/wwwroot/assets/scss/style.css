@@ -1358,6 +1358,10 @@ img.rot {
             padding-left: 4%;
             color: #000;
         }
+        .side-bar ul li a {
+            text-decoration:none !important;
+            color: #000 !important;
+        }
 
         .side-bar ul .activ {
             color: #e9ac98;
@@ -1663,9 +1667,6 @@ img.rot {
                 transition: 1s;
             }
 
-                #blogss .blog-cart .post-thumb img:hover {
-                    transform: scale(1.2);
-                }
 
             #blogss .blog-cart .post-thumb span {
                 position: relative;
@@ -3114,6 +3115,8 @@ hr {
             font-size: 14px;
             font-weight: 400;
             margin-top: 10px;
+            border-radius: 2px;
+            padding-top: 9px;
         }
 
     #product-detail .prod-thumb-left {
@@ -3431,10 +3434,14 @@ hr {
                 padding-left: 5px;
             }
 
+                #product-detail .complete-look-content .tab-info .tab-content .user-area .user-img {
+                    position: relative;
+                    bottom: 13px;
+                }
                 #product-detail .complete-look-content .tab-info .tab-content .user-area .user-img img {
                     border-radius: 50%;
-                    width: 77px;
-                    height: 77px;
+                    width: 50px;
+                    height: 50px;
                 }
 
                 #product-detail .complete-look-content .tab-info .tab-content .user-area .user-info {
@@ -3526,7 +3533,7 @@ hr {
             }
 
         #product-detail .complete-look-content .tab-info .input {
-            margin: 20px 18px -10px 22px;
+            width: 100%;
         }
 
             #product-detail .complete-look-content .tab-info .input input {
@@ -3560,12 +3567,13 @@ hr {
 
         #product-detail .complete-look-content .tab-info textarea {
             height: 73px;
-            width: 93%;
+            width: 100%;
             margin: 0px 23px;
             border: 1px solid rgba(128, 128, 128, 0.3803921569);
             padding: 20px;
             font-size: 15px;
             outline: none;
+            margin:0px;
         }
 
 hr {
@@ -3736,12 +3744,16 @@ hr {
         font-family: "Marcellus";
         margin-bottom: 20px;
     }
-
+    #site-content .related-posts-title a {
+      text-decoration:none;
+      cursor:pointer;
+    }
     #site-content .related-posts-title h5 {
         font-family: auto;
         color: #b0948a;
         font-family: Marcellus;
         margin-top: 17px;
+        
     }
 
     #site-content .related-posts-title img {
@@ -3786,6 +3798,10 @@ hr {
         font-family: Marcellus;
         font-weight: 400;
         font-style: normal;
+    }
+    #site-content .count-comment a{
+     text-decoration:none;
+     color:#212529;
     }
 
     #site-content .comment-list-wrap {
@@ -3890,6 +3906,7 @@ hr {
             width: 100%;
             margin-top: 23px;
             height: 231px;
+            outline:none;
         }
 
         #site-content form label {
@@ -4073,6 +4090,7 @@ hr {
                 padding: 7px 15px;
                 background-color: #f6f6f6;
                 margin-bottom: 6px;
+                text-decoration:none;
             }
 
                 #site-content .widget_tag_cloud .tagcloud a:hover {
@@ -6477,6 +6495,7 @@ hr {
     #product-detail .prod-info-vertical .add-button {
         width: 116px;
         height: 35px;
+
     }
 
     #product-detail .prod-info-vertical .prod-info-time {
@@ -7286,8 +7305,8 @@ hr {
         left: 0;
         opacity: 0;
         visibility: hidden;
-        width: 283px;
-        height: 392px;
+        width: 294px;
+        height: 400px;
         transition: 0.8s cubic-bezier(0, 0, 0.2, 1);
     }
 
@@ -7296,12 +7315,8 @@ hr {
         height: 100%;
     }
 
-    #related-products .product-img:hover .product-img .primary-img {
-        transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
-    }
 
-    #related-products .product-img:hover .secondary-img {
+    #related-products .cart:hover .secondary-img {
         opacity: 1;
         visibility: visible;
-        transform: scale3d(1.05, 1.05, 1.05) translateZ(0);
     }

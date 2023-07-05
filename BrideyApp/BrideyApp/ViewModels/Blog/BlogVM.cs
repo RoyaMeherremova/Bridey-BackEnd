@@ -13,8 +13,7 @@ namespace BrideyApp.ViewModels.Blog
         public List<Advertising> Advertisings { get; set; }
         public Paginate<Models.Blog> PaginatedDatas { get; set; }
         public BlogCommentVM BlogCommentVM { get; set; }
-
-
+        public List<Models.Blog> RelatedBlogs { get; set; }
 
 
     }

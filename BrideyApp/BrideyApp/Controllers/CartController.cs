@@ -1,4 +1,5 @@
-﻿using BrideyApp.Models;
+﻿using BrideyApp.Data;
+using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
 using BrideyApp.ViewModels.Cart;
 using Microsoft.AspNetCore.Mvc;
@@ -8,12 +9,14 @@ namespace BrideyApp.Controllers
 {
     public class CartController : Controller
     {
+        private readonly AppDbContext _context;
         private readonly ICartService _cartService;
         private readonly IProductService _productService;
-        public CartController(ICartService cartService, IProductService productService)
+        public CartController(ICartService cartService, IProductService productService, AppDbContext context)
         {
             _cartService = cartService;
             _productService = productService;
+            _context= context;
         }
 
         public async Task<IActionResult> Index()
@@ -23,20 +26,21 @@ namespace BrideyApp.Controllers
 
             foreach (var item in carts)
             {
-                Product dbProduct = await _productService.GetById((int)item.ProductId);
+                Product dbProduct = await _productService.GetById(item.ProductId);
 
                 cartDetailVMs.Add(new CartDetailVM()
                 {
                     Id = dbProduct.Id,
                     Name = dbProduct.Name,
                     Price = dbProduct.Price,
-                    Image = dbProduct.Images.FirstOrDefault(i => i.IsMain).Image,
+                    Image = dbProduct.Images.FirstOrDefault(m => m.IsMain).Image,
                     Count = item.Count,
-                    Total = dbProduct.Price * item.Count
+                    Total = dbProduct.Price * item.Count,
                 });
             }
             return View(cartDetailVMs);
         }
+
 
         [HttpPost]
         public IActionResult DeleteDataFromBasket(int? id)
@@ -45,10 +49,7 @@ namespace BrideyApp.Controllers
 
             _cartService.DeleteData((int)id);
             List<CartVM> baskets = _cartService.GetDatasFromCookie();
-            var basketss = JsonConvert.DeserializeObject<List<CartVM>>(Request.Cookies["basket"]);
-            var count = basketss.FirstOrDefault(b => b.ProductId == id).Count;
-
-            return Ok(count);
+            return Ok(baskets.Count);
         }
         [HttpPost]
         public IActionResult IncrementProductCount(int? id)

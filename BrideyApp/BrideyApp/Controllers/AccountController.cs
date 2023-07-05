@@ -108,6 +108,7 @@ namespace BrideyApp.Controllers
 
 
 
+
         //public async Task CreateRole()
         //{
         //    foreach (var role in Enum.GetValues(typeof(Roles)))
@@ -156,6 +157,7 @@ namespace BrideyApp.Controllers
         }
 
 
+
         public IActionResult VerifyEmail()
         {
             return View();
@@ -172,21 +174,14 @@ namespace BrideyApp.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
-                AppUser user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
+                if (!ModelState.IsValid) return RedirectToAction("Index", model);
 
-                if (user is null)
-                {
-                    user = await _userManager.FindByNameAsync(model.EmailOrUsername);
-                }
+                var user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
 
-                if (user is null)
+                if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
-                    return View(model);
+                    RedirectToAction("Index", model);
                 }
 
                 var res = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRememberMe, false);
@@ -194,7 +189,7 @@ namespace BrideyApp.Controllers
                 if (!res.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
-                    return View(model);
+                    RedirectToAction("Index", model);
                 }
 
                 List<CartVM> cartVMs = new();
@@ -225,7 +220,6 @@ namespace BrideyApp.Controllers
                 return View();
             }
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -279,6 +273,7 @@ namespace BrideyApp.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
 
 
 

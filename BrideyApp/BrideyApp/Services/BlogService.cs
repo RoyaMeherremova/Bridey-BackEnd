@@ -25,6 +25,12 @@ namespace BrideyApp.Services
                                                                          .Include(m => m.BlogComments)
                                                                          .FirstOrDefaultAsync(m => m.Id == id);
 
-     
+        public List<Blog> GetRelatedBlogs()
+        {
+            return _context.Blogs.Include(p => p.Author).OrderByDescending(p => p.Author.Name).ToList();
+
+        }
+
+
     }
 }
