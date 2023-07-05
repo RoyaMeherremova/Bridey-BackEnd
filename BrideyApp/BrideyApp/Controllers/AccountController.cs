@@ -176,11 +176,14 @@ namespace BrideyApp.Controllers
                 {
                     return View(model);
                 }
-
-
                 AppUser user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
 
-                if (user == null)
+                if (user is null)
+                {
+                    user = await _userManager.FindByNameAsync(model.EmailOrUsername);
+                }
+
+                if (user is null)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
                     return View(model);
