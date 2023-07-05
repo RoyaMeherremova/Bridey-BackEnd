@@ -99,11 +99,12 @@ $(document).ready(function () {
             type: "Post",
             url: `Cart/DeleteDataFromBasket`,
             data: data,
-            success: function () {
+            success: function (res) {
                 if ($(tbody).length == 1) {
                     $(".product-table").addClass("d-none");
                 }
                 $(prod).remove();
+                $(".count-basket").text(res)
                 grandTotal();
             }
         })
@@ -123,6 +124,7 @@ $(document).ready(function () {
             success: function (res) {
                 res++;
                 subTotal(res, nativePrice, total, count)
+                 $(".count-basket").text(res)
                 grandTotal();
             }
         })
@@ -143,6 +145,7 @@ $(document).ready(function () {
                 }
                 res--;
                 subTotal(res, nativePrice, total, count)
+                $(".count-basket").text(res)
                 grandTotal();
             }
         })
@@ -161,10 +164,15 @@ $(document).ready(function () {
     function subTotal(res, nativePrice, total, count) {
         $(count).val(res);
         let subtotal = parseFloat(nativePrice * $(count).val());
-        $(total).text(subtotal);
+        $(total).text(subtotal.toString(0.00));
     }
 
-
+    $(document).on("submit", ".searchbox-area", function () {
+        let value = $(".input-search").val();
+        let url = `/Shop/Search?searchText=${value}`;
+        window.location.assign(url);
+        return false;
+    })
 
 
 });

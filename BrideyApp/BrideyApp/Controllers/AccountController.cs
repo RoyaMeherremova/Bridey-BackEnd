@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 
 namespace BrideyApp.Controllers
 {
+    //SuperAdmin - Cavid_Bashirov  email: royaam@code.edu.az / parol: Cavid123_
+    //Admin - Roya_Meherremova  email: ggigarli@gmail.com / parol: Cavid123_
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;
@@ -42,7 +44,6 @@ namespace BrideyApp.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,6 +107,7 @@ namespace BrideyApp.Controllers
 
 
 
+
         //public async Task CreateRole()
         //{
         //    foreach (var role in Enum.GetValues(typeof(Roles)))
@@ -164,7 +166,6 @@ namespace BrideyApp.Controllers
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM model)
@@ -176,27 +177,43 @@ namespace BrideyApp.Controllers
                     return View(model);
                 }
 
+
                 AppUser user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
 
-                if (user is null)
-                {
-                    user = await _userManager.FindByNameAsync(model.EmailOrUsername);
-                }
-
-                if (user is null)
+                if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
                     return View(model);
                 }
 
-                var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRememberMe, false);
+                var res = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRememberMe, false);
 
-                if (!result.Succeeded)
+                if (!res.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
                     return View(model);
                 }
-                ViewBag.UserId = await _userManager.FindByNameAsync(model.EmailOrUsername);
+
+                List<CartVM> cartVMs = new();
+
+                Cart dbCart = await _cartService.GetByUserIdAsync(user.Id);
+
+                if (dbCart is not null)
+                {
+                    List<CartProduct> cartProducts = await _cartService.GetAllByCartIdAsync(dbCart.Id);
+                    foreach (var cartProduct in cartProducts)
+                    {
+                        cartVMs.Add(new CartVM
+                        {
+                            ProductId = cartProduct.ProductId,
+                            Count = cartProduct.Count
+                        });
+                    }
+
+                    Response.Cookies.Append("basket", JsonConvert.SerializeObject(cartVMs));
+                }
+
+
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
@@ -205,7 +222,6 @@ namespace BrideyApp.Controllers
                 return View();
             }
         }
-
 
 
         [HttpPost]
@@ -236,8 +252,7 @@ namespace BrideyApp.Controllers
                         });
                     }
                     await _context.Carts.AddAsync(dbCart);
-                    await  _context.SaveChangesAsync();
-
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
@@ -252,15 +267,17 @@ namespace BrideyApp.Controllers
                         });
                     }
                     dbCart.CartProducts = cartProducts;
-                    await  _context.SaveChangesAsync();
+                    await _context.Carts.AddAsync(dbCart);
+                    _context.SaveChanges();
 
                 }
                 Response.Cookies.Delete("basket");
-
             }
 
             return RedirectToAction("Index", "Home");
         }
+
+
 
         [HttpGet]
         public IActionResult ForgotPassword()

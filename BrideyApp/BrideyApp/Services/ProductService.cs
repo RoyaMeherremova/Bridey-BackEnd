@@ -316,6 +316,15 @@ namespace BrideyApp.Services
                 .Include(p => p.Images)
                 .FirstOrDefaultAsync(p => p.Images.Any(p => p.Id == id));
         }
-       
+        public async Task<List<Product>> GetAllBySearchText(string searchText)
+        {
+            var products = await _context.Products
+                .Include(p => p.Images)
+                .OrderByDescending(p => p.Id)
+                .Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
+                .ToListAsync();
+            return products;
+        }
+
     }
 }

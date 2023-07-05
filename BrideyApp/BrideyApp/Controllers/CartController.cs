@@ -45,8 +45,10 @@ namespace BrideyApp.Controllers
 
             _cartService.DeleteData((int)id);
             List<CartVM> baskets = _cartService.GetDatasFromCookie();
+            var basketss = JsonConvert.DeserializeObject<List<CartVM>>(Request.Cookies["basket"]);
+            var count = basketss.FirstOrDefault(b => b.ProductId == id).Count;
 
-            return Ok();
+            return Ok(count);
         }
         [HttpPost]
         public IActionResult IncrementProductCount(int? id)

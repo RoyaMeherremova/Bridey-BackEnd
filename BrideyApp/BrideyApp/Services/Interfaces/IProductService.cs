@@ -26,6 +26,7 @@ namespace BrideyApp.Services.Interfaces
 
         Task<ProductImage> GetImageById(int? id);
         Task<Product> GetProductByImageId(int? id);
+        Task<List<Product>> GetAllBySearchText(string searchText);
 
     }
 }
