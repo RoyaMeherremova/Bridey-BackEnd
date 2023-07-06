@@ -141,7 +141,6 @@ namespace BrideyApp.Controllers
             List<CartVM> cartVMs = new();
             List<WishlistVM> wishlistVMs = new();
             Cart dbCart = await _cartService.GetByUserIdAsync(userId);
-            List<WishlistVM> wishlitVMs = new();
             Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
 
             if (dbCart is not null)
@@ -313,7 +312,7 @@ namespace BrideyApp.Controllers
                         });
                     }
                     dbCart.CartProducts = cartProducts;
-                    await _context.Carts.AddAsync(dbCart);
+                    //await _context.Carts.AddAsync(dbCart);
                     _context.SaveChanges();
 
                 }
@@ -353,7 +352,7 @@ namespace BrideyApp.Controllers
                         });
                     }
                     dbWishlist.WishlistProducts = wishlistProducts;
-                    await _context.Wishlists.AddAsync(dbWishlist);
+                    //await _context.Wishlists.AddAsync(dbWishlist);
                     _context.SaveChanges();
 
                 }

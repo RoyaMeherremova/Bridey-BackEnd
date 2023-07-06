@@ -95,6 +95,7 @@ $(document).ready(function () {
         let tbody = $(".tbody-basket").children();
         let data = { id: id };
         let alert = $(".alert-success")
+        let footerWish = $(".footer-wish")
 
         $.ajax({
             type: "Post",
@@ -104,6 +105,7 @@ $(document).ready(function () {
                 if ($(tbody).length == 1) {
                     $(".product-table").addClass("d-none");
                     $(alert).removeClass("d-none")
+                    $(footerWish).addClass("d-none")
                 }
                 $(prod).remove();
                 $(".count-basket").text(res)

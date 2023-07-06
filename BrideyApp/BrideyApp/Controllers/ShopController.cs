@@ -419,9 +419,9 @@ namespace BrideyApp.Controllers
 
             _wishlistService.SetDatasToCookie(wishlists, dbProduct, existProduct);
 
-            int cartCount = wishlists.Count;
+            int wishlistCount = wishlists.Count;
 
-            return Ok(cartCount);
+            return Ok(wishlistCount);
         }
 
 
