@@ -1,11 +1,12 @@
-﻿@model WishlistVM
+﻿@model List<WishlistDetailVM>
+@inject ILayoutService layout;
 @{
     ViewData["Title"] = "Wishlist";
 }
 
 <!-- Main Start -->
 <main>
-    <section id="wrapper-wishlist" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]');">
+    <section id="wrapper-wishlist" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]')">
         <div class="container page_text">
             <h1>Wishlist</h1>
             <ul>
@@ -23,32 +24,48 @@
         <div class="container">
             <div class="table-area">
                 <div class="table-products">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-id="3">
-                                <td>
-                                    <img src="~/assets/images/dress1.jpg" alt="">
-                                </td>
-                                <td>Lotti Midi Dress</td>
-                                <td><span>$</span> 149.00</td>
-                                <td><i class="fa-solid fa-x delete-icon"></i></td>
-                            </tr>
-                        </tbody>
+                    @if (Model.Count > 0)
+                    {
+                        <table class="table product-table-wishlist">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbody-wishlist">
+                                @foreach (var item in Model)
+                                {
 
-                    </table>
+                                    <tr data-id="@item.Id">
+                                        <td>
+                                            <img src="~/assets/images/@item.Image" alt="">
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td><span>$</span> @item.Price.ToString("0.00")</td>
+                                        <td><i class="fa-solid fa-x delete-icon delete-product-wishlist"></i></td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success-wishlist" role="alert" style="background-color: #e9ac98;color: #fff;border-color: #e9ac98;">
+                            Wishlist Empty.Please Add product in your wishlist..
+                        </div>
+                    }
+                    <div class="alert alert-success-wishlist d-none" role="alert" style="background-color: #e9ac98;color: #fff;border-color: #e9ac98;">
+                        Wishlist Empty.Please Add product in your wishlist..
+                    </div>
+
 
                 </div>
                 <div class="footer-wish">
-                    <button class="btn btn-primary shop"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
-                    <span class="total-price">Grand total: $<span>149</span></span>
+                    <button class="btn btn-primary shop btn-wishlist"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
                 </div>
             </div>
         </div>
@@ -58,5 +75,3 @@
 @section Scripts {
     <script src="~/assets/js/wishlist.js"></script>
 }
-
-

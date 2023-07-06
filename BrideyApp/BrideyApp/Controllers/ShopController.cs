@@ -6,6 +6,7 @@ using BrideyApp.Services.Interfaces;
 using BrideyApp.ViewModels.Cart;
 using BrideyApp.ViewModels.Product;
 using BrideyApp.ViewModels.Shop;
+using BrideyApp.ViewModels.Wishlist;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -32,6 +33,8 @@ namespace BrideyApp.Controllers
         private readonly IHeaderBackgroundService _headerBackgroundService;
         private readonly ISocialService _socialService;
         private readonly ICartService _cartService;
+        private readonly IWishlistService _wishlistService;
+
 
 
         public ShopController(ILayoutService layoutService,
@@ -44,7 +47,8 @@ namespace BrideyApp.Controllers
                               IProductService productService,
                               IHeaderBackgroundService headerBackgroundService,
                               ISocialService socialService,
-                              ICartService cartService)
+                              ICartService cartService,
+                              IWishlistService wishlistService)
         {
             _layoutService = layoutService;
             _sizeService = sizeService;
@@ -57,6 +61,7 @@ namespace BrideyApp.Controllers
             _headerBackgroundService = headerBackgroundService;
             _socialService = socialService;
             _cartService = cartService;
+            _wishlistService= wishlistService;
         }
 
         public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null)
@@ -395,6 +400,26 @@ namespace BrideyApp.Controllers
             _cartService.SetDatasToCookie(carts, dbProduct, existProduct);
 
             int cartCount = carts.Count;
+
+            return Ok(cartCount);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToWishlist(int? id)
+        {
+            if (id is null) return BadRequest();
+
+            Product dbProduct = await _productService.GetById((int)id);
+
+            if (dbProduct == null) return NotFound();
+
+            List<WishlistVM> wishlists = _wishlistService.GetDatasFromCookie();
+
+            WishlistVM existProduct = wishlists.FirstOrDefault(p => p.ProductId == id);
+
+            _wishlistService.SetDatasToCookie(wishlists, dbProduct, existProduct);
+
+            int cartCount = wishlists.Count;
 
             return Ok(cartCount);
         }

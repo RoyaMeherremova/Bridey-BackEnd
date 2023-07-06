@@ -38,6 +38,10 @@ namespace BrideyApp.Data
         public DbSet<Sale> Sales { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<WishlistProduct> WishlistProducts { get; set; }
+
+
 
 
 
@@ -75,6 +79,18 @@ namespace BrideyApp.Data
             modelBuilder.Entity<ProductColor>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Category>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<ProductCategory>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<ProductComment>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Sale>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Cart>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<CartProduct>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Wishlist>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<WishlistProduct>().HasQueryFilter(m => !m.SoftDelete);
+
+
+
+
+
+
 
         }
 

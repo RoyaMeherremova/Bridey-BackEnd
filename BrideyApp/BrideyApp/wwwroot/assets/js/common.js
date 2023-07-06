@@ -94,6 +94,7 @@ $(document).ready(function () {
         let prod = $(this).parent().parent();
         let tbody = $(".tbody-basket").children();
         let data = { id: id };
+        let alert = $(".alert-success")
 
         $.ajax({
             type: "Post",
@@ -102,6 +103,7 @@ $(document).ready(function () {
             success: function (res) {
                 if ($(tbody).length == 1) {
                     $(".product-table").addClass("d-none");
+                    $(alert).removeClass("d-none")
                 }
                 $(prod).remove();
                 $(".count-basket").text(res)
@@ -166,6 +168,52 @@ $(document).ready(function () {
         let subtotal = parseFloat(nativePrice * $(count).val());
         $(total).text(subtotal.toString(0.00));
     }
+    //add basket
+    AddToCart(".add-to-wishlist-icon", "/Shop/AddToWishlist");
+
+    function AddToCart(clickedElem, url) {
+        $(document).on("click", clickedElem, function (e) {
+            let id = $(this).attr("data-id");
+            let data = { id: id };
+            let count = (".count-wishlist");
+            $.ajax({
+                type: "Post",
+                url: url,
+                data: data,
+                success: function (res) {
+                    $(count).text(res);
+                }
+            })
+            return false;
+        })
+    }
+    //delete product from wishlist
+    $(document).on("click", ".delete-product-wishlist", function () {
+
+        let id = $(this).parent().parent().attr("data-id");
+        let prod = $(this).parent().parent();
+        let tbody = $(".tbody-wishlist").children();
+        let data = { id: id };
+        let alert = $(".alert-success-wishlist")
+        let btn = $(".btn-wishlist")
+
+        $.ajax({
+            type: "Post",
+            url: `Wishlist/DeleteDataFromWishlist`,
+            data: data,
+            success: function (res) {
+                if ($(tbody).length == 1) {
+                    $(".product-table-wishlist").addClass("d-none");
+                    $(alert).removeClass("d-none")
+                    $(btn).addClass("d-none")
+
+                }
+                $(prod).remove();
+                $(".count-wishlist").text(res)
+            }
+        })
+        return false;
+    })
 
     $(document).on("submit", ".searchbox-area", function () {
         let value = $(".input-search").val();

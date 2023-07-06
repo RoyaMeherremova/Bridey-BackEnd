@@ -4,6 +4,7 @@ using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
 using BrideyApp.ViewModels.Account;
 using BrideyApp.ViewModels.Cart;
+using BrideyApp.ViewModels.Wishlist;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ namespace BrideyApp.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
         private readonly ICartService _cartService;
+        private readonly IWishlistService _wishlistService;
+
 
 
 
@@ -29,7 +32,8 @@ namespace BrideyApp.Controllers
                                  SignInManager<AppUser> signInManager, 
                                  RoleManager<IdentityRole> roleManager, 
                                  ICartService cartService,
-                                 IEmailService emailService)
+                                 IEmailService emailService,
+                                 IWishlistService wishlistService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,6 +41,7 @@ namespace BrideyApp.Controllers
             _cartService = cartService;
             _emailService = emailService;
             _context = context;
+            _wishlistService= wishlistService;
         }
 
         [HttpGet]
@@ -134,7 +139,10 @@ namespace BrideyApp.Controllers
             await _signInManager.SignInAsync(user, false);
 
             List<CartVM> cartVMs = new();
+            List<WishlistVM> wishlistVMs = new();
             Cart dbCart = await _cartService.GetByUserIdAsync(userId);
+            List<WishlistVM> wishlitVMs = new();
+            Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
 
             if (dbCart is not null)
             {
@@ -151,7 +159,23 @@ namespace BrideyApp.Controllers
                 Response.Cookies.Append("basket", JsonConvert.SerializeObject(cartVMs));
             }
 
+            if (dbWishlist is not null)
+            {
+                List<WishlistProduct> wishlistProducts = await _wishlistService.GetAllByWishlistIdAsync(dbWishlist.Id);
+                foreach (var wishlistProduct in wishlistProducts)
+                {
+                    wishlistVMs.Add(new WishlistVM
+                    {
+                        ProductId = wishlistProduct.ProductId,
+                    });
+                }
+
+                Response.Cookies.Append("wishlist", JsonConvert.SerializeObject(wishlistVMs));
+            }
+
+
             Response.Cookies.Append("basket", JsonConvert.SerializeObject(cartVMs));
+            Response.Cookies.Append("wishlist", JsonConvert.SerializeObject(wishlistVMs));
 
             return RedirectToAction("Index", "Home");
         }
@@ -174,27 +198,37 @@ namespace BrideyApp.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return RedirectToAction("Index", model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
 
-                var user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
+                AppUser user = await _userManager.FindByEmailAsync(model.EmailOrUsername);
 
                 if (user == null)
                 {
-                    ModelState.AddModelError(string.Empty, "Email or password is wrong");
-                    RedirectToAction("Index", model);
+                    user = await _userManager.FindByNameAsync(model.EmailOrUsername);
                 }
-
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Email or password is wrong");
+                    return View(model);
+                }
                 var res = await _signInManager.PasswordSignInAsync(user, model.Password, model.IsRememberMe, false);
 
                 if (!res.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Email or password is wrong");
-                    RedirectToAction("Index", model);
+                    return View(model);
                 }
 
                 List<CartVM> cartVMs = new();
+                List<WishlistVM> wishlistVMs = new();
+
 
                 Cart dbCart = await _cartService.GetByUserIdAsync(user.Id);
+                Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(user.Id);
+
 
                 if (dbCart is not null)
                 {
@@ -209,6 +243,19 @@ namespace BrideyApp.Controllers
                     }
 
                     Response.Cookies.Append("basket", JsonConvert.SerializeObject(cartVMs));
+                }
+                if (dbWishlist is not null)
+                {
+                    List<WishlistProduct> wishlistProducts = await _wishlistService.GetAllByWishlistIdAsync(dbCart.Id);
+                    foreach (var wishlistProduct in wishlistProducts)
+                    {
+                        wishlistVMs.Add(new WishlistVM
+                        {
+                            ProductId = wishlistProduct.ProductId,
+                        });
+                    }
+
+                    Response.Cookies.Append("wishlist", JsonConvert.SerializeObject(wishlistVMs));
                 }
 
 
@@ -228,6 +275,8 @@ namespace BrideyApp.Controllers
             await _signInManager.SignOutAsync();
 
             List<CartVM> carts = _cartService.GetDatasFromCookie();
+            List<WishlistVM> wishlists = _wishlistService.GetDatasFromCookie();
+
 
             if (carts.Count != 0)
             {
@@ -269,6 +318,46 @@ namespace BrideyApp.Controllers
 
                 }
                 Response.Cookies.Delete("basket");
+            }
+
+            if (wishlists.Count != 0)
+            {
+                Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
+                if (dbWishlist == null)
+                {
+                    dbWishlist = new()
+                    {
+                        AppUserId = userId,
+                        WishlistProducts = new List<WishlistProduct>()
+                    };
+                    foreach (var wishlist in wishlists)
+                    {
+                        dbWishlist.WishlistProducts.Add(new WishlistProduct()
+                        {
+                            ProductId = wishlist.ProductId,
+                            WishlistId = dbWishlist.Id,
+                        });
+                    }
+                    await _context.Wishlists.AddAsync(dbWishlist);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    List<WishlistProduct> wishlistProducts = new List<WishlistProduct>();
+                    foreach (var wishlist in wishlists)
+                    {
+                        wishlistProducts.Add(new WishlistProduct()
+                        {
+                            ProductId = wishlist.ProductId,
+                            WishlistId = dbWishlist.Id,
+                        });
+                    }
+                    dbWishlist.WishlistProducts = wishlistProducts;
+                    await _context.Wishlists.AddAsync(dbWishlist);
+                    _context.SaveChanges();
+
+                }
+                Response.Cookies.Delete("wishlist");
             }
 
             return RedirectToAction("Index", "Home");
