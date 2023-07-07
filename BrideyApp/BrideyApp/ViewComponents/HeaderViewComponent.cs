@@ -24,7 +24,6 @@ namespace BrideyApp.ViewComponents
                 Settings = _layoutService.GetSettingDatas(),
                 BasketCount = _cartService.GetDatasFromCookie().Count,
                 WishlistCount = _wishlistService.GetDatasFromCookie().Count
-
             };
             return await Task.FromResult(View(model));
         }

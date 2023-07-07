@@ -51,12 +51,13 @@ namespace BrideyApp.Services
                 .Append("basket", JsonConvert.SerializeObject(carts));
         }
 
-        public void DeleteData(int? id)
+        public async void DeleteData(int? id)
         {
             var baskets = JsonConvert.DeserializeObject<List<CartVM>>(_httpContextAccessor.HttpContext.Request.Cookies["basket"]);
             var deletedProduct = baskets.FirstOrDefault(b => b.ProductId == id);
             baskets.Remove(deletedProduct);
             _httpContextAccessor.HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(baskets));
+        
         }
 
         public async Task<Cart> GetByUserIdAsync(string userId)

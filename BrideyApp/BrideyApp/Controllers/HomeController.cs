@@ -50,7 +50,7 @@ namespace BrideyApp.Controllers
             List<Team> teams = await _teamService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
             List<Blog> blogs = await _blogService.GetAll();
-            List<Product> products = await _context.Products.Include(m=>m.Images).Include(p=>p.ProductCategories).Take(8).ToListAsync();
+            List<Product> products = await _context.Products.Include(m=>m.Images).Include(p=>p.ProductCategories).ThenInclude(m=>m.Category).Take(8).ToListAsync();
 
             HomeVM model = new()
             {

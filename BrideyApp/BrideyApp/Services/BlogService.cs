@@ -30,6 +30,20 @@ namespace BrideyApp.Services
             return _context.Blogs.Include(p => p.Author).OrderByDescending(p => p.Author.Name).ToList();
 
         }
+        public async Task<BlogComment> GetCommentById(int? id)
+        {
+            return await _context.BlogComments.FindAsync(id);
+        }
+
+        public async Task<BlogComment> GetCommentByIdWithBlog(int? id)
+        {
+            return await _context.BlogComments.Include(b => b.Blog).FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        public async Task<List<BlogComment>> GetComments()
+        {
+            return await _context.BlogComments.Include(b => b.Blog).ToListAsync();
+        }
 
 
     }

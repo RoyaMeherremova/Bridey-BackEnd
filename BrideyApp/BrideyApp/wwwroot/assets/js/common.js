@@ -69,34 +69,33 @@ $(document).ready(function () {
 
 
     //add cart
-    AddToCart(".add-to-cart-icon", "/Shop/AddToCart");
-
-    function AddToCart(clickedElem, url) {
-        $(document).on("click", clickedElem, function (e) {
+ 
+    $(document).on("click", ".add-to-cart-icon", function (e) {
+            debugger
             let id = $(this).attr("data-id");
             let data = { id: id };
-            let count = (".count-basket");
+            let countBasket = (".count-basket");
+
             $.ajax({
                 type: "Post",
-                url: url,
+                url: "/Shop/AddToCart",
                 data: data,
                 success: function (res) {
-                    $(count).text(res);
+                    $(countBasket).text(res);
                 }
             })
             return false;
         })
-    }
+    
     //delete product from basket
     $(document).on("click", ".delete-product", function () {
-
         let id = $(this).parent().parent().attr("data-id");
         let prod = $(this).parent().parent();
         let tbody = $(".tbody-basket").children();
         let data = { id: id };
         let alert = $(".alert-success")
         let footerWish = $(".footer-wish")
-
+        
         $.ajax({
             type: "Post",
             url: `Cart/DeleteDataFromBasket`,
@@ -108,6 +107,7 @@ $(document).ready(function () {
                     $(footerWish).addClass("d-none")
                 }
                 $(prod).remove();
+                res--;
                 $(".count-basket").text(res)
                 grandTotal();
             }
@@ -170,25 +170,22 @@ $(document).ready(function () {
         let subtotal = parseFloat(nativePrice * $(count).val());
         $(total).text(subtotal.toString(0.00));
     }
-    //add basket
-    AddToCart(".add-to-wishlist-icon", "/Shop/AddToWishlist");
+    //add wishlist
 
-    function AddToCart(clickedElem, url) {
-        $(document).on("click", clickedElem, function (e) {
+        $(document).on("click", ".add-to-wishlist-icon", function (e) {
             let id = $(this).attr("data-id");
             let data = { id: id };
-            let count = (".count-wishlist");
+            let countWishlist = (".count-wishlist");
             $.ajax({
                 type: "Post",
-                url: url,
+                url: "/Shop/AddToWishlist",
                 data: data,
                 success: function (res) {
-                    $(count).text(res);
+                    $(countWishlist).text(res);
                 }
             })
             return false;
         })
-    }
     //delete product from wishlist
     $(document).on("click", ".delete-product-wishlist", function () {
 
@@ -211,6 +208,7 @@ $(document).ready(function () {
 
                 }
                 $(prod).remove();
+                res--;
                 $(".count-wishlist").text(res)
             }
         })

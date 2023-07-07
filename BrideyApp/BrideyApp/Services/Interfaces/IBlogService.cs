@@ -9,6 +9,9 @@ namespace BrideyApp.Services.Interfaces
         Task<List<Blog>> GetPaginatedDatas(int page, int take);
         Task<Blog> GetById(int? id);
         List<Blog> GetRelatedBlogs();
+        Task<List<BlogComment>> GetComments();
+        Task<BlogComment> GetCommentById(int? id);
+        Task<BlogComment> GetCommentByIdWithBlog(int? id);
 
     }
 }

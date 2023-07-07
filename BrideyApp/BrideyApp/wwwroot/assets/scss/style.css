@@ -433,6 +433,7 @@ hr {
                 display: block;
                 font-size: 14px;
                 padding: 10px 13px 10px;
+                cursor:pointer;
             }
 
                 #products .cart .functional-buttons ul li a i {
@@ -4193,7 +4194,6 @@ hr {
     box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
     border-radius: 4px;
     padding-bottom: 32px;
-    padding-left: 36px;
 }
 
 #basket-table .table-products {

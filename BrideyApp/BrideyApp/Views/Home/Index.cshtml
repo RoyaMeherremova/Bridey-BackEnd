@@ -134,7 +134,7 @@
                                 </a>
                             </div>
                             <div class="product-name">
-                                @*<span>@product.ProductCategories.FirstOrDefault().Category.Name</span>*@
+                                <span>@product.ProductCategories.FirstOrDefault().Category.Name</span>
                                 <span>@product.Name...</span>
                             </div>
                             <div class="product-price">
@@ -143,14 +143,21 @@
                             <div class="functional-buttons">
                                 <ul>
                                     <li><a><i class="fa-solid fa-eye"></i></a></li>
-                                    <li><a><i class="fa-regular fa-heart"></i></a></li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a class="add-to-wishlist-icon" data-id="@product.Id"><i class="fa-regular fa-heart"></i></a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-heart"></i></a></li>
+                                    }
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li><a class="add-to-cart-icon" data-id="@product.Id"><i class="fa-solid fa-basket-shopping"></i></a></li>
                                     }
                                     else
                                     {
-                                        <li><a asp-controller="Account" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                                        <li><a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-basket-shopping"></i></a></li>
                                     }
 
                                 </ul>
