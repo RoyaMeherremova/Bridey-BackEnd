@@ -64,9 +64,9 @@ namespace BrideyApp.Controllers
             _wishlistService= wishlistService;
         }
 
-        public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null)
+        public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1=null, int? value2 = null)
         {
-            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, cateId, compositionId,sizeId,brandId,colorId);
+            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, cateId, compositionId,sizeId,brandId,colorId,value1,value2);
             List<ProductVM> mappedDatas = GetMappedDatas(paginateProducts);
             ViewBag.cateId = cateId;
             ViewBag.compositionId = compositionId;
@@ -76,31 +76,36 @@ namespace BrideyApp.Controllers
             int pageCount = 0;
             if (cateId != null)
             {
-                pageCount = await GetPageCountAsync(take, cateId, null, null,null,null);
+                pageCount = await GetPageCountAsync(take, cateId, null, null,null,null,null,null);
             }
             if (compositionId != null)
             {
-                pageCount = await GetPageCountAsync(take, null,compositionId, null, null,null);
+                pageCount = await GetPageCountAsync(take, null,compositionId, null, null,null, null, null);
             }
             if (sizeId != null)
             {
-                pageCount = await GetPageCountAsync(take, null,null, null, null, sizeId);
+                pageCount = await GetPageCountAsync(take, null,null, null, null, sizeId, null, null);
             }
             if (brandId != null)
             {
-                pageCount = await GetPageCountAsync(take, null, null, null, brandId, null);
+                pageCount = await GetPageCountAsync(take, null, null, null, brandId, null, null, null);
             }
             if (colorId != null)
             {
-                pageCount = await GetPageCountAsync(take, null, null, colorId, null, null);
+                pageCount = await GetPageCountAsync(take, null, null, colorId, null, null, null, null);
             }
-
-
-            if (colorId == null && compositionId == null &&  cateId == null && brandId == null && sizeId == null)
+            if (value1 != null && value2 != null)
             {
-                pageCount = await GetPageCountAsync(take, null, null, null, null, null);
+                pageCount = await GetPageCountAsync(take, null, null, null, null, null, value1, value2);
             }
-     
+
+
+            if (colorId == null && compositionId == null &&  cateId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
+            {
+                pageCount = await GetPageCountAsync(take, null, null, null, null, null, null, null);
+            }
+
+
             Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
 
             List<Size> sizes = await _sizeService.GetAll();
@@ -147,7 +152,7 @@ namespace BrideyApp.Controllers
             }
             return mappedDatas;
         }
-        private async Task<int> GetPageCountAsync(int take, int? catId, int? compositionId, int? colorId, int? brandId, int? sizeId)
+        private async Task<int> GetPageCountAsync(int take, int? catId, int? compositionId, int? colorId, int? brandId, int? sizeId,int? value1,int? value2)
         {
             int prodCount = 0;
             if (catId is not null)
@@ -174,36 +179,41 @@ namespace BrideyApp.Controllers
                 prodCount = await _productService.GetProductsCountByCompositionAsync(compositionId);
 
             }
-            if (catId == null && compositionId == null && colorId == null && brandId == null && sizeId == null)
+            if (value1 != null && value2 != null)
+            {
+                prodCount = await _productService.GetProductsCountBySearchAsync(value1, value2); ;
+            }
+
+            if (catId == null && compositionId == null && colorId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
             {
                 prodCount = await _productService.GetCountAsync();
             }
-
+          
             return (int)Math.Ceiling((decimal)prodCount / take);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllProducts(int page =1,int take=9)
         {
-            int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
-            var products =  await _productService.GetPaginatedDatas(page, take, null, null, null, null, null);
+            int pageCount = await GetPageCountAsync(take, null, null, null, null, null, null, null);
+            var products =  await _productService.GetPaginatedDatas(page, take, null, null, null, null, null,null,null);
             List<ProductVM> mappedDatas = GetMappedDatas(products);
             Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
             return PartialView("_ProductsPartial", paginatedDatas);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetRangeProducts(decimal value1, decimal value2, int page = 1, int take = 9)
-        {
-            int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
-            var products = await _productService.GetMappedAllProducts();
-            if (value1 != 0 && value2 != 0)
-            {
-                products = products.Where(x => x.Price >= value1 && x.Price <= value2).ToList();
-            }
-            Paginate<ProductVM> paginatedDatas = new(products, page, pageCount);
-            return PartialView("_ProductsPartial", paginatedDatas);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> GetRangeProducts(decimal value1, decimal value2, int page = 1, int take = 9)
+        //{
+        //    int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
+        //    var products = await _productService.GetMappedAllProducts();
+        //    if (value1 != 0 && value2 != 0)
+        //    {
+        //        products = products.Where(x => x.Price >= value1 && x.Price <= value2).ToList();
+        //    }
+        //    Paginate<ProductVM> paginatedDatas = new(products, page, pageCount);
+        //    return PartialView("_ProductsPartial", paginatedDatas);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> GetProductsByCategory(int? id, int page = 1, int take = 9)
@@ -213,7 +223,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByCategoryIdAsync(id,page,take);  
 
-            int pageCount = await GetPageCountAsync(take,(int)id, null, null, null, null);
+            int pageCount = await GetPageCountAsync(take,(int)id, null, null, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -228,7 +238,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByColorIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take, null, null, (int)id, null, null);
+            int pageCount = await GetPageCountAsync(take, null, null, (int)id, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -242,7 +252,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsBySizeIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take, null, null, null, null, (int)id);
+            int pageCount = await GetPageCountAsync(take, null, null, null, null, (int)id, null, null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -256,7 +266,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByCompositionIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take, null, (int)id, null, null, null);
+            int pageCount = await GetPageCountAsync(take, null, (int)id, null, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -271,7 +281,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByBrandIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take, null, null, null, (int)id, null);
+            int pageCount = await GetPageCountAsync(take, null, null, null, (int)id, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 

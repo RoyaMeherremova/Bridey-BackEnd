@@ -94,23 +94,23 @@ $(document).ready(function () {
     getProductsById(".brand", "/Shop/GetProductsByBrand")
 
     ////FILTER
-    //$(document).on("submit", "#filterForm", function (e) {
+    $(document).on("submit", "#filterForm", function (e) {
         
-    //    let value1 = $(".min-price")
-    //    let value2 = $(".max-price")
-    //    let data = { value1: value1, value2: value2 }
-    //    let prodContainer = $(".productss-area");
-    //    $.ajax({
-    //        url: "shop/GetRangeProducts",
-    //        type: "Get",
-    //        data: data,
-    //        success: function (res) {
-    //            if (res) {
-    //                $(prodContainer).html(res);
-    //            }
-    //        }
-    //    })
-    //})
+        let value1 = $(".min-price")
+        let value2 = $(".max-price")
+        let data = { value1: value1, value2: value2 }
+        let prodContainer = $(".productss-area");
+        $.ajax({
+            url: "/Shop/Index",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                if (res) {
+                    $(prodContainer).html(res);
+                }
+            }
+        })
+    })
 
 
 
