@@ -372,16 +372,7 @@ namespace BrideyApp.Controllers
             return PartialView("_ProductListPartial", products);
 
         }
-        public async Task<IActionResult> Search(string searchText)
-        {
-            if (string.IsNullOrEmpty(searchText))
-            {
-                return Ok();
-            }
-            var products = await _productService.GetAllBySearchText(searchText);
-
-            return View(products);
-        }
+  
 
 
         [HttpPost]
@@ -424,7 +415,16 @@ namespace BrideyApp.Controllers
             return Ok(wishlistCount);
         }
 
+        public async Task<IActionResult> Search(string searchText)
+        {
+            if (string.IsNullOrEmpty(searchText))
+            {
+                return Ok();
+            }
+            var products = await _productService.GetAllBySearchText(searchText);
 
+            return View(products);
+        }
 
 
     }

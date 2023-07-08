@@ -424,6 +424,7 @@ hr {
             display: flex;
             gap: 6px;
         }
+           
 
             #products .cart .functional-buttons ul li a {
                 background: #fff;
@@ -439,6 +440,7 @@ hr {
                 #products .cart .functional-buttons ul li a i {
                     font-weight: 900;
                     color: #9c9595;
+                    cursor:pointer;
                 }
 
                 #products .cart .functional-buttons ul li a:hover {
@@ -1614,13 +1616,14 @@ img.rot {
             font-weight: 600;
             font-size: 1.375rem;
             font-family: auto;
+            padding-left: 28px;
         }
 
         #wrapper-blog .page_text ul {
             list-style: none;
             display: flex;
             align-items: center;
-            padding: 0px !important;
+            padding-left:28px;
             gap: 4px;
         }
 
@@ -2172,13 +2175,14 @@ hr {
             font-weight: 600;
             font-size: 1.375rem;
             font-family: auto;
+            padding-left:28px;
         }
 
         #wrapper-contact .page_text ul {
             list-style: none;
             display: flex;
             align-items: center;
-            padding: 0px !important;
+            padding-left: 28px;
             gap: 4px;
         }
 
@@ -2262,16 +2266,15 @@ hr {
             font-weight: 600;
             font-size: 1.375rem;
             font-family: auto;
-            padding-left: 39%;
+            padding-left: 28%;
         }
 
         #wrapper-shop .page_text ul {
             list-style: none;
             display: flex;
             align-items: center;
-            padding: 0px !important;
             gap: 4px;
-            padding-left: 39% !important;
+            padding-left: 28% !important;
         }
 
             #wrapper-shop .page_text ul li {
@@ -3549,7 +3552,7 @@ hr {
             margin: 35px 20px 10px 24px;
         }
 
-            #product-detail .complete-look-content .tab-info .submit-button button {
+            #product-detail .complete-look-content .tab-info .submit-button a {
                 width: 130px;
                 height: 50px;
                 background-color: #b97a56;
@@ -3558,6 +3561,10 @@ hr {
                 font-family: initial;
                 transition: 0.7s;
                 border-radius: 5px;
+                text-decoration: none;
+                position: relative;
+                right: 19px;
+                padding: 11px 16px;
             }
 
                 #product-detail .complete-look-content .tab-info .submit-button button:hover {
@@ -4562,7 +4569,7 @@ hr {
             font-weight: 600;
             font-size: 1.375rem;
             font-family: auto;
-            padding-left: 39%;
+            padding-left: 28%;
         }
 
         #wrapper-about .page_text ul {
@@ -4570,7 +4577,7 @@ hr {
             display: flex;
             align-items: center;
             gap: 4px;
-            padding-left: 39%;
+            padding-left: 28%;
         }
 
             #wrapper-about .page_text ul li {

@@ -1,4 +1,5 @@
 ﻿@model ContactVM
+@inject UserManager<AppUser> userManager;
 @{
     ViewData["Title"] = "Contact";
 }
@@ -55,20 +56,38 @@
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="elementor-column">
                         <div class="elementor-widget-container">
-                            <form class="elementor-form">
-                                <div class="input-area">
-                                    <input placeholder="Your Name *">
-                                    <input placeholder="Phone Number *">
-                                </div>
-                                <div class="input-area">
-                                    <input placeholder="Your Email *">
-                                    <input placeholder="Wedding Date">
-                                </div>
-                                <textarea placeholder="Your Message"></textarea>
-                                <button type="submit">
-                                    send your message
-                                </button>
-                            </form>
+                             @if (User.Identity.IsAuthenticated)
+                            {
+                                <form class="elementor-form" method="post" asp-action="PostComment">
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Your FirstName *" asp-for="FirstName" value="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).FirstName">
+                                        <input placeholder="Phone Number *" asp-for="Phone">
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Your Email *" asp-for="Email" value="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Email">
+                                    </div>
+                                    <textarea placeholder="Your Message"></textarea>
+                                    <button type="submit">
+                                        send your message
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form class="elementor-form" method="post" asp-controller="Account" asp-action="Login">
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Your FirstName *">
+                                        <input placeholder="Phone Number *">
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Your Email *">
+                                    </div>
+                                    <textarea placeholder="Your Message"></textarea>
+                                    <button type="submit">
+                                        send your message
+                                    </button>
+                                </form>
+                            }
                         </div>
                     </div>
                 </div>

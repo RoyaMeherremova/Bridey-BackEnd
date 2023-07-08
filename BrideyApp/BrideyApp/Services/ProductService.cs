@@ -325,6 +325,20 @@ namespace BrideyApp.Services
                 .ToListAsync();
             return products;
         }
+        public async Task<List<ProductComment>> GetComments()
+        {
+            return await _context.ProductComments.Include(p => p.Product).ToListAsync();
+        }
+
+        public async Task<ProductComment> GetCommentByIdWithProduct(int? id)
+        {
+            return await _context.ProductComments.Include(p => p.Product).FirstOrDefaultAsync(pc => pc.Id == id);
+        }
+
+        public async Task<ProductComment> GetCommentById(int? id)
+        {
+            return await _context.ProductComments.FirstOrDefaultAsync(pc => pc.Id == id);
+        }
 
     }
 }

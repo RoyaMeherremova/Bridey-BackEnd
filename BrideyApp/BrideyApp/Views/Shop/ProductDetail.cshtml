@@ -32,7 +32,7 @@
                 <div class="col-lg-6 col-sm-12 col-md-12">
                     <div class="prod-thumb-left">
                         <div class="basicImage">
-                            <img src="~/assets/images/@Model.Images?.FirstOrDefault(m=>m.IsMain)?.Image">
+                            <img class="basicImg" src="~/assets/images/@Model.Images?.FirstOrDefault(m=>m.IsMain)?.Image">
                         </div>
                         <div class="row">
                             <div class="prod-images detail-carousel">
@@ -73,6 +73,10 @@
                                 {
                                     <i class="fa-solid fa-star" style="color: #b97a56;"></i>
 
+                                }
+                                @for (int i = 0; i < 5 - Model.Rate; i++)
+                                {
+                                    <i class="fa fa-star" style="color:darkgrey"></i>
                                 }
                                 <div class="count-review"><span>(<span>@Model.ProductComments.Count()</span>customer review)</span></div>
                             </div>
@@ -136,7 +140,7 @@
                         }
                         else
                         {
-                            <a class="btn add-button" asp-controller="Account" asp-action="Index">Add to bag</a>
+                            <a class="btn add-button" asp-controller="Account" asp-action="Login">Add to bag</a>
                         }
                         <div class="prod-info-time">
                             <div>
@@ -221,7 +225,7 @@
                                             <form method="post" asp-action="PostComment" asp-route-id="@Model.Id" asp-route-userId="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Id">
                                                 <p style="margin-top: 22px;">Your rating *</p>
                                                 <div class="product-rate">
-                                                    @for (int i = 1; i < Model.Rate; i++)
+                                                    @for (int i = 1; i <= 5; i++)
                                                     {
                                                         <i class="fa-solid fa-star" style="color: #b97a56;"></i>
 
@@ -252,6 +256,47 @@
 
                                         </div>
                                     }
+                                    else
+                                    {
+                                        <div class="info-for-user">
+                                            <p>Add a review</p>
+                                            <p>Your email address will not be published. Required fields are marked *</p>
+                                            <form method="post">
+                                                <p style="margin-top: 22px;">Your rating *</p>
+                                                <div class="product-rate">
+                                                    @for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        <i class="fa-solid fa-star" style="color: #b97a56;"></i>
+
+                                                    }
+                                                </div>
+                                                <p style="margin-top: 22px;">Your review *</p>
+
+                                                <textarea id="" cols="30" rows="10"></textarea>
+
+                                                <div class="label">
+                                                    <label for="">Name *</label>
+                                                </div>
+                                                <div class="input">
+                                                    <input type="text">
+
+                                                </div>
+                                                <div class="label">
+                                                    <label for="">Email *</label>
+                                                </div>
+                                                <div class="input">
+                                                    <input type="email">
+
+                                                </div>
+                                                <div class="submit-button">
+                                                    <a type="submit" asp-controller="Account" asp-action="Login">Post Comment</a>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    }
+
                                 </div>
                             </div>
                         </div>

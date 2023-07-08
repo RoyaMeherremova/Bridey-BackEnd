@@ -118,6 +118,7 @@ $(document).ready(function () {
     //change product count
     $(document).on("click", ".inc", function () {
         let id = $(this).parent().parent().attr("data-id");
+        console.log("sala")
         let nativePrice = parseFloat($(this).parent().prev().children().eq(1).text());
         let total = $(this).parent().next().children().eq(1);
         let count = $(this).prev();
@@ -162,13 +163,13 @@ $(document).ready(function () {
             let price = parseFloat($(prod).children().eq(4).children().eq(1).text())
             sum += price
         }
-        $(".grand-total").text(sum);
+        $(".grand-total").text(sum + ".00");
     }
 
     function subTotal(res, nativePrice, total, count) {
         $(count).val(res);
         let subtotal = parseFloat(nativePrice * $(count).val());
-        $(total).text(subtotal.toString(0.00));
+        $(total).text(subtotal + ".00");
     }
     //add wishlist
 
@@ -220,6 +221,14 @@ $(document).ready(function () {
         let url = `/Shop/Search?searchText=${value}`;
         window.location.assign(url);
         return false;
+    })
+
+
+    $(document).on("click", "#product-detail .prod-thumb-left .detail-carousel .item", function () {
+        let photo = $(this).children().eq(0).attr("src")
+        console.log(photo)
+        $("#product-details .prod-thumb-left .basicImage .basicImg").attr("src", photo)
+
     })
 
 

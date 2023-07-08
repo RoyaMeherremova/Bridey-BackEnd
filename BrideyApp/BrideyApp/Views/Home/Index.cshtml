@@ -128,7 +128,7 @@
                         <div class="cart">
                             <div class="new">New</div>
                             <div class="product-img">
-                                <a asp-controller="Shop" asp-action="ProductDetail">
+                                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">
                                     <img src="~/assets/images/@product.Images.Where(m=>m.IsMain).FirstOrDefault().Image" class="primary-img" alt="Card image cap">
                                     <img src="~/assets/images/@product.Images.Where(m=>!m.IsMain).FirstOrDefault().Image" class="secondary-img" alt="Card image cap">
                                 </a>
