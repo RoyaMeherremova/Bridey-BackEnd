@@ -226,8 +226,11 @@ $(document).ready(function () {
 
     $(document).on("click", "#product-detail .prod-thumb-left .detail-carousel .item", function () {
         let photo = $(this).children().eq(0).attr("src")
-        console.log(photo)
-        $("#product-details .prod-thumb-left .basicImage .basicImg").attr("src", photo)
+
+        console.log(photo);
+        let basicimg = $("#product-details .prod-thumb-left .basicImage .basicImg").attr("src");
+        console.log(basicimg)
+        $(".basicImg").attr("src", photo)
 
     })
 

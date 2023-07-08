@@ -99,16 +99,11 @@ $(document).ready(function () {
         let value1 = $(".min-price")
         let value2 = $(".max-price")
         let data = { value1: value1, value2: value2 }
-        let prodContainer = $(".productss-area");
         $.ajax({
             url: "/Shop/Index",
             type: "Get",
             data: data,
-            success: function (res) {
-                if (res) {
-                    $(prodContainer).html(res);
-                }
-            }
+         
         })
     })
 
