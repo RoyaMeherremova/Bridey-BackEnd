@@ -29,8 +29,8 @@ namespace BrideyApp.Controllers
 
         public AccountController(AppDbContext context,
                                  UserManager<AppUser> userManager,
-                                 SignInManager<AppUser> signInManager, 
-                                 RoleManager<IdentityRole> roleManager, 
+                                 SignInManager<AppUser> signInManager,
+                                 RoleManager<IdentityRole> roleManager,
                                  ICartService cartService,
                                  IEmailService emailService,
                                  IWishlistService wishlistService)
@@ -41,7 +41,7 @@ namespace BrideyApp.Controllers
             _cartService = cartService;
             _emailService = emailService;
             _context = context;
-            _wishlistService= wishlistService;
+            _wishlistService = wishlistService;
         }
 
         [HttpGet]
@@ -277,9 +277,10 @@ namespace BrideyApp.Controllers
             List<WishlistVM> wishlists = _wishlistService.GetDatasFromCookie();
 
             Cart dbCart = await _cartService.GetByUserIdAsync(userId);
+            Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
             if (carts.Count != 0)
             {
-                
+
                 if (dbCart == null)
                 {
                     dbCart = new()
@@ -302,17 +303,17 @@ namespace BrideyApp.Controllers
                 else
                 {
                     List<CartProduct> cartProducts = new List<CartProduct>();
-                     foreach (var cart in carts)
+                    foreach (var cart in carts)
+                    {
+                        cartProducts.Add(new CartProduct()
                         {
-                            cartProducts.Add(new CartProduct()
-                            {
-                                ProductId = cart.ProductId,
-                                CartId = dbCart.Id,
-                                Count = cart.Count
-                            });
-                        }
-                        dbCart.CartProducts = cartProducts;
-                  
+                            ProductId = cart.ProductId,
+                            CartId = dbCart.Id,
+                            Count = cart.Count
+                        });
+                    }
+                    dbCart.CartProducts = cartProducts;
+
                     //await _context.Carts.AddAsync(dbCart);
                     _context.SaveChanges();
 
@@ -327,7 +328,7 @@ namespace BrideyApp.Controllers
 
             if (wishlists.Count != 0)
             {
-                Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
+               
                 if (dbWishlist == null)
                 {
                     dbWishlist = new()
@@ -364,6 +365,12 @@ namespace BrideyApp.Controllers
                 }
                 Response.Cookies.Delete("wishlist");
             }
+            else
+            {
+                _context.Wishlists.Remove(dbWishlist);
+
+            }
+
 
             return RedirectToAction("Index", "Home");
         }
