@@ -276,10 +276,10 @@ namespace BrideyApp.Controllers
             List<CartVM> carts = _cartService.GetDatasFromCookie();
             List<WishlistVM> wishlists = _wishlistService.GetDatasFromCookie();
 
-
+            Cart dbCart = await _cartService.GetByUserIdAsync(userId);
             if (carts.Count != 0)
             {
-                Cart dbCart = await _cartService.GetByUserIdAsync(userId);
+                
                 if (dbCart == null)
                 {
                     dbCart = new()
@@ -302,22 +302,28 @@ namespace BrideyApp.Controllers
                 else
                 {
                     List<CartProduct> cartProducts = new List<CartProduct>();
-                    foreach (var cart in carts)
-                    {
-                        cartProducts.Add(new CartProduct()
+                     foreach (var cart in carts)
                         {
-                            ProductId = cart.ProductId,
-                            CartId = dbCart.Id,
-                            Count = cart.Count
-                        });
-                    }
-                    dbCart.CartProducts = cartProducts;
+                            cartProducts.Add(new CartProduct()
+                            {
+                                ProductId = cart.ProductId,
+                                CartId = dbCart.Id,
+                                Count = cart.Count
+                            });
+                        }
+                        dbCart.CartProducts = cartProducts;
+                  
                     //await _context.Carts.AddAsync(dbCart);
                     _context.SaveChanges();
 
                 }
                 Response.Cookies.Delete("basket");
             }
+            else
+            {
+                _context.Carts.Remove(dbCart);
+            }
+
 
             if (wishlists.Count != 0)
             {
