@@ -5282,6 +5282,24 @@ hr {
                     -webkit-text-decoration-style: dotted;
                     text-decoration-style: dotted;
                 }
+            #login .form-login-wrap .login-bottom .register-half-bg {
+                position: absolute;
+                right: 0px;
+                top: 18px;
+                display: flex;
+                gap: 8px;
+            }
+                #login .form-login-wrap .login-bottom .register-half-bg h4 {
+                    font-size: 17px;
+                    margin: 0px !important;
+                    color: #00000059;
+                }
+                #login .form-login-wrap .login-bottom .register-half-bg a {
+                    text-decoration: none;
+                    font-size: 15px;
+                    color: #de9076;
+                    font-weight: 400;
+                }
 
 hr {
     color: #b4afaf;

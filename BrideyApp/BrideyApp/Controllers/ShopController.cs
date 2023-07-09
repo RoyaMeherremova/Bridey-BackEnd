@@ -206,18 +206,16 @@ namespace BrideyApp.Controllers
             return PartialView("_ProductsPartial", paginatedDatas);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetRangeProducts(decimal value1, decimal value2, int page = 1, int take = 9)
-        //{
-        //    int pageCount = await GetPageCountAsync(take, null, null, null, null, null);
-        //    var products = await _productService.GetMappedAllProducts();
-        //    if (value1 != 0 && value2 != 0)
-        //    {
-        //        products = products.Where(x => x.Price >= value1 && x.Price <= value2).ToList();
-        //    }
-        //    Paginate<ProductVM> paginatedDatas = new(products, page, pageCount);
-        //    return PartialView("_ProductsPartial", paginatedDatas);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetRangeProducts(int value1, int value2, int page = 1, int take = 9)
+        {
+            List<Product> products = await _context.Products.Where(x => x.Price >= value1 && x.Price <= value2).Include(m=>m.Images).ToListAsync();
+            var productCount = products.Count();
+            var pageCount = (int)Math.Ceiling((decimal)productCount / take);
+            List<ProductVM> mappedDatas = GetMappedDatas(products);
+            Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
+            return PartialView("_ProductsPartial", paginatedDatas);
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetProductsByCategory(int? id, int page = 1, int take = 9)

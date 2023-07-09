@@ -334,6 +334,11 @@
                                 }
                                 else
                                 {
+                                    <form asp-controller="Account" asp-action="AdminLogin" asp-route-userId="@userManager.Users.Where(u=>u.UserName==User.Identity.Name).FirstOrDefault().Id" method="post" style="display:flex;justify-content:center;align-items:center;">
+                                        <div class="logout">
+                                            <button style="border: none; color: #60748a; background: transparent; margin-left: 15px; font-size: 15px;font-size:17px;padding-top: 4px;" type="submit">Logout</button>
+                                        </div>
+                                    </form>
                                     <h4 style="padding-top: 17px;font-family: auto;color: #696cff;">
                                         @userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).FirstName @userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).LastName
 

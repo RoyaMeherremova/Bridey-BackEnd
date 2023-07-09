@@ -95,17 +95,24 @@ $(document).ready(function () {
 
     //FILTER
     $(document).on("submit", "#filterForm", function (e) {
-        
-        let value1 = $(".min-price")
-        let value2 = $(".max-price")
+        e.preventDefault();
+        let value1 = $(".min-price").val();
+        let value2 = $(".max-price").val();
         let data = { value1: value1, value2: value2 }
-        let parent = $(".productss-area")
+        let parent = $(".productss-area");
+
         $.ajax({
-            url: "/Shop/Index",
+            url: "/Shop/GetRangeProducts",
             type: "Get",
             data: data,
             success: function (res) {
+               
                 $(parent).html(res);
+              
+                if (value1 == "10" && value2 == "500") {
+                    $(".shop-navigation").addClass("d-none")
+                }
+              
             }
          
         })

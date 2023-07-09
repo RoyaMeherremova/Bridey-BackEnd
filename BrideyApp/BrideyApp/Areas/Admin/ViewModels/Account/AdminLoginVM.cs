@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BrideyApp.Areas.Admin.ViewModels.Acoount
+namespace BrideyApp.Areas.Admin.ViewModels.Account
 {
     public class AdminLoginVM
     {

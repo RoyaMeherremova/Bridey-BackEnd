@@ -63,7 +63,7 @@
 
 }
 <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center shop-navigation">
         <li class="page-item  @(Model.HasPrevious? " " :"d-none")">
             <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
         </li>
