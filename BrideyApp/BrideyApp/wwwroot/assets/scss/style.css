@@ -3148,6 +3148,7 @@ hr {
                 #product-detail .prod-thumb-left .prod-images .item img {
                     width: 100%;
                     height: 100%;
+                    cursor:pointer;
                 }
 
     #product-detail .prod-info_ {
@@ -4444,6 +4445,11 @@ hr {
         padding-top: 55px;
     }
 
+    #wishlist-table tbody td:nth-child(4) i{
+      cursor:pointer;
+    }
+
+
         #wishlist-table tbody td:nth-child(4) button {
             padding: 0;
             min-width: 0;
@@ -4459,6 +4465,7 @@ hr {
 
             #wishlist-table tbody td:nth-child(4) button i {
                 color: rgba(0, 0, 0, 0.54);
+             
             }
 
     #wishlist-table tbody td a {

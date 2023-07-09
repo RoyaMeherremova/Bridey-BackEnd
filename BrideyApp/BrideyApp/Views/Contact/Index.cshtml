@@ -66,7 +66,7 @@
                                     <div class="input-area">
                                         <input type="text" placeholder="Your Email *" asp-for="Email" value="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Email">
                                     </div>
-                                    <textarea placeholder="Your Message"></textarea>
+                                    <textarea asp-for="Message" placeholder="Your Message"></textarea>
                                     <button type="submit">
                                         send your message
                                     </button>

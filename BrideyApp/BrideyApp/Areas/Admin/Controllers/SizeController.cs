@@ -1,4 +1,4 @@
-﻿using BrideyApp.Areas.Admin.ViewModels;
+﻿using BrideyApp.Areas.Admin.ViewModels.Size;
 using BrideyApp.Data;
 using BrideyApp.Models;
 using BrideyApp.Services;

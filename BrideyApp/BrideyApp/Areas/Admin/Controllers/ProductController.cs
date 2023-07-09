@@ -1,4 +1,4 @@
-﻿using BrideyApp.Areas.Admin.ViewModels;
+﻿using BrideyApp.Areas.Admin.ViewModels.Product;
 using BrideyApp.Data;
 using BrideyApp.Helpers;
 using BrideyApp.Models;

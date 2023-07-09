@@ -1,4 +1,6 @@
 ﻿﻿
+@inject UserManager<AppUser> userManager;
+
 <!DOCTYPE html>
 
 <!-- =========================================================
@@ -24,7 +26,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Bridey Admin</title>
 
     <meta name="description" content="" />
 
@@ -133,16 +135,23 @@
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
-
-                    <!-- Layouts -->
-
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Tables</span>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                            <div data-i18n="Tables">User</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">User</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-table"></i>
-                            <div data-i18n="Tables">Tables</div>
+                            <div data-i18n="Tables">Home</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
@@ -165,19 +174,18 @@
                                     <div data-i18n="Error">Bride</div>
                                 </a>
                             </li>
+                        
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="Tables">About</div>
+                        </a>
+                        <ul class="menu-sub">
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Position" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Position</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Team" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Team</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Advertising" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Advertising</div>
+                                <a asp-area="Admin" asp-controller="AboutBox" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">AboutBox</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -186,20 +194,23 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Setting" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Setting</div>
+                                <a asp-area="Admin" asp-controller="Team" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Team</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Social" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Social</div>
+                                <a asp-area="Admin" asp-controller="Position" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Position</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Headerbackground" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Headerbackground</div>
-                                </a>
-                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="Tables">Blog</div>
+                        </a>
+                        <ul class="menu-sub">
                             <li class="menu-item">
                                 <a asp-area="Admin" asp-controller="Author" asp-action="Index" class="menu-link">
                                     <div data-i18n="Error">Author</div>
@@ -211,13 +222,21 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="SectionBackgroundImage" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">SectionBackgroundImage</div>
+                                <a asp-area="Admin" asp-controller="BlogComment" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">BlogComment</div>
                                 </a>
                             </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="Tables">Shop</div>
+                        </a>
+                        <ul class="menu-sub">
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="AboutBox" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">AboutBox</div>
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Product</div>
                                 </a>
                             </li>
                             <li class="menu-item">
@@ -251,22 +270,41 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">Product</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
-                                <a asp-area="Admin" asp-controller="BlogComment" asp-action="Index" class="menu-link">
-                                    <div data-i18n="Error">BlogComment</div>
-                                </a>
-                            </li>
-                            <li class="menu-item">
                                 <a asp-area="Admin" asp-controller="ProductComment" asp-action="Index" class="menu-link">
                                     <div data-i18n="Error">ProductComment</div>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-table"></i>
+                            <div data-i18n="Tables">Layout</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="SectionBackgroundImage" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">SectionBackgroundImage</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Headerbackground" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Headerbackground</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Social" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Social</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a asp-area="Admin" asp-controller="Advertising" asp-action="Index" class="menu-link">
+                                    <div data-i18n="Error">Advertising</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                  
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -285,22 +323,29 @@
                     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- Place this tag where you want the button to render. -->
-                            <li class="nav-item lh-1 me-3">
-                                <a class="github-button"
-                                   href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                   data-icon="octicon-star"
-                                   data-size="large"
-                                   data-show-count="true"
-                                   aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
+                            <li class="nav-item lh-1 me-3 d-flex" style="position: relative;left: 45px;">
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <div class="login">
+                                        <button style="border: none; color: #60748a; background: transparent; margin-left: 15px; font-size: 15px;" type="submit">
+                                            Login
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h4 style="padding-top: 17px;font-family: auto;color: #696cff;">
+                                        @userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).FirstName @userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).LastName
+
+                                    </h4>
+                                    <div class="avatar avatar-online" style="bottom: 4px;right: 15px;">
+                                    </div>
+                                }
                             </li>
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <img src="~/admin/img/avatars/rrr.jfif" class="w-px-40 h-auto rounded-circle" />
-                                    </div>
-                                </a>
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="#">

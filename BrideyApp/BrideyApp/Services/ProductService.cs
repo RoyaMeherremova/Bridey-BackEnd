@@ -152,6 +152,8 @@ namespace BrideyApp.Services
 
             return products;
         }
+
+
         public async Task<List<ProductVM>> GetProductsByCategoryIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
@@ -308,7 +310,7 @@ namespace BrideyApp.Services
                  .Select(p => p.Product)
                  .CountAsync();
         }
-        public async Task<int> GetProductsCountBySearchAsync(int? value1,int? value2)
+        public async Task<int> GetProductsCountByRangeAsync(int? value1,int? value2)
         {
             return await _context.Products.Where(p => p.Price >= value1 && p.Price <= value2)
                                  .Include(p => p.Images)

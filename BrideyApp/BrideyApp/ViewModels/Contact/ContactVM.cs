@@ -13,8 +13,6 @@ namespace BrideyApp.ViewModels.Contact
         [Required(ErrorMessage = "Don`t be empty")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Don`t be empty")]
-        public string Surname { get; set; }
-        [Required(ErrorMessage = "Don`t be empty")]
         public string Phone { get; set; }
         [Required(ErrorMessage = "Don`t be empty")]
         [DataType(DataType.EmailAddress)]

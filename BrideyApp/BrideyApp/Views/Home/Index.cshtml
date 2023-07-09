@@ -24,7 +24,7 @@
                 @foreach (var slider in Model.Sliders.Where(s => s.Id != Model.Sliders.LastOrDefault().Id))
                 {
                     <div class="swiper-slide">
-                        <img src="./assets/images/@slider.Image" alt="">
+                        <img src="~/assets/images/@slider.Image" alt="">
                         <div class="slide slide-1">
                             <div style="text-align:center!important">
                                 <span class="saleName">@slider.Header</span>
@@ -43,14 +43,14 @@
                     </div>
                 }
                 <div class="swiper-slide">
-                    <img src="./assets/images/@Model.Sliders.LastOrDefault().Image" alt="">
+                    <img src="~/assets/images/@Model.Sliders.LastOrDefault().Image" alt="">
                     <div class="slide slide-2">
                         <span class="saleName">@Model.Sliders.LastOrDefault().Header</span>
                         <h1 class="sale">@Model.Sliders.LastOrDefault().Title</h1>
                         <span class="caption-contain">
                             @Model.Sliders.LastOrDefault().ShortDesc
                         </span>
-                        <a class="shop btn-hover">
+                        <a class="shop btn-hover" asp-controller="Shop" asp-action="Index">
                             SHOP NOW
                             <i class="fa-solid fa-arrow-right-long"></i>
                         </a>

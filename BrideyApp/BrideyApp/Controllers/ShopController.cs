@@ -64,7 +64,7 @@ namespace BrideyApp.Controllers
             _wishlistService= wishlistService;
         }
 
-        public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1=null, int? value2 = null)
+        public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1 =null, int? value2 = null)
         {
             List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, cateId, compositionId,sizeId,brandId,colorId,value1,value2);
             List<ProductVM> mappedDatas = GetMappedDatas(paginateProducts);
@@ -73,6 +73,10 @@ namespace BrideyApp.Controllers
             ViewBag.sizeId = sizeId;
             ViewBag.colorId = colorId;
             ViewBag.brandId = brandId;
+            ViewBag.value1 = value1;
+            ViewBag.value2 = value2;
+
+
             int pageCount = 0;
             if (cateId != null)
             {
@@ -181,7 +185,7 @@ namespace BrideyApp.Controllers
             }
             if (value1 != null && value2 != null)
             {
-                prodCount = await _productService.GetProductsCountBySearchAsync(value1, value2); ;
+                prodCount = await _productService.GetProductsCountByRangeAsync(value1, value2);
             }
 
             if (catId == null && compositionId == null && colorId == null && brandId == null && sizeId == null && value1 == null && value2 == null)

@@ -93,16 +93,20 @@ $(document).ready(function () {
     getProductsById(".size", "/Shop/GetProductsBySize")
     getProductsById(".brand", "/Shop/GetProductsByBrand")
 
-    ////FILTER
+    //FILTER
     $(document).on("submit", "#filterForm", function (e) {
         
         let value1 = $(".min-price")
         let value2 = $(".max-price")
         let data = { value1: value1, value2: value2 }
+        let parent = $(".productss-area")
         $.ajax({
             url: "/Shop/Index",
             type: "Get",
             data: data,
+            success: function (res) {
+                $(parent).html(res);
+            }
          
         })
     })

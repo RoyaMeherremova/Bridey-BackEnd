@@ -21,7 +21,7 @@ namespace BrideyApp.Services.Interfaces
         Task<int> GetProductsCountByCategoryAsync(int? catId);
         Task<int> GetProductsCountByCompositionAsync(int? catId);
         Task<int> GetProductsCountByColorAsync(int? colorId);
-        Task<int> GetProductsCountBySearchAsync(int? value1,int? value2);
+        Task<int> GetProductsCountByRangeAsync(int? value1,int? value2);
 
         Task<int> GetProductsCountByBrandAsync(int? tagid);
         Task<int> GetProductsCountBySizeAsync(int? tagid);

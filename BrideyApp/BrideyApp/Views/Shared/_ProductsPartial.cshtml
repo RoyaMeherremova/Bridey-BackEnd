@@ -65,18 +65,18 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item  @(Model.HasPrevious? " " :"d-none")">
-            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
+            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
         </li>
 
         @for (int i = 1; i <= Model.TotalPage; i++)
         {
 
             <li class="page-item active @(Model.CurrentPage == i ? "disabled" : "")">
-                <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@i"><button class="btn">@i</button></a>
+                <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@i"><button class="btn">@i</button></a>
             </li>
         }
         <li class="page-item @(Model.HasNext? " " :"d-none")">
-            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
+            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
         </li>
     </ul>
 </nav>

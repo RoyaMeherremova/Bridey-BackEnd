@@ -278,7 +278,7 @@ namespace BrideyApp.Controllers
 
             Cart dbCart = await _cartService.GetByUserIdAsync(userId);
             Wishlist dbWishlist = await _wishlistService.GetByUserIdAsync(userId);
-            if (carts.Count != 0)
+            if (carts.Count != null)
             {
 
                 if (dbCart == null)
@@ -326,7 +326,7 @@ namespace BrideyApp.Controllers
             }
 
 
-            if (wishlists.Count != 0)
+            if (wishlists.Count != null)
             {
                
                 if (dbWishlist == null)
