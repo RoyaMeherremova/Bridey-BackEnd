@@ -69,7 +69,7 @@ namespace BrideyApp.Services
         public async Task<int> GetCountAsync() => await _context.Products.CountAsync();
         public async Task<List<Product>> GetFeaturedProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.Rate).ToListAsync();
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
-        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId,int? value1,int? value2)
+        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId, int? value1, int? value2)
         {
             List<Product> products = products = await _context.Products
             .Include(p => p.Images)
@@ -253,6 +253,12 @@ namespace BrideyApp.Services
             }
             return model;
         }
+        public async Task<int> GetProductsCountByRangeAsync(int? value1, int? value2)
+        {
+            return await _context.Products.Where(p => p.Price >= value1 && p.Price <= value2)
+                                 .Include(p => p.Images)
+                                 .CountAsync();
+        }
         public async Task<List<ProductVM>> GetProductsByBrandIdAsync(int? id, int page = 1, int take = 9)
         {
             List<ProductVM> model = new();
@@ -309,12 +315,6 @@ namespace BrideyApp.Services
                  .Where(pc => pc.Composition.Id == id)
                  .Select(p => p.Product)
                  .CountAsync();
-        }
-        public async Task<int> GetProductsCountByRangeAsync(int? value1,int? value2)
-        {
-            return await _context.Products.Where(p => p.Price >= value1 && p.Price <= value2)
-                                 .Include(p => p.Images)
-                                 .CountAsync();
         }
         public async Task<int> GetProductsCountByBrandAsync(int? id)
         {

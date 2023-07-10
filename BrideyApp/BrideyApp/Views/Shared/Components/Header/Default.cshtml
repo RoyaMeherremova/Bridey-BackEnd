@@ -47,7 +47,7 @@
                                     </form>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="my-account.html">@User.Identity.Name</a>
+                                    <a class="dropdown-item" href="#">@User.Identity.Name</a>
                                 </li>
                             </ul>
                         }
@@ -73,8 +73,9 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="searchbox-area">
-                                        <input class="input-search" type="text" placeholder="Search...">
+                                    <form class="searchbox-area" asp-controller="Shop" asp-action="Search" asp-route-searchText="{{$('#valueId').val()}}">
+                                        <input id="valueId" class="input-search" type="text" placeholder="Search...">
+                                        <button type="submit">Search</button>
                                     </form>
                                 </div>
                             </div>

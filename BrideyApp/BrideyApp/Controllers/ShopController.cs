@@ -66,7 +66,7 @@ namespace BrideyApp.Controllers
 
         public async Task<IActionResult> Index(int page = 1, int take = 9, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1 =null, int? value2 = null)
         {
-            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, cateId, compositionId,sizeId,brandId,colorId,value1,value2);
+            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, cateId, compositionId,sizeId,colorId,brandId,value1,value2);
             List<ProductVM> mappedDatas = GetMappedDatas(paginateProducts);
             ViewBag.cateId = cateId;
             ViewBag.compositionId = compositionId;
@@ -354,36 +354,36 @@ namespace BrideyApp.Controllers
             return RedirectToAction(nameof(ProductDetail), new { id });
         }
 
-        public async Task<IActionResult> Filter(string value)
-        {
-            if (value is null) return BadRequest();
-            var products = await _productService.GetAll();
-            switch (value)
-            {
-                case "0":
-                    products = products;
-                    break;
-                case "1":
-                    products = products.OrderByDescending(p => p.SaleCount);
-                    break;
-                case "2":
-                    products = products.OrderByDescending(p => p.Rate);
-                    break;
-                case "3":
-                    products = products.OrderByDescending(p => p.CreatedDate);
-                    break;
-                case "4":
-                    products = products.OrderByDescending(p => p.Price);
-                    break;
-                case "5":
-                    products = products.OrderBy(p => p.Price);
-                    break;
-                default:
-                    break;
-            }
-            return PartialView("_ProductListPartial", products);
+        //public async Task<IActionResult> Filter(string value)
+        //{
+        //    if (value is null) return BadRequest();
+        //    var products = await _productService.GetAll();
+        //    switch (value)
+        //    {
+        //        case "0":
+        //            products = products;
+        //            break;
+        //        case "1":
+        //            products = products.OrderByDescending(p => p.SaleCount);
+        //            break;
+        //        case "2":
+        //            products = products.OrderByDescending(p => p.Rate);
+        //            break;
+        //        case "3":
+        //            products = products.OrderByDescending(p => p.CreatedDate);
+        //            break;
+        //        case "4":
+        //            products = products.OrderByDescending(p => p.Price);
+        //            break;
+        //        case "5":
+        //            products = products.OrderBy(p => p.Price);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    return PartialView("_ProductsPartial", products);
 
-        }
+        //}
   
 
 
@@ -427,15 +427,24 @@ namespace BrideyApp.Controllers
             return Ok(wishlistCount);
         }
 
-        public async Task<IActionResult> Search(string searchText)
+        public async Task<IActionResult> Search(string searchText, int page = 1, int take = 9)
         {
             if (string.IsNullOrEmpty(searchText))
             {
                 return Ok();
             }
-            var products = await _productService.GetAllBySearchText(searchText);
+            //var products = await _productService.GetAllBySearchText(searchText);
+            var products = await _context.Products
+               .Include(p => p.Images)
+               .OrderByDescending(p => p.Id)
+               .Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
+               .ToListAsync();
+            var productCount = products.Count();
+            var pageCount = (int)Math.Ceiling((decimal)productCount / take);
+            List<ProductVM> mappedDatas = GetMappedDatas(products);
+            Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
+            return PartialView("_ProductsPartial", paginatedDatas);
 
-            return View(products);
         }
 
 

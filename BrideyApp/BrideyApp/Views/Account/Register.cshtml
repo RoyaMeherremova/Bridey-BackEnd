@@ -6,7 +6,7 @@
 }
 @{
     ViewData["Title"] = "Register";
-    string[] res = (string[])TempData["errors"];
+    //string[] res = (string[])TempData["errors"];
 }
 <main>
     <section id="wrapper-register" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]'">
@@ -28,13 +28,13 @@
     <section id="register">
         <div class="container">
             <form class="form-register" method="post" asp-action="Register">
-                @if (res != null)
+              @*  @if (res != null)
                 {
                     foreach (var item in res)
                     {
                         <div class="text-danger">@item</div>
                     }
-                }
+                }*@
                 <div class="form-register-wrap">
                     <h2 class="register-form-title">Register</h2>
                     <label for="username">FirstName<span class="required">*</span></label>
@@ -72,5 +72,6 @@
 @section Scripts {
    @* <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="~/assets/js/register.js"></script>*@
+      <partial name="_ValidationScriptsPartial" />
 }
 

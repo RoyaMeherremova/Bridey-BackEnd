@@ -215,15 +215,27 @@ $(document).ready(function () {
         })
         return false;
     })
+    //search
+    //$(document).on("submit", ".searchbox-area", function (e) {
+       
+    //    e.preventDefault();
+    //    let value = $(".input-search").val();
+    //    let data = { searchText: value };
+    //    let parent = $(".productss-area");
+   
+    //    $.ajax({
+    //        url: "/Shop/Search",
+    //        type: "Get",
+    //        data: data,
+    //        success: function (res) {
+    //            $(parent).html(res);
+    //            $(".input-search").val = "";
+    //        }
 
-    $(document).on("submit", ".searchbox-area", function () {
-        let value = $(".input-search").val();
-        let url = `/Shop/Search?searchText=${value}`;
-        window.location.assign(url);
-        return false;
-    })
+    //    })
+    //})
 
-
+    //change basic photo in ProductDetail
     $(document).on("click", "#product-detail .prod-thumb-left .detail-carousel .item", function () {
         let photo = $(this).children().eq(0).attr("src")
         $(".basicImg").attr("src", photo)
