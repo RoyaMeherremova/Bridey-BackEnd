@@ -8,6 +8,7 @@
 }
 <!-- Start Main -->
 <main>
+
     <div class="shop-side-bar">
         <div class="products-variants-responsive">
             <div class="close"> <span>Close</span></div>
@@ -158,11 +159,12 @@
                         <i class="fa-solid fa-sliders"></i><span>Filter</span>
                     </div>
                     <select class="form-select" aria-label="Default select example">
-                        <option selected="">Sort By Latest</option>
-                        <option value="1">Sort By Popularity</option>
-                        <option value="2">Sort By Avarage Rating</option>
-                        <option value="3">Sort By Price:Low To High</option>
-                        <option value="4">Sort By Price:High to Low</option>
+                        <option value="1" selected>Sort By Default</option>
+                        <option value="2">Sort By Latest</option>
+                        <option value="3">Sort By Popularity</option>
+                        <option value="4">Sort By Avarage Rating</option>
+                        <option value="5">Sort By Price:Low To High</option>
+                        <option value="6">Sort By Price:High to Low</option>
                     </select>
                 </div>
 
@@ -177,7 +179,7 @@
                     <div class="sort-result">
                         <p>Showing <span>@Model.PaginateDatas.CurrentPage–@Model.PaginateDatas.TotalPage</span> of <span>@Model.PaginateDatas.Datas.Count()</span>   results</p>
                     </div>
-                    <select id="sort" name="value" class="form-select" aria-label="Default select example">
+                    <select id="sort" class="form-select" aria-label="Default select example">
                         <option value="1" selected>Sort By Default</option>
                         <option value="2">Sort By Latest</option>
                         <option value="3">Sort By Popularity</option>

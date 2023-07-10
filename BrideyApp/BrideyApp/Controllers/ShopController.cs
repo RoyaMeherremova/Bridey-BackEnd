@@ -65,9 +65,9 @@ namespace BrideyApp.Controllers
             _wishlistService= wishlistService;
         }
 
-        public async Task<IActionResult> Index(int page = 1, int take = 9, string searchText = null, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1 =null, int? value2 = null)
+        public async Task<IActionResult> Index(int page = 1, int take = 9, string sortValue = null,string searchText = null, int? cateId =null, int? compositionId = null, int? sizeId = null, int? brandId = null, int? colorId = null, int? value1 =null, int? value2 = null)
         {
-            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, searchText, cateId, compositionId,sizeId,colorId,brandId,value1,value2);
+            List<Product> paginateProducts = await _productService.GetPaginatedDatas(page, take, sortValue, searchText, cateId, compositionId,sizeId,colorId,brandId,value1,value2);
             List<ProductVM> mappedDatas = GetMappedDatas(paginateProducts);
             ViewBag.cateId = cateId;
             ViewBag.compositionId = compositionId;
@@ -77,43 +77,50 @@ namespace BrideyApp.Controllers
             ViewBag.value1 = value1;
             ViewBag.value2 = value2;
             ViewBag.searchText = searchText;
+            ViewBag.sortValue = sortValue;
+
 
 
 
             int pageCount = 0;
             if (cateId != null)
             {
-                pageCount = await GetPageCountAsync(take,null, cateId, null, null,null,null,null,null);
+                pageCount = await GetPageCountAsync(take,null,null, cateId, null, null,null,null,null,null);
             }
             if (compositionId != null)
             {
-                pageCount = await GetPageCountAsync(take, null,null,compositionId, null, null,null, null, null);
+                pageCount = await GetPageCountAsync(take,null, null,null,compositionId, null, null,null, null, null);
             }
             if (sizeId != null)
             {
-                pageCount = await GetPageCountAsync(take, null,null,null, null, null, sizeId, null, null);
+                pageCount = await GetPageCountAsync(take,null, null,null,null, null, null, sizeId, null, null);
             }
             if (brandId != null)
             {
-                pageCount = await GetPageCountAsync(take,null, null, null, null, brandId, null, null, null);
+                pageCount = await GetPageCountAsync(take,null,null, null, null, null, brandId, null, null, null);
             }
             if (colorId != null)
             {
-                pageCount = await GetPageCountAsync(take,null, null, null, colorId, null, null, null, null);
+                pageCount = await GetPageCountAsync(take,null,null, null, null, colorId, null, null, null, null);
             }
             if (value1 != null && value2 != null)
             {
-                pageCount = await GetPageCountAsync(take,null, null, null, null, null, null, value1, value2);
+                pageCount = await GetPageCountAsync(take,null,null, null, null, null, null, null, value1, value2);
             }
             if (searchText !=null)
             {
-                pageCount = await GetPageCountAsync(take, searchText, null, null, null, null, null, null, null);
+                pageCount = await GetPageCountAsync(take,null, searchText, null, null, null, null, null, null, null);
+
+            }
+            if (sortValue != null)
+            {
+                pageCount = await GetPageCountAsync(take, sortValue,null, null, null, null, null, null, null, null);
 
             }
 
-            if (searchText == null &&colorId == null && compositionId == null &&  cateId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
+            if (sortValue == null && searchText == null &&colorId == null && compositionId == null &&  cateId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
             {
-                pageCount = await GetPageCountAsync(take, null,null, null, null, null, null, null, null);
+                pageCount = await GetPageCountAsync(take,null, null,null, null, null, null, null, null, null);
             }
 
 
@@ -163,9 +170,13 @@ namespace BrideyApp.Controllers
             }
             return mappedDatas;
         }
-        private async Task<int> GetPageCountAsync(int take,string searchText, int? catId, int? compositionId, int? colorId, int? brandId, int? sizeId,int? value1,int? value2)
+        private async Task<int> GetPageCountAsync(int take, string sortValue,string searchText, int? catId, int? compositionId, int? colorId, int? brandId, int? sizeId,int? value1,int? value2)
         {
             int prodCount = 0;
+            if (sortValue is not null)
+            {
+                prodCount = await _productService.GetProductsCountBySortTextAsync(sortValue);
+            }
             if (searchText is not null)
             {
                 prodCount = await _productService.GetProductsCountBySearchTextAsync(searchText);
@@ -200,7 +211,7 @@ namespace BrideyApp.Controllers
             }
 
 
-            if (searchText == null &&catId == null && compositionId == null && colorId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
+            if (sortValue == null && searchText == null &&catId == null && compositionId == null && colorId == null && brandId == null && sizeId == null && value1 == null && value2 == null)
             {
                 prodCount = await _productService.GetCountAsync();
             }
@@ -211,8 +222,8 @@ namespace BrideyApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProducts(int page =1,int take=9)
         {
-            int pageCount = await GetPageCountAsync(take, null,null, null, null, null, null, null, null);
-            var products =  await _productService.GetPaginatedDatas(page, take, null,null, null, null, null, null,null,null);
+            int pageCount = await GetPageCountAsync(take,null, null,null, null, null, null, null, null, null);
+            var products =  await _productService.GetPaginatedDatas(page, take,null, null,null, null, null, null, null,null,null);
             List<ProductVM> mappedDatas = GetMappedDatas(products);
             Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
             return PartialView("_ProductsPartial", paginatedDatas);
@@ -241,7 +252,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByCategoryIdAsync(id,page,take);  
 
-            int pageCount = await GetPageCountAsync(take,null,(int)id, null, null, null, null,null,null);
+            int pageCount = await GetPageCountAsync(take,null,null,(int)id, null, null, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -256,7 +267,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByColorIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take,null, null, null, (int)id, null, null,null,null);
+            int pageCount = await GetPageCountAsync(take,null,null, null, null, (int)id, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -270,7 +281,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsBySizeIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take,null, null, null, null, null, (int)id, null, null);
+            int pageCount = await GetPageCountAsync(take,null,null, null, null, null, null, (int)id, null, null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -284,7 +295,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByCompositionIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take,null, null, (int)id, null, null, null,null,null);
+            int pageCount = await GetPageCountAsync(take,null,null, null, (int)id, null, null, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -299,7 +310,7 @@ namespace BrideyApp.Controllers
 
             var products = await _productService.GetProductsByBrandIdAsync(id);
 
-            int pageCount = await GetPageCountAsync(take,null, null, null, null, (int)id, null,null,null);
+            int pageCount = await GetPageCountAsync(take,null,null, null, null, null, (int)id, null,null,null);
 
             Paginate<ProductVM> model = new(products, page, pageCount);
 
@@ -370,40 +381,43 @@ namespace BrideyApp.Controllers
             return RedirectToAction(nameof(ProductDetail), new { id });
         }
 
-        public async Task<IActionResult> Sort(string? value, int page = 1, int take = 9)
+        public async Task<IActionResult> Sort(string? sortValue, int page = 1, int take = 9)
         {
+            ViewBag.sortValue = sortValue;
+
             List<Product> products = new();
 
-            if (value == "1")
+            if (sortValue == "1")
             {
                 products = await _context.Products.Include(m=>m.Images).ToListAsync();
             };
-            if (value == "2")
+            if (sortValue == "2")
             {
                 products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.SaleCount).ToListAsync();
 
             };
-            if (value == "3")
+            if (sortValue == "3")
             {
                 products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Rate).ToListAsync();
 
             };
-            if (value == "4")
+            if (sortValue == "4")
             {
                 products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.CreatedDate).ToListAsync();
 
             };
-            if (value == "5")
+            if (sortValue == "5")
             {
                 products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Price).ToListAsync();
 
             };
-            if (value == "6")
+            if (sortValue == "6")
             {
                 products = await _context.Products.Include(m => m.Images).OrderBy(p => p.Price).ToListAsync();
 
             };
-            int pageCount = products.Count();
+            int productCount = products.Count();
+            var pageCount = (int)Math.Ceiling((decimal)productCount / take);
             List<ProductVM> mappedDatas = GetMappedDatas(products);
             Paginate<ProductVM> model = new(mappedDatas, page, pageCount);
 

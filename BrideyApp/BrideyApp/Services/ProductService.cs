@@ -69,7 +69,7 @@ namespace BrideyApp.Services
         public async Task<int> GetCountAsync() => await _context.Products.CountAsync();
         public async Task<List<Product>> GetFeaturedProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.Rate).ToListAsync();
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
-        public async Task<List<Product>> GetPaginatedDatas(int page, int take, string searchText,int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId, int? value1, int? value2)
+        public async Task<List<Product>> GetPaginatedDatas(int page, int take, string sortValue,string searchText,int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId, int? value1, int? value2)
         {
             List<Product> products = products = await _context.Products
             .Include(p => p.Images)
@@ -84,7 +84,40 @@ namespace BrideyApp.Services
             .Include(p => p.Brand)
             .Skip((page * take) - take)
             .Take(take)
-            .ToListAsync(); ;
+            .ToListAsync();
+            if (sortValue != null)
+            {
+                if (sortValue == "1")
+                {
+                    products = await _context.Products.Include(m => m.Images).Skip((page * take) - take).Take(take).ToListAsync();
+                };
+                if (sortValue == "2")
+                {
+                    products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.SaleCount).Skip((page * take) - take).Take(take).ToListAsync();
+
+                };
+                if (sortValue == "3")
+                {
+                    products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Rate).Skip((page * take) - take).Take(take).ToListAsync();
+
+                };
+                if (sortValue == "4")
+                {
+                    products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.CreatedDate).Skip((page * take) - take).Take(take).ToListAsync();
+
+                };
+                if (sortValue == "5")
+                {
+                    products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Price).Skip((page * take) - take).Take(take).ToListAsync();
+
+                };
+                if (sortValue == "6")
+                {
+                    products = await _context.Products.Include(m => m.Images).OrderBy(p => p.Price).Skip((page * take) - take).Take(take).ToListAsync();
+
+                };
+           
+            }
             if (searchText != null)
             {
                 products = await _context.Products
@@ -273,6 +306,42 @@ namespace BrideyApp.Services
             return await _context.Products.Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
                                  .Include(p => p.Images)
                                  .CountAsync();
+        }
+        public async Task<int> GetProductsCountBySortTextAsync(string sortValue)
+        {
+            int count = 0;
+            if (sortValue == "1")
+            {
+                return  await _context.Products.Include(m => m.Images).CountAsync(); 
+            };
+            if (sortValue == "2")
+            {
+                count = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.SaleCount).CountAsync();
+
+            };
+            if (sortValue == "3")
+            {
+                count = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Rate).CountAsync();
+
+            };
+            if (sortValue == "4")
+            {
+                count = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.CreatedDate).CountAsync();
+
+            };
+            if (sortValue == "5")
+            {
+                count = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Price).CountAsync();
+
+            };
+            if (sortValue == "6")
+            {
+                count = await _context.Products.Include(m => m.Images).OrderBy(p => p.Price).CountAsync();
+
+            };
+
+            return count;
+
         }
         public async Task<List<ProductVM>> GetProductsByBrandIdAsync(int? id, int page = 1, int take = 9)
         {

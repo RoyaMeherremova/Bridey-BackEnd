@@ -145,9 +145,9 @@ $(document).ready(function () {
     //SORT
     $(document).on("change", "#sort", function (e) {
         e.preventDefault();
-        debugger
         let sortValue = $(this).val();
-        let data = { value: sortValue };
+        console.log(sortValue)
+        let data = { sortValue: sortValue };
         let parent = $(".productss-area");
 
         $.ajax({
@@ -155,7 +155,6 @@ $(document).ready(function () {
             type: "Get",
             data: data,
             success: function (res) {
-                debugger
                 $(parent).html(res);
 
             }
