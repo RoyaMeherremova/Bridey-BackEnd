@@ -6,7 +6,6 @@
 }
 @{
     ViewData["Title"] = "Register";
-    //string[] res = (string[])TempData["errors"];
 }
 <main>
     <section id="wrapper-register" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]'">
@@ -27,14 +26,8 @@
     </section>
     <section id="register">
         <div class="container">
+            <div class="text-danger" style="display: flex;justify-content: center" asp-validation-summary="All"></div>
             <form class="form-register" method="post" asp-action="Register">
-              @*  @if (res != null)
-                {
-                    foreach (var item in res)
-                    {
-                        <div class="text-danger">@item</div>
-                    }
-                }*@
                 <div class="form-register-wrap">
                     <h2 class="register-form-title">Register</h2>
                     <label for="username">FirstName<span class="required">*</span></label>

@@ -8,6 +8,134 @@
 }
 <!-- Start Main -->
 <main>
+    <div class="shop-side-bar">
+        <div class="products-variants-responsive">
+            <div class="close"> <span>Close</span></div>
+            <div class="dresses-variants">
+                <h5>Categories</h5>
+                <ul>
+                    <li>
+                        <a class="all-product" style="text-decoration: none;color: inherit;">
+                            <div class="siluet">
+                                <img style="margin-left: 6px;"
+                                     src="~/assets/images/kruzhevnie.svg">
+                            </div>
+                            <span>All</span>
+                        </a>
+                    </li>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>
+                            <a data-id="@category.Id" class="category" style="text-decoration: none;color: inherit;">
+                                <div class="siluet">
+                                    <img style="margin-left: 6px;"
+                                     src="~/assets/images/@category.Image">
+                                </div>
+                                <span>@category.Name</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <form id="filterForm" method="get">
+                <div class="product-area">
+                    <div class="price-title">
+                        <h3>FILTER BY PRICE</h3>
+                    </div>
+                    <div class="price-filter">
+                        <div class="card">
+
+                            <div class="range-slider">
+                                <input name="value1" type="range" class="min-price" value="100" min="10" max="500"
+                                       step="10" style="accent-color: #d8d8d8;">
+                                <input name="value2" type="range" class="max-price" value="250" min="10" max="500"
+                                       step="10" style="accent-color: #d8d8d8;">
+                            </div>
+                            <div class="price-content">
+
+                                <div style="color: gray;">
+                                    <p>Price:</p>
+                                </div>
+                                <div>
+                                    <p id="min-value">50</p>
+                                </div>
+
+                                <div>
+                                    <p id="max-value">500</p>
+                                </div>
+                                <div class="filter-button">
+                                    <button type="submit">FILTER</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="widget-title-holder">
+                <h5>Colors</h5>
+                <ul>
+                    @foreach (var color in Model.Colors)
+                    {
+                        <li>
+                            <a style="text-decoration: none;color: inherit;" data-id="@color.Id" class="color">@color.Name <span>(@color.ProductColors?.Count())</span></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="widget-title-holder">
+                <h5>Sizes</h5>
+                <ul>
+                    @foreach (var size in Model.Sizes)
+                    {
+                        <li>
+                            <a style="text-decoration: none;color: inherit;" data-id="@size.Id" class="size">@size.Name <span>(@size.ProductSizes?.Count())</span></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div class="compositions">
+                <h5>Composition</h5>
+                <div class="widget-title-holder">
+                    <ul>
+                        <li>
+                            <a class="all-product" style="text-decoration: none;color: inherit;">
+                                All
+                                <span>(@Model.CountProducts)</span>
+                            </a>
+                        </li>
+                        @foreach (var composition in Model.Compositions)
+                        {
+                            <li>
+                                <a style="text-decoration: none;color: inherit;" data-id="@composition.Id" class="composition">@composition.Name <span>(@composition.ProductCompositions?.Count())</span></a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="widget-title-holder">
+                <h5>Brands</h5>
+                <ul>
+                    <li>
+                        <a class="all-product" style="text-decoration: none;color: inherit;">
+                            All
+                            <span>(@Model.CountProducts)</span>
+                        </a>
+                    </li>
+                    @foreach (var brand in Model.Brands)
+                    {
+                        <li>
+                            <a style="text-decoration: none;color: inherit;" data-id="@brand.Id" class="brand">@brand.Name <span>(@brand.Products?.Count())</span></a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
     <section id="wrapper-shop" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]')">
         <div class="container page_text">
             <h1>Shop</h1>
@@ -49,7 +177,7 @@
                     <div class="sort-result">
                         <p>Showing <span>@Model.PaginateDatas.CurrentPage–@Model.PaginateDatas.TotalPage</span> of <span>@Model.PaginateDatas.Datas.Count()</span>   results</p>
                     </div>
-                    <select id="sort"name="value" class="form-select" aria-label="Default select example">
+                    <select id="sort" name="value" class="form-select" aria-label="Default select example">
                         <option value="0" selected>Sort By Default</option>
                         <option value="1">Sort By Latest</option>
                         <option value="2">Sort By Popularity</option>
@@ -93,7 +221,7 @@
                                 }
                             </ul>
                         </div>
-                        <form id="filterForm"  method="get">
+                        <form id="filterForm" method="get">
                             <div class="product-area">
                                 <div class="price-title">
                                     <h3>FILTER BY PRICE</h3>
@@ -126,7 +254,7 @@
                                 </div>
                             </div>
                         </form>
-                     
+
                         <div class="widget-title-holder">
                             <h5>Colors</h5>
                             <ul>
@@ -189,7 +317,7 @@
                                 <li>
                                     <a class="all-product">
                                         All
-                                    <span>(@Model.CountProducts)</span>
+                                        <span>(@Model.CountProducts)</span>
                                     </a>
                                 </li>
                                 @foreach (var brand in Model.Brands)
@@ -207,7 +335,7 @@
                 </div>
                 <div class="col-lg-9 col-sm-12">
                     <div class="row productss-area">
-                     <partial name="_ProductsPartial" model="Model.PaginateDatas" />
+                        <partial name="_ProductsPartial" model="Model.PaginateDatas" />
                     </div>
                 </div>
             </div>

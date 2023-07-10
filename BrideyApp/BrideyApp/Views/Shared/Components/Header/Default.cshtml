@@ -75,7 +75,7 @@
                                 <div class="modal-body">
                                     <form class="searchbox-area" asp-controller="Shop" asp-action="Index">
                                         <input name="searchText" class="input-search" type="text" placeholder="Search...">
-                                        <button type="submit">Search</button>
+                                        <button type="submit" style="display:none;">Search</button>
                                     </form>
                                 </div>
                             </div>
@@ -103,9 +103,9 @@
                 </div>
                 <div class="col-md-10 col-10 d-lg-none">
                     <div class="right-area">
-                        <div class="search responsive-icon">
-                            <i class="fa-solid fa-magnifying-glass icon"
-                               data-bs-toggle="modal" data-bs-target="#exampleModal-responsive"></i>
+                        <div class="search">
+                            <i class="fa-solid fa-magnifying-glass icon" data-bs-toggle="modal"
+                               data-bs-target="#exampleModal2"></i>
                         </div>
                         <div class="responsive-icon">
                             <i class="fa-regular fa-user icon user-icon-responsive"></i>
@@ -116,7 +116,7 @@
                                 <i class="fa-regular fa-heart heart-icon"></i>
                             </a>
                         </div>
-                        <span class="count-basket">@Model.BasketCount</</span>
+                        <span class="count-basket">@Model.BasketCount</span>
                         <div class="basket responsive-icon">
                             <a asp-controller="Cart" asp-action="Index">
                                 <i class="fa-solid fa-basket-shopping"></i>
@@ -151,16 +151,20 @@
                         </ul>
                     </div>
                     <!-- Modal -->
-                    <div class="modal responsive-modal fade" id="exampleModal-responsive" tabindex="-1"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" style="width: 89%;left: 17px;">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <form class="searchbox-area">
-                                        <input class="input-search" type="text" placeholder="Search...">
-                                    </form>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1><img src="~/assets/images/search-icon.png">
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="searchbox-area" asp-controller="Shop" asp-action="Index">
+                                        <input name="searchText" class="input-search" type="text" placeholder="Search...">
+                                        <button type="submit" style="display:none;">Search</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -182,15 +186,38 @@
                     <img class="decor-img d-none" src="~/assets/images/decor.png">
                 </ul>
                 <div class="right-area d-none">
-                    <div class="search"><i class="fa-solid fa-magnifying-glass icon"></i></div>
+                    <div class="search">
+                        <i class="fa-solid fa-magnifying-glass icon" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal3"></i>
+                    </div>
                     <span class="count-wishlist">@Model.WishlistCount</span>
                     <div><a asp-controller="Wishlist" asp-action="Index"><i class="fa-regular fa-heart icon"></i></a></div>
                     <span class="count-basket">@Model.BasketCount</span>
                     <div class="basket">
                         <a asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-basket-shopping"></i></a>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" style="margin-top:90px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1><img src="~/assets/images/search-icon.png">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form class="searchbox-area" asp-controller="Shop" asp-action="Index">
+                                        <input name="searchText" class="input-search" type="text" placeholder="Search...">
+                                        <button type="submit" style="display:none;">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 </header>

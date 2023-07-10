@@ -1419,7 +1419,7 @@ img.rot {
         display: inline-block;
         position: absolute;
         top: -10px;
-        left: 148px;
+        left: 121px;
     }
 
     #responsive-nav-area .hamburger {
@@ -1450,7 +1450,7 @@ img.rot {
 
         #responsive-nav-area .right-area .search {
             position: relative;
-            left: 19px;
+            left: 8px;
         }
 
         #responsive-nav-area .right-area .responsive-icon {
@@ -6641,6 +6641,13 @@ hr {
             #wrapper-forgotPassword .page_text ul {
                 margin-top: 48px;
             }
+    #login .form-login-wrap .login-bottom .register-half-bg a {
+        font-size: 12px !important;
+    }
+
+    #login .form-login-wrap .login-bottom .register-half-bg h4 {
+        font-size: 12px !important;
+    }
 
     #ressetPassword {
         font-size: 14px;
@@ -6887,10 +6894,12 @@ hr {
             margin-left: 0% !important;
             top: 1px !important;
         }
+ 
 
-        #subscrive-header .subscrive-title {
-            padding-top: 2%;
-        }
+
+    #subscrive-header .subscrive-title {
+        padding-top: 2%;
+    }
 
             #subscrive-header .subscrive-title h3 {
                 font-size: 53px;
@@ -6938,6 +6947,13 @@ hr {
         position: relative;
         bottom: 22px;
         right: 17px;
+    }
+    #login .form-login-wrap .login-bottom .register-half-bg a {
+        font-size: 12px !important;
+    }
+
+    #login .form-login-wrap .login-bottom .register-half-bg h4 {
+        font-size: 12px !important;
     }
 
         #footer .logo img {

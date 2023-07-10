@@ -436,25 +436,7 @@ namespace BrideyApp.Controllers
             return Ok(wishlistCount);
         }
 
-        //public async Task<IActionResult> Search(string searchText, int page = 1, int take = 9)
-        //{
-        //    if (string.IsNullOrEmpty(searchText))
-        //    {
-        //        return Ok();
-        //    }
-        //    //var products = await _productService.GetAllBySearchText(searchText);
-        //    var products = await _context.Products
-        //       .Include(p => p.Images)
-        //       .OrderByDescending(p => p.Id)
-        //       .Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
-        //       .ToListAsync();
-        //    var productCount = products.Count();
-        //    var pageCount = (int)Math.Ceiling((decimal)productCount / take);
-        //    List<ProductVM> mappedDatas = GetMappedDatas(products);
-        //    Paginate<ProductVM> paginatedDatas = new(mappedDatas, page, pageCount);
-        //    //return PartialView("_ProductsPartial", paginatedDatas);
-        //    return RedirectToAction("Index", "Shop", new { search = paginatedDatas });
-        //}
+    
 
 
     }
