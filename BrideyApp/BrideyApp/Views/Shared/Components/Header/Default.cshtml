@@ -73,8 +73,8 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="searchbox-area" asp-controller="Shop" asp-action="Search" asp-route-searchText="{{$('#valueId').val()}}">
-                                        <input id="valueId" class="input-search" type="text" placeholder="Search...">
+                                    <form class="searchbox-area" asp-controller="Shop" asp-action="Index">
+                                        <input name="searchText" class="input-search" type="text" placeholder="Search...">
                                         <button type="submit">Search</button>
                                     </form>
                                 </div>

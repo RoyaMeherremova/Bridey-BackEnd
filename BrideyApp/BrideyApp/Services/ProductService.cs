@@ -69,7 +69,7 @@ namespace BrideyApp.Services
         public async Task<int> GetCountAsync() => await _context.Products.CountAsync();
         public async Task<List<Product>> GetFeaturedProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.Rate).ToListAsync();
         public async Task<List<Product>> GetLatestProducts() => await _context.Products.Include(m => m.Images).OrderByDescending(m => m.CreatedDate).ToListAsync();
-        public async Task<List<Product>> GetPaginatedDatas(int page, int take, int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId, int? value1, int? value2)
+        public async Task<List<Product>> GetPaginatedDatas(int page, int take, string searchText,int? cateId, int? compositionId, int? sizeId, int? colorId, int? brandId, int? value1, int? value2)
         {
             List<Product> products = products = await _context.Products
             .Include(p => p.Images)
@@ -85,7 +85,16 @@ namespace BrideyApp.Services
             .Skip((page * take) - take)
             .Take(take)
             .ToListAsync(); ;
-
+            if (searchText != null)
+            {
+                products = await _context.Products
+                .Include(p => p.Images)
+                .OrderByDescending(p => p.Id)
+                .Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
+                .Skip((page * take) - take)
+                .Take(take)
+                .ToListAsync();
+            }
             if (cateId != null)
             {
                 products = await _context.ProductCategories
@@ -256,6 +265,12 @@ namespace BrideyApp.Services
         public async Task<int> GetProductsCountByRangeAsync(int? value1, int? value2)
         {
             return await _context.Products.Where(p => p.Price >= value1 && p.Price <= value2)
+                                 .Include(p => p.Images)
+                                 .CountAsync();
+        }
+        public async Task<int> GetProductsCountBySearchTextAsync(string searchText)
+        {
+            return await _context.Products.Where(p => p.Name.ToLower().Contains(searchText.ToLower()))
                                  .Include(p => p.Images)
                                  .CountAsync();
         }
