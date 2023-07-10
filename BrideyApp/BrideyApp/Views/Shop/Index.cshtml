@@ -37,7 +37,7 @@
                     }
                 </ul>
             </div>
-            <form id="filterForm" method="get">
+            <form id="filterForm-responsive" method="get">
                 <div class="product-area">
                     <div class="price-title">
                         <h3>FILTER BY PRICE</h3>
@@ -46,9 +46,9 @@
                         <div class="card">
 
                             <div class="range-slider">
-                                <input name="value1" type="range" class="min-price" value="100" min="10" max="500"
+                                <input name="value1" type="range" class="min-price-responsive" value="100" min="10" max="500"
                                        step="10" style="accent-color: #d8d8d8;">
-                                <input name="value2" type="range" class="max-price" value="250" min="10" max="500"
+                                <input name="value2" type="range" class="max-price-responsive" value="250" min="10" max="500"
                                        step="10" style="accent-color: #d8d8d8;">
                             </div>
                             <div class="price-content">
@@ -178,12 +178,12 @@
                         <p>Showing <span>@Model.PaginateDatas.CurrentPage–@Model.PaginateDatas.TotalPage</span> of <span>@Model.PaginateDatas.Datas.Count()</span>   results</p>
                     </div>
                     <select id="sort" name="value" class="form-select" aria-label="Default select example">
-                        <option value="0" selected>Sort By Default</option>
-                        <option value="1">Sort By Latest</option>
-                        <option value="2">Sort By Popularity</option>
-                        <option value="3">Sort By Avarage Rating</option>
-                        <option value="4">Sort By Price:Low To High</option>
-                        <option value="5">Sort By Price:High to Low</option>
+                        <option value="1" selected>Sort By Default</option>
+                        <option value="2">Sort By Latest</option>
+                        <option value="3">Sort By Popularity</option>
+                        <option value="4">Sort By Avarage Rating</option>
+                        <option value="5">Sort By Price:Low To High</option>
+                        <option value="6">Sort By Price:High to Low</option>
                     </select>
                 </div>
 

@@ -118,6 +118,51 @@ $(document).ready(function () {
         })
     })
 
+    //FILTER-RESPONSIVE
+    $(document).on("submit", "#filterForm-responsive", function (e) {
+        e.preventDefault();
+        let value1 = $(".min-price-responsive").val();
+        let value2 = $(".max-price-responsive").val();
+        let data = { value1: value1, value2: value2 }
+        let parent = $(".productss-area");
+
+        $.ajax({
+            url: "/Shop/GetRangeProducts",
+            type: "Get",
+            data: data,
+            success: function (res) {
+
+                $(parent).html(res);
+
+                if (value1 == "10" && value2 == "500") {
+                    $(".shop-navigation").addClass("d-none")
+                }
+
+            }
+
+        })
+    })
+    //SORT
+    $(document).on("change", "#sort", function (e) {
+        e.preventDefault();
+        debugger
+        let sortValue = $(this).val();
+        let data = { value: sortValue };
+        let parent = $(".productss-area");
+
+        $.ajax({
+            url: "/Shop/Sort",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                debugger
+                $(parent).html(res);
+
+            }
+
+        })
+    })
+
 
 
 });

@@ -1,85 +1,95 @@
 ﻿@model Paginate<ProductVM>
-
-@foreach (var product in Model.Datas)
+@if (Model.Datas.Count > 0)
 {
+    @foreach (var product in Model.Datas)
+    {
 
-    <div class="col-lg-4 col-sm-12 col-md-6">
-        <div class="cart" >
-            <div class="new">New</div>
-            <div class="product-img">
-                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">
-                    <img src="~/assets/images/@product.Images?.Where(p=>p.IsMain).FirstOrDefault()?.Image" class="primary-img"
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="cart">
+                <div class="new">New</div>
+                <div class="product-img">
+                    <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">
+                        <img src="~/assets/images/@product.Images?.Where(p=>p.IsMain).FirstOrDefault()?.Image" class="primary-img"
                      alt="Card image cap">
-                    <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
+                        <video class="secondary-img" playsineline="" loop="" muted="" autoplay=""
                        poster="https://cdn-2.jjshouse.com/upimg/s400/32/60/a92dd617a0e23ab4a9850c41a4113260.jpg"
                        src="@product.Video"
                        type="video/mp4"></video>
-                </a>
+                    </a>
 
-            </div>
-            <div class="product-name">
-                <div class="rating-box d-flex" style="justify-content:center">
-                    <ul class="d-flex" style="list-style:none;padding: 0px;margin: 7px 0px;">
-                           @for (int i = 0; i < product.Rate; i++)
-                    {
-                    <li><i class="fa fa-star" style="color: #ffe24d;"></i></li>
-                    }
-                    @for (int i = 0; i < 5 - product.Rate; i++)
-                    {
-                    <li><i class="fa fa-star" style="color:darkgrey"></i></li>
-                    }
+                </div>
+                <div class="product-name">
+                    <div class="rating-box d-flex" style="justify-content:center">
+                        <ul class="d-flex" style="list-style:none;padding: 0px;margin: 7px 0px;">
+                            @for (int i = 0; i < product.Rate; i++)
+                            {
+                                <li><i class="fa fa-star" style="color: #ffe24d;"></i></li>
+                            }
+                            @for (int i = 0; i < 5 - product.Rate; i++)
+                            {
+                                <li><i class="fa fa-star" style="color:darkgrey"></i></li>
+                            }
+                        </ul>
+                    </div>
+                    <span>@product.Name</span>
+                </div>
+                <div class="product-price">
+                    <p class="price" style="margin:0px;">$<span class="price">@product.Price</span></p>
+                </div>
+
+                <div class="functional-button">
+                    <ul>
+                        <li><a><i class="fa-solid fa-eye"></i></a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="add-to-wishlist-icon" data-id="@product.Id"><i class="fa-regular fa-heart"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-heart"></i></a></li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="add-to-cart-icon" data-id="@product.Id"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-basket-shopping"></i></a></li>
+                        }
                     </ul>
                 </div>
-                <span>@product.Name</span>
-            </div>
-            <div class="product-price">
-                <p class="price" style="margin:0px;">$<span class="price">@product.Price</span></p>
             </div>
 
-            <div class="functional-button">
-                <ul>
-                    <li><a><i class="fa-solid fa-eye"></i></a></li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a class="add-to-wishlist-icon" data-id="@product.Id"><i class="fa-regular fa-heart"></i></a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-controller="Account" asp-action="Login"><i class="fa-regular fa-heart"></i></a></li>
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a class="add-to-cart-icon" data-id="@product.Id"><i class="fa-solid fa-basket-shopping"></i></a></li>
-                    }
-                    else
-                    {
-                        <li><a asp-controller="Account" asp-action="Login"><i class="fa-solid fa-basket-shopping"></i></a></li>
-                    }
-                </ul>
-            </div>
         </div>
 
-    </div>
-
-}
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center shop-navigation">
-        <li class="page-item  @(Model.HasPrevious? " " :"d-none")">
-            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
-        </li>
-
-        @for (int i = 1; i <= Model.TotalPage; i++)
-        {
-
-            <li class="page-item active @(Model.CurrentPage == i ? "disabled" : "")">
-                <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@i"><button class="btn">@i</button></a>
+    }
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center shop-navigation">
+            <li class="page-item  @(Model.HasPrevious? " " :"d-none")">
+                <a style="color:#fff" asp-action="Index" asp-route-searchText="@ViewBag.searchText" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage -1)" tabindex="-1" aria-label="Previous"><button class="left-btn"><i class="fa-solid fa-angles-left"></i></button></a>
             </li>
-        }
-        <li class="page-item @(Model.HasNext? " " :"d-none")">
-            <a style="color:#fff" asp-action="Index" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
-        </li>
-    </ul>
-</nav>
+
+            @for (int i = 1; i <= Model.TotalPage; i++)
+            {
+
+                <li class="page-item active @(Model.CurrentPage == i ? "disabled" : "")">
+                    <a style="text-decoration:none;color:#fff" asp-action="Index" asp-route-searchText="@ViewBag.searchText" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@i"><button class="btn">@i</button></a>
+                </li>
+            }
+            <li class="page-item @(Model.HasNext? " " :"d-none")">
+                <a style="color:#fff" asp-action="Index" asp-route-searchText="@ViewBag.searchText" asp-route-cateId="@ViewBag.cateId" asp-route-compositionId="@ViewBag.compositionId" asp-route-colorId="@ViewBag.colorId" asp-route-brandId="@ViewBag.brandId" asp-route-sizeId="@ViewBag.sizeId" asp-route-value1="@ViewBag.value1" asp-route-value2="@ViewBag.value2" asp-route-page="@(Model.CurrentPage +1)" aria-label="Next"><button class="right-btn"><i class="fa-solid fa-angles-right"></i></button></a>
+            </li>
+        </ul>
+    </nav>
+}
+else
+{
+
+    <div class="alert alert-success" role="alert" style="background-color: #e9ac98;color: #fff;border-color: #e9ac98;margin-top: 42px;width: 94%;margin-left: 47px;">
+      Product Not Found...
+    </div>
+}
+
 
 @section Scripts{
     <script src="~/assets/js/shop.js"></script>

@@ -7,6 +7,7 @@ using BrideyApp.ViewModels.Cart;
 using BrideyApp.ViewModels.Product;
 using BrideyApp.ViewModels.Shop;
 using BrideyApp.ViewModels.Wishlist;
+using MailKit.Search;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -75,6 +76,8 @@ namespace BrideyApp.Controllers
             ViewBag.brandId = brandId;
             ViewBag.value1 = value1;
             ViewBag.value2 = value2;
+            ViewBag.searchText = searchText;
+
 
 
             int pageCount = 0;
@@ -218,6 +221,10 @@ namespace BrideyApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRangeProducts(int value1, int value2, int page = 1, int take = 9)
         {
+            ViewBag.value1 = value1;
+            ViewBag.value2 = value2;
+
+
             List<Product> products = await _context.Products.Where(x => x.Price >= value1 && x.Price <= value2).Include(m=>m.Images).ToListAsync();
             var productCount = products.Count();
             var pageCount = (int)Math.Ceiling((decimal)productCount / take);
@@ -363,35 +370,44 @@ namespace BrideyApp.Controllers
             return RedirectToAction(nameof(ProductDetail), new { id });
         }
 
-        public async Task<IActionResult> Sort(string value)
+        public async Task<IActionResult> Sort(string? value, int page = 1, int take = 9)
         {
-            if (value is null) return BadRequest();
-            var products = await _productService.GetAll();
-            switch (value)
-            {
-                case "0":
-                    products = products;
-                    break;
-                case "1":
-                    products = products.OrderByDescending(p => p.SaleCount);
-                    break;
-                case "2":
-                    products = products.OrderByDescending(p => p.Rate);
-                    break;
-                case "3":
-                    products = products.OrderByDescending(p => p.CreatedDate);
-                    break;
-                case "4":
-                    products = products.OrderByDescending(p => p.Price);
-                    break;
-                case "5":
-                    products = products.OrderBy(p => p.Price);
-                    break;
-                default:
-                    break;
-            }
-            return PartialView("_ProductsPartial", products);
+            List<Product> products = new();
 
+            if (value == "1")
+            {
+                products = await _context.Products.Include(m=>m.Images).ToListAsync();
+            };
+            if (value == "2")
+            {
+                products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.SaleCount).ToListAsync();
+
+            };
+            if (value == "3")
+            {
+                products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Rate).ToListAsync();
+
+            };
+            if (value == "4")
+            {
+                products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.CreatedDate).ToListAsync();
+
+            };
+            if (value == "5")
+            {
+                products = await _context.Products.Include(m => m.Images).OrderByDescending(p => p.Price).ToListAsync();
+
+            };
+            if (value == "6")
+            {
+                products = await _context.Products.Include(m => m.Images).OrderBy(p => p.Price).ToListAsync();
+
+            };
+            int pageCount = products.Count();
+            List<ProductVM> mappedDatas = GetMappedDatas(products);
+            Paginate<ProductVM> model = new(mappedDatas, page, pageCount);
+
+            return PartialView("_ProductsPartial", model);
         }
 
 
