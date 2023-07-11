@@ -78,16 +78,16 @@
                             <div class="widget-search">
                                 <h2 class="search-title">Search</h2>
                             </div>
-                            <form class="wg-search-form">
-                                <input type="text" placeholder="Search...">
+                            <form class="wg-search-form" asp-controller="Shop" asp-action="Index">
+                                <input name="searchText" type="text" placeholder="Search...">
                                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </form>
                         </div>
                         <div class="widget">
-                            <h2 class="widget-title">Categories</h2>
+                            <h2 class="widget-title" style="height:40px;">Categories</h2>
                         </div>
                         <div class="widget-content">
-                            <ul>
+                            <ul style="margin-top: 91px;">
                                 @foreach (var category in Model.Categories)
                                 {
                                     <li>
