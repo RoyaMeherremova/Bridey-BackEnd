@@ -71,7 +71,7 @@ $(document).ready(function () {
     //add cart
  
     $(document).on("click", ".add-to-cart-icon", function (e) {
-            debugger
+            
             let id = $(this).attr("data-id");
             let data = { id: id };
             let countBasket = (".count-basket");
@@ -118,7 +118,6 @@ $(document).ready(function () {
     //change product count
     $(document).on("click", ".inc", function () {
         let id = $(this).parent().parent().attr("data-id");
-        console.log("sala")
         let nativePrice = parseFloat($(this).parent().prev().children().eq(1).text());
         let total = $(this).parent().next().children().eq(1);
         let count = $(this).prev();
@@ -129,7 +128,6 @@ $(document).ready(function () {
             success: function (res) {
                 res++;
                 subTotal(res, nativePrice, total, count)
-                 $(".count-basket").text(res)
                 grandTotal();
             }
         })
@@ -150,7 +148,6 @@ $(document).ready(function () {
                 }
                 res--;
                 subTotal(res, nativePrice, total, count)
-                $(".count-basket").text(res)
                 grandTotal();
             }
         })
@@ -241,6 +238,48 @@ $(document).ready(function () {
         $(".basicImg").attr("src", photo)
 
     })
+
+
+
+
+
+
+    //PRODUCT-DETAIL-ADDPRODUCT
+
+    $(document).on("click", ".add-to-cart-productDetail", function (e) {
+        let id = $(this).attr("data-id");
+        let data = { id: id };
+        let countBasket = (".count-basket");
+        $.ajax({
+            type: "Post",
+            url: "/Shop/AddToCart",
+            data: data,
+            success: function (res) {
+                $(countBasket).text(res);
+            }
+        })
+        return false;
+    })
+
+    //change product count
+    $(document).on("click", ".incrementDetail", function () {
+        let id = $(this).attr("data-id");
+        let input = $(this).prev();
+        let inputValue = $(this).prev().val();
+        inputValue++;
+        $(input).val(inputValue);
+        debugger
+        $.ajax({
+            type: "Post",
+            url: `/Cart/IncrementProductCount?id=${id}`,
+            success: function (res) {
+
+            }
+        })
+    })
+
+
+
 
 
 });

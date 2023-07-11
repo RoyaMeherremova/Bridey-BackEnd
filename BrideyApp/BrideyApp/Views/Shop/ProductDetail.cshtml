@@ -130,13 +130,13 @@
                             <div class="number">
                                 <span class="minus decrementDetail">-</span>
                                 <input type="text" value="1" />
-                                <span class="plus incrementDetail">+</span>
+                                <span class="plus incrementDetail" data-id="@Model.Id">+</span>
                             </div>
 
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <a class="btn add-button add-to-cart-icon" data-id="@Model.Id">Add to bag</a>
+                            <a class="btn add-button add-to-cart-productDetail" data-id="@Model.Id">Add to bag</a>
                         }
                         else
                         {

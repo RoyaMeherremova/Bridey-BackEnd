@@ -440,7 +440,7 @@ namespace BrideyApp.Controllers
             CartVM existProduct = carts.FirstOrDefault(p => p.ProductId == id);
 
             _cartService.SetDatasToCookie(carts, dbProduct, existProduct);
-
+           
             int cartCount = carts.Count;
 
             return Ok(cartCount);
