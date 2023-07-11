@@ -1063,7 +1063,7 @@ namespace BrideyApp.Migrations
                     b.ToTable("Socials");
                 });
 
-            modelBuilder.Entity("BrideyApp.Models.Subscrive", b =>
+            modelBuilder.Entity("BrideyApp.Models.Subscribe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1085,7 +1085,7 @@ namespace BrideyApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscrives");
+                    b.ToTable("Subscribes");
                 });
 
             modelBuilder.Entity("BrideyApp.Models.Team", b =>

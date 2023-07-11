@@ -15,6 +15,7 @@ namespace BrideyApp.ViewModels.Home
         public Dictionary<string, string> SectionBackgroundImages { get; set; }
         public List<Models.Blog> Blogs { get; set; }
         public List<Models.Product> Products { get; set; }
+        public string Email { get; set; }
 
 
     }

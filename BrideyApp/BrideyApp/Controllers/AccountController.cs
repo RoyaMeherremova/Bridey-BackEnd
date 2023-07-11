@@ -245,7 +245,7 @@ namespace BrideyApp.Controllers
                 }
                 if (dbWishlist is not null)
                 {
-                    List<WishlistProduct> wishlistProducts = await _wishlistService.GetAllByWishlistIdAsync(dbCart.Id);
+                    List<WishlistProduct> wishlistProducts = await _wishlistService.GetAllByWishlistIdAsync(dbWishlist.Id);
                     foreach (var wishlistProduct in wishlistProducts)
                     {
                         wishlistVMs.Add(new WishlistVM
@@ -418,6 +418,7 @@ namespace BrideyApp.Controllers
             _emailService.Send(existUser.Email, subject, html);
             return RedirectToAction(nameof(VerifyEmail));
         }
+
 
 
         [HttpGet]

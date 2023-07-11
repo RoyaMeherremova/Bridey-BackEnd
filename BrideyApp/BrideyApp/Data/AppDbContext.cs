@@ -41,7 +41,7 @@ namespace BrideyApp.Data
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<WishlistProduct> WishlistProducts { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Subscrive> Subscrives { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
 
 
 
@@ -89,7 +89,7 @@ namespace BrideyApp.Data
             modelBuilder.Entity<Wishlist>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<WishlistProduct>().HasQueryFilter(m => !m.SoftDelete);
             modelBuilder.Entity<Contact>().HasQueryFilter(m => !m.SoftDelete);
-            modelBuilder.Entity<Subscrive>().HasQueryFilter(m => !m.SoftDelete);
+            modelBuilder.Entity<Subscribe>().HasQueryFilter(m => !m.SoftDelete);
 
 
 

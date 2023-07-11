@@ -2,6 +2,7 @@
 using BrideyApp.Models;
 using BrideyApp.Services.Interfaces;
 using BrideyApp.ViewModels.Home;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,10 +20,11 @@ namespace BrideyApp.Controllers
         private readonly IBlogService _blogService;
         private readonly IProductService _productService;
 
+
         public HomeController(AppDbContext context,
                               ISliderService sliderService,
                               IHomeBannerService homeBannerService,
-                              IBrideService brideService, 
+                              IBrideService brideService,
                               ITeamService teamService,
                               IAdvertisingService advertisingService,
                               ILayoutService layoutService,
@@ -39,6 +41,7 @@ namespace BrideyApp.Controllers
             _headerBackgroundService = headerBackgroundService;
             _blogService = blogService;
             _productService = productService;
+
         }
 
         public async Task<IActionResult> Index()
@@ -50,7 +53,7 @@ namespace BrideyApp.Controllers
             List<Team> teams = await _teamService.GetAll();
             List<Advertising> advertisings = await _advertisingService.GetAll();
             List<Blog> blogs = await _blogService.GetAll();
-            List<Product> products = await _context.Products.Include(m=>m.Images).Include(p=>p.ProductCategories).ThenInclude(m=>m.Category).Take(8).ToListAsync();
+            List<Product> products = await _context.Products.Include(m => m.Images).Include(p => p.ProductCategories).ThenInclude(m => m.Category).Take(8).ToListAsync();
 
             HomeVM model = new()
             {
@@ -69,6 +72,36 @@ namespace BrideyApp.Controllers
             };
 
             return View(model);
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PostSubscribe(SubscribeVM model)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return RedirectToAction("Index", model);
+                var existSubscribe = await _context.Subscribes.FirstOrDefaultAsync(m => m.Email == model.Email);
+                if (existSubscribe != null)
+                {
+                    ModelState.AddModelError("Email", "Email already exist");
+                    return RedirectToAction("Index");
+                }
+                Subscribe subscribe = new()
+                {
+                    Email = model.Email,
+                };
+                await _context.Subscribes.AddAsync(subscribe);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.error = ex.Message;
+                return View();
+            }
 
         }
 

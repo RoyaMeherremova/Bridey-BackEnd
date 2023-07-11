@@ -1,0 +1,45 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="container my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="text-align: center;">
+                    Name
+                </th>
+                <th style="text-align: center;">
+                    Phone
+                </th>
+                <th style="text-align: center;">
+                    Email
+                </th>
+                <th style="text-align: center;">
+                    Message
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-1" style="text-align: center;">
+                    @Model.FirstName
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Phone
+                </td>
+                        <td class="py-1" style="text-align: center;">
+                    @Model.Email
+                </td>
+                <td class="py-1" style="text-align: center;">
+                    @Model.Message
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn mt-3" style="background: #696cffd1;color:#fff;" asp-action="Index">Back</a>
+</div>
+
+
+

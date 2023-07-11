@@ -58,7 +58,8 @@ namespace BrideyApp.Services
 
         public async Task<Wishlist> GetByUserIdAsync(string userId)
         {
-            return await _context.Wishlists.Include(c => c.WishlistProducts).FirstOrDefaultAsync(c => c.AppUserId == userId);
+            var data = await _context.Wishlists.Include(c => c.WishlistProducts).FirstOrDefaultAsync(c => c.AppUserId == userId);
+            return data;
         }
 
         public async Task<List<WishlistProduct>> GetAllByWishlistIdAsync(int? wishlistId)

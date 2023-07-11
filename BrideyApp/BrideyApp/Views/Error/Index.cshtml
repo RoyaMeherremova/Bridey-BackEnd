@@ -1,0 +1,34 @@
+﻿@model List<Advertising>
+@inject ILayoutService layout;
+
+   <!-- Start Main -->
+<main>
+    <section id="wrapper-error-page" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]');">
+        <div class="container page_text">
+            <div class="error-img">
+                <img src="~/assets/images/error.png">
+            </div>
+            <h1>Oop, that link is broken.</h1>
+            <a asp-controller="Home" asp-action="Index">
+                <h1>Back to home</h1>
+            </a>
+        </div>
+    </section>
+    <section id="footer-top-error">
+        <div class="container">
+            <div class="row">
+                @foreach (var advertising in Model)
+                {
+                    <div class="col-lg-3 col-sm-12 col-12 col-md-3">
+                        <div class="service-item">
+                            <img src="~/assets/images/@advertising.Image">
+                            <span class="title">@advertising.Name</span>
+                            <p>@advertising.Description</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+<!-- End Main -->
