@@ -99,16 +99,16 @@
 
                             </div>
                         }
-                  
+
                     </div>
-                      @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
 
                         <span class="top-respond">Leave a Comment</span>
                         <p>Your email address will not be published<span>*</span></p>
                         <form method="post" asp-action="PostComment" asp-route-id="@Model.Blog.Id" asp-route-userId="@userManager.Users.FirstOrDefault(u=>u.UserName==User.Identity.Name).Id">
                             <div class="inputs-area">
-                                <input id="author"  type="text" placeholder="Your Name *" 
+                                <input id="author" type="text" placeholder="Your Name *"
                                    size="30" aria-required="true" value="@string.Join(" ", userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).FirstName, userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name).LastName)"
                                    asp-for="BlogCommentVM.Name">
                                 <input id="email" type="email" placeholder="Email Address *"
@@ -116,13 +116,22 @@
                                    asp-for="BlogCommentVM.Email">
                             </div>
                             <textarea id="comment" placeholder="Comment" asp-for="BlogCommentVM.Message"></textarea>
-                            <div class="comment-form">
-                                <input type="checkbox"><label>
-                                    Save my name, email, and website in this browser for the
-                                    next time I comment.
-                                </label>
+                            <button type="submit" style="border-radius: 5px;">Post Comment</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="top-respond">Leave a Comment</span>
+                        <p>Your email address will not be published<span>*</span></p>
+                        <form method="post">
+                            <div class="inputs-area">
+                                <input id="author" type="text" placeholder="Your Name *"
+                                   size="30" aria-required="true">
+                                <input id="email" type="email" placeholder="Email Address *"
+                                   size="30" aria-required="true">
                             </div>
-                            <button type="submit">Post Comment</button>
+                            <textarea id="comment" placeholder="Comment"></textarea>
+                            <a style="background-color: #de9076;color: #fff;padding: 9px;position: relative;top: 19px;border-radius: 5px;" asp-controller="Account" asp-action="Login">Post Comment</a>
                         </form>
                     }
                 </div>

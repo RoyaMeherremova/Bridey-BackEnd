@@ -162,6 +162,24 @@ $(document).ready(function () {
         })
     })
 
+    //SORT-RESPONSIVE
+    $(document).on("change", "#sort-responsive", function (e) {
+        e.preventDefault();
+        let sortValue = $(this).val();
+        let data = { sortValue: sortValue };
+        let parent = $(".productss-area");
+
+        $.ajax({
+            url: "/Shop/Sort",
+            type: "Get",
+            data: data,
+            success: function (res) {
+                $(parent).html(res);
+
+            }
+
+        })
+    })
 
 
 });
