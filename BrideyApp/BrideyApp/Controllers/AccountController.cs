@@ -14,6 +14,8 @@ namespace BrideyApp.Controllers
 {
     //SuperAdmin - Cavid_Bashirov  email: royaam@code.edu.az / parol: Cavid123_
     //Admin - Roya_Meherremova  email: ggigarli@gmail.com / parol: Cavid123_
+    //Member - Isabella_Addison email: royameherremova1996@gmail.com / parol: Cavid123_
+
     public class AccountController : Controller
     {
         private readonly AppDbContext _context;

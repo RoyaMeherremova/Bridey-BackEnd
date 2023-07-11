@@ -1,0 +1,208 @@
+#contact {
+
+    padding-top: 54px;
+
+    .contact-area {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #E3E3E3;
+        margin: 0px;
+    }
+
+    .elementor-column-wrap {
+        padding: 80px 50px 80px 45px;
+
+        h2 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: 'Marcellus';
+            text-align: center;
+            margin-bottom: 23px;
+        }
+
+        p {
+            color: #4B5955;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 38px;
+
+        }
+    }
+
+    .elementor-column {
+        .elementor-widget-container {
+            border-style: solid;
+            border-width: 0 0px 0px 1px;
+            border-color: #E3E3E3;
+            height: 438px;
+            margin-top: 59px;
+            padding: 7px 58px;
+
+            .elementor-form {
+                margin-left: 78px;
+                input {
+                    background-color: #FFF;
+                    border-color: #CCC;
+                    border-width: 0 0 1px 0;
+                    font-size: 14px;
+                    color: #4B5955;
+                    width: 339px;
+                    height: 40px;
+                    padding-bottom: 6px;
+                    outline: none;
+                }
+
+                .input-area {
+                    display: flex;
+                    gap: 37px;
+                    margin-bottom: 32px;
+                }
+
+                textarea {
+                    border-color: #F6F6F6;
+                    background: #F6F6F6;
+                    border-width: 1px;
+                    width: 719px;
+                    height: 186px;
+                    font-size: 14px;
+                    padding: 14px 14px 14px 14px;
+                    outline: none;
+
+                }
+
+                button {
+                    background-color: #E9AC98;
+                    border-color: #E9AC98;
+                    display: block;
+                    font-size: 11px;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                    border-style: solid;
+                    border-width: 1px 1px 1px 1px;
+                    border-radius: 0 0 0 0;
+                    padding: 0 15px 0 15px;
+                    min-height: 59px;
+                    color: #fff;
+                    margin-top: 20px;
+                }
+            }
+        }
+
+    }
+}
+#map{
+    margin-top: 60px;
+    iframe{
+        width: 100%;
+    }
+}
+@font-face {
+    font-family: Playball;
+    src: url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+}
+
+.contact-background {
+    height: 403px;
+}
+
+#wrapper-contact {
+    margin-top: 2%;
+    background-size: cover;
+
+    .page_text {
+        .contact-p {
+            color: #3b4945;
+        }
+    }
+
+    .page_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 406px;
+        text-align: center;
+
+        h1 {
+            text-transform: uppercase;
+            color: #3e3d3d;
+            font-weight: 600;
+            font-size: 1.375rem;
+            font-family: auto;
+
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            padding: 0px !important;
+            gap: 4px;
+
+            li {
+                font-size: 14px;
+                margin: 4px;
+                margin: 0 !important;
+
+                span {
+                    color: #666;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: #9faaa7;
+            }
+
+            i {
+                position: relative;
+                font-size: 11px;
+                bottom: 1px;
+            }
+        }
+    }
+}
+
+#footer-top-contact {
+    border: 1px solid #EDEDED;
+    background-color: white;
+    padding-top: 6%;
+    padding-bottom: 6%;
+
+    .service-item {
+        text-align: center;
+
+        img {
+            display: block;
+            margin: auto;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            color: #000;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        p {
+            margin-top: 1%;
+            font-size: 14px;
+            color: #4b5955;
+        }
+
+    }
+}
+
+
+
+hr {
+    color: #b4afaf;
+}
+
+@font-face {
+    font-family: Marcellus;
+    src: url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+}

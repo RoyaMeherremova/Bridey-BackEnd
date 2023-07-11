@@ -15,7 +15,10 @@
                     <th style="text-align: center;">SKU</th>
                     <th style="text-align: center;">Price</th>
                     <th style="text-align: center;"> Operations</th>
-                    <a class="btn btn-success text-white" asp-action="Create" style="float:right;margin: 22px;">Create</a>
+                        @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <a class="btn btn-success text-white" asp-action="Create" style="float:right;margin: 22px;">Create</a>
+                    }
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">

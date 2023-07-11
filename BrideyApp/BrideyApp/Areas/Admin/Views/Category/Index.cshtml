@@ -11,7 +11,10 @@
                     <th style="text-align: center;">Image</th>
                     <th style="text-align: center;">Name</th>
                     <th style="text-align: center;"> Operations</th>
-                    <a class="btn btn-success text-white" asp-action="Create" style="float:right;margin: 22px;">Create</a>
+                        @if (User.IsInRole("SuperAdmin"))
+                    {
+                        <a class="btn btn-success text-white" asp-action="Create" style="float:right;margin: 22px;">Create</a>
+                    }
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
@@ -26,7 +29,7 @@
                         </td>
                         <td class="py-1" style="text-align: center;">
                             <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@category.Id">Info</a>
-                            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
                             <a class="btn btn-outline-danger delete-category">Delete</a>
                         </td>
 

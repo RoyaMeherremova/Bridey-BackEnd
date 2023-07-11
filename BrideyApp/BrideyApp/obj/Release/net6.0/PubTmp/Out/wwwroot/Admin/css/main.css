@@ -1,0 +1,20 @@
+﻿.active-status {
+    width: 16px;
+    height: 16px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+.de-active {
+    width: 16px;
+    height: 16px;
+    background-color: #ff0000cf;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.authentication-wrapper.authentication-basic .authentication-inner:after {
+    content: none;
+}

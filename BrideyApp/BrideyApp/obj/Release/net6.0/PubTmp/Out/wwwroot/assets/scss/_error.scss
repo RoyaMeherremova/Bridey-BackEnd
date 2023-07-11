@@ -1,0 +1,85 @@
+#wrapper-error-page {
+    margin-top: 2%;
+    height: 953px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .error-img {
+        img {
+            margin-top: 71%;
+        }
+    }
+
+    .page_text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 406px;
+        text-align: center;
+        width: 677px;
+        text-align: center;
+        h1 {
+            font-size: 60px;
+            font-family: 'Marcellus';
+            margin-left: 8px;
+        }
+        a{
+            h1{
+                background-image: linear-gradient(to right, #ff0000c4 50%, #000 50%);
+                background-size: 200% 100%;
+                background-position: 100%;
+                background-clip: text;
+                transition: background-position .4s ease;
+                display: inline-block;
+                -webkit-text-fill-color: transparent;
+
+
+                &:hover {
+                    background-position: bottom;
+                    color: #ff0000c4;
+                    background-position: 0 100%;
+                }
+            }
+        }
+
+
+    }
+}
+#footer-top-error {
+    border: 1px solid #EDEDED;
+    background-color: white;
+    padding-top: 6%;
+    padding-bottom: 6%;
+
+    .service-item {
+        text-align: center;
+
+        img {
+            display: block;
+            margin: auto;
+            padding-bottom: 20px;
+        }
+
+        .title {
+            color: #000;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: 700;
+        }
+
+        p {
+            margin-top: 1%;
+            font-size: 14px;
+            color: #4b5955;
+        }
+
+    }
+}
+
+@font-face {
+    font-family: Marcellus;
+    src: url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+}
