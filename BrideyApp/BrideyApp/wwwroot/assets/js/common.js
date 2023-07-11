@@ -261,7 +261,7 @@ $(document).ready(function () {
         return false;
     })
 
-    //change product count
+    //change product count-Detail
     $(document).on("click", ".incrementDetail", function () {
         let id = $(this).attr("data-id");
         let input = $(this).prev();
@@ -274,6 +274,26 @@ $(document).ready(function () {
             url: `/Cart/IncrementProductCount?id=${id}`,
             success: function (res) {
 
+            }
+        })
+    })
+    //change product count-Detail
+    $(document).on("click", ".decrementDetail", function () {
+        let id = $(this).attr("data-id");
+        let input = $(this).next();
+        let inputValue = $(this).next().val();
+        if (inputValue != 1) {
+            inputValue--;
+        }
+        $(input).val(inputValue);
+        debugger
+        $.ajax({
+            type: "Post",
+            url: `/Cart/DecrementProductCount?id=${id}`,
+            success: function (res) {
+                if ($(inputValue).val() == 1) {
+                    return;
+                }
             }
         })
     })

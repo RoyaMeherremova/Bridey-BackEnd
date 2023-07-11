@@ -128,9 +128,20 @@
                         </div>
                         <div class="clearfix">
                             <div class="number">
-                                <span class="minus decrementDetail">-</span>
-                                <input type="text" value="1" />
-                                <span class="plus incrementDetail" data-id="@Model.Id">+</span>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <span class="minus decrementDetail">-</span>
+                                    <input type="text" value="1" />
+                                    <span class="plus incrementDetail" data-id="@Model.Id">+</span>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Account" asp-action="Login"><span class="minus">-</span></a>
+                                    <input type="text" value="1" />
+                                    <a asp-controller="Account" asp-action="Login"><span class="plus" data-id="@Model.Id">+</span></a>
+                                    
+                                }
+
                             </div>
 
                         </div>
