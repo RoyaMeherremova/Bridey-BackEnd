@@ -493,6 +493,26 @@
 
         })
     })
+    $(document).on("click", ".delete-subscribe", function (e) {
+        e.preventDefault();
+        let Id = $(this).parent().parent().attr("data-id");
+        let deletedElem = $(this).parent().parent();
+        let data = { id: Id }
+        let tbody = $(this).parent().parent().parent();
+
+        $.ajax({
+            url: "subscribe/delete",
+            type: "Post",
+            data: data,
+            success: function (res) {
+                $(deletedElem).remove();
+                if ($(tbody).length == 0) {
+                    $(".table").remove();
+                }
+            }
+
+        })
+    })
 
 
 

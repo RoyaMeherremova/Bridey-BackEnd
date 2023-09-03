@@ -22,10 +22,11 @@
     </section>
     <section id="wishlist-table">
         <div class="container">
-            <div class="table-area">
-                <div class="table-products">
-                    @if (Model.Count > 0)
-                    {
+
+            @if (Model.Count > 0)
+            {
+                <div class="table-area table-area-wishlist">
+                    <div class="table-products">
                         <table class="table product-table-wishlist">
                             <thead>
                                 <tr>
@@ -51,22 +52,25 @@
                             </tbody>
 
                         </table>
-                        <div class="footer-wish">
+                        <div class="footer-wish footer-wish-wishlist">
                             <button class="btn btn-primary shop btn-wishlist"><a asp-controller="Shop" asp-action="Index">Continue shopping</a></button>
                         </div>
-                    }
-                    else
-                    {
-                        <div class="alert alert-success-wishlist" role="alert" style="background-color: #e9ac98;color: #fff;border-color: #e9ac98;">
-                            Wishlist Empty.Please Add product in your wishlist..
-                        </div>
-                    }
-                    <div class="alert alert-success-wishlist d-none" role="alert" style="background-color: #e9ac98;color: #fff;border-color: #e9ac98;">
-                        Wishlist Empty.Please Add product in your wishlist..
                     </div>
+
                 </div>
+            }
+            else
+            {
+                <div style="width: 27%;height: 64px;padding-left: 75px;margin-left: 37%;margin-bottom: 31px;margin-top: 102px;background-color: #e9ac98;color: #fff;border-color: #e9ac98;" class="alert alert-success" role="alert">
+                    Your wishlist is currently empty...
+                </div>
+                <a style="text-decoration:none;cursor:pointer;" asp-controller="Shop" asp-action="Index"><div style="width: 11%;margin-left: 45%;margin-bottom: 58px;padding-left: 18px;background-color: #e9ac98;color: #fff;border-color: #e9ac98;" class="alert alert-success" role="alert">Return to shop</div></a>
              
+            }
+            <div style="width: 27%;height: 64px;padding-left: 75px;margin-left: 37%;margin-bottom: 31px;margin-top: 102px;background-color: #e9ac98;color: #fff;border-color: #e9ac98;" class="alert alert-success  alert-success-wishlist d-none" role="alert">
+                Your wishlist is currently empty..
             </div>
+            <a style="text-decoration:none;cursor:pointer;" asp-controller="Shop" asp-action="Index"><div style="width: 11%;margin-left: 45%;margin-bottom: 58px;padding-left: 18px;background-color: #e9ac98;color: #fff;border-color: #e9ac98;" class="alert alert-success alert-success-wishlist d-none" role="alert">Return to shop</div></a>
         </div>
     </section>
 </main>

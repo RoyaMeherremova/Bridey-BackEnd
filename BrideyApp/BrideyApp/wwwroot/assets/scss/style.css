@@ -3,14 +3,10 @@
 }
 
     #slider .swiper-pagination .swiper-pagination-bullet {
-        width: 10px;
-        height: 10px;
-        background-color: #666;
+      display:none;
     }
 
-        #slider .swiper-pagination .swiper-pagination-bullet:hover {
-            background-color: #e9ac98;
-        }
+       
 
     #slider .swiper-button-prev {
         display: none;
@@ -295,7 +291,7 @@ hr {
             border: 1px solid #58525e;
             padding: 21px 19px 13px 15px;
             font-size: 11px;
-            color: #e9ac98;
+            color: #58525e;
             height: 56px;
             width: 148px;
             font-weight: 500;
@@ -303,17 +299,18 @@ hr {
             background: linear-gradient(to right, #e9ac98 50%, white 50%);
             background-size: 200% 100%;
             background-position: right bottom;
-            transition: all 0.2s ease-out;
+            transition: all 0.5s ease-out;
         }
 
             #introducing .info-text .btn-about i {
                 position: relative;
                 left: 7%;
+                color: #58525e;
             }
 
             #introducing .info-text .btn-about:hover {
                 text-align: right;
-                color: #000;
+                color: #58525e;
                 background-position: left bottom;
                 border: none;
                 text-align: right;
@@ -323,7 +320,7 @@ hr {
                     position: absolute;
                     transition: all 0.2s ease-out;
                     left: 10%;
-                    bottom: 37%;
+                    bottom: 38%;
                     font-size: 13px;
                 }
 
@@ -355,6 +352,9 @@ hr {
         font-family: "emoji";
     }
 
+#featured-products .header-background .header-background-content span {
+    margin-left: 31% !important;
+}
 .back-top {
     float: right;
     text-align: center;
@@ -515,7 +515,7 @@ hr {
         font-size: 11px;
         height: 56px;
         width: 148px;
-        color: #000;
+        color: #58525e;
         font-weight: 500;
         text-transform: uppercase;
         display: block;
@@ -529,6 +529,7 @@ hr {
         #products .btn-show-more a i {
             position: relative;
             left: 7%;
+            color: #58525e;
         }
 
         #products .btn-show-more a:hover {
@@ -539,7 +540,7 @@ hr {
 
             #products .btn-show-more a:hover i {
                 position: absolute;
-                left: 20%;
+                left: 24%;
                 top: 22px;
                 transition: all 0.5s ease-out;
             }
@@ -620,14 +621,16 @@ hr {
             #about-us .btn-about:hover i {
                 position: absolute;
                 left: 8%;
-                top: 22px;
+                top: 20px;
                 transition: all 0.5s ease-out;
             }
 
 #brides-header {
     padding-top: 7%;
 }
-
+    #brides-header .header-background .header-background-content span {
+        margin-left: 17%;
+    }
 #brides {
     padding-top: 3%;
 }
@@ -745,6 +748,9 @@ hr {
     padding-top: 9%;
     padding-bottom: 4%;
 }
+    #latest-news .header-background .header-background-content span {
+        margin-left: 38%;
+    }
 
 #blogs .blog-content {
     padding-left: 20px;
@@ -3257,7 +3263,7 @@ hr {
 
     #product-detail .prod-info-extra {
         background: #fff;
-        padding: 0 16px;
+        padding: 0 3px;
         height: 50px;
         display: flex;
         align-items: center;
@@ -3345,6 +3351,7 @@ hr {
             display: inline-block;
             vertical-align: middle;
             color: #b47259;
+            outline:none;
         }
 
     #product-detail .prod-info-time {
@@ -4213,7 +4220,7 @@ hr {
             }
 
 #basket-table .table-area {
-    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 1px 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     padding-bottom: 32px;
 }
@@ -4731,10 +4738,11 @@ hr {
             #our-contact .blok-ApRawHtml .contact-area a {
                 left: 39%;
                 padding: 11px 12px 17px 17px;
+                color: #58525e;
             }
 
                 #our-contact .blok-ApRawHtml .contact-area a:hover {
-                    color: #000;
+                    color: #58525e;
                     padding: 11px 35px 17px 17px;
                     background-position: left bottom;
                     border: none;
@@ -4995,7 +5003,12 @@ hr {
     font-family: Great Vibes;
     src: url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 }
-
+#login .form-login-wrap .area-password i{
+    cursor:pointer;
+}
+#register .form-register-wrap .area-password i {
+    cursor: pointer;
+}
 #wrapper-register {
     margin-top: 2%;
     background-size: cover;
@@ -5720,6 +5733,7 @@ hr {
             #brides-header .header-background-content span {
                 font-size: 11px !important;
                 top: 9px !important;
+               
             }
 
     #latest-news {
@@ -5949,6 +5963,7 @@ hr {
 
             #our-contact .blok-ApRawHtml .contact-area .btn-hov {
                 left: 24%;
+                color: #58525e;
             }
 
     #title_block {
@@ -6102,15 +6117,15 @@ hr {
 
     #wrapper-blog {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-blog .page_text {
-            width: 233px;
+            width: 200px;
             height: 100px;
             text-align: center;
             position: relative;
-            top: 79px;
+           
         }
 
             #wrapper-blog .page_text h1 {
@@ -6238,15 +6253,15 @@ hr {
 
     #wrapper-wishlist {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-wishlist .page_text {
             width: 200px;
             height: 100px;
             text-align: center;
-            position: relative;
-            top: 71px;
+         
+          
         }
 
             #wrapper-wishlist .page_text h1 {
@@ -6353,15 +6368,14 @@ hr {
 
     #wrapper-basket {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-basket .page_text {
             width: 200px;
             height: 100px;
             text-align: center;
-            position: relative;
-            top: 71px;
+         
         }
 
             #wrapper-basket .page_text h1 {
@@ -6376,21 +6390,20 @@ hr {
 
     #wrapper-login {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-login .page_text {
             width: 233px;
             height: 100px;
             text-align: center;
-            position: relative;
-            top: 79px;
+          
         }
 
             #wrapper-login .page_text h1 {
                 position: relative;
                 top: 52px;
-                font-size: 22px;
+                font-size: 19px;
             }
 
             #wrapper-login .page_text ul {
@@ -6413,21 +6426,20 @@ hr {
 
     #wrapper-register {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-register .page_text {
             width: 233px;
             height: 100px;
             text-align: center;
-            position: relative;
-            top: 79px;
+         
         }
 
             #wrapper-register .page_text h1 {
                 position: relative;
                 top: 52px;
-                font-size: 22px;
+                font-size: 19px;
             }
 
             #wrapper-register .page_text ul {
@@ -6617,11 +6629,14 @@ hr {
                 }
 
     #wrapper-error-page {
-        height: 548px;
+        width:100%;
+        height: 144px;
     }
 
         #wrapper-error-page .page_text {
-            width: 100%;
+            width: 200px;
+            height:100px;
+            text-align:center;
         }
 
         #wrapper-error-page .error-img img {
@@ -6635,15 +6650,14 @@ hr {
 
     #wrapper-forgotPassword {
         width: 100%;
-        height: 311px;
+        height: 144px;
     }
 
         #wrapper-forgotPassword .page_text {
             width: 200px;
             height: 100px;
             text-align: center;
-            position: relative;
-            top: 71px;
+         
         }
 
             #wrapper-forgotPassword .page_text h1 {
@@ -6889,6 +6903,7 @@ hr {
 
     #blogs {
         padding-top: 5%;
+       
     }
 
         #blogs .blog {

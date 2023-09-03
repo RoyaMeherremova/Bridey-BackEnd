@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="~/assets/slicky/slick-1.8.1/slick/slick-theme.css" />
 
 }
+@{
+    ViewData["Title"] = "ProductDetail";
+}
 <!-- Start Main -->
 <main>
     <section id="wrapper-productDetail" style="background-image: url('/assets/images/@Model.SectionBackgroundImages["BasicSmallBackgroundImage"]')">
@@ -60,7 +63,7 @@
                                     </li>
                                 }
                                 <li>
-                                    <a>#289437</a>
+                                    <a>#@Model.SKU.Substring(0,9)</a>
                                 </li>
                             </ul>
                         </div>
@@ -118,13 +121,11 @@
                             }
                         </div>
                         <div class="prod-size">
-                            <span class="size">Size</span>
-                            <div class="style-select-item-size">
-                                @foreach (var item in Model.ProductSizes)
-                                {
-                                    <span>@item.Size.Name.Substring(0,1)</span>
-                                }
-                            </div>
+                            <span class="size">SIZE</span><span> :</span>
+                            @foreach(var size in Model.ProductSizes)
+                            {
+                                <span style="color: #5c3c30;">@string.Join("," , size.Size.Name)</span>
+                            }
                         </div>
                         <div class="clearfix">
                             <div class="number">
@@ -137,7 +138,7 @@
                                 else
                                 {
                                     <a asp-controller="Account" asp-action="Login"><span class="minus">-</span></a>
-                                    <input type="text" value="1" />
+                                    <input disabled="disabled" type="text" value="1" />
                                     <a asp-controller="Account" asp-action="Login"><span class="plus" data-id="@Model.Id">+</span></a>
                                     
                                 }

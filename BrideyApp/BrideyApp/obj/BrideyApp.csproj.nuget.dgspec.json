@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj": {}
+    "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj": {
+    "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
+        "projectUniqueName": "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
         "projectName": "BrideyApp",
-        "projectPath": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
+        "projectPath": "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
         "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lenovo\\Desktop\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\obj\\",
+        "outputPath": "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -74,7 +74,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.14, )"
+              "version": "[6.0.15, )"
             }
           },
           "imports": [

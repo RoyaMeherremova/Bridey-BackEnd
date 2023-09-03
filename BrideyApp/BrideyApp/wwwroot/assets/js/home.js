@@ -3,10 +3,10 @@
 var swiper = new Swiper(".mySwiper", {
   spaceBetween: 30,
   centeredSlides: true,
-  // autoplay: {
-  //     delay: 2500,
-  //     disableOnInteraction: false,
-  // },
+   autoplay: {
+       delay: 2500,
+       disableOnInteraction: false,
+   },
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -24,7 +24,9 @@ $('.blog-slider').slick({
   infinite: false,
   speed: 300,
   slidesToShow: 3,
-  slidesToScroll: 4,
+    slidesToScroll: 4,
+    autoplay: true,
+    auttoplaySpeed: 1000,
   responsive: [
     {
       breakpoint: 1024,

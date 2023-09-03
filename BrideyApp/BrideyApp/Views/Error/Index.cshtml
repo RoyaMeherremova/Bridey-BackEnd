@@ -1,7 +1,9 @@
 ﻿@model List<Advertising>
 @inject ILayoutService layout;
-
-   <!-- Start Main -->
+@{
+    ViewData["Title"] = "Error";
+}
+<!-- Start Main -->
 <main>
     <section id="wrapper-error-page" style="background-image: url('/assets/images/@layout.GetSectionBackgroundImages()["BasicSmallBackgroundImage"]');">
         <div class="container page_text">

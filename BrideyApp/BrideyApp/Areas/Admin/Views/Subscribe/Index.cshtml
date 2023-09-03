@@ -1,0 +1,46 @@
+﻿@model List<Subscribe>
+@{
+    ViewData["Title"] = "Subscribe";
+
+}
+<div class="card mt-5" style="width: 95%;margin-left: 34px;">
+    <div class="table-responsive text-nowrap">
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">Email</th>
+                        <th style="text-align: center;">Operations</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var subscribe in Model)
+                    {
+                        <tr data-id="@subscribe.Id">
+                            <td class="py-1" style="text-align: center;">
+                                @subscribe.Email
+                            </td>
+                            <td class="py-1" style="text-align: center;">
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <a class="btn btn-outline-danger delete-subscribe">Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+
+</div>
+@section Scripts {
+
+    <script src="~/admin/js/admin.js"></script>
+}
+
+
+
+
+

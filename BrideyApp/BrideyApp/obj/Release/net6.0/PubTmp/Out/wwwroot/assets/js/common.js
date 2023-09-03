@@ -82,6 +82,11 @@ $(document).ready(function () {
                 data: data,
                 success: function (res) {
                     $(countBasket).text(res);
+                    Swal.fire(
+                        'Added to cart!',
+                        'You clicked the button!',
+                        'success'
+                    )
                 }
             })
             return false;
@@ -93,25 +98,43 @@ $(document).ready(function () {
         let prod = $(this).parent().parent();
         let tbody = $(".tbody-basket").children();
         let data = { id: id };
-        let alert = $(".alert-success")
-        let footerWish = $(".footer-wish")
-        
-        $.ajax({
-            type: "Post",
-            url: `Cart/DeleteDataFromBasket`,
-            data: data,
-            success: function (res) {
-                if ($(tbody).length == 1) {
-                    $(".product-table").addClass("d-none");
-                    $(alert).removeClass("d-none")
-                    $(footerWish).addClass("d-none")
-                }
-                $(prod).remove();
-                res--;
-                $(".count-basket").text(res)
-                grandTotal();
+        let alert = $(".alert-success-basket")
+        let footerWish = $(".footer-wish-basket")
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "Post",
+                    url: `Cart/DeleteDataFromBasket`,
+                    data: data,
+                    success: function (res) {
+                        if ($(tbody).length == 1) {
+                            $(".table-area-basket").addClass("d-none");
+                            $(alert).removeClass("d-none")
+                            $(footerWish).addClass("d-none")
+                        }
+                        $(prod).remove();
+                        res--;
+                        $(".count-basket").text(res)
+                        grandTotal();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+             
             }
         })
+      
         return false;
     })
 
@@ -180,6 +203,11 @@ $(document).ready(function () {
                 data: data,
                 success: function (res) {
                     $(countWishlist).text(res);
+                    Swal.fire(
+                        'Added to wishlist!',
+                        'You clicked the button!',
+                        'success'
+                    )
                 }
             })
             return false;
@@ -192,24 +220,42 @@ $(document).ready(function () {
         let tbody = $(".tbody-wishlist").children();
         let data = { id: id };
         let alert = $(".alert-success-wishlist")
-        let btn = $(".btn-wishlist")
+        let btn = $(".footer-wish-wishlist")
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "Post",
+                    url: `Wishlist/DeleteDataFromWishlist`,
+                    data: data,
+                    success: function (res) {
+                        if ($(tbody).length == 1) {
+                            $(".table-area-wishlist").addClass("d-none");
+                            $(alert).removeClass("d-none")
+                            $(btn).addClass("d-none")
 
-        $.ajax({
-            type: "Post",
-            url: `Wishlist/DeleteDataFromWishlist`,
-            data: data,
-            success: function (res) {
-                if ($(tbody).length == 1) {
-                    $(".product-table-wishlist").addClass("d-none");
-                    $(alert).removeClass("d-none")
-                    $(btn).addClass("d-none")
-
-                }
-                $(prod).remove();
-                res--;
-                $(".count-wishlist").text(res)
+                        }
+                        $(prod).remove();
+                        res--;
+                        $(".count-wishlist").text(res)
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+             
             }
         })
+  
         return false;
     })
     //search
@@ -303,7 +349,61 @@ $(document).ready(function () {
 
 
 });
+$(document).ready(function () {
+    const togglePassword = document.querySelector("#login .area-password .eyes");
+    const password = document.querySelector("#login .area-password input");
 
+    togglePassword.addEventListener("click", function () {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        this.classList.toggle("bi-eye");
+    });
+
+    // prevent form submit
+    const form = document.querySelector("form");
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+    });
+
+})
+////-----------for change type input-----
+$(document).ready(function () {
+    const togglePassword = document.querySelector("#register .area-password .eyes");
+    const password = document.querySelector("#register .area-password input");
+
+    togglePassword.addEventListener("click", function () {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        this.classList.toggle("bi-eye");
+    });
+
+    // prevent form submit
+    const form = document.querySelector("form");
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+    });
+
+})
+$(document).ready(function () {
+    const togglePassword = document.querySelector("#register .confirm-password .eyes");
+    const password = document.querySelector("#register .confirm-password input");
+
+    togglePassword.addEventListener("click", function () {
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
+        password.setAttribute("type", type);
+
+        this.classList.toggle("bi-eye");
+    });
+
+    // prevent form submit
+    const form = document.querySelector("form");
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+    });
+
+})
 
 //Headere qaytaran icon
 $('.back-top').click(function () {
