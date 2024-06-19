@@ -14,7 +14,7 @@ namespace BrideyApp.Services
             _context = context;
         }
 
-        public async Task<List<Color>> GetAll() => await _context.Colors.Include(m=>m.ProductColors).ToListAsync();
+        public async Task<List<Color>> GetAll() => await _context.Colors.Include(m => m.ProductColors).ToListAsync();
 
         public async Task<Color> GetColorById(int? id) => await _context.Colors.FirstOrDefaultAsync(m => m.Id == id);
     }

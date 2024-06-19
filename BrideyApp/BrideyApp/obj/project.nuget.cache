@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BS6xrBCZGfUhRRFaZpNFon+gr4tMkv8FGwBIuDGFMjyKlJVKBOTs2I9GTmMEH9Zj4EMiF9SLAgBMtaUMN6MWfg==",
+  "dgSpecHash": "10PxBrS0pk4LEVfB0Ql1sAugG1Z/N7ajSTz3TrKm1CQo8bXBdGp47q4UcM79DdGQeY1D4ecRXuUKm4UI1odxCQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lenovo\\Desktop\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
+  "projectFilePath": "C:\\Users\\lenovo\\Desktop\\MyProject\\Bridey-Project\\Bridey-BackEnd\\BrideyApp\\BrideyApp\\BrideyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\bouncycastle.cryptography\\2.1.1\\bouncycastle.cryptography.2.1.1.nupkg.sha512",
     "C:\\Users\\lenovo\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
